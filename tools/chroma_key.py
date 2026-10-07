@@ -6,7 +6,11 @@ foreground color F is then recovered by removing K's share, which strips
 green spill from edges and from semi-transparent areas (shadow, light beam).
 
 Usage:
-    python tools/chroma_key.py IN.jpg OUT.png [--rotate 180]
+    python tools/chroma_key.py IN.jpg OUT.png [--rotate 180] [--scale 0.12]
+
+Use one shared --scale for every pose of a character so they keep the same
+zoom relative to each other (0.12 makes the scavenger's ~330 px body ~40 px,
+matching the 48x48 placeholder).
 """
 import argparse
 
@@ -39,6 +43,7 @@ def main() -> None:
     ap.add_argument("src")
     ap.add_argument("dst")
     ap.add_argument("--rotate", type=int, default=0, help="degrees counter-clockwise (180 = flip to face north)")
+    ap.add_argument("--scale", type=float, default=1.0, help="resize factor applied after rotation")
     ap.add_argument("--low", type=float, default=0.10)
     ap.add_argument("--high", type=float, default=0.97)
     args = ap.parse_args()
@@ -48,6 +53,10 @@ def main() -> None:
     out = Image.fromarray(np.round(rgba * 255.0).astype(np.uint8), "RGBA")
     if args.rotate:
         out = out.rotate(args.rotate, expand=True)
+    if args.scale != 1.0:
+        size = (max(1, round(out.width * args.scale)), max(1, round(out.height * args.scale)))
+        # Pillow premultiplies RGBA while resampling, so no dark fringes.
+        out = out.resize(size, Image.LANCZOS)
     out.save(args.dst)
     print(f"wrote {args.dst} {out.size} RGBA")
 
