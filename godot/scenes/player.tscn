@@ -1,0 +1,39 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/player.gd" id="1_player"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_torso"]
+radius = 16.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+collision_layer = 2
+collision_mask = 1
+motion_mode = 1
+script = ExtResource("1_player")
+
+[node name="Body" type="Sprite2D" parent="."]
+
+[node name="Collider" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_torso")
+
+[node name="ShotRay" type="RayCast2D" parent="."]
+enabled = false
+target_position = Vector2(0, -900)
+collision_mask = 5
+
+[node name="Tracer" type="Line2D" parent="."]
+visible = false
+top_level = true
+width = 2.0
+default_color = Color(0.94902, 0.756863, 0.305882, 1)
+
+[node name="ReadyCue" type="Line2D" parent="."]
+visible = false
+points = PackedVector2Array(24, 0, 96, 0)
+width = 2.0
+default_color = Color(0.94902, 0.756863, 0.305882, 0.45)
+
+[node name="ThreatArrow" type="Polygon2D" parent="."]
+visible = false
+color = Color(1, 0.352941, 0.211765, 1)
+polygon = PackedVector2Array(26, -8, 42, 0, 26, 8)

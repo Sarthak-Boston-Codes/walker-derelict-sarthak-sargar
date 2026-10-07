@@ -1,0 +1,51 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_main"]
+[ext_resource type="PackedScene" path="res://ui/hud.tscn" id="2_hud"]
+[ext_resource type="PackedScene" path="res://scenes/player.tscn" id="3_player"]
+[ext_resource type="PackedScene" path="res://scenes/zombie.tscn" id="4_zombie"]
+[ext_resource type="PackedScene" path="res://scenes/exit_marker.tscn" id="5_exit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_horiz"]
+size = Vector2(1280, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vert"]
+size = Vector2(32, 720)
+
+[node name="Main" type="Node2D"]
+script = ExtResource("1_main")
+
+[node name="Floor" type="Sprite2D" parent="."]
+centered = false
+
+[node name="Walls" type="StaticBody2D" parent="."]
+
+[node name="Top" type="CollisionShape2D" parent="Walls"]
+position = Vector2(640, 0)
+shape = SubResource("RectangleShape2D_horiz")
+
+[node name="Bottom" type="CollisionShape2D" parent="Walls"]
+position = Vector2(640, 720)
+shape = SubResource("RectangleShape2D_horiz")
+
+[node name="Left" type="CollisionShape2D" parent="Walls"]
+position = Vector2(0, 360)
+shape = SubResource("RectangleShape2D_vert")
+
+[node name="Right" type="CollisionShape2D" parent="Walls"]
+position = Vector2(1280, 360)
+shape = SubResource("RectangleShape2D_vert")
+
+[node name="ExitMarker" parent="." instance=ExtResource("5_exit")]
+position = Vector2(1160, 110)
+
+[node name="Zombie" parent="." instance=ExtResource("4_zombie")]
+position = Vector2(720, 380)
+
+[node name="Player" parent="." instance=ExtResource("3_player")]
+position = Vector2(160, 560)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(640, 360)
+
+[node name="HUD" parent="." instance=ExtResource("2_hud")]
