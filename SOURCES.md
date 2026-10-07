@@ -10,7 +10,7 @@ Empty Godot 4 project (Godot 4.7.2, GDScript). Not an extension of Assignment 1 
 | Suno (music — attempted, not used) | suno.com, free plan | Personal, non-commercial use; attribution to Suno required. Acceptable for coursework; rejected here for an unrelated download-access reason (see log). |
 | ElevenLabs Music (attempted, not used) | elevenlabs.io/music, free plan | Non-commercial use on free tier. Rejected here — WAV export gated behind a paid plan. |
 | ElevenLabs Sound Effects (music loop + all 4 SFX) | elevenlabs.io/sound-effects, free plan | Non-commercial use; attribution required. Acceptable for coursework. |
-| Gemini (all character art + environment art) | gemini.google.com, free account | [Confirm current terms at gemini.google.com before final submission.] |
+| Gemini (all character art + environment art) | gemini.google.com, free account | Google does not claim ownership of generated output; commercial use is permitted on the free tier. Free-tier prompts/images may be used by Google for its own model training by default (opt-out available in account settings) — a data-privacy note, not a usage restriction. |
 
 ## Asset log
 
@@ -36,8 +36,8 @@ Empty Godot 4 project (Godot 4.7.2, GDScript). Not an extension of Assignment 1 
 | SFX-CLEAR | ElevenLabs Sound Effects (free) | "A short two-note success chime, subtle, non-musical UI tone"; ~2-3s, Looping off | Accepted (usable on first generation) | None | godot/audio/sfx_clear.wav |
 
 ## Rejected outputs (thumbnails, not full-size — keep small per the assignment)
-- Reference image, attempt 1: fake-transparent background (drawn checkerboard, not real alpha).
-- CHAR-CELEBRATE, attempt 1: blood drops and a dropped weapon.
+- Reference image, attempt 1: fake-transparent background (drawn checkerboard, not real alpha). Thumbnail: `design/character/rejected/reference-attempt1-fake-transparency.jpg`.
+- CHAR-CELEBRATE, attempt 1: blood drops and a dropped weapon. Thumbnail: `design/character/rejected/celebrate-attempt1-blood-dropped-gun.jpg`.
 - MUS-LOOP, Suno attempt: audio itself not rejected — the account's download access was the blocker.
 - MUS-LOOP, ElevenLabs Music attempt: audio itself not rejected — WAV export was paywalled.
 
