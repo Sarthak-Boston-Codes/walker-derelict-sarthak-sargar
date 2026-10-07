@@ -54,7 +54,7 @@ Dated log of the design thinking, filled in daily. A rejected attempt is just as
 - Wanted: a strict top-down sprite, rotatable 180 for all four directions.
 - Asked: Gemini for the reference character.
 - Got: a slight elevated-angle view, not true top-down — rotating it 180 would look wrong, not just "facing away."
-- Decided: kept free rotation despite the art's fixed-elevation perspective, because aiming at any angle needs it — left/right mirroring (considered first) can only ever show two facings. Visual accuracy at extreme aim angles is an accepted, unresolved limitation, not a fix.
+- Decided: kept free rotation despite the art's fixed-elevation perspective, because aiming at any angle needs it — left/right mirroring (considered first) can only ever show two facings. The art only reads upright when facing south (toward the camera); it degrades at every other facing and appears upside-down when facing north, the default. Accepted, unresolved limitation, not a fix.
 - Next:
 - Human / Claude / model: Human — the student's own decision, made directly from using Gemini. Claude only organized these notes.
-- Still unresolved: visual accuracy at extreme aim angles — the fixed-elevation art under free rotation.
+- Still unresolved: the fixed-elevation art under free rotation — upright only when facing south, upside-down when facing north (seen in-engine once the real poses were swapped in).
