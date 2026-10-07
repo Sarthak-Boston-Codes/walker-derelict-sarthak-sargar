@@ -1,6 +1,6 @@
 # TEST-REPORT.md — DERELICT
 
-Source revision: [commit SHA]
+Source revision: f88f58d
 Engine version: Godot 4.7.2 (stable)
 
 | Check | Evidence to collect | Result |
