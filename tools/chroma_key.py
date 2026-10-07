@@ -1,0 +1,56 @@
+"""Remove a flat green-screen background and save a transparent PNG.
+
+Treats each pixel as  C = a*F + (1-a)*K  (K = key color, sampled from the
+image border). Alpha comes from how green the pixel is relative to K; the
+foreground color F is then recovered by removing K's share, which strips
+green spill from edges and from semi-transparent areas (shadow, light beam).
+
+Usage:
+    python tools/chroma_key.py IN.jpg OUT.png [--rotate 180]
+"""
+import argparse
+
+import numpy as np
+from PIL import Image
+
+
+def greenness(rgb: np.ndarray) -> np.ndarray:
+    return rgb[..., 1] - np.maximum(rgb[..., 0], rgb[..., 2])
+
+
+def key_out(rgb: np.ndarray, low: float, high: float) -> np.ndarray:
+    border = np.concatenate([rgb[:20].reshape(-1, 3), rgb[-20:].reshape(-1, 3),
+                             rgb[:, :20].reshape(-1, 3), rgb[:, -20:].reshape(-1, 3)])
+    key = np.median(border, axis=0)
+    raw_a = np.clip(1.0 - greenness(rgb) / greenness(key), 0.0, 1.0)
+
+    # Recover foreground color from the unclamped-but-nonzero alpha.
+    safe_a = np.maximum(raw_a, 1e-3)[..., None]
+    fg = np.clip((rgb - (1.0 - safe_a) * key) / safe_a, 0.0, 1.0)
+
+    # Below `low` is background noise (JPEG); above `high` is solid subject.
+    alpha = np.clip((raw_a - low) / (high - low), 0.0, 1.0)
+    fg[alpha == 0] = 0.0
+    return np.dstack([fg, alpha])
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("src")
+    ap.add_argument("dst")
+    ap.add_argument("--rotate", type=int, default=0, help="degrees counter-clockwise (180 = flip to face north)")
+    ap.add_argument("--low", type=float, default=0.10)
+    ap.add_argument("--high", type=float, default=0.97)
+    args = ap.parse_args()
+
+    rgb = np.asarray(Image.open(args.src).convert("RGB"), dtype=np.float64) / 255.0
+    rgba = key_out(rgb, args.low, args.high)
+    out = Image.fromarray(np.round(rgba * 255.0).astype(np.uint8), "RGBA")
+    if args.rotate:
+        out = out.rotate(args.rotate, expand=True)
+    out.save(args.dst)
+    print(f"wrote {args.dst} {out.size} RGBA")
+
+
+if __name__ == "__main__":
+    main()
