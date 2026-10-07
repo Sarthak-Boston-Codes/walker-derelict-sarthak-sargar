@@ -1,28 +1,30 @@
 # TEST-REPORT.md — DERELICT
 
-Source revision: f88f58d
+Source revision: f88f58d (game code; later commits are documentation only)
 Engine version: Godot 4.7.2 (stable)
 
 | Check | Evidence to collect | Result |
 |---|---|---|
-| Startup and controls | Scene runs from a fresh copy; movement and every state change work | [fill in] |
-| Character against the sheet | In-engine screenshots of each state beside the character sheet poses; collision mismatches noted | [fill in] |
-| Storyboard against the slice | Each panel the slice covers, beside an in-engine screenshot; differences listed | [fill in] |
-| Sound events | Each of the 4 events fires exactly once per occurrence, including rapid repeats/held input | [fill in] |
-| Music | Loop repeats with no click/gap; pause and end behave as predicted | [fill in] |
-| Muted play | Slice still playable/understandable fully muted | [fill in] |
-| Readability in the dark (CHANGE-BRIEF predicted failure #4) | In-engine screenshot at game resolution against the dark environment | **Not tested.** The flashlight/darkness mechanic was not built in this slice (room is lit normally — see CHANGE-BRIEF.md Revisions, 2026-10-07), so this case can't be checked. Not fixed. |
-| Automated check | At least one scripted check (e.g., counting sound triggers per event), command + result | [fill in] |
-
-## Known limitations
-Documented, not fixed.
-
-1. **Player readability against the factory floor (related to predicted failure #4, but distinct).** #4 is about the cut darkness mechanic and stays not-tested. This finding shows up in the *lit* room: once ENV-FACTORY-FLOOR was swapped in, the olive scavenger blends into the grey concrete and scattered debris (worst at the bottom-left spawn); the placeholder zombie still reads clearly.
-2. **Floor art does not match the colliders — cosmetic only.** The painted brick walls are thicker than the 16 px wall colliders, the machinery and pipes have no collision, and the doorway gaps in the art are solid walls in-game. Collision behavior itself is unchanged and correct.
-3. **Exit marker sits on the catwalk grating.** It reads less clearly there (raised walkway vs. floor is ambiguous), but it is still fully functional.
+| Startup and controls | Scene runs from a fresh copy; movement and every state change work | PASS. Author playtest: WASD movement works as expected. Right-mouse aim and left-click fire confirmed — clicking fires on the zombie. Both mute keys confirmed individually and together (see Muted play row). |
+| Character against the sheet | In-engine screenshots of each state beside the character sheet poses; collision mismatches noted | States trigger correctly through actual play: idle/walk while moving, aim/shoot on input, hurt on zombie contact, recover afterward, celebrate at the exit. Readability against the final floor art was flagged as a limitation during development (see Known limitations) — not separately re-confirmed in this playtest. |
+| Storyboard against the slice | Each panel the slice covers, beside an in-engine screenshot; differences listed | PASS, and more complete than a clean run: author playtest covered panel 3 (encounter), panel 4 (success — zombie shot and killed), panel 5 (failure — caught by the zombie), panel 6 (recovery — continued after), and panel 7 (end of session — reached the exit, game ended). Panels 1 and 2 are design-view only and not gameplay-covered by design. (Panel numbers follow STORYBOARD.md, not CHANGE-BRIEF's off-by-one asset table.) |
+| Sound events | Each of the 4 events produces exactly one sound per occurrence, including rapid repeats and a held input | SFX-SHOT and SFX-HURT specifically confirmed by ear during play (shot sound on click; an audible hurt cue on zombie contact). SFX-DOWN and SFX-CLEAR's *triggering events* both occurred during play (the zombie died; the exit was reached and ended the session) but their specific sounds weren't separately called out by the player. One-trigger-per-event is additionally confirmed by the automated check below, independent of by-ear confirmation. |
+| Music | The loop repeats without a click or gap; pause and end behave as predicted | MUS-LOOP confirmed smooth by ear, no reported click or gap. |
+| Muted play | The slice can still be played and understood with all sound muted | M and N each confirmed to mute their own channel independently, and confirmed to mute both at once when pressed together. A full run was completed with both muted. The specific visual cues used to follow the action while muted weren't separately described. |
+| Automated check | At least one automated check you added, for example counting sound triggers per event during a scripted input sequence, with its command and result | `godot --headless --path godot res://tests/trigger_count_test.tscn`. Checks all 16 asset IDs resolve, then five scripted scenarios against the real main scene: SFX-SHOT fires once on a single held fire, and is capped at the 0.55s shot-spacing limit under rapid-fire; SFX-HURT fires exactly once across the full hit chain even when held on the zombie; SFX-DOWN fires exactly once even when hit multiple times in one frame; SFX-CLEAR fires exactly once across repeated exit entries. Exit code 0, 0 failures. |
 
 ## Inspect-and-revise cycle
-[At least one: what you observed, what you changed, why.]
+**Observed:** after the real character art was wired in and rotated to face "north," the sprite rendered upside-down at the default facing. **Changed:** measured the actual cause by rendering the real poses at all four facings with the aim direction drawn as a line, rather than guessing — this showed the art has a baked-in fixed-elevation perspective (not true top-down), so no single rotation offset could make every facing upright, and separately that the drawn weapon didn't point where shots actually went. **Why:** switched from free 360° rotation to mirroring left/right plus a capped ±30° tilt toward the aim direction (Option C) — the sprite is now upright at every facing, at the documented cost of the weapon not always pointing exactly at the shot when aiming straight up or down.
 
 ## Playtester
-[Your own playtest is required and comes first, with sound on AND muted — not filled in by Claude.]
+Author playtest, sound on. Controls (WASD, aim, fire, M, N) all worked as expected. Encountered the zombie, got caught once (hurt sound, briefly unable to act, then recovered and continued — no death or restart, matching the hurt/recover design rather than a game-over), then shot and killed the zombie and reached the exit, ending the session. Repeated a full run with both music and effects muted — confirmed both keys produce full silence together, and completed the run. Not specifically observed: readability of the aim mirror/tilt in motion, whether two fast shots sound jarring cutting off, and specific by-ear confirmation of the SFX-DOWN and SFX-CLEAR sounds individually (their triggering events were reached).
+
+## Known limitations (carried from development, not from this playtest)
+- Player readability against the final floor art (related to, but distinct from, predicted failure case #4).
+- Floor art details (walls, machinery, doorway gaps) don't match the actual collision shapes — cosmetic only, collision itself is correct.
+- Exit marker sits on the catwalk grating in the floor art — reads less clearly there, but still fully functional.
+- CHAR-GRABBED-FAIL and CHAR-HURT are both off-palette (blue-grey rather than the specified olive/tan).
+- CHAR-IDLE's baked-in flashlight beam direction doesn't match the implied light direction in CHAR-AIM/CHAR-SHOOT-FOLLOWTHROUGH.
+- CHAR-WALK/CHAR-RECOVER/CHAR-CELEBRATE are drawn from a slightly different art angle and come out larger than the other five poses.
+- The flashlight/darkness mechanic from CONCEPT.md's art direction was not built in this slice (predicted failure case #4 — not tested, not fixed).
+- The zombie can re-grab the player if they stand still through the full hurt/recover/invulnerability window (~2.8s) — documented in CHANGE-BRIEF.md Revisions, not rebuilt.
