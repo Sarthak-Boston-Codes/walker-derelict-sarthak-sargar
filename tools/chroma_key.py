@@ -6,7 +6,7 @@ foreground color F is then recovered by removing K's share, which strips
 green spill from edges and from semi-transparent areas (shadow, light beam).
 
 Usage:
-    python tools/chroma_key.py IN.jpg OUT.png [--rotate 180] [--scale 0.12]
+    python tools/chroma_key.py IN.jpg OUT.png [--scale 0.12] [--rotate DEG]
 
 Use one shared --scale for every pose of a character so they keep the same
 zoom relative to each other (0.12 makes the scavenger's ~330 px body ~40 px,
@@ -42,7 +42,7 @@ def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("src")
     ap.add_argument("dst")
-    ap.add_argument("--rotate", type=int, default=0, help="degrees counter-clockwise (180 = flip to face north)")
+    ap.add_argument("--rotate", type=int, default=0, help="degrees counter-clockwise (character art: leave at 0, stored upright facing east -- see godot/scenes/facing.gd)")
     ap.add_argument("--scale", type=float, default=1.0, help="resize factor applied after rotation")
     ap.add_argument("--low", type=float, default=0.10)
     ap.add_argument("--high", type=float, default=0.97)

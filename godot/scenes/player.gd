@@ -20,6 +20,8 @@ const STATE_ART := {
 	State.CELEBRATE: "CHAR-CELEBRATE",
 }
 
+const Facing := preload("res://scenes/facing.gd")
+
 @export var walk_speed := 140.0
 @export var aim_speed := 60.0
 ## Time in AIM before a shot is allowed (pillar 2: visible beat before firing).
@@ -34,8 +36,11 @@ const STATE_ART := {
 @export var recover_time := 0.5
 ## Extra invulnerability after RECOVER ends (CHANGE-BRIEF: ~1 s).
 @export var post_hit_invuln := 1.0
+## Most the sprite tilts toward the facing direction (see facing.gd).
+@export var max_tilt_deg := 30.0
 
 var state := State.IDLE
+var _facing_dir := Vector2.RIGHT
 var _state_time := 0.0
 var _invuln_left := 0.0
 var _fire_requested := false
@@ -150,12 +155,12 @@ func _fire() -> void:
 
 func _aim_dir() -> Vector2:
 	var to_mouse := get_global_mouse_position() - global_position
-	return to_mouse.normalized() if to_mouse.length() > 1.0 else Vector2.UP.rotated(_body.rotation)
+	return to_mouse.normalized() if to_mouse.length() > 1.0 else _facing_dir
 
 
 func _face(dir: Vector2) -> void:
-	# Art faces north; rotate to the given direction.
-	_body.rotation = dir.angle() + PI / 2.0
+	_facing_dir = dir.normalized()
+	Facing.apply(_body, dir, deg_to_rad(max_tilt_deg))
 
 
 func _enter(next: State) -> void:

@@ -11,6 +11,8 @@ const STATE_ART := {
 	State.DOWN: "ZOMBIE-DOWN",
 }
 
+const Facing := preload("res://scenes/facing.gd")
+
 @export var detect_radius := 220.0
 ## Slower than the player's aim-walk (60), so backing off while aiming works.
 @export var chase_speed := 55.0
@@ -19,6 +21,8 @@ const STATE_ART := {
 ## Shoved this far from the player on a successful grab, so it can't sit on
 ## the player and re-grab the moment invulnerability ends.
 @export var knockback := 80.0
+## Most the sprite tilts toward the player (see facing.gd).
+@export var max_tilt_deg := 30.0
 
 var state := State.SHAMBLE
 var _shot := false
@@ -41,7 +45,7 @@ func _physics_process(_delta: float) -> void:
 	velocity = Vector2.ZERO
 	if to_player.length() <= detect_radius:
 		velocity = to_player.normalized() * chase_speed
-		_body.rotation = to_player.angle() + PI / 2.0
+		Facing.apply(_body, to_player, deg_to_rad(max_tilt_deg))
 	move_and_slide()
 	# Poll, don't rely on body_entered: a player who stays inside the zone
 	# after invulnerability ends must still get hit. The player's own

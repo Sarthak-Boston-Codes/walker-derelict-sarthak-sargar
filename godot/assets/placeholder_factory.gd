@@ -8,7 +8,7 @@ const MIX_RATE := 22050
 
 # One distinct color per state so a state change is visible at a glance.
 # Each keeps >= 3:1 contrast against the floor color.
-# "body" = filled circle with a north notch (shows facing when rotated).
+# "body" = filled circle with an east notch (shows facing when mirrored/tilted).
 const ART_SPECS := {
 	"CHAR-IDLE": {"shape": "body", "color": Color("#8A938F")},
 	"CHAR-WALK": {"shape": "body", "color": Color("#A98BD9")},
@@ -68,8 +68,8 @@ static func _body(color: Color) -> Image:
 				img.set_pixel(x, y, color)
 			elif d <= 20.0:
 				img.set_pixel(x, y, OUTLINE)
-	# North notch: facing marker, points up like the reference pose.
-	img.fill_rect(Rect2i(21, 2, 6, 16), OUTLINE)
+	# East notch: facing marker, same convention as real art (scenes/facing.gd).
+	img.fill_rect(Rect2i(30, 21, 16, 6), OUTLINE)
 	return img
 
 
