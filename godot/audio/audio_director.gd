@@ -60,6 +60,13 @@ func is_music_playing() -> bool:
 	return _music.playing
 
 
+func is_sfx_playing() -> bool:
+	for p in _sfx.values():
+		if p.playing:
+			return true
+	return false
+
+
 func set_muted(bus: String, muted: bool) -> void:
 	AudioServer.set_bus_mute(AudioServer.get_bus_index(bus), muted)
 	mute_changed.emit(bus, muted)

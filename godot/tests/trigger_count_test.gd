@@ -36,6 +36,11 @@ func _run() -> void:
 	await _down_repeat()
 	await _clear_reenter()
 	print("\n%s: %d failure(s)" % ["PASS" if _failures == 0 else "FAIL", _failures])
+	# Quitting mid-sound leaks its playback (Godot warns at exit), so let
+	# in-flight SFX finish first. Capped so a stuck player can't hang the run.
+	var deadline := Time.get_ticks_msec() + 5000
+	while Sound.is_sfx_playing() and Time.get_ticks_msec() < deadline:
+		await get_tree().process_frame
 	AudioServer.set_bus_mute(0, false)
 	get_tree().quit(_failures)
 
