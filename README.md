@@ -28,6 +28,7 @@ WASD to move · hold right mouse to aim · left click to fire · M toggles music
 - CHAR-HURT and CHAR-GRABBED-FAIL are both off-palette (blue-grey rather than the specified olive/tan).
 - CHAR-IDLE's baked-in flashlight beam direction doesn't match the implied light direction in CHAR-AIM/CHAR-SHOOT-FOLLOWTHROUGH.
 - CHAR-WALK/CHAR-RECOVER/CHAR-CELEBRATE are drawn from a slightly different art angle and come out larger than the other five poses.
+- The zombie has no generated art yet: ZOMBIE-SHAMBLE and ZOMBIE-DOWN are still the runtime placeholders (a green circle, and a flattened oval when down). Swapping in real art is one path each in `godot/assets/asset_manifest.gd`.
 - The character art has a fixed-elevation perspective rather than true top-down; the sprite is mirrored and tilted (±30°, capped) toward the aim direction rather than freely rotated, so the held weapon doesn't always point exactly where the shot goes, especially when aiming straight up or down.
 - The zombie can re-grab the player if they stand still through the full hurt/recover/invulnerability window (~2.8s).
 - See TEST-REPORT.md and SOURCES.md for full detail, including rejected generation attempts.
