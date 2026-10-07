@@ -22,12 +22,12 @@ const ART := {
 }
 
 const AUDIO := {
-	"SFX-SHOT": "",
+	"SFX-SHOT": "res://audio/sfx_shot.wav",
 	"SFX-DOWN": "",
 	"SFX-HURT": "",
 	"SFX-CLEAR": "",
 	# A real MUS-LOOP file also needs Loop enabled in its Import settings.
-	"MUS-LOOP": "",
+	"MUS-LOOP": "res://audio/mus_loop.wav",
 }
 
 var _textures := {}
