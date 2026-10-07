@@ -2,13 +2,13 @@ Assignment: Assignment 2 - Generate Art, Sound, and Music for Your Game
 Student: Sarthak Sargar
 Project name: walker-derelict-sarthak-sargar
 Game concept in one sentence: A lone scavenger explores derelict, abandoned sites, avoiding or shooting infected former test subjects of a drug outbreak, searching for an extraction point.
-GitHub repository/folder URL: [url]
+GitHub repository/folder URL: https://github.com/Sarthak-Boston-Codes/walker-derelict-sarthak-sargar
 Started from: empty Godot 4 project
 Submitted commit SHA: (this commit — see Canvas submission note)
-Source revision shown in the film: [sha]
+Source revision shown in the film: f88f58d (latest game-code commit; later commits are documentation only — update if the code changes before filming)
 Godot version and operating system: Godot 4.7.2 (stable) / Windows 11
-Generative models used (name, version, where run, license): Suno (free, suno.com, non-commercial/attribution); ElevenLabs Sound Effects (free, elevenlabs.io, non-commercial/attribution); Gemini (free, gemini.google.com, [confirm terms])
-Final film URL and filename: [url / filename]
-Final film SHA-256: [checksum]
-Summary of my work: [fill in once built]
-Known limitations: [pull from TEST-REPORT.md]
+Generative models used (name, version, where run, license): Gemini (free account, gemini.google.com; Google does not claim ownership of output, commercial use permitted on the free tier, free-tier prompts may be used for training by default) — all character and environment art. ElevenLabs Sound Effects (free, elevenlabs.io; non-commercial use, attribution required) — the music loop and all four SFX. Attempted, not used: Suno (free; download access blocked on a new account) and ElevenLabs Music (free; WAV export paywalled). Full per-asset log in SOURCES.md.
+Final film URL and filename: [add once rendered]
+Final film SHA-256: [add once rendered]
+Summary of my work: A single-room, top-down Godot 4.7.2 slice proving generated art, sound and music working together. The scavenger has eight states (idle, walk, aim, shoot follow-through, hurt, grabbed, recover, celebrate), each shown with its own Gemini-generated pose; one infected chases when close and goes down when shot; reaching the exit ends the session. All art and audio resolve through one asset table (godot/assets/asset_manifest.gd), so each placeholder-to-real swap was a one-line change. Green-screen generations were keyed to real transparency with a small custom tool (tools/chroma_key.py). Four ElevenLabs SFX fire on real gameplay triggers with anti-double-trigger guards, MUS-LOOP loops and fades out at the exit, and Music and SFX mute independently (M / N). Because the generated art has a fixed elevated perspective, the sprite is mirrored and tilted up to ±30° toward the aim rather than freely rotated, after an in-engine check showed free rotation drew it upside-down. An automated test (godot/tests/trigger_count_test.tscn) confirms every asset loads and each sound fires exactly once per event.
+Known limitations: (full detail in TEST-REPORT.md) Player readability against the final floor art (related to, but distinct from, predicted failure case #4, which is not tested because the flashlight/darkness mechanic was not built). Floor art details don't match the colliders (cosmetic only). The exit marker sits on the catwalk grating (still functional). CHAR-HURT and CHAR-GRABBED-FAIL are off-palette blue-grey. CHAR-IDLE's baked flashlight beam doesn't match the other poses. CHAR-WALK/RECOVER/CELEBRATE are drawn from a slightly different angle and come out larger. The held weapon doesn't always point exactly at the shot, especially aiming straight up or down. The zombie can re-grab a player who stands still through the ~2.8 s hurt/recover window. The zombie art is still a runtime placeholder.
