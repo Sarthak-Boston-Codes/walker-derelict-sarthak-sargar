@@ -1,0 +1,6 @@
+# Godot editor cache
+godot/.godot/
+
+# Large media (course storage, not GitHub)
+*.mp4
+*.mp3
