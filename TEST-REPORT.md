@@ -11,6 +11,7 @@ Engine version: Godot 4.7.2 (stable)
 | Sound events | Each of the 4 events fires exactly once per occurrence, including rapid repeats/held input | [fill in] |
 | Music | Loop repeats with no click/gap; pause and end behave as predicted | [fill in] |
 | Muted play | Slice still playable/understandable fully muted | [fill in] |
+| Readability in the dark (CHANGE-BRIEF predicted failure #4) | In-engine screenshot at game resolution against the dark environment | **Not tested.** The flashlight/darkness mechanic was not built in this slice (room is lit normally — see CHANGE-BRIEF.md Revisions, 2026-10-07), so this case can't be checked. Not fixed. |
 | Automated check | At least one scripted check (e.g., counting sound triggers per event), command + result | [fill in] |
 
 ## Inspect-and-revise cycle

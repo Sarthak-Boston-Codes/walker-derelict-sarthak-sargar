@@ -4,7 +4,7 @@
 
 - **Concept in one sentence:** A lone scavenger in practical, worn gear — flashlight mounted on one shoulder, sidearm held low-ready — reads instantly as cautious, not as a soldier on a mission.
 - **Silhouette at on-screen size:** pose 2 on the sheet — filled solid black at actual in-game scale (48×48 px top-down sprite; adjust once your real scene scale is set).
-- **Orientation:** Top-down view, drawn once facing a single fixed reference direction (up/north). Rotated at runtime to face the aim/movement direction — no separate directional sprites generated.
+- **Orientation:** Top-down view, drawn once facing a single fixed reference direction (up/north). Rotated at runtime to face the aim/movement direction — no separate directional sprites generated. Free 360° rotation is kept even though the generated art has a slight fixed-elevation perspective rather than true top-down, because aiming at any angle needs it (left/right mirroring could only ever show two facings). Visual accuracy at extreme aim angles is an accepted, unresolved limitation, not a fix.
 - **Reference:** pose 1 on the sheet — neutral standing, straight-on from directly above, full detail. Every other pose is checked against this.
 
 ## Poses (10 — meets the minimum)
