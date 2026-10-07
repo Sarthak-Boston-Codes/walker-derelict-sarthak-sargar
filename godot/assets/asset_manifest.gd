@@ -9,23 +9,23 @@ const PlaceholderFactory = preload("res://assets/placeholder_factory.gd")
 
 const ART := {
 	"CHAR-IDLE": "res://art/char_idle.png",
-	"CHAR-WALK": "",
+	"CHAR-WALK": "res://art/char_walk.png",
 	"CHAR-AIM": "res://art/char_aim.png",
 	"CHAR-SHOOT-FOLLOWTHROUGH": "res://art/char_shoot.png",
 	"CHAR-HURT": "res://art/char_hurt.png",
 	"CHAR-GRABBED-FAIL": "res://art/char_grabbed.png",
-	"CHAR-RECOVER": "",
-	"CHAR-CELEBRATE": "",
+	"CHAR-RECOVER": "res://art/char_recover.png",
+	"CHAR-CELEBRATE": "res://art/char_celebrate.png",
 	"ZOMBIE-SHAMBLE": "",
 	"ZOMBIE-DOWN": "",
-	"ENV-FACTORY-FLOOR": "",
+	"ENV-FACTORY-FLOOR": "res://art/env_factory_floor.png",
 }
 
 const AUDIO := {
 	"SFX-SHOT": "res://audio/sfx_shot.wav",
-	"SFX-DOWN": "",
-	"SFX-HURT": "",
-	"SFX-CLEAR": "",
+	"SFX-DOWN": "res://audio/sfx_down.wav",
+	"SFX-HURT": "res://audio/sfx_hurt.wav",
+	"SFX-CLEAR": "res://audio/sfx_clear.wav",
 	# A real MUS-LOOP file also needs Loop enabled in its Import settings.
 	"MUS-LOOP": "res://audio/mus_loop.wav",
 }
