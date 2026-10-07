@@ -54,4 +54,9 @@ N/A for this assignment — this is a new project, not an extension of an existi
 *Check:* an in-engine screenshot at actual game resolution, compared against the silhouette test, confirming both characters read against the real background, not just in isolation.
 
 ## Revisions
-(none yet)
+
+### 2026-10-07 — scope cuts and build decisions
+- CHAR-RUN left out of the final state list; walk alone covers the "movement changed" read.
+- The flashlight/darkness mechanic in CONCEPT.md's art direction was not built in this slice — the room is lit normally. This means predicted failure case #4 (readability in the dark) can't be tested; mark it not-tested in TEST-REPORT.md, not fixed.
+- Re-grab: the zombie is shoved back at the moment of the grab and can walk back and re-grab if the player stands still through GRABBED-FAIL+RECOVER+invulnerability (~2.8s from the grab; the player can walk away for the last ~1.5s of it). An alternative (holding on until the player breaks free) was proposed and not built, for time. Current behavior is kept; flag as a known limitation if it feels punishing in playtest.
+- The asset-list panel numbers here are off by one against STORYBOARD.md (from trimming 9 panels to 7 earlier) and reference panels 8-9, which no longer exist. Left uncorrected for time — STORYBOARD.md's numbers are what the build actually follows.
