@@ -8,12 +8,12 @@ extends Node
 const PlaceholderFactory = preload("res://assets/placeholder_factory.gd")
 
 const ART := {
-	"CHAR-IDLE": "",
+	"CHAR-IDLE": "res://art/char_idle.png",
 	"CHAR-WALK": "",
-	"CHAR-AIM": "",
-	"CHAR-SHOOT-FOLLOWTHROUGH": "",
-	"CHAR-HURT": "",
-	"CHAR-GRABBED-FAIL": "",
+	"CHAR-AIM": "res://art/char_aim.png",
+	"CHAR-SHOOT-FOLLOWTHROUGH": "res://art/char_shoot.png",
+	"CHAR-HURT": "res://art/char_hurt.png",
+	"CHAR-GRABBED-FAIL": "res://art/char_grabbed.png",
 	"CHAR-RECOVER": "",
 	"CHAR-CELEBRATE": "",
 	"ZOMBIE-SHAMBLE": "",
