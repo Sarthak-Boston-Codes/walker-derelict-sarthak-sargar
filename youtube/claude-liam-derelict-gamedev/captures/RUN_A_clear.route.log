@@ -1,0 +1,6 @@
+ 0.600 s  frame   18  phase 1: walk east
+ 1.600 s  frame   48  phase 2: aim at zombie
+ 2.200 s  frame   66  phase 3: fired; wait for ZOMBIE-DOWN
+ 3.700 s  frame  111  phase 4: walk to exit
+10.867 s  frame  326  phase 5: celebrating; hold for chime + music fade
+13.867 s  frame  416  end

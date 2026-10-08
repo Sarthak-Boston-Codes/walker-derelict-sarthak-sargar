@@ -1,0 +1,5 @@
+ 0.300 s  frame    9  phase 1: walk toward the zombie
+ 4.267 s  frame  128  phase 2: grabbed; no input
+ 5.533 s  frame  166  phase 3: recover; walk away west
+ 7.133 s  frame  214  phase 4: stop
+ 8.133 s  frame  244  end

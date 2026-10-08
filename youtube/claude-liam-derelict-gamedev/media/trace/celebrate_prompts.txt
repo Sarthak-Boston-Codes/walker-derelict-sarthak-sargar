@@ -1,0 +1,4 @@
+SOURCES.md sha256 69fee789a3f1ebc89a6006af4ecd1cb50a05a5f090409c80fc841d3cd2b4dd5f
+L27: | CHAR-CELEBRATE | Gemini | First attempt: "now the same character, celebrating" | First attempt **rejected**: came back with blood drops and a dropped weapon, contradicting a "safe success" read. Re-prompted: "...celebrating, arms raised, no blood, no dropped weapon..." **Accepted.** | Chroma-keyed, scaled 0.12, no rotation | godot/art/char_celebrate.png |
+L40: - CHAR-CELEBRATE, attempt 1: blood drops and a dropped weapon. Thumbnail: `design/character/rejected/celebrate-attempt1-blood-dropped-gun.jpg`.
+L47: - CHAR-WALK/CHAR-RECOVER/CHAR-CELEBRATE were generated from a slightly different art angle and come out ~25% larger than the other five poses.

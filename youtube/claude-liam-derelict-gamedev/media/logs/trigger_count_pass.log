@@ -1,0 +1,17 @@
+$ godot --headless --path godot res://tests/trigger_count_test.tscn
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== trigger_count_test ==
+ok   all 16 asset IDs load
+
+EVENT      SCENARIO                                          TICKS  COUNT EXPECTED  RESULT
+SFX-SHOT   fire held 120 ticks after wind-up                   120      1 1         ok
+SFX-SHOT   fire pressed every tick (cap 0.55s)                 180      5 1-6       ok
+SFX-HURT   pinned on zombie through hit chain (2.8s)           155      1 1         ok
+SFX-DOWN   3 hits (2 same tick) + 120 ticks down               120      1 1         ok
+ok   zombie actually went down
+SFX-CLEAR  enter/leave exit zone 3 times                       120      1 1         ok
+
+PASS: 0 failure(s)
+[exit code 0]

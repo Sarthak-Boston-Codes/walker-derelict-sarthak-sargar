@@ -1,0 +1,6 @@
+ 1.000 s  frame   30  phase 1: music muted
+ 2.000 s  frame   60  phase 2: sfx muted; aiming at zombie
+ 2.600 s  frame   78  phase 3: muted shot (kills zombie)
+ 5.600 s  frame  168  phase 4: both unmuted; aim at north wall
+ 6.400 s  frame  192  phase 5: audible shot into wall
+ 7.600 s  frame  228  end

@@ -1,0 +1,1291 @@
+{
+  "metadata": {
+    "title": "DERELICT: Wiring Generated Art Into Godot",
+    "slug": "claude-liam-derelict-gamedev",
+    "topic": "GODOT · GAME TEARDOWN",
+    "kind": "gamedev",
+    "mode": "walker",
+    "brand": "claude-liam",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fit": "pad",
+    "captions": false,
+    "greeting": "Jambo, Liam",
+    "greeting_note": "hello lexicon: Jambo (Swahili); previous reel used Bula. Liam never takes Wagwan.",
+    "persona": "Liam (in for Bear)",
+    "presenter": "Liam (in for Bear)",
+    "in_for_bear": true,
+    "game": "walker-derelict-sarthak-sargar",
+    "game_code_revision": "f88f58d",
+    "note": "godot-gamedev walker film. Footage: Movie Maker captures in captures/ (MEDIA-LEDGER.json). No game change, paid call, upload or publication.",
+    "build": {
+      "at": "2026-10-07T21:15:55",
+      "cut": "review",
+      "filled": 27,
+      "of": 27,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Jambo — this is Liam, in for Bear. A student built DERELICT: a top-down Godot game where a scavenger clears one derelict factory room, with its art and sound made by generative models, all but the zombie. So I asked Claude to take the game apart and show how those assets actually got in.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22.2,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Jambo, Liam",
+            "topic": "GODOT · GAME TEARDOWN",
+            "segment": "DERELICT",
+            "command": "Please use Walker to convert my game design document about DERELICT — a lone scavenger clearing a derelict factory, one infected, one exit — into a Godot 4 slice that proves generated art, sound and music working together.",
+            "runningText": "reading CONCEPT.md, STORYBOARD.md, CHANGE-BRIEF.md…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "Eight player states, one infected, one exit.",
+              "Every asset routed through one table.",
+              "A test that counts every sound."
+            ]
+          }
+        }
+      },
+      "role_note": "COLD OPEN — reconstructed Walker prompt (labelled in FACTCHECK.md), not a recording.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 17.41,
+      "render_duration_s": 17.433333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Generated art gets wired in, not dropped in. One table, one line each, and a test for every sound. That wiring is what this film takes apart.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on-correct",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Generated art gets dropped in.\nOne table, one line each,\na test for every sound.",
+            "triggerWords": "dropped",
+            "replacementWords": "wired",
+            "contextTitle": "DERELICT",
+            "brandLabel": "@NikBearBrown",
+            "fontSize": 110,
+            "lineSpacing": 1.5,
+            "align": "center",
+            "seed": "derelict-gamedev",
+            "mistakeRate": 2,
+            "hesitateWithin": 0,
+            "hesitateBetween": 1,
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#FAF9F5"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "role_note": "Misconception corrected: art gets 'dropped' in -> 'wired' in. Audio window >= 9 s.",
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 9.67,
+      "lead_silence_baked": 0.8,
+      "render_duration_s": 9.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SETUP",
+      "narration_text": "The assignment: a player in at least two art states, one environment, four sound events on real triggers, one looping track, and a mute that leaves the game readable. It started from an empty Godot four point seven point two project. Everything you see comes from one commit, shown on screen.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "tree-reveal",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "tree",
+            "title": "What the assignment asked for.",
+            "project": "walker-derelict-sarthak-sargar",
+            "source": "SUBMISSION.md · CHANGE-BRIEF.md asset list · game code f88f58d",
+            "treeLabel": "Requirement → asset IDs",
+            "tree": [
+              "Player, ≥ 2 art states → CHAR-IDLE … CHAR-CELEBRATE (8)",
+              "One environment → ENV-FACTORY-FLOOR",
+              "Four sound events → SFX-SHOT · SFX-DOWN · SFX-HURT · SFX-CLEAR",
+              "One looping track → MUS-LOOP",
+              "Mute, still readable → Music (M) · SFX (N)"
+            ],
+            "notes": [
+              {
+                "label": "Started from",
+                "value": "empty Godot 4.7.2 project"
+              },
+              {
+                "label": "Game code shown",
+                "value": "f88f58d"
+              }
+            ],
+            "durationSeconds": 16
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.49,
+      "render_duration_s": 15.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ANATOMY",
+      "narration_text": "One main scene: a floor sprite, four wall colliders, the zombie, the player, the exit marker, a fixed camera and the HUD. Above it sit two autoloads. Assets resolves every asset ID. Sound owns the music, the effects, and both mutes.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "tree-reveal",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "tree",
+            "title": "The whole game, one scene.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "scenes/main.tscn",
+            "source": "godot/scenes/main.tscn · godot/project.godot [autoload]",
+            "treeLabel": "Scene (saved, local)",
+            "tree": [
+              "Main (Node2D) — main.gd",
+              "  Floor (Sprite2D)",
+              "  Walls (StaticBody2D) ×4 colliders",
+              "  ExitMarker — exit_marker.tscn",
+              "  Zombie — zombie.tscn",
+              "  Player — player.tscn",
+              "  Camera2D",
+              "  HUD — hud.tscn",
+              "Autoload Assets — assets/asset_manifest.gd",
+              "Autoload Sound — audio/audio_director.gd"
+            ],
+            "notes": [
+              {
+                "label": "Draw order",
+                "value": "Zombie before Player: the body draws under the player"
+              },
+              {
+                "label": "Physics layers",
+                "value": "1 walls · 2 player · 3 zombie"
+              }
+            ],
+            "durationSeconds": 16
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 13.74,
+      "render_duration_s": 13.766666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MECHANISM",
+      "narration_text": "Here's the heart of it. Every art ID from the change brief has one line in this table. An empty string means the game draws a generated placeholder at runtime; a real file path loads the file. Each swap was one line. The zombie's two lines are still empty.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.2,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "One table resolves every asset.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "assets/asset_manifest.gd",
+            "source": "godot/assets/asset_manifest.gd lines 10-22 · Godot editor reconstruction",
+            "code": "const ART := {\n\t\"CHAR-IDLE\": \"res://art/char_idle.png\",\n\t\"CHAR-WALK\": \"res://art/char_walk.png\",\n\t\"CHAR-AIM\": \"res://art/char_aim.png\",\n\t\"CHAR-SHOOT-FOLLOWTHROUGH\": \"res://art/char_shoot.png\",\n\t\"CHAR-HURT\": \"res://art/char_hurt.png\",\n\t\"CHAR-GRABBED-FAIL\": \"res://art/char_grabbed.png\",\n\t\"CHAR-RECOVER\": \"res://art/char_recover.png\",\n\t\"CHAR-CELEBRATE\": \"res://art/char_celebrate.png\",\n\t\"ZOMBIE-SHAMBLE\": \"\",\n\t\"ZOMBIE-DOWN\": \"\",\n\t\"ENV-FACTORY-FLOOR\": \"res://art/env_factory_floor.png\",\n}",
+            "startLine": 10,
+            "cues": [
+              {
+                "at": 3.6,
+                "line": 11,
+                "label": "one line per asset ID"
+              },
+              {
+                "at": 9.2,
+                "line": 18,
+                "label": "CHAR-CELEBRATE → real PNG"
+              },
+              {
+                "at": 12.4,
+                "line": 19,
+                "label": "ZOMBIE-* still \"\" → placeholder"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "texture(id), line 41",
+                "value": "\"\" → PlaceholderFactory\n.make_texture(id)\nelse load(path)"
+              },
+              {
+                "label": "Audio",
+                "value": "same pattern: AUDIO table, stream(id)"
+              }
+            ],
+            "output": [
+              "assets/asset_manifest.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 14.68
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 14.68,
+      "render_duration_s": 14.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "RESULT",
+      "narration_text": "Same frame, same code. Left: an isolated copy with every art path blanked — circles and a grid. Right: the real build.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.4,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B05.png",
+        "motion": "hold",
+        "label": "engine render"
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 8.9,
+      "render_duration_s": 8.9,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B05.png",
+        "filled_by": "still",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "MECHANISM",
+      "narration_text": "The shot is deliberate. Holding aim enters AIM, and a click only fires once that state has lasted a quarter of a second, the wind-up. A faint ready cue shows exactly when a click would work.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Aim, wind-up, fire.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "scenes/player.gd",
+            "source": "godot/scenes/player.gd lines 72-81 · Godot editor reconstruction",
+            "code": "\tmatch state:\n\t\tState.IDLE, State.WALK, State.AIM:\n\t\t\tif Input.is_action_pressed(\"aim\"):\n\t\t\t\tif state != State.AIM:\n\t\t\t\t\t_enter(State.AIM)\n\t\t\t\t_face(_aim_dir())\n\t\t\t\t_ready_cue.rotation = _aim_dir().angle()\n\t\t\t\tvelocity = move * aim_speed\n\t\t\t\tif _fire_requested and _state_time >= aim_windup:\n\t\t\t\t\t_fire()",
+            "startLine": 72,
+            "cues": [
+              {
+                "at": 1.4,
+                "line": 74,
+                "label": "aim held → enter AIM"
+              },
+              {
+                "at": 3.1,
+                "line": 80,
+                "label": "fire only after aim_windup (0.25 s)"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "aim_windup",
+                "value": "0.25 s (@export, line 31)"
+              },
+              {
+                "label": "Ready cue, line 112",
+                "value": "visible while AIM and _state_time ≥ aim_windup"
+              },
+              {
+                "label": "Fire input",
+                "value": "one press event per click (_unhandled_input)"
+              }
+            ],
+            "output": [
+              "scenes/player.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 11.37
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 11.37,
+      "render_duration_s": 11.4,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "RESULT",
+      "narration_text": "Aim. The cue appears. Click: follow-through, and the tracer stops on the zombie.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5.8,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B07.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 Movie Maker capture · input-only route",
+        "hold_policy": "action plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after the action (never slowed). Built in step 4."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_regions": [
+          {
+            "label": "HUD readout",
+            "box": [
+              0.012,
+              0.035,
+              0.3,
+              0.195
+            ]
+          }
+        ],
+        "contrast_reason": "Full-frame gameplay capture: the dark game floor is the picture, not a text background. The essential on-screen text is the HUD readout, measured in its box; conform_clips.py darkens non-text pixels behind it to 30% (disclosed). Player-sprite readability on the floor is a documented limitation (TEST-REPORT)."
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 4.7,
+      "narration_padded_to": 4.7,
+      "narration_voiced_s": 4.67,
+      "render_duration_s": 4.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "MECHANISM",
+      "narration_text": "A grab is guarded. Take-hit refuses while the player is hurt, grabbed, recovering or celebrating, and for one second after. Only a landed hit plays the hurt sound, and the arrow points back at the attacker.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "One hit, one sound.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "scenes/player.gd",
+            "source": "godot/scenes/player.gd lines 117-125 · Godot editor reconstruction",
+            "code": "## Returns true if the hit landed (so the attacker can react, e.g. knock back).\nfunc take_hit(from_position: Vector2) -> bool:\n\tif _invuln_left > 0.0 or state in [State.HURT, State.GRABBED_FAIL, State.RECOVER, State.CELEBRATE]:\n\t\treturn false\n\t_enter(State.HURT)\n\t# Pillar 4: the arrow points at whoever hit us.\n\t_threat_arrow.rotation = (from_position - global_position).angle()\n\tSound.play_sfx(\"SFX-HURT\")\n\treturn true",
+            "startLine": 117,
+            "cues": [
+              {
+                "at": 1.1,
+                "line": 119,
+                "label": "invulnerable or mid-chain → refuse"
+              },
+              {
+                "at": 7.1,
+                "line": 124,
+                "label": "SFX-HURT only on a landed hit"
+              },
+              {
+                "at": 9.6,
+                "line": 123,
+                "label": "arrow faces the attacker"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Chain",
+                "value": "HURT 0.3 s → GRABBED 1.0 s → RECOVER 0.5 s\n→ 1.0 s post-hit window"
+              },
+              {
+                "label": "Zombie side",
+                "value": "landed hit → shoved back 80 px"
+              }
+            ],
+            "output": [
+              "scenes/player.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 11.8
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 11.8,
+      "render_duration_s": 11.8,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "RESULT",
+      "narration_text": "Contact. Hurt, arrow on the zombie. Grabbed, no control. Recover, and walk away.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 5.8,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B09.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 Movie Maker capture · input-only route",
+        "hold_policy": "action plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after the action (never slowed). Built in step 4."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_regions": [
+          {
+            "label": "HUD readout",
+            "box": [
+              0.012,
+              0.035,
+              0.3,
+              0.195
+            ]
+          }
+        ],
+        "contrast_reason": "Full-frame gameplay capture: the dark game floor is the picture, not a text background. The essential on-screen text is the HUD readout, measured in its box; conform_clips.py darkens non-text pixels behind it to 30% (disclosed). Player-sprite readability on the floor is a documented limitation (TEST-REPORT)."
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 5.1,
+      "narration_padded_to": 5.1,
+      "narration_voiced_s": 5.08,
+      "render_duration_s": 5.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "MECHANISM",
+      "narration_text": "The zombie can't vanish on impact. take-shot flashes it for a hundred and fifty milliseconds, then go-down runs, the only place the down sound is played, so it fires exactly once.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Visible hit, then down.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "scenes/zombie.gd",
+            "source": "godot/scenes/zombie.gd lines 63-76 · Godot editor reconstruction",
+            "code": "\t_body.modulate = Color(2.5, 2.5, 2.5)\n\tawait get_tree().create_timer(hit_flash_time, false, true).timeout\n\t_body.modulate = Color.WHITE\n\t_go_down()\n\n\nfunc _go_down() -> void:\n\t# The only alive -> down transition, so SFX-DOWN fires exactly once.\n\tstate = State.DOWN\n\t_body.texture = Assets.texture(STATE_ART[state])\n\tcollision_layer = 0 # shots and the player pass over it\n\t_touch.set_deferred(\"monitoring\", false)\n\tSound.play_sfx(\"SFX-DOWN\")\n\tdowned.emit()",
+            "startLine": 63,
+            "cues": [
+              {
+                "at": 2.7,
+                "line": 63,
+                "label": "flash"
+              },
+              {
+                "at": 3.6,
+                "line": 64,
+                "label": "wait hit_flash_time (0.15 s)"
+              },
+              {
+                "at": 5.6,
+                "line": 66,
+                "label": "then _go_down()"
+              },
+              {
+                "at": 6.8,
+                "line": 75,
+                "label": "SFX-DOWN: the one alive → down change"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Guard, line 60",
+                "value": "already DOWN or hit\n→ take_shot ignored"
+              },
+              {
+                "label": "After DOWN",
+                "value": "collision_layer 0: shots and player pass over"
+              }
+            ],
+            "output": [
+              "scenes/zombie.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 10.73
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 10.73,
+      "render_duration_s": 10.733333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "RESULT",
+      "narration_text": "The flash, then the body. Now listen.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 4.0,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B11.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 Movie Maker capture · input-only route",
+        "hold_policy": "action plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after the action (never slowed). Built in step 4."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_regions": [
+          {
+            "label": "HUD readout",
+            "box": [
+              0.012,
+              0.035,
+              0.3,
+              0.195
+            ]
+          }
+        ],
+        "contrast_reason": "Full-frame gameplay capture: the dark game floor is the picture, not a text background. The essential on-screen text is the HUD readout, measured in its box; conform_clips.py darkens non-text pixels behind it to 30% (disclosed). Player-sprite readability on the floor is a documented limitation (TEST-REPORT)."
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 2.7,
+      "narration_padded_to": 2.7,
+      "narration_voiced_s": 2.67,
+      "render_duration_s": 2.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "LISTEN",
+      "narration_text": "",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 4.0,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B12.mp4",
+        "label": "Game audio only · no narration · Movie Maker capture RUN_A 2.0–6.0 s",
+        "note": "SFX-SHOT, SFX-DOWN collapse, MUS-LOOP bed as the engine mixed them."
+      },
+      "clock": "source",
+      "audio_policy": "preserve",
+      "role_note": "AUDIBLE-AUDIO BEAT. clock:source + audio_policy:preserve is compile.py's only path that keeps a clip's own audio (verified by the audio experiment); not labelled SOURCE_REPORT.",
+      "kind": "source_report",
+      "actual_duration_s": 4.0,
+      "render_duration_s": 4.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B12.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "MECHANISM",
+      "narration_text": "Music and effects live on separate buses, and M and N each flip one bus's mute. Muting silences a bus without stopping what's playing on it, so a sound muted halfway can come back as a tail. The capture waits out the collapse before unmuting.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.6,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Two buses, two mutes.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "audio/audio_director.gd",
+            "source": "godot/audio/audio_director.gd lines 70-80 · Godot editor reconstruction",
+            "code": "func set_muted(bus: String, muted: bool) -> void:\n\tAudioServer.set_bus_mute(AudioServer.get_bus_index(bus), muted)\n\tmute_changed.emit(bus, muted)\n\n\nfunc is_muted(bus: String) -> bool:\n\treturn AudioServer.is_bus_mute(AudioServer.get_bus_index(bus))\n\n\nfunc toggle_muted(bus: String) -> void:\n\tset_muted(bus, not is_muted(bus))",
+            "startLine": 70,
+            "cues": [
+              {
+                "at": 2.6,
+                "line": 80,
+                "label": "M / N toggle one bus each"
+              },
+              {
+                "at": 4.6,
+                "line": 71,
+                "label": "mute = AudioServer bus mute"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Buses",
+                "value": "Music, SFX → Master\n(default_bus_layout\n.tres)"
+              },
+              {
+                "label": "Keys",
+                "value": "hud.gd: toggle_music (M), toggle_sfx (N)"
+              }
+            ],
+            "output": [
+              "audio/audio_director.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 13.85
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 13.85,
+      "render_duration_s": 13.866666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B13.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "RESULT",
+      "narration_text": "M: music off. N: effects off. A silent kill still reads. The sound comes back, and a shot you can hear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.0,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B14.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 Movie Maker capture · input-only route",
+        "hold_policy": "action plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after the action (never slowed). Built in step 4."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_regions": [
+          {
+            "label": "HUD readout",
+            "box": [
+              0.012,
+              0.035,
+              0.3,
+              0.195
+            ]
+          }
+        ],
+        "contrast_reason": "Full-frame gameplay capture: the dark game floor is the picture, not a text background. The essential on-screen text is the HUD readout, measured in its box; conform_clips.py darkens non-text pixels behind it to 30% (disclosed). Player-sprite readability on the floor is a documented limitation (TEST-REPORT)."
+      },
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 7.1,
+      "narration_padded_to": 7.1,
+      "narration_voiced_s": 6.59,
+      "render_duration_s": 7.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B14.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "MECHANISM",
+      "narration_text": "The generated art is drawn from a fixed, elevated angle, so spinning it freely turned it upside-down. Facing mirrors the sprite to the side you aim at, then tilts it at most thirty degrees. The shot itself still goes anywhere.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16.6,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Mirror, then tilt.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "scenes/facing.gd",
+            "source": "godot/scenes/facing.gd lines 11-18 · Godot editor reconstruction",
+            "code": "static func apply(sprite: Sprite2D, dir: Vector2, max_tilt: float) -> void:\n\tif dir == Vector2.ZERO:\n\t\treturn\n\t# Straight up/down has no side: keep the current one so it doesn't flicker.\n\tif absf(dir.x) > 0.01:\n\t\tsprite.flip_h = dir.x < 0.0\n\tvar forward := Vector2.LEFT if sprite.flip_h else Vector2.RIGHT\n\tsprite.rotation = clampf(forward.angle_to(dir), -max_tilt, max_tilt)",
+            "startLine": 11,
+            "cues": [
+              {
+                "at": 6.1,
+                "line": 16,
+                "label": "mirror by aim side"
+              },
+              {
+                "at": 8.8,
+                "line": 18,
+                "label": "tilt clamped to ±max_tilt (30°)"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Convention",
+                "value": "art stored upright, facing east"
+              },
+              {
+                "label": "Used by",
+                "value": "player.gd _face(), zombie.gd chase"
+              }
+            ],
+            "output": [
+              "scenes/facing.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 12.65
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 12.65,
+      "render_duration_s": 12.666666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B15.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "RESULT",
+      "narration_text": "Left, the first build rotating freely: upside-down facing north, the gun ninety degrees off. Right, mirror and tilt: upright everywhere. Straight up or down, the gun is still sixty degrees off the shot. That trade is on the record.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B16.png",
+        "motion": "hold",
+        "label": "engine render"
+      },
+      "audio_file": "mp3/beat-B16.mp3",
+      "actual_duration_s": 12.61,
+      "render_duration_s": 12.633333333333333,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B16.png",
+        "filled_by": "still",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "act": "TRACE",
+      "narration_text": "One asset, end to end. Storyboard panel seven and pose ten asked for a calm success beat. Per the asset log, the first prompt came back with blood and a dropped gun, and was rejected. The correction asked for arms raised, no blood, no dropped weapon, on solid green.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B17.png",
+        "label": "trace board: real images only (make_trace_cards.py)"
+      },
+      "role_note": "Storyboard panel 7 + sheet pose 10 (SVG sheets rasterised by headless Chrome), rejected thumbnail, accepted raw output; prompts quoted from SOURCES.md line 27.",
+      "audio_file": "mp3/beat-B17.mp3",
+      "actual_duration_s": 15.02,
+      "render_duration_s": 15.033333333333333,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B17.png",
+        "filled_by": "still",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "act": "MECHANISM",
+      "narration_text": "The green comes off with a short script. Alpha is how green a pixel is compared with the background sampled from the border. Then the key colour's share is subtracted, so the edges don't glow green.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.0,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B18.png",
+        "label": "code card: tools/chroma_key.py lines 25-38, verbatim, numbered 25-38",
+        "code_sha256": "5666189939ce46cd74ada4ccc92a072452d2df8d868901c5d5068eda6940adcc"
+      },
+      "role_note": "Not GodotDevWorkbench (file is outside godot/, and its header says Godot) and not GitHubCodeViewer (numbers lines from 1). Card built by make_trace_cards.py.",
+      "audio_file": "mp3/beat-B18.mp3",
+      "actual_duration_s": 10.71,
+      "render_duration_s": 10.733333333333333,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B18.png",
+        "filled_by": "still",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B19",
+      "act": "RESULT",
+      "narration_text": "Raw output, keyed to real alpha, then scaled by the same factor as every other pose, to a hundred-sixty-nine by ninety-two pixel sprite.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 9.8,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "evidence_media": "media/B19.png",
+        "label": "actual files: raw JPG, keyed master, game PNG"
+      },
+      "audio_file": "mp3/beat-B19.mp3",
+      "actual_duration_s": 8.55,
+      "render_duration_s": 8.566666666666666,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B19.png",
+        "filled_by": "still",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "MECHANISM",
+      "narration_text": "It reaches the screen through one asset-table line and the exit marker. The first player entry sets a flag, calls celebrate, plays the clear chime and fades the music. The flag, not the trigger, stops a second chime.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Reaching the exit.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "scenes/exit_marker.gd",
+            "source": "godot/scenes/exit_marker.gd lines 17-26 · Godot editor reconstruction",
+            "code": "func _on_body_entered(body: Node2D) -> void:\n\t# The flag, not body_entered alone, is the guard: leaving and re-entering\n\t# the zone must not refire SFX-CLEAR.\n\tif _cleared or not body.has_method(\"celebrate\"):\n\t\treturn\n\t_cleared = true\n\tbody.celebrate()\n\tSound.play_sfx(\"SFX-CLEAR\")\n\tSound.fade_out_music(music_fade_time)\n\tcleared.emit()",
+            "startLine": 17,
+            "cues": [
+              {
+                "at": 5.5,
+                "line": 20,
+                "label": "the flag is the guard"
+              },
+              {
+                "at": 6.2,
+                "line": 23,
+                "label": "CHAR-CELEBRATE"
+              },
+              {
+                "at": 7.2,
+                "line": 24,
+                "label": "SFX-CLEAR"
+              },
+              {
+                "at": 8.7,
+                "line": 25,
+                "label": "music fades over 1.5 s"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Asset table, line 18",
+                "value": "\"CHAR-CELEBRATE\":\n\"res://art/\nchar_celebrate.png\""
+              },
+              {
+                "label": "music_fade_time",
+                "value": "1.5 s (@export, line 8)"
+              }
+            ],
+            "output": [
+              "scenes/exit_marker.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 12.42
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B20.mp3",
+      "actual_duration_s": 12.42,
+      "render_duration_s": 12.433333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B20.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "RESULT",
+      "narration_text": "The walk to the exit. Celebrate. The chime, and the music fading to nothing.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 6.2,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B21.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 Movie Maker capture · input-only route",
+        "hold_policy": "action plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after the action (never slowed). Built in step 4."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_regions": [
+          {
+            "label": "HUD readout",
+            "box": [
+              0.012,
+              0.035,
+              0.3,
+              0.195
+            ]
+          }
+        ],
+        "contrast_reason": "Full-frame gameplay capture: the dark game floor is the picture, not a text background. The essential on-screen text is the HUD readout, measured in its box; conform_clips.py darkens non-text pixels behind it to 30% (disclosed). Player-sprite readability on the floor is a documented limitation (TEST-REPORT)."
+      },
+      "audio_file": "mp3/beat-B21.mp3",
+      "actual_duration_s": 4.8,
+      "narration_padded_to": 4.8,
+      "narration_voiced_s": 4.78,
+      "render_duration_s": 4.8,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B21.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "MECHANISM",
+      "narration_text": "The test that guards all of this runs the real scene for a fixed number of physics ticks. This scenario pins the player on the zombie through the whole hit chain and expects exactly one hurt sound.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Counting triggers.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "tests/trigger_count_test.gd",
+            "source": "godot/tests/trigger_count_test.gd lines 80-89 · Godot editor reconstruction",
+            "code": "func _hurt_pinned() -> void:\n\tawait _fresh()\n\tvar before := _count(\"SFX-HURT\")\n\t# Whole hit chain + post-hit window, minus a margin, held on the zombie.\n\tvar chain: float = _player.hurt_time + _player.grabbed_time + _player.recover_time + _player.post_hit_invuln\n\tvar ticks := int((chain - 0.2) * Engine.physics_ticks_per_second)\n\tfor i in ticks:\n\t\t_player.global_position = _zombie.global_position + Vector2(10, 0)\n\t\tawait get_tree().physics_frame\n\t_report(\"SFX-HURT\", \"pinned on zombie through hit chain (%.1fs)\" % chain, ticks, _count(\"SFX-HURT\") - before, 1, 1)",
+            "startLine": 80,
+            "cues": [
+              {
+                "at": 5.9,
+                "line": 87,
+                "label": "test-only: player pinned on the zombie"
+              },
+              {
+                "at": 8.0,
+                "line": 84,
+                "label": "chain length from the player's own exports"
+              },
+              {
+                "at": 9.4,
+                "line": 89,
+                "label": "expect exactly 1"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Command",
+                "value": "godot --headless\n--path godot\nres://tests/\ntrigger_count_test.tscn"
+              },
+              {
+                "label": "Also checks",
+                "value": "all 16 asset IDs load"
+              }
+            ],
+            "output": [
+              "tests/trigger_count_test.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 11.11
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B22.mp3",
+      "actual_duration_s": 11.11,
+      "render_duration_s": 11.133333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B22.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "RESULT",
+      "narration_text": "It passes. On a copy with the four guards removed, it fails four times: one shot became four, one hurt became a hundred and thirty-five. What it can't tell you is whether anything is audible. It counts calls, and it teleports. That's why the listening beat exists.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.4,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B23.png",
+        "motion": "hold",
+        "label": "engine render"
+      },
+      "audio_file": "mp3/beat-B23.mp3",
+      "actual_duration_s": 14.27,
+      "render_duration_s": 14.3,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B23.png",
+        "filled_by": "still",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B24",
+      "act": "VERDICT",
+      "narration_text": "Implemented: eight states, one infected, a real floor, four sounds and a loop, separate mutes, and a test that fails when its guards are removed. Limits: the olive scavenger fades into the floor, the poses drift in palette and angle, the zombie is still a placeholder, and the flashlight darkness was cut. Human judgment: the student played it with sound on and muted, and confirmed the loop and the fade by ear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 29.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "artifact-reveal",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "DERELICT, taken apart.",
+            "brandLabel": "@NikBearBrown",
+            "artifactLines": [
+              "Implemented: 8 states, 1 infected, floor, 4 SFX + loop, 2 mutes, a trigger-count test.",
+              "Limits: readability on the floor, pose drift, zombie placeholder, no darkness.",
+              "Trade-off: gun up to 60° off the shot when aiming straight up/down.",
+              "Human judgment: author playtest, sound on and muted; loop + fade by ear."
+            ]
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B24.mp3",
+      "actual_duration_s": 20.29,
+      "render_duration_s": 20.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B24.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B25",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Paste this: 'Use Walker on my DERELICT project. In the player script, change max tilt degrees from thirty to forty-five. Before running anything, predict what the eight-direction facing grid will show. Then re-render it, and tell me whether the gun got closer to the shot, and how much more the figure leans.' One number, one prediction, one picture to check it against. If the lean reads worse than the aim error, put it back. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 32.6,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "GODOT · GAME TEARDOWN",
+            "segment": "DERELICT",
+            "command": "Use Walker on my DERELICT project. In godot/scenes/player.gd, change max_tilt_deg from 30 to 45. Before running anything, predict what the 8-direction facing grid will show. Then re-render it and tell me whether the gun got closer to the shot, and how much more the figure leans.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "One number.",
+              "One prediction.",
+              "One picture to check it."
+            ],
+            "animateTyping": true
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B25.mp3",
+      "actual_duration_s": 22.51,
+      "tts_speed": 0.9,
+      "render_duration_s": 22.533333333333335,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B25.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    },
+    {
+      "beat_id": "B26",
+      "act": "OUTRO",
+      "narration_text": "Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 7.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "mascot-title",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "DERELICT: Wiring Generated Art Into Godot",
+            "slug": "claude-liam-derelict-gamedev"
+          }
+        }
+      },
+      "audio_policy": "silence",
+      "role_note": "Locked outro: @NikBearBrown, slug-seeded mascot, stock jingle only; no narration or game audio.",
+      "render_duration_s": 7.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B26.mp4",
+        "filled_by": "media",
+        "at": "2026-10-07T21:15:55"
+      }
+    }
+  ]
+}

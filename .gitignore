@@ -4,3 +4,8 @@ godot/.godot/
 # Large media (course storage, not GitHub)
 *.mp4
 *.mp3
+youtube/**/*.avi
+# Film build audio (compile.py intermediates, e.g. clips/_work/master.wav ~56 MB).
+# Scoped to youtube/: the game's own WAVs in godot/audio/ must stay committed.
+youtube/**/*.wav
+__pycache__/

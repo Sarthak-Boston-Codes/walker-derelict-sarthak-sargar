@@ -1,0 +1,322 @@
+{
+  "schema": "derelict-film-media-v1",
+  "repo_head_at_build": "fae3a89",
+  "game_code_revision": "f88f58d",
+  "captures": [
+    {
+      "id": "RUN_A_clear",
+      "raw": "captures/RUN_A_clear.avi",
+      "raw_sha256": "f63d6ce641881f8c2e2f944105e8a2aead48cbd2e71592ff2b5787dce249259d",
+      "mp4": "captures/RUN_A_clear.mp4",
+      "mp4_sha256": "9b410b9bf7d5791c181749dbe2675889fde68a0298594de5fd96d9bcee4594d7",
+      "route_log": "captures/RUN_A_clear.route.log",
+      "method": "Godot 4.7.2 Movie Maker (--write-movie --fixed-fps 30), input-only route captures/routes/route.gd; MJPEG+PCM 48 kHz -> H.264 crf12 + AAC 256k"
+    },
+    {
+      "id": "RUN_B_grab",
+      "raw": "captures/RUN_B_grab.avi",
+      "raw_sha256": "187bd3d9fdd5cc09c60d762157e755c7d360ba73333c2cfaf04ef6351bf2562f",
+      "mp4": "captures/RUN_B_grab.mp4",
+      "mp4_sha256": "7816302cec47a2d6d4ef3cdd39d0d9b7d33f0f5c080332f7dad43f2dd23556ac",
+      "route_log": "captures/RUN_B_grab.route.log",
+      "method": "Godot 4.7.2 Movie Maker (--write-movie --fixed-fps 30), input-only route captures/routes/route.gd; MJPEG+PCM 48 kHz -> H.264 crf12 + AAC 256k"
+    },
+    {
+      "id": "RUN_C_mute",
+      "raw": "captures/RUN_C_mute.avi",
+      "raw_sha256": "de1188caff09281aa488dbf298e92b063ceda9e9dd14b8b2bf0307dd1178b1a2",
+      "mp4": "captures/RUN_C_mute.mp4",
+      "mp4_sha256": "b7359a44f9f6e09b0de085a1593fbb21beb0e7300d17da863fd4003fb066e059",
+      "route_log": "captures/RUN_C_mute.route.log",
+      "method": "Godot 4.7.2 Movie Maker (--write-movie --fixed-fps 30), input-only route captures/routes/route.gd; MJPEG+PCM 48 kHz -> H.264 crf12 + AAC 256k"
+    }
+  ],
+  "media": [
+    {
+      "path": "media/action/B07.mp4",
+      "sha256": "0d2a4c8bc74502850cd8f2540ff985f1163b0a29407e5a06d5d1391b69120807",
+      "beat": "B07",
+      "source": "RUN_A_clear",
+      "interval_s": [
+        1.5,
+        2.8
+      ],
+      "duration_s": 1.3,
+      "contains": "aim at zombie, ready cue, fire, follow-through",
+      "retimed": false
+    },
+    {
+      "path": "media/action/B09.mp4",
+      "sha256": "e613b44822030e6941e79d2a3f21a8349d08ebc32bcb524b1bd46a5dfe4f879d",
+      "beat": "B09",
+      "source": "RUN_B_grab",
+      "interval_s": [
+        4.0,
+        7.3
+      ],
+      "duration_s": 3.3,
+      "contains": "contact, HURT+arrow, GRABBED, RECOVER, walk away",
+      "retimed": false
+    },
+    {
+      "path": "media/action/B11.mp4",
+      "sha256": "750a6033871104d5802b6a14bfc869a295c773aa7f0cb32c85af5d3b7641dc2f",
+      "beat": "B11",
+      "source": "RUN_A_clear",
+      "interval_s": [
+        2.1,
+        3.7
+      ],
+      "duration_s": 1.6,
+      "contains": "shot lands, hit flash, ZOMBIE-DOWN",
+      "retimed": false
+    },
+    {
+      "path": "media/action/B12.mp4",
+      "sha256": "cfed76d24cbb85fc8b2f3f0b88ec5c3f38ac81f22bc816b9514fb209dee661f9",
+      "beat": "B12",
+      "source": "RUN_A_clear",
+      "interval_s": [
+        2.0,
+        6.0
+      ],
+      "duration_s": 4.0,
+      "contains": "AUDIBLE BEAT: shot, collapse SFX, music bed (no narration)",
+      "retimed": false
+    },
+    {
+      "path": "media/action/B14.mp4",
+      "sha256": "362ea3050935bd589d9fab22fb94069cf1222603e93c976c8722cc875368b2a1",
+      "beat": "B14",
+      "source": "RUN_C_mute",
+      "interval_s": [
+        0.5,
+        7.6
+      ],
+      "duration_s": 7.1,
+      "contains": "M mutes music, N mutes SFX, silent kill, unmute, audible shot",
+      "retimed": false
+    },
+    {
+      "path": "media/action/B21.mp4",
+      "sha256": "8b59fd243b656f9b8ca06c75847411b21c2fb98cf6dc4ff8fb02448541df94d1",
+      "beat": "B21",
+      "source": "RUN_A_clear",
+      "interval_s": [
+        9.0,
+        13.8
+      ],
+      "duration_s": 4.8,
+      "contains": "final approach, CHAR-CELEBRATE, SFX-CLEAR, music fade to silence",
+      "retimed": false
+    },
+    {
+      "path": "media/trace/storyboard_sheet.svg",
+      "sha256": "1bc1cfd987acff11072d27cc95ff77a578a2620585bba7d0eba7515880425ba2",
+      "beat": "B17/B19",
+      "source": "design/storyboard/sheet.svg"
+    },
+    {
+      "path": "media/trace/character_sheet.svg",
+      "sha256": "dfb828ac72bfe618b64e94b53ec375e6c56f362f7377c3496b171b2b30f850d7",
+      "beat": "B17/B19",
+      "source": "design/character/sheet.svg"
+    },
+    {
+      "path": "media/trace/celebrate_attempt1_rejected_thumb.jpg",
+      "sha256": "cf36b6d1e0f5ea4cc5aab8aea14ae145d4972b9a8ea20fc005d3cd1249a7681a",
+      "beat": "B17/B19",
+      "source": "design/character/rejected/celebrate-attempt1-blood-dropped-gun.jpg"
+    },
+    {
+      "path": "media/trace/celebrate_raw_greenscreen.jpg",
+      "sha256": "2d095d3f9e8a80a3e7cf8647ecb69b9f5341c16e36d1aefbbfabd5e91aa2918e",
+      "beat": "B17/B19",
+      "source": "Downloads/Gemini_Generated_Image_enj39menj39menj3.jpg (original Gemini output)"
+    },
+    {
+      "path": "media/trace/celebrate_keyed_master.png",
+      "sha256": "b31ad83b6fe398600d3ca82ffaa2f47c08bfc94c542f66472aa4c78cc8b01157",
+      "beat": "B17/B19",
+      "source": "design/character/keyed/char_celebrate.png"
+    },
+    {
+      "path": "media/trace/celebrate_game_0p12.png",
+      "sha256": "9f8a3194a3951e7f28a3ce54c767780a1c56f95b80ae0f4fe187b5155abaef66",
+      "beat": "B17/B19",
+      "source": "godot/art/char_celebrate.png"
+    },
+    {
+      "path": "media/trace/celebrate_prompts.txt",
+      "sha256": "5fe461e760e5a94328f9b46d118a22be16f1e9a36d01aff531458cee8925d895",
+      "beat": "B17",
+      "source": "SOURCES.md lines [27, 40, 47]"
+    },
+    {
+      "path": "media/B19.png",
+      "sha256": "7615d392c846d6b8f227a2c4c34c0510dc9dba1923578a7f30e47d646d0af86d",
+      "beat": "B19",
+      "source": "composed from media/trace/ raw, keyed master and game PNG (no edits to pixels)"
+    },
+    {
+      "path": "media/B05.png",
+      "sha256": "feffea189a293ac6c8f7ff6a3d21bd1069cb9d485b0f61ca3f72f7b3831d86ce",
+      "beat": "B05",
+      "source": "isolated copies: ART paths blanked vs working tree (== f88f58d game code)"
+    },
+    {
+      "path": "media/B16_after_mirror_tilt.png",
+      "sha256": "09264c790a8ef1b1bf518f5aadbcbf6bd6a07d57444c4712079fca7ced60e4be",
+      "beat": "B16",
+      "source": "facing_grid_c.gd on isolated copy of working tree (6 facing checks PASS)"
+    },
+    {
+      "path": "media/B16_before_7fc6a99.png",
+      "sha256": "9f4fef6bddaaefdaeb36043f23e62d3dfb1b1e8c2dcfcac6c010732fcd533bda",
+      "beat": "B16",
+      "source": "facing_grid_free.gd on git archive of 7fc6a99 (free rotation, rotated art)"
+    },
+    {
+      "path": "media/logs/trigger_count_pass.log",
+      "sha256": "eec08b67f821328f0af483f12a18bce2abf7640d2800c3298e0cdbf71bc6948a",
+      "beat": "B23",
+      "source": "isolated copy of working tree, exit 0"
+    },
+    {
+      "path": "media/logs/trigger_count_guards_broken.log",
+      "sha256": "da8561577461c18908daaee32f50fb92d19c2a9afba9f0d1ac8c2a5afed0e2a8",
+      "beat": "B23",
+      "source": "isolated copy with 4 anti-double-trigger guards removed (see captures/routes/make_media.py), exit 4"
+    },
+    {
+      "path": "media/B16.png",
+      "sha256": "b4725e2fa4c6aef96c417a4fa69331b103f99cb77a10bb6d54fb8382ff9ea515",
+      "beat": "B16",
+      "source": "make_composites.py: B16_before_7fc6a99.png | B16_after_mirror_tilt.png, labelled, pixels unedited"
+    },
+    {
+      "path": "media/B23.png",
+      "sha256": "425cd4acc4d5dc788b15209b2a397c0aaa4e07930bebe35fd2785a3dd8a70d50",
+      "beat": "B23",
+      "source": "make_composites.py: logs/trigger_count_pass.log | logs/trigger_count_guards_broken.log, verbatim text"
+    },
+    {
+      "path": "media/B17.png",
+      "sha256": "1d1ae48e39c52dd74b366f7ee2bb03f1868473bd1f1dfe57c6ed8e1e234e3f98",
+      "beat": "B17",
+      "source": "make_trace_cards.py: panel 7 + pose 10 crops, rejected thumb, raw output; prompts from SOURCES.md L27"
+    },
+    {
+      "path": "media/B18.png",
+      "sha256": "552aa7b26a0aefffdfe81f2e5e1178c050a494fab913d50692ac8bfa3b7c70fc",
+      "beat": "B18",
+      "source": "make_trace_cards.py: tools/chroma_key.py lines 25-38 verbatim, numbered 25-38"
+    },
+    {
+      "path": "media/trace/storyboard_sheet.png",
+      "sha256": "120d3d283a1824f0b70027ed4da0795f661b985e670f028bd5e9acc6faf935ec",
+      "beat": "B17",
+      "source": "design/storyboard/sheet.svg rasterised by chrome-headless-shell 1500x760"
+    },
+    {
+      "path": "media/trace/character_sheet.png",
+      "sha256": "ccd349747d9033a46218097b2f39fd5b9301fb67b02cbadecaf35602ab61821a",
+      "beat": "B17",
+      "source": "design/character/sheet.svg rasterised by chrome-headless-shell 1540x700"
+    },
+    {
+      "path": "media/B07.mp4",
+      "sha256": "4d692c9e42ee5bd76a5edd9386842d21b6829c3f78d006efd87ff68a362220e9",
+      "beat": "B07",
+      "hud_backing": {
+        "box": [
+          0.012,
+          0.035,
+          0.3,
+          0.195
+        ],
+        "darken": 0.3
+      },
+      "source": "media/action/B07.mp4 at capture speed, HUD backing + REPLAY 0.5x (labelled) + HOLD (labelled)",
+      "duration_s": 4.7,
+      "retimed_action": false
+    },
+    {
+      "path": "media/B09.mp4",
+      "sha256": "0c466520d76f13769b90979d1a45591b5070f165313ae8891275049f5c5ae5a0",
+      "beat": "B09",
+      "hud_backing": {
+        "box": [
+          0.012,
+          0.035,
+          0.3,
+          0.195
+        ],
+        "darken": 0.3
+      },
+      "source": "media/action/B09.mp4 at capture speed, HUD backing + HOLD (labelled)",
+      "duration_s": 5.1,
+      "retimed_action": false
+    },
+    {
+      "path": "media/B11.mp4",
+      "sha256": "6ef5fe24f1f0c783df0bbe976ebbb7c8a28f3c91af8b520d6f7743323aa27ff8",
+      "beat": "B11",
+      "hud_backing": {
+        "box": [
+          0.012,
+          0.035,
+          0.3,
+          0.195
+        ],
+        "darken": 0.3
+      },
+      "source": "media/action/B11.mp4 at capture speed, HUD backing + HOLD (labelled)",
+      "duration_s": 2.7,
+      "retimed_action": false
+    },
+    {
+      "path": "media/B14.mp4",
+      "sha256": "37ba5d149839ec9af52009161bd07147d1707c57b92b000e1c7ba8084d0903f6",
+      "beat": "B14",
+      "hud_backing": {
+        "box": [
+          0.012,
+          0.035,
+          0.3,
+          0.195
+        ],
+        "darken": 0.3
+      },
+      "source": "media/action/B14.mp4 at capture speed, HUD backing",
+      "duration_s": 7.1,
+      "retimed_action": false
+    },
+    {
+      "path": "media/B21.mp4",
+      "sha256": "10eccc215ab7833ff8ecb3fd57d6d10b35d5c7324eac881adfe6e95a835be00d",
+      "beat": "B21",
+      "hud_backing": {
+        "box": [
+          0.012,
+          0.035,
+          0.3,
+          0.195
+        ],
+        "darken": 0.3
+      },
+      "source": "media/action/B21.mp4 at capture speed, HUD backing",
+      "duration_s": 4.8,
+      "retimed_action": false
+    },
+    {
+      "path": "media/B12.mp4",
+      "sha256": "1d3be685e31be61745632fbfef4613483beffdadcf48e218dd979c876abd6260",
+      "beat": "B12",
+      "source": "media/action/B12.mp4: video stream-copied; audio -10 dB fixed gain (level only; preserve beat; game audio kept)",
+      "duration_s": 4.0,
+      "retimed_action": false,
+      "audio_gain_db": -10
+    }
+  ]
+}

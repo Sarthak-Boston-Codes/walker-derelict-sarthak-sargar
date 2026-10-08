@@ -1,0 +1,680 @@
+{
+  "schema_version": 1,
+  "teaching_contract": "code-then-result-v1",
+  "files": [
+    {
+      "path": "art/char_aim.png",
+      "sha256": "eb964512d3b549b7ce2c6b365d0faf0781f0e82c1cb4c621539cd0e41098d5a0",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_aim.png.import",
+      "sha256": "1784bbe96f3158876e76aa44e301342841d6718a25d5fbce742223e34b6cdc8c",
+      "role": "import settings",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_celebrate.png",
+      "sha256": "9f8a3194a3951e7f28a3ce54c767780a1c56f95b80ae0f4fe187b5155abaef66",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table",
+        "celebrate_trace"
+      ]
+    },
+    {
+      "path": "art/char_celebrate.png.import",
+      "sha256": "d7e6e23b3038f63b94e254ccabdf06b1a039ae82bc7fb219e9618812bdf55844",
+      "role": "import settings",
+      "component_ids": [
+        "asset_table",
+        "celebrate_trace"
+      ]
+    },
+    {
+      "path": "art/char_grabbed.png",
+      "sha256": "36ae6312da67a75fbdf62a3535984bcbca7d5e6cf7bf9f56ed821f60b8f92435",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_grabbed.png.import",
+      "sha256": "5ad5f00dc1b1d5146a38d4f8ddb9311798da24f94adda38834a076aa39ae6252",
+      "role": "import settings",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_hurt.png",
+      "sha256": "3f5f1feed6f7644dbbd02f0dbfef198957d66a2efa45f5f55cfa2e2263739845",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_hurt.png.import",
+      "sha256": "b4b14f0c177ef73142c2b403d9f5e93afee68e96636dd47da73e7741276ecb66",
+      "role": "import settings",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_idle.png",
+      "sha256": "802d695ba8abd4ea85b2280e6d4d2ef02319aaaa1792a4666994ac69fb2dbf2b",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_idle.png.import",
+      "sha256": "83a11dd1f081aad0de5095ebb566d07f3a34cbc542a543bdf5c556dc5c795fcc",
+      "role": "import settings",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_recover.png",
+      "sha256": "793c979baae933c8d82c1ba3fe21e03fae94f3174dfb7fcc601e5e8846693dda",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_recover.png.import",
+      "sha256": "633582147dc527b883cb80e921aabdd3ee781563ee6067a01ae001064dab53b1",
+      "role": "import settings",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_shoot.png",
+      "sha256": "58339ba2be5de3259de5c041bb8ec88ac26bbc948387c6695a95a634460cd5e6",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_shoot.png.import",
+      "sha256": "cd7ad35364cf5abf34a81a9b8a75863abe357bf365de65cb280bb47bd503c0fa",
+      "role": "import settings",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_walk.png",
+      "sha256": "b7338d85ec5ed55b14eb45754ec7cf0fb340dd061fd27b249dd39760ed18f1e4",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/char_walk.png.import",
+      "sha256": "65de0df918476733c658dfac09e238325251b0c28aa64fdd95a3918e78debdb7",
+      "role": "import settings",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/env_factory_floor.png",
+      "sha256": "a2eae14e29b81796d8710d007a34569d7044658fdd888a32385594a5136497f8",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "art/env_factory_floor.png.import",
+      "sha256": "21dab260b010bf284941c2f7c5a9abbdb7d5e42eeccf7987f2269c7606407637",
+      "role": "import settings",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "assets/asset_manifest.gd",
+      "sha256": "96e6bce2b9c7463210186979ba5eddfb3eb7c0e9c866ad9a529276732123a380",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "assets/placeholder_factory.gd",
+      "sha256": "10cab1d359e6f8fbf23e1e5852c6d0eec36ed029b4abca4ce83eb34eddd62e0e",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "asset_table"
+      ]
+    },
+    {
+      "path": "audio/audio_director.gd",
+      "sha256": "57442eafbdaf249c5188c39abd6d2a572fe30edeb3bad2d351cbf17395e88255",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "audio/mus_loop.wav",
+      "sha256": "1feab734fcf81cc794debe8f8455c98487d7bd45411235ea2fb0fbc33b939f1d",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "audio/mus_loop.wav.import",
+      "sha256": "193edb6c734b2224382923960850e5f2b4c1b21f5c410d901d400d8dbed13161",
+      "role": "import settings",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "audio/sfx_clear.wav",
+      "sha256": "13620589dfd0cbde444c0a207dd6fc9abae1205cc717e059c2f2e780e9f3ed30",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "audio/sfx_clear.wav.import",
+      "sha256": "97de1e4334fa674c787e154e0b1acf86f4bd21c9fac290794fb10905b74af1d1",
+      "role": "import settings",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "audio/sfx_down.wav",
+      "sha256": "9d55ccff26c397da555eaa2769d827af800e3cbfcfb3e549203b66b7937ec167",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "audio/sfx_down.wav.import",
+      "sha256": "b7739aa9da94a71a6e2852ddfd77fbb6f8e4b9c702f2b67d0b11f1e486c45d91",
+      "role": "import settings",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "audio/sfx_hurt.wav",
+      "sha256": "eb2999fd775c2ef928e9247fc92be2cbb569b6170f5fffa8e34c73bbfc1d61d6",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "audio/sfx_hurt.wav.import",
+      "sha256": "c2137e4eed7be5487d10a16e8c531fa8507b9d889430dad2d0fec1253c7506cd",
+      "role": "import settings",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "audio/sfx_shot.wav",
+      "sha256": "825a67376a9cefb1572c77bb88523cba8892f72043aba4bad2d211d1474efe2a",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "audio/sfx_shot.wav.import",
+      "sha256": "fb36942ea1f4b4056f4c479c6127da41e05bf07eca4dce7162a44755fba19cb1",
+      "role": "import settings",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "default_bus_layout.tres",
+      "sha256": "a096ac71dcf358435b23bea48216ad05329edb59f842c387e61670785b5a95c4",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "project.godot",
+      "sha256": "f757ea5ce146dae1f11150b03506e6bd6440f9bcb868eb12d3647566e9c99e7e",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "architecture"
+      ]
+    },
+    {
+      "path": "scenes/exit_marker.gd",
+      "sha256": "a72255026582662115562b4fd553c99ba785b20ef9ffe1030ac3e967354480c7",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "celebrate_trace"
+      ]
+    },
+    {
+      "path": "scenes/exit_marker.tscn",
+      "sha256": "e5968a10326bf6793afce0d6e14f41291fefffaf6acf7eebedea3278b4b9fdcf",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "celebrate_trace"
+      ]
+    },
+    {
+      "path": "scenes/facing.gd",
+      "sha256": "f8e9efb79ecbc879b0596e527aeed96631c7639e3a0133a18d66732810dac80b",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "facing"
+      ]
+    },
+    {
+      "path": "scenes/main.gd",
+      "sha256": "979465c045f1fb8ebf6d37ccaf46ebc23e0e7f12b6a6a68e3564dfc314ce4040",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "architecture"
+      ]
+    },
+    {
+      "path": "scenes/main.tscn",
+      "sha256": "cb06cfbd370bb8b6ca563cda29d715e3fc96fa43c5961af89678424ad355f8bd",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "architecture"
+      ]
+    },
+    {
+      "path": "scenes/player.gd",
+      "sha256": "8ffe987f81eceb945c24d56cb223b200dd01b6d872d52aa082da20657f000c53",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "player_states"
+      ]
+    },
+    {
+      "path": "scenes/player.tscn",
+      "sha256": "71dfb117c600a82d08ae67343660524c44e5ef844f8fa0d52acee892ffc15c59",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "player_states"
+      ]
+    },
+    {
+      "path": "scenes/zombie.gd",
+      "sha256": "21836d934fc7a268167f9cc669b2c4517507eb337f57351fc1588b73302cb430",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "zombie"
+      ]
+    },
+    {
+      "path": "scenes/zombie.tscn",
+      "sha256": "15ceb259626f3fe51210add26f0d0d4d548169df7d8a6ea521f3fc88644ac98c",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "zombie"
+      ]
+    },
+    {
+      "path": "tests/trigger_count_test.gd",
+      "sha256": "f547568aaf88b96030823d8f8646ecfcb735df04e08634a627df09adca6f9240",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "trigger_test"
+      ]
+    },
+    {
+      "path": "tests/trigger_count_test.tscn",
+      "sha256": "a8f3d4349e224aec32e9561693fbd82c810af07eff64d00cddb5f3842d84b2a5",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "trigger_test"
+      ]
+    },
+    {
+      "path": "ui/hud.gd",
+      "sha256": "5671fb4ee3f50ed392051049afec647d0687620be231667ed716159ab6836e07",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    },
+    {
+      "path": "ui/hud.tscn",
+      "sha256": "e3691a42ede975b907241b5c8d7ccc18a7e6547da7e2018c9ff747458180af05",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "audio_and_mutes"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "architecture",
+      "explanation": "Main scene tree, autoloads and project configuration: what exists at startup and how it is wired.",
+      "beat_ids": [
+        "B02",
+        "B03"
+      ],
+      "files": [
+        "project.godot",
+        "scenes/main.tscn",
+        "scenes/main.gd"
+      ]
+    },
+    {
+      "id": "asset_table",
+      "explanation": "One manifest resolves every art/audio ID to a real file or a runtime-generated placeholder; the swap is one line per ID.",
+      "beat_ids": [
+        "B04",
+        "B05"
+      ],
+      "files": [
+        "assets/asset_manifest.gd",
+        "assets/placeholder_factory.gd",
+        "art/char_idle.png",
+        "art/char_idle.png.import",
+        "art/char_walk.png",
+        "art/char_walk.png.import",
+        "art/char_aim.png",
+        "art/char_aim.png.import",
+        "art/char_shoot.png",
+        "art/char_shoot.png.import",
+        "art/char_hurt.png",
+        "art/char_hurt.png.import",
+        "art/char_grabbed.png",
+        "art/char_grabbed.png.import",
+        "art/char_recover.png",
+        "art/char_recover.png.import",
+        "art/char_celebrate.png",
+        "art/char_celebrate.png.import",
+        "art/env_factory_floor.png",
+        "art/env_factory_floor.png.import"
+      ]
+    },
+    {
+      "id": "player_states",
+      "explanation": "Eight-state player: aim wind-up and single-press fire, hit chain with invulnerability, threat arrow, celebrate lock.",
+      "beat_ids": [
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "files": [
+        "scenes/player.gd",
+        "scenes/player.tscn"
+      ]
+    },
+    {
+      "id": "zombie",
+      "explanation": "Chase within 220 px, visible hit flash before the one alive→down transition, knockback on a grab.",
+      "beat_ids": [
+        "B10",
+        "B11"
+      ],
+      "files": [
+        "scenes/zombie.gd",
+        "scenes/zombie.tscn"
+      ]
+    },
+    {
+      "id": "audio_and_mutes",
+      "explanation": "Sound autoload: SFX players and trigger counts, MUS-LOOP with Forward loop import, two buses with independent mutes driven by the HUD.",
+      "beat_ids": [
+        "B13",
+        "B14"
+      ],
+      "files": [
+        "audio/audio_director.gd",
+        "default_bus_layout.tres",
+        "ui/hud.gd",
+        "ui/hud.tscn",
+        "audio/sfx_shot.wav",
+        "audio/sfx_shot.wav.import",
+        "audio/sfx_down.wav",
+        "audio/sfx_down.wav.import",
+        "audio/sfx_hurt.wav",
+        "audio/sfx_hurt.wav.import",
+        "audio/sfx_clear.wav",
+        "audio/sfx_clear.wav.import",
+        "audio/mus_loop.wav",
+        "audio/mus_loop.wav.import"
+      ]
+    },
+    {
+      "id": "facing",
+      "explanation": "Mirror + capped tilt drawing for fixed-elevation art; gameplay direction stays 360°.",
+      "beat_ids": [
+        "B15",
+        "B16"
+      ],
+      "files": [
+        "scenes/facing.gd"
+      ]
+    },
+    {
+      "id": "celebrate_trace",
+      "explanation": "CHAR-CELEBRATE from storyboard/sheet through prompts, keying and scaling to the exit marker that shows it in engine.",
+      "beat_ids": [
+        "B17",
+        "B19",
+        "B20",
+        "B21"
+      ],
+      "files": [
+        "scenes/exit_marker.gd",
+        "scenes/exit_marker.tscn",
+        "art/char_celebrate.png",
+        "art/char_celebrate.png.import"
+      ]
+    },
+    {
+      "id": "trigger_test",
+      "explanation": "Scripted trigger-count test: every asset ID loads, each SFX fires once per event under held and repeated input; cannot prove audibility.",
+      "beat_ids": [
+        "B22",
+        "B23"
+      ],
+      "files": [
+        "tests/trigger_count_test.gd",
+        "tests/trigger_count_test.tscn"
+      ]
+    }
+  ],
+  "excerpts": [
+    {
+      "beat_id": "B04",
+      "path": "assets/asset_manifest.gd",
+      "start_line": 10,
+      "end_line": 22,
+      "text": "const ART := {\n\t\"CHAR-IDLE\": \"res://art/char_idle.png\",\n\t\"CHAR-WALK\": \"res://art/char_walk.png\",\n\t\"CHAR-AIM\": \"res://art/char_aim.png\",\n\t\"CHAR-SHOOT-FOLLOWTHROUGH\": \"res://art/char_shoot.png\",\n\t\"CHAR-HURT\": \"res://art/char_hurt.png\",\n\t\"CHAR-GRABBED-FAIL\": \"res://art/char_grabbed.png\",\n\t\"CHAR-RECOVER\": \"res://art/char_recover.png\",\n\t\"CHAR-CELEBRATE\": \"res://art/char_celebrate.png\",\n\t\"ZOMBIE-SHAMBLE\": \"\",\n\t\"ZOMBIE-DOWN\": \"\",\n\t\"ENV-FACTORY-FLOOR\": \"res://art/env_factory_floor.png\",\n}"
+    },
+    {
+      "beat_id": "B06",
+      "path": "scenes/player.gd",
+      "start_line": 72,
+      "end_line": 81,
+      "text": "\tmatch state:\n\t\tState.IDLE, State.WALK, State.AIM:\n\t\t\tif Input.is_action_pressed(\"aim\"):\n\t\t\t\tif state != State.AIM:\n\t\t\t\t\t_enter(State.AIM)\n\t\t\t\t_face(_aim_dir())\n\t\t\t\t_ready_cue.rotation = _aim_dir().angle()\n\t\t\t\tvelocity = move * aim_speed\n\t\t\t\tif _fire_requested and _state_time >= aim_windup:\n\t\t\t\t\t_fire()"
+    },
+    {
+      "beat_id": "B08",
+      "path": "scenes/player.gd",
+      "start_line": 117,
+      "end_line": 125,
+      "text": "## Returns true if the hit landed (so the attacker can react, e.g. knock back).\nfunc take_hit(from_position: Vector2) -> bool:\n\tif _invuln_left > 0.0 or state in [State.HURT, State.GRABBED_FAIL, State.RECOVER, State.CELEBRATE]:\n\t\treturn false\n\t_enter(State.HURT)\n\t# Pillar 4: the arrow points at whoever hit us.\n\t_threat_arrow.rotation = (from_position - global_position).angle()\n\tSound.play_sfx(\"SFX-HURT\")\n\treturn true"
+    },
+    {
+      "beat_id": "B10",
+      "path": "scenes/zombie.gd",
+      "start_line": 63,
+      "end_line": 76,
+      "text": "\t_body.modulate = Color(2.5, 2.5, 2.5)\n\tawait get_tree().create_timer(hit_flash_time, false, true).timeout\n\t_body.modulate = Color.WHITE\n\t_go_down()\n\n\nfunc _go_down() -> void:\n\t# The only alive -> down transition, so SFX-DOWN fires exactly once.\n\tstate = State.DOWN\n\t_body.texture = Assets.texture(STATE_ART[state])\n\tcollision_layer = 0 # shots and the player pass over it\n\t_touch.set_deferred(\"monitoring\", false)\n\tSound.play_sfx(\"SFX-DOWN\")\n\tdowned.emit()"
+    },
+    {
+      "beat_id": "B13",
+      "path": "audio/audio_director.gd",
+      "start_line": 70,
+      "end_line": 80,
+      "text": "func set_muted(bus: String, muted: bool) -> void:\n\tAudioServer.set_bus_mute(AudioServer.get_bus_index(bus), muted)\n\tmute_changed.emit(bus, muted)\n\n\nfunc is_muted(bus: String) -> bool:\n\treturn AudioServer.is_bus_mute(AudioServer.get_bus_index(bus))\n\n\nfunc toggle_muted(bus: String) -> void:\n\tset_muted(bus, not is_muted(bus))"
+    },
+    {
+      "beat_id": "B15",
+      "path": "scenes/facing.gd",
+      "start_line": 11,
+      "end_line": 18,
+      "text": "static func apply(sprite: Sprite2D, dir: Vector2, max_tilt: float) -> void:\n\tif dir == Vector2.ZERO:\n\t\treturn\n\t# Straight up/down has no side: keep the current one so it doesn't flicker.\n\tif absf(dir.x) > 0.01:\n\t\tsprite.flip_h = dir.x < 0.0\n\tvar forward := Vector2.LEFT if sprite.flip_h else Vector2.RIGHT\n\tsprite.rotation = clampf(forward.angle_to(dir), -max_tilt, max_tilt)"
+    },
+    {
+      "beat_id": "B20",
+      "path": "scenes/exit_marker.gd",
+      "start_line": 17,
+      "end_line": 26,
+      "text": "func _on_body_entered(body: Node2D) -> void:\n\t# The flag, not body_entered alone, is the guard: leaving and re-entering\n\t# the zone must not refire SFX-CLEAR.\n\tif _cleared or not body.has_method(\"celebrate\"):\n\t\treturn\n\t_cleared = true\n\tbody.celebrate()\n\tSound.play_sfx(\"SFX-CLEAR\")\n\tSound.fade_out_music(music_fade_time)\n\tcleared.emit()"
+    },
+    {
+      "beat_id": "B22",
+      "path": "tests/trigger_count_test.gd",
+      "start_line": 80,
+      "end_line": 89,
+      "text": "func _hurt_pinned() -> void:\n\tawait _fresh()\n\tvar before := _count(\"SFX-HURT\")\n\t# Whole hit chain + post-hit window, minus a margin, held on the zombie.\n\tvar chain: float = _player.hurt_time + _player.grabbed_time + _player.recover_time + _player.post_hit_invuln\n\tvar ticks := int((chain - 0.2) * Engine.physics_ticks_per_second)\n\tfor i in ticks:\n\t\t_player.global_position = _zombie.global_position + Vector2(10, 0)\n\t\tawait get_tree().physics_frame\n\t_report(\"SFX-HURT\", \"pinned on zombie through hit chain (%.1fs)\" % chain, ticks, _count(\"SFX-HURT\") - before, 1, 1)"
+    }
+  ],
+  "exclusions": [
+    {
+      "path": ".editorconfig",
+      "reason": "editor formatting config; not runtime"
+    },
+    {
+      "path": ".gitattributes",
+      "reason": "Git line-ending config; not runtime"
+    },
+    {
+      "path": ".gitignore",
+      "reason": "Git ignore rules for the Godot cache; not runtime"
+    },
+    {
+      "path": "art/.gdkeep",
+      "reason": "empty placeholder keeping the folder in Git"
+    },
+    {
+      "path": "audio/.gdkeep",
+      "reason": "empty placeholder keeping the folder in Git"
+    },
+    {
+      "path": "icon.svg",
+      "reason": "default Godot project icon; not used by gameplay"
+    },
+    {
+      "path": "icon.svg.import",
+      "reason": "import settings for the unused default icon"
+    },
+    {
+      "path": "art/char_reference.png",
+      "reason": "design reference image; never loaded by the game (SOURCES.md)"
+    },
+    {
+      "path": "art/char_reference.png.import",
+      "reason": "import settings for the unloaded reference image"
+    }
+  ],
+  "code_result_pairs": [
+    {
+      "code_beat": "B04",
+      "result_beat": "B05",
+      "observation": "Blanking the ART paths in an isolated copy turns every sprite and the floor into runtime placeholders; nothing else differs.",
+      "media": {
+        "path": "media/B05.png",
+        "sha256": "feffea189a293ac6c8f7ff6a3d21bd1069cb9d485b0f61ca3f72f7b3831d86ce"
+      }
+    },
+    {
+      "code_beat": "B06",
+      "result_beat": "B07",
+      "observation": "AIM, ready cue, one shot, SHOOT-FOLLOWTHROUGH; HUD SHOT 0 → 1.",
+      "media": {
+        "path": "media/B07.mp4",
+        "sha256": "4d692c9e42ee5bd76a5edd9386842d21b6829c3f78d006efd87ff68a362220e9"
+      }
+    },
+    {
+      "code_beat": "B08",
+      "result_beat": "B09",
+      "observation": "HURT with arrow toward the zombie, GRABBED-FAIL, RECOVER, walk away; HUD HURT 0 → 1.",
+      "media": {
+        "path": "media/B09.mp4",
+        "sha256": "0c466520d76f13769b90979d1a45591b5070f165313ae8891275049f5c5ae5a0"
+      }
+    },
+    {
+      "code_beat": "B10",
+      "result_beat": "B11",
+      "observation": "Hit flash, then ZOMBIE-DOWN; HUD DOWN 0 → 1.",
+      "media": {
+        "path": "media/B11.mp4",
+        "sha256": "6ef5fe24f1f0c783df0bbe976ebbb7c8a28f3c91af8b520d6f7743323aa27ff8"
+      }
+    },
+    {
+      "code_beat": "B13",
+      "result_beat": "B14",
+      "observation": "Music bus muted at M, SFX bus at N; silent kill with HUD SHOT/DOWN 1; unmute; audible shot.",
+      "media": {
+        "path": "media/B14.mp4",
+        "sha256": "37ba5d149839ec9af52009161bd07147d1707c57b92b000e1c7ba8084d0903f6"
+      }
+    },
+    {
+      "code_beat": "B15",
+      "result_beat": "B16",
+      "observation": "Free rotation (7fc6a99) draws poses upside-down and the gun 90° off; mirror+tilt keeps every pose upright, gun within 30° except straight up/down.",
+      "media": {
+        "path": "media/B16.png",
+        "sha256": "b4725e2fa4c6aef96c417a4fa69331b103f99cb77a10bb6d54fb8382ff9ea515"
+      }
+    },
+    {
+      "code_beat": "B20",
+      "result_beat": "B21",
+      "observation": "WALK to exit, CHAR-CELEBRATE, HUD CLEAR 0 → 1, MUS-LOOP fades to silence.",
+      "media": {
+        "path": "media/B21.mp4",
+        "sha256": "10eccc215ab7833ff8ecb3fd57d6d10b35d5c7324eac881adfe6e95a835be00d"
+      }
+    },
+    {
+      "code_beat": "B22",
+      "result_beat": "B23",
+      "observation": "Recorded runs on isolated copies: PASS (exit 0); guards removed → 4 FAIL (exit 4).",
+      "media": {
+        "path": "media/B23.png",
+        "sha256": "425cd4acc4d5dc788b15209b2a397c0aaa4e07930bebe35fd2785a3dd8a70d50"
+      }
+    }
+  ]
+}
