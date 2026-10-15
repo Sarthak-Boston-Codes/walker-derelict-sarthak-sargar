@@ -58,3 +58,21 @@ Dated log of the design thinking, filled in daily. A rejected attempt is just as
 - Next: generate the remaining poses (walk, recover, celebrate) facing east with the gun hand on the right, same angle/zoom/palette as aim and shoot, nothing baked in (no beam); regenerate idle, whose baked beam points behind the player.
 - Human / Claude / model: Human — chose mirror + tilt (option C) from options Claude laid out after Claude ran the in-engine facing check; the earlier mirroring and free-rotation decisions were the student's own, made from using Gemini.
 - Still unresolved: aiming straight up/down, the drawn gun is ~60° off the actual aim; mirroring swaps the flashlight's shoulder when facing left.
+
+## 2026-10-15 — Medkit hand-edit in Blender (reverted)
+- Wanted: to try moving and resizing an object by hand in Blender's viewport, without the MCP.
+- Asked: Blender 5.2.2 LTS, `tools/blender/medkit.blend`. With Medkit selected in Object Mode: dragged it sideways, then pressed S to scale and confirmed with a left-click.
+- Got (measured afterwards via the MCP):
+  - Location: unchanged at (0, 0, 0). The sideways drag didn't move the object.
+  - Scale: (1, 1, 1) → (1.95508, 1.95508, 1.95508), the same factor on all three axes.
+  - Size: 0.3 × 0.2 × 0.15 m → 0.5865 × 0.3910 × 0.2933 m. Rotation stayed at 0, 0, 0.
+  - The mesh itself was unchanged (still 0.3 × 0.2 × 0.15 m, 48 triangles). Only the object's Scale value changed, so the edit lived in the transform, not the geometry.
+- Learned about the interface:
+  - S scales all three axes together by default; restricting it to one axis needs an axis key (X/Y/Z) during the scale.
+  - S scales around the object's origin. The medkit's origin is at the centre of its underside, so it grew upward and outward but stayed sitting on the floor.
+  - Scaling with S changes the object's Scale field, not the mesh. If exported like that, it would arrive at the wrong size in Godot. That's predicted failure case #2 in CHANGE-BRIEF.md, and why scale is applied or reset before export.
+  - Click-dragging with the default Select Box tool draws a selection box rather than moving the object; moving needs G or the Move tool. That's the likely reason location stayed at 0, 0, 0 (not confirmed).
+- Decided: reverted. Scale reset to 1, 1, 1 directly (not applied, which would have baked the 1.955× into the mesh); location confirmed at 0, 0, 0. Re-exported `medkit.glb`, which came out byte-identical to the committed version, and `showcase_3d_test` still passes (exit 0, 0 failures).
+- Next: none.
+- Human / Claude / model: Human — the hand-edit itself was the student's. Claude measured the result, reverted it to the approved spec, re-exported and re-ran the check.
+- Still unresolved: none.
