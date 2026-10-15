@@ -60,3 +60,37 @@ N/A for this assignment — this is a new project, not an extension of an existi
 - The flashlight/darkness mechanic in CONCEPT.md's art direction was not built in this slice — the room is lit normally. This means predicted failure case #4 (readability in the dark) can't be tested; mark it not-tested in TEST-REPORT.md, not fixed.
 - Re-grab: the zombie is shoved back at the moment of the grab and can walk back and re-grab if the player stands still through GRABBED-FAIL+RECOVER+invulnerability (~2.8s from the grab; the player can walk away for the last ~1.5s of it). An alternative (holding on until the player breaks free) was proposed and not built, for time. Current behavior is kept; flag as a known limitation if it feels punishing in playtest.
 - The asset-list panel numbers here are off by one against STORYBOARD.md (from trimming 9 panels to 7 earlier) and reference panels 8-9, which no longer exist. Left uncorrected for time — STORYBOARD.md's numbers are what the build actually follows.
+
+## Assignment 3 — first 3D assets
+
+**Scope note:** DERELICT's gameplay is 2D top-down and is untouched by this assignment. These three assets live in a separate 3D showcase scene (floor, one light, one camera) added to this repository, per the assignment's explicit allowance that a 2D game's 3D assets don't need to connect to the game yet. Asset IDs below use a PROP-/ENV-/PICKUP- prefix to keep them distinct from the 2D game's CHAR-/ZOMBIE- IDs.
+
+### 1. PROP-SUPPLY-CRATE
+- **In-scene role:** a scavengeable supply crate prop, shown in the 3D showcase scene.
+- **Size:** 0.5 m × 0.5 m × 0.5 m — scaled against the player capsule's rough human proportions, so it reads as a carryable crate.
+- **Origin:** centre of the underside, so it sits flush on a floor.
+- **Look:** a single box body with two thin cuboid straps across it. Flat materials: wood-brown body (~0.40, 0.24, 0.12 base colour), dark-gray metal straps (~0.08, 0.08, 0.08, slightly metallic).
+- **Budget:** ≤100 triangles.
+
+### 2. ENV-RUSTED-BARREL
+- **In-scene role:** environment set-dressing — an industrial barrel for the derelict site.
+- **Size:** 0.6 m diameter × 0.9 m tall.
+- **Origin:** centre of the underside.
+- **Look:** a single cylinder with a low segment count (8-12 sides, not Blender's 32 default) so it reads as round without wasting budget. Flat rust-orange material, matching CONCEPT.md's existing decay palette.
+- **Budget:** ≤200 triangles — the only curved primitive of the three, so it gets the largest share.
+
+### 3. PICKUP-MEDKIT
+- **In-scene role:** a collectible medical-supply pickup.
+- **Size:** 0.3 m × 0.2 m × 0.15 m.
+- **Origin:** centre of the underside.
+- **Look:** a box with a flattened lid and a simple cross (two thin crossed cuboids) on top. Flat cream case, red cross — deliberately high-contrast so it reads as a pickup.
+- **Budget:** ≤150 triangles.
+
+### Predicted failure cases
+1. **An asset arrives lying on its side or rotated unexpectedly.** Check: after import, confirm each asset's Godot rotation reads 0,0,0, and that it visually stands upright.
+2. **Scale isn't applied in Blender before export, so the asset is wrong by a large factor (e.g. ×10) in Godot.** Check: apply all transforms (Ctrl+A → All Transforms) before export; Godot's node scale should read 1,1,1.
+3. **The origin sits at the object's centre instead of its base, so it floats or sinks into the floor.** Check: place each asset on the Godot floor plane and look from the side for a gap or clipping.
+4. **The MCP server doesn't connect within a short time-boxed attempt.** Check/outcome: it connected cleanly (see FRICTIONAL.md) — this case didn't occur, kept here since it was a genuine prediction made beforehand.
+
+### Revisions
+(dated entries go here as the build proceeds)
