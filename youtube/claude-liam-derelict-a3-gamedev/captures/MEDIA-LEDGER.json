@@ -1,0 +1,74 @@
+{
+  "godot": "4.7.2.stable.official.ed1daf0bf",
+  "repo_head": "e0a1e00",
+  "capture_size": "3840x2160 SubViewport (window is capped at the 1920x1080 screen)",
+  "fps": 30,
+  "B13": {
+    "log": "logs/showcase_pass.log",
+    "sha256": "03d255ce7c2735f314b8f42bd8748cc712404d8c8c9ceca01a251b94bf528a05",
+    "exit_code": 0,
+    "source": "iso_head",
+    "revision": "e0a1e00"
+  },
+  "B16": {
+    "log": "logs/showcase_handedit_fail.log",
+    "sha256": "d20ffa99c8513eb34c3dc64d32bc06bceba199874bfb855cd4821d6c87358fb6",
+    "exit_code": 1,
+    "source": "iso_handedit (HEAD copy + hand-edit medkit.glb)",
+    "handedit_glb": {
+      "path": "captures/medkit_handedit_scale_1.95508.glb",
+      "sha256": "aa0c99a074e9af059cd6b9014f3e731b5eb774158e4fa4b69d3b294589088ef0",
+      "made": "Blender MCP: Medkit scale set to 1.95508 (FRICTIONAL.md value), exported, scale reset to 1; .blend not saved"
+    },
+    "label": "DEMONSTRATION on an isolated copy, not the shipped build"
+  },
+  "B18_before_b74d239": {
+    "still": "captures/b18_before_b74d239.png",
+    "sha256": "6c844aebdfd5900efd8a242ef37244e15917dda2aef333156478950bc3b58192",
+    "revision": "b74d239",
+    "command": "godot --path <isolated copy> --fixed-fps 30 -s showcase_capture.gd (MODE=scene FRAMES=1)"
+  },
+  "B18_after_head": {
+    "still": "captures/b18_after_head.png",
+    "sha256": "02872a24b764ffba259ac41414886f75820fd575e0f4b0920517377ffe1e64db",
+    "revision": "e0a1e00",
+    "command": "godot --path <isolated copy> --fixed-fps 30 -s showcase_capture.gd (MODE=scene FRAMES=1)"
+  },
+  "B11": {
+    "media": "media/action/B11.mp4",
+    "sha256": "ba9574ccc57b481564deb09b4a7f3c6ebdb4cd2f4cefb9163dd8ce694a9ac356",
+    "source": "iso_head",
+    "revision": "e0a1e00",
+    "camera": "scene Camera3D (0, 1.6, 2.0) at -35 deg",
+    "frames": 240,
+    "seconds": 8.0,
+    "command": "godot --path <isolated copy> --fixed-fps 30 -s showcase_capture.gd (MODE=scene FRAMES=240)",
+    "note": "static scene: nothing animates; the clip shows the scene as it runs"
+  },
+  "B19": {
+    "media": "media/action/B19.mp4",
+    "sha256": "be0d11c298fb5ad93c1b5e3662e3637728a048b9015609567b1baea1d598aa15",
+    "source": "iso_head",
+    "revision": "e0a1e00",
+    "frames": 420,
+    "seconds": 14.0,
+    "camera": "CaptureCamera added by showcase_capture.gd: one turn at 28 deg, then 60 deg more dipping to -12 deg (below the floor). Not the scene's camera.",
+    "command": "godot --path <isolated copy> --fixed-fps 30 -s showcase_capture.gd (MODE=orbit FRAMES=420)"
+  },
+  "conformed": {
+    "B11": {
+      "path": "media/B11.mp4",
+      "sha256": "216ee0c5365a63893f03d5b5251b11c4e074d15af006d1a48bd2a01f02aeef98",
+      "source": "media/action/B11.mp4 at capture speed, scaled into media/frames/B11_frame.png",
+      "duration_s": 8.0,
+      "retimed_action": false
+    },
+    "B19": {
+      "path": "media/B19.mp4",
+      "sha256": "5c7bd44ba58202e7fb8b36897584cd5e0f929da5275a20b18fd5ee9dcf3ed6d8",
+      "source": "media/action/B19.mp4 at capture speed, scaled into media/frames/B19_frame.png + HOLD (labelled)",
+      "duration_s": 14.3,
+      "retimed_action": false
+    }
+  }
+}

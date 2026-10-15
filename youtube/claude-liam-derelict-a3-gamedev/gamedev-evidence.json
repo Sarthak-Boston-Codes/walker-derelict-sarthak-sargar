@@ -1,0 +1,415 @@
+{
+  "schema_version": 1,
+  "teaching_contract": "code-then-result-v1",
+  "files": [
+    {
+      "path": "assets/3d/medkit.glb",
+      "sha256": "59407dc676e590aeb919a328f5dae4b2f00d4480c8b6e483445d71c8e60c37c2",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "glb_assets"
+      ]
+    },
+    {
+      "path": "assets/3d/medkit.glb.import",
+      "sha256": "d82354457d28d625648c086c2e5dc34555fd5b620f2846e809e3db90b26bfd75",
+      "role": "import settings",
+      "component_ids": [
+        "glb_assets"
+      ]
+    },
+    {
+      "path": "assets/3d/rusted_barrel.glb",
+      "sha256": "eaedc68f31b25eeea798bc402680e0d5a972547baf8189c7651f6a35bdc5840a",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "glb_assets"
+      ]
+    },
+    {
+      "path": "assets/3d/rusted_barrel.glb.import",
+      "sha256": "1cc813c153e3a6b883ccc35636aef6d930958fbfcdfd11ad2aa17358f7ab3b0a",
+      "role": "import settings",
+      "component_ids": [
+        "glb_assets"
+      ]
+    },
+    {
+      "path": "assets/3d/supply_crate.glb",
+      "sha256": "4cafafccacb1150bd4057cd923d656070d5288fe7709ae0fe6c9d3eea0f617ab",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "glb_assets"
+      ]
+    },
+    {
+      "path": "assets/3d/supply_crate.glb.import",
+      "sha256": "304222e162c35195c6cf3260861755275bf6b765e1804649370710ff89359a2c",
+      "role": "import settings",
+      "component_ids": [
+        "glb_assets"
+      ]
+    },
+    {
+      "path": "scenes/showcase_3d.tscn",
+      "sha256": "0ee8773522add688a42b022648dd31304a2cabd7050d1172a246a9789136f17d",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "showcase_scene"
+      ]
+    },
+    {
+      "path": "tests/showcase_3d_test.gd",
+      "sha256": "839b481cd3d95ee7aa40897171da6f52452e8a9cee176f609cf8b2abe69d38a2",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "showcase_test"
+      ]
+    },
+    {
+      "path": "tests/showcase_3d_test.tscn",
+      "sha256": "d19aa7a0c95e44a73fe6ec19ea1b1017e5e2699e1f3f9e53cca942a6b684b51f",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "showcase_test"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "glb_assets",
+      "explanation": "Three Blender exports (glTF binary, +Y up, transforms applied) and their Godot import settings: the props themselves, inspected directly.",
+      "beat_ids": [
+        "B09",
+        "B10",
+        "B11"
+      ],
+      "files": [
+        "assets/3d/supply_crate.glb",
+        "assets/3d/supply_crate.glb.import",
+        "assets/3d/rusted_barrel.glb",
+        "assets/3d/rusted_barrel.glb.import",
+        "assets/3d/medkit.glb",
+        "assets/3d/medkit.glb.import"
+      ]
+    },
+    {
+      "id": "showcase_scene",
+      "explanation": "Separate 3D showcase: floor, one shadowed directional light, one camera, and the three GLBs as unmodified instances in a row.",
+      "beat_ids": [
+        "B10",
+        "B11",
+        "B17",
+        "B18",
+        "B19"
+      ],
+      "files": [
+        "scenes/showcase_3d.tscn"
+      ]
+    },
+    {
+      "id": "showcase_test",
+      "explanation": "Headless check of predicted failure cases 1-3 per asset and per mesh node, plus brief size and triangle budget; its printed SCALE column shows only the instance root.",
+      "beat_ids": [
+        "B12",
+        "B13",
+        "B15",
+        "B16"
+      ],
+      "files": [
+        "tests/showcase_3d_test.gd",
+        "tests/showcase_3d_test.tscn"
+      ]
+    }
+  ],
+  "excerpts": [
+    {
+      "beat_id": "B10",
+      "path": "scenes/showcase_3d.tscn",
+      "start_line": 29,
+      "end_line": 35,
+      "text": "[node name=\"SupplyCrate\" parent=\".\" instance=ExtResource(\"1_crate\")]\nposition = Vector3(-1, 0, 0)\n\n[node name=\"RustedBarrel\" parent=\".\" instance=ExtResource(\"2_barrel\")]\n\n[node name=\"Medkit\" parent=\".\" instance=ExtResource(\"3_medkit\")]\nposition = Vector3(1, 0, 0)"
+    },
+    {
+      "beat_id": "B12",
+      "path": "tests/showcase_3d_test.gd",
+      "start_line": 16,
+      "end_line": 22,
+      "text": "const ASSETS := {\n\t# Brief sizes are Blender X x Y x Z (Z-up); Godot is Y-up, so Godot\n\t# size = (Blender X, Blender Z, Blender Y).\n\t\"SupplyCrate\": {\"size\": Vector3(0.5, 0.5, 0.5), \"budget\": 100},\n\t\"RustedBarrel\": {\"size\": Vector3(0.6, 0.9, 0.6), \"budget\": 200},\n\t\"Medkit\": {\"size\": Vector3(0.3, 0.15, 0.2), \"budget\": 150},\n}"
+    },
+    {
+      "beat_id": "B15",
+      "path": "tests/showcase_3d_test.gd",
+      "start_line": 55,
+      "end_line": 65,
+      "text": "\tfor i in meshes.size():\n\t\tvar mi: MeshInstance3D = meshes[i]\n\t\t# Failure cases #1/#2 also apply to the imported mesh node itself.\n\t\tok = ok and mi.rotation_degrees.is_zero_approx() and mi.scale.is_equal_approx(Vector3.ONE)\n\t\tvar box: AABB = mi.global_transform * mi.get_aabb()\n\t\taabb = box if i == 0 else aabb.merge(box)\n\t\ttris += _triangles(mi.mesh)\n\tok = ok and rot.is_zero_approx() and scl.is_equal_approx(Vector3.ONE)\n\tok = ok and absf(aabb.position.y - floor_y) <= TOLERANCE\n\tok = ok and _within(aabb.size, spec.size)\n\tok = ok and tris <= spec.budget"
+    },
+    {
+      "beat_id": "B17",
+      "path": "scenes/showcase_3d.tscn",
+      "start_line": 15,
+      "end_line": 27,
+      "text": "[node name=\"Showcase3D\" type=\"Node3D\"]\n\n[node name=\"Floor\" type=\"MeshInstance3D\" parent=\".\"]\nmesh = SubResource(\"Floor_mesh\")\n\n[node name=\"Sun\" type=\"DirectionalLight3D\" parent=\".\"]\nrotation_degrees = Vector3(-50, 30, 0)\nshadow_enabled = true\n\n[node name=\"Camera\" type=\"Camera3D\" parent=\".\"]\nposition = Vector3(0, 1.6, 2.0)\nrotation_degrees = Vector3(-35, 0, 0)\ncurrent = true"
+    }
+  ],
+  "exclusions": [
+    {
+      "path": ".editorconfig",
+      "reason": "editor formatting config; not runtime"
+    },
+    {
+      "path": ".gitattributes",
+      "reason": "Git line-ending config; not runtime"
+    },
+    {
+      "path": ".gitignore",
+      "reason": "Git ignore rules for the Godot cache; not runtime"
+    },
+    {
+      "path": "art/.gdkeep",
+      "reason": "empty placeholder keeping the folder in Git"
+    },
+    {
+      "path": "art/char_aim.png",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_aim.png.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_celebrate.png",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_celebrate.png.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_grabbed.png",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_grabbed.png.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_hurt.png",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_hurt.png.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_idle.png",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_idle.png.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_recover.png",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_recover.png.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_reference.png",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_reference.png.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_shoot.png",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_shoot.png.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_walk.png",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/char_walk.png.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/env_factory_floor.png",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "art/env_factory_floor.png.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "assets/asset_manifest.gd",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "assets/placeholder_factory.gd",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/.gdkeep",
+      "reason": "empty placeholder keeping the folder in Git"
+    },
+    {
+      "path": "audio/audio_director.gd",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/mus_loop.wav",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/mus_loop.wav.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/sfx_clear.wav",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/sfx_clear.wav.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/sfx_down.wav",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/sfx_down.wav.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/sfx_hurt.wav",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/sfx_hurt.wav.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/sfx_shot.wav",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "audio/sfx_shot.wav.import",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "default_bus_layout.tres",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "icon.svg",
+      "reason": "default Godot project icon; not used"
+    },
+    {
+      "path": "icon.svg.import",
+      "reason": "import settings for the unused default icon"
+    },
+    {
+      "path": "project.godot",
+      "reason": "project config unchanged by A3 (main scene is the 2D slice); its Sound autoload still loads in the showcase, which is why headless runs print the known MUS-LOOP leak warning (FACTCHECK.md)"
+    },
+    {
+      "path": "scenes/exit_marker.gd",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "scenes/exit_marker.tscn",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "scenes/facing.gd",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "scenes/main.gd",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "scenes/main.tscn",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "scenes/player.gd",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "scenes/player.tscn",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "scenes/zombie.gd",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "scenes/zombie.tscn",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "tests/trigger_count_test.gd",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "tests/trigger_count_test.tscn",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "ui/hud.gd",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    },
+    {
+      "path": "ui/hud.tscn",
+      "reason": "2D gameplay slice, untouched by Assignment 3; covered by youtube/claude-liam-derelict-gamedev"
+    }
+  ],
+  "code_result_pairs": [
+    {
+      "code_beat": "B10",
+      "result_beat": "B11",
+      "observation": "showcase_3d.tscn running (4K SubViewport capture, scene Camera3D): crate, barrel and medkit upright on the floor at x = −1, 0, +1, with shadows. Static scene: nothing moves.",
+      "media": {
+        "path": "media/B11.mp4",
+        "sha256": "216ee0c5365a63893f03d5b5251b11c4e074d15af006d1a48bd2a01f02aeef98"
+      }
+    },
+    {
+      "code_beat": "B12",
+      "result_beat": "B13",
+      "observation": "Recorded run on an isolated copy of HEAD: 3 × ok, PASS, exit 0.",
+      "media": {
+        "path": "media/B13.png",
+        "sha256": "a689a46c37c5f434a3c32618ebec1099f1abb14c47f9170277bd06aff25dad86"
+      }
+    },
+    {
+      "code_beat": "B15",
+      "result_beat": "B16",
+      "observation": "DEMONSTRATION on an isolated copy: medkit.glb exported at scale 1.95508 → Medkit FAIL, size (0.587, 0.293, 0.391), exit 1. SCALE column prints the instance root (1.00).",
+      "media": {
+        "path": "media/B16.png",
+        "sha256": "5882614cdf06dde8b8646162aa3a81dd26c09069b2c3c1265672d5e5d7886104"
+      }
+    },
+    {
+      "code_beat": "B17",
+      "result_beat": "B18",
+      "observation": "New 4K captures of each revision's scene camera: b74d239 (−20°, cross 0.12 × 0.04 m) vs HEAD (−35°, 0.14 × 0.045 m); enlarged crops of the medkit.",
+      "media": {
+        "path": "media/B18.png",
+        "sha256": "c7533d095a26fcbc3ea45211829184caf866e3ee74f0dc020d15f6343671531b"
+      }
+    }
+  ]
+}

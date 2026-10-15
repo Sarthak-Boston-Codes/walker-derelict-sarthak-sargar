@@ -1,0 +1,951 @@
+{
+  "metadata": {
+    "title": "DERELICT: Three Props, Built and Checked",
+    "slug": "claude-liam-derelict-a3-gamedev",
+    "topic": "GODOT · 3D ASSETS",
+    "kind": "gamedev",
+    "mode": "walker",
+    "brand": "claude-liam",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fit": "pad",
+    "captions": false,
+    "greeting": "Hej, Liam",
+    "greeting_note": "hello lexicon: Hej (Swedish); previous reels used Jambo, Bula. Liam never takes Wagwan.",
+    "persona": "Liam (in for Bear)",
+    "presenter": "Liam (in for Bear)",
+    "in_for_bear": true,
+    "game": "walker-derelict-sarthak-sargar",
+    "game_code_revision": "e0a1e00",
+    "note": "godot-gamedev walker film, Assignment 3. Captures: captures/MEDIA-LEDGER.json; Blender stills: youtube/claude-liam-derelict-gamedev/media/a3-stills (PROVENANCE.md). No game change, paid call, upload or publication.",
+    "build": {
+      "at": "2026-10-15T17:12:08",
+      "cut": "review",
+      "filled": 24,
+      "of": 24,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Hej — this is Liam, in for Bear. DERELICT is a top-down 2D Godot game. For this assignment, the student added three 3D props, built in Blender by Claude through an MCP connection, then checked in a Godot showcase scene. Here's how they got from brief to scene.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Hej, Liam",
+            "topic": "GODOT · 3D ASSETS",
+            "segment": "DERELICT",
+            "command": "Please use Walker to convert my game design document about DERELICT's first 3D assets — a supply crate, a rusted barrel and a medkit — into Blender models and a Godot showcase scene that proves each one matches its brief.",
+            "runningText": "reading CHANGE-BRIEF.md, Assignment 3…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "Three props, under budget.",
+              "One showcase scene.",
+              "One test for three predicted failures."
+            ]
+          }
+        }
+      },
+      "role_note": "COLD OPEN — reconstructed Walker prompt (labelled in FACTCHECK.md), not a recording.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.32,
+      "render_duration_s": 15.333333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Three 3D props, built and verified. A test checks every one against its brief, and a person checks what a test can't. That checking is what this film takes apart.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on-correct",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Three 3D props, built and imported.\nA test for every brief,\na person for the rest.",
+            "triggerWords": "imported",
+            "replacementWords": "verified",
+            "contextTitle": "DERELICT · 3D",
+            "brandLabel": "@NikBearBrown",
+            "fontSize": 110,
+            "lineSpacing": 1.5,
+            "align": "center",
+            "seed": "derelict-a3-gamedev",
+            "mistakeRate": 2,
+            "hesitateWithin": 0,
+            "hesitateBetween": 1,
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#FAF9F5"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "role_note": "Misconception corrected: the props are done once 'imported' -> done once 'verified'. Audio >= 9 s.",
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 10.27,
+      "lead_silence_baked": 0.8,
+      "render_duration_s": 10.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SETUP",
+      "narration_text": "The assignment: three 3D assets built in Blender and brought into Godot, each with a size, an origin and a triangle budget. DERELICT's gameplay stays 2D and untouched. The props live in a separate showcase: a floor, one light, one camera.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "tree-reveal",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "tree",
+            "title": "What the brief asked for.",
+            "project": "walker-derelict-sarthak-sargar",
+            "source": "CHANGE-BRIEF.md · Assignment 3 — first 3D assets",
+            "treeLabel": "CHANGE-BRIEF.md → Assignment 3",
+            "tree": [
+              "PROP-SUPPLY-CRATE — 0.5 m cube, ≤ 100 tris",
+              "ENV-RUSTED-BARREL — 0.6 × 0.9 m, ≤ 200 tris",
+              "PICKUP-MEDKIT — 0.3 × 0.2 × 0.15 m, ≤ 150 tris",
+              "Origin — centre of the underside (all three)",
+              "Showcase — floor · one light · one camera",
+              "2D gameplay — untouched"
+            ],
+            "notes": [
+              {
+                "label": "Started from",
+                "value": "the finished 2D slice"
+              },
+              {
+                "label": "Blender",
+                "value": "5.2.2 LTS"
+              }
+            ],
+            "durationSeconds": 13.97
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 13.97,
+      "render_duration_s": 14.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B02.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "SETUP",
+      "narration_text": "Before anything was built, the brief predicted three ways this goes wrong. An asset arrives on its side. Its scale isn't applied, so it's off by a large factor. Or its origin sits in the middle, so it floats or sinks. Every check in this film points back at these three.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "tree-reveal",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "tree",
+            "title": "Three predicted failures.",
+            "project": "walker-derelict-sarthak-sargar",
+            "source": "CHANGE-BRIEF.md · Assignment 3 · predicted failure cases 1–3",
+            "treeLabel": "CHANGE-BRIEF.md → predicted failure cases",
+            "tree": [
+              "1 · Lying on its side → Godot rotation must read 0, 0, 0",
+              "2 · Scale not applied → node scale must read 1, 1, 1",
+              "3 · Origin at the centre → must sit on the floor, no gap"
+            ],
+            "notes": [
+              {
+                "label": "Case 4",
+                "value": "MCP connection: didn't occur"
+              }
+            ],
+            "durationSeconds": 14.29
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 14.29,
+      "render_duration_s": 14.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "INTERFACE",
+      "narration_text": "First, the tool. This is the student's own Blender session: the 3D viewport, the toolbar down the left, the Outliner listing the medkit, the Properties editor with its transform values, the sidebar holding the MCP panel, and the mode selector, set to Object Mode.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B04.png",
+        "label": "author's own screenshot + BLENDER-NOTES.md part names (make_cards.py)"
+      },
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 14.46,
+      "render_duration_s": 14.466666666666667,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B04.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "TRACE",
+      "narration_text": "The crate started as one prompt: build only this asset, exactly to the brief. Claude made a body and two straps, one call per object, joined them, and checked: origin at zero, no rotation, scale one, half a metre each way, thirty-six triangles out of a hundred.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.4,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B05.png",
+        "label": "trace card: author's prompt + get_scene_info output (session) + a3-stills/blender_01"
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 14.46,
+      "render_duration_s": 14.466666666666667,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B05.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "TRACE",
+      "narration_text": "And it looked wrong. The brief's colours are colour-picker values, but Blender's shader reads linear light, so the same numbers came out pale tan. The fix wasn't eyeballing it: convert each channel from sRGB to linear first. Converted back, the numbers match the brief exactly.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B06.png",
+        "label": "before/after a3-stills + conversion code and output quoted from the session log"
+      },
+      "role_note": "What Claude got wrong, part 1. Code is from the session transcript, not a repo file.",
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 15.3,
+      "render_duration_s": 15.3,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B06.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "TRACE",
+      "narration_text": "The barrel is a single twelve-sided cylinder, inside the brief's eight to twelve, at forty-four triangles of two hundred. The brief gave no number for rust, so Claude picked one, and the student approved it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B07.png",
+        "label": "a3-stills/blender_03 + values from get_scene_info and CHANGE-BRIEF.md Revisions"
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 11.5,
+      "render_duration_s": 11.5,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B07.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "TRACE",
+      "narration_text": "The medkit: a case, a lid inset by a centimetre, and a cross of two thin bars. Forty-eight triangles. Remember that cross. At this size, it's about to cause trouble.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B08.png",
+        "label": "a3-stills/blender_04 + values from get_scene_info and CHANGE-BRIEF.md Revisions"
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 9.43,
+      "render_duration_s": 9.433333333333334,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B08.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "EXPORT",
+      "narration_text": "Then export. This reads the exported files directly, not Blender's view of them. Every node at rotation zero and scale one, sizes now Y-up, every base at zero, and the colours convert back to the brief's values. The barrel's twelve-sided caps became triangles, as assumed.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B09.png",
+        "label": "logs/glb_inspect.log (inspect_glb.py on godot/assets/3d/*.glb)"
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 15.87,
+      "render_duration_s": 15.9,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B09.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "MECHANISM",
+      "narration_text": "In Godot, the showcase places each exported file as an instance. The crate sits one metre left, the barrel at the origin, the medkit one metre right. No offsets, rotations or scale of its own, so if an asset is wrong, this scene won't hide it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Three files, one row.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "scenes/showcase_3d.tscn",
+            "source": "godot/scenes/showcase_3d.tscn lines 29-35 · Godot editor reconstruction",
+            "code": "[node name=\"SupplyCrate\" parent=\".\" instance=ExtResource(\"1_crate\")]\nposition = Vector3(-1, 0, 0)\n\n[node name=\"RustedBarrel\" parent=\".\" instance=ExtResource(\"2_barrel\")]\n\n[node name=\"Medkit\" parent=\".\" instance=ExtResource(\"3_medkit\")]\nposition = Vector3(1, 0, 0)",
+            "startLine": 29,
+            "cues": [
+              {
+                "at": 3.7,
+                "line": 29,
+                "label": "crate at x = −1"
+              },
+              {
+                "at": 5.7,
+                "line": 32,
+                "label": "barrel at the origin"
+              },
+              {
+                "at": 7.0,
+                "line": 34,
+                "label": "medkit at x = +1"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Instances of",
+                "value": "res://assets/3d/\n*.glb (lines 3–5)"
+              },
+              {
+                "label": "Floor",
+                "value": "PlaneMesh 4 × 3 m\nat y = 0"
+              }
+            ],
+            "output": [
+              "scenes/showcase_3d.tscn · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 13.89
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 13.89,
+      "render_duration_s": 13.9,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B10.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "RESULT",
+      "narration_text": "Here it is running, through the scene's own camera: all three upright, on the floor, casting shadows.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 7.4,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B11.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 · 3840×2160 SubViewport capture (showcase_capture.gd) · scene camera",
+        "hold_policy": "capture plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after it (never slowed). Built in step 4."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_reason": "Full-frame 3D engine capture with no on-screen text: the gray floor and backdrop are the picture, not a text background."
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 8.0,
+      "narration_padded_to": 8.0,
+      "narration_voiced_s": 5.59,
+      "render_duration_s": 8.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "MECHANISM",
+      "narration_text": "The test starts by copying the brief into data: each asset's size and triangle budget. The comment matters. Blender is Z-up and Godot is Y-up, so the medkit's fifteen-centimetre height moves to the middle slot.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14.6,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The brief, as data.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "tests/showcase_3d_test.gd",
+            "source": "godot/tests/showcase_3d_test.gd lines 16-22 · Godot editor reconstruction",
+            "code": "const ASSETS := {\n\t# Brief sizes are Blender X x Y x Z (Z-up); Godot is Y-up, so Godot\n\t# size = (Blender X, Blender Z, Blender Y).\n\t\"SupplyCrate\": {\"size\": Vector3(0.5, 0.5, 0.5), \"budget\": 100},\n\t\"RustedBarrel\": {\"size\": Vector3(0.6, 0.9, 0.6), \"budget\": 200},\n\t\"Medkit\": {\"size\": Vector3(0.3, 0.15, 0.2), \"budget\": 150},\n}",
+            "startLine": 16,
+            "cues": [
+              {
+                "at": 3.5,
+                "line": 19,
+                "label": "size + budget per asset"
+              },
+              {
+                "at": 6.3,
+                "line": 17,
+                "label": "Blender Z-up → Godot Y-up"
+              },
+              {
+                "at": 8.5,
+                "line": 21,
+                "label": "medkit height: middle slot"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Tolerance",
+                "value": "0.001 m (line 15)"
+              },
+              {
+                "label": "Command",
+                "value": "godot --headless\n--path godot\nres://tests/\nshowcase_3d_test.tscn"
+              }
+            ],
+            "output": [
+              "tests/showcase_3d_test.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 12.22
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 12.22,
+      "render_duration_s": 12.233333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B12.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "RESULT",
+      "narration_text": "On the current build, every row passes: rotation zero, scale one, bases at zero, sizes matching the brief, triangles inside budget. Exit code zero.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 10.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B13.png",
+        "motion": "hold",
+        "label": "logs/showcase_pass.log, rendered as a card"
+      },
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 9.88,
+      "render_duration_s": 9.9,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B13.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "HAND-EDIT",
+      "narration_text": "Then the student tried it by hand: select the medkit, press S, drag, click to confirm. The logged result: scale went from one to one point nine five, location untouched, the mesh itself unchanged. This pair is a staged reconstruction. It was reverted. But what if it hadn't been?",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B14.png",
+        "label": "STAGED RECONSTRUCTION: author's screenshots (my_session.png, a3-stills/blender_07)"
+      },
+      "role_note": "Narrates the FRICTIONAL.md value (1.95508), not the staged 1.897 visible in the still.",
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 15.13,
+      "render_duration_s": 15.133333333333333,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B14.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "MECHANISM",
+      "narration_text": "Here's the check for each asset. It walks every mesh inside the imported scene, not just the top node, and rejects any rotation or scale on them. Then it measures the real bounding box against the floor and the brief, and counts triangles.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Every mesh, not just the root.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "tests/showcase_3d_test.gd",
+            "source": "godot/tests/showcase_3d_test.gd lines 55-65 · Godot editor reconstruction",
+            "code": "\tfor i in meshes.size():\n\t\tvar mi: MeshInstance3D = meshes[i]\n\t\t# Failure cases #1/#2 also apply to the imported mesh node itself.\n\t\tok = ok and mi.rotation_degrees.is_zero_approx() and mi.scale.is_equal_approx(Vector3.ONE)\n\t\tvar box: AABB = mi.global_transform * mi.get_aabb()\n\t\taabb = box if i == 0 else aabb.merge(box)\n\t\ttris += _triangles(mi.mesh)\n\tok = ok and rot.is_zero_approx() and scl.is_equal_approx(Vector3.ONE)\n\tok = ok and absf(aabb.position.y - floor_y) <= TOLERANCE\n\tok = ok and _within(aabb.size, spec.size)\n\tok = ok and tris <= spec.budget",
+            "startLine": 55,
+            "cues": [
+              {
+                "at": 6.0,
+                "line": 58,
+                "label": "mesh node: rotation 0, scale 1"
+              },
+              {
+                "at": 8.6,
+                "line": 59,
+                "label": "world-space bounding box"
+              },
+              {
+                "at": 10.4,
+                "line": 63,
+                "label": "base on the floor ± 1 mm"
+              },
+              {
+                "at": 12.4,
+                "line": 65,
+                "label": "triangles ≤ budget"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Line 62",
+                "value": "instance root:\nrotation 0, scale 1"
+              }
+            ],
+            "output": [
+              "tests/showcase_3d_test.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 13.4
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 13.4,
+      "render_duration_s": 13.4,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B15.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "RESULT",
+      "narration_text": "A demonstration on a throwaway copy: export the medkit with that scale left in, and run the test. The medkit fails at twice its size. The scale column still says one. That's the instance. The doubled scale is on the mesh inside, which is why the check walks the meshes.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B16.png",
+        "motion": "hold",
+        "label": "logs/showcase_handedit_fail.log, rendered as a card · DEMONSTRATION, not the shipped build"
+      },
+      "audio_file": "mp3/beat-B16.mp3",
+      "actual_duration_s": 14.61,
+      "render_duration_s": 14.633333333333333,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B16.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "act": "MECHANISM",
+      "narration_text": "The brief allows one light and one camera. The sun casts shadows; the camera's position and tilt decide what a viewer sees first. These two lines are the inspect-and-revise fix.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 12.6,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "One light, one camera.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "scenes/showcase_3d.tscn",
+            "source": "godot/scenes/showcase_3d.tscn lines 15-27 · Godot editor reconstruction",
+            "code": "[node name=\"Showcase3D\" type=\"Node3D\"]\n\n[node name=\"Floor\" type=\"MeshInstance3D\" parent=\".\"]\nmesh = SubResource(\"Floor_mesh\")\n\n[node name=\"Sun\" type=\"DirectionalLight3D\" parent=\".\"]\nrotation_degrees = Vector3(-50, 30, 0)\nshadow_enabled = true\n\n[node name=\"Camera\" type=\"Camera3D\" parent=\".\"]\nposition = Vector3(0, 1.6, 2.0)\nrotation_degrees = Vector3(-35, 0, 0)\ncurrent = true",
+            "startLine": 15,
+            "cues": [
+              {
+                "at": 3.0,
+                "line": 22,
+                "label": "shadows on"
+              },
+              {
+                "at": 4.6,
+                "line": 25,
+                "label": "camera position"
+              },
+              {
+                "at": 7.6,
+                "line": 26,
+                "label": "tilt −35°"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Was (b74d239)",
+                "value": "position (0, 1.3, 2.6)\nrotation −20°"
+              },
+              {
+                "label": "Changed in",
+                "value": "343a90c"
+              }
+            ],
+            "output": [
+              "scenes/showcase_3d.tscn · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 10.3
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B17.mp3",
+      "actual_duration_s": 10.3,
+      "render_duration_s": 10.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B17.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "act": "RESULT",
+      "narration_text": "Left, the first showcase: at a shallow twenty degrees, the medkit's cross is a few pixels. Bigger arms alone barely helped. Right, the camera raised and tilted to thirty-five degrees, with the larger cross. Now it reads as a pickup. One problem, two fixes.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B18.png",
+        "motion": "hold",
+        "label": "captures/b18_*.png (4K, each revision's own camera) composed as a card"
+      },
+      "audio_file": "mp3/beat-B18.mp3",
+      "actual_duration_s": 13.97,
+      "render_duration_s": 14.0,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B18.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B19",
+      "act": "HUMAN CHECK",
+      "narration_text": "The human check: walk the camera around everything, behind and below. This is a capture-only camera, not the scene's. No missing faces. With a single light, the shadowed sides go very dark. And from underneath, the floor isn't drawn at all. It's a one-sided plane.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.6,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "media": "media/B19.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 · 3840×2160 · CAPTURE CAMERA (added by showcase_capture.gd), not the scene's camera",
+        "hold_policy": "capture plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after it (never slowed). Built in step 4."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_reason": "Full-frame 3D engine capture with no on-screen text: the gray floor and backdrop are the picture, not a text background."
+      },
+      "role_note": "Mirrors the author's HUMAN CHECK in TEST-REPORT.md; the author's own pass was in the editor.",
+      "audio_file": "mp3/beat-B19.mp3",
+      "actual_duration_s": 14.3,
+      "narration_padded_to": 14.3,
+      "narration_voiced_s": 14.27,
+      "render_duration_s": 14.3,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B19.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "TRACE",
+      "narration_text": "And what Claude got wrong, part two. The first camera pointed at the sky: its transform was written with the rows in the wrong order, and caught before any commit. The small cross was found after the showcase was committed, and took two fixes in a later commit.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.8,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B20.png",
+        "label": "text card from TEST-REPORT.md (no image of the sky-camera frame survives)"
+      },
+      "audio_file": "mp3/beat-B20.mp3",
+      "actual_duration_s": 13.97,
+      "render_duration_s": 14.0,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B20.png",
+        "filled_by": "still",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "VERDICT",
+      "narration_text": "Implemented: three props under budget, exported upright at scale one with their origins on the floor, a showcase scene, and a test for all three predicted failures that catches a hand-edit leaking through. Limits: hidden faces inside overlapping boxes, flat shading on the barrel, dark sides under one light, and a test row that prints the wrong node's scale. Human judgment: the colours, the proportions, the hand-edit, and the walk-around in the editor.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 29.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "artifact-reveal",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Three props, checked.",
+            "brandLabel": "@NikBearBrown",
+            "artifactLines": [
+              "Implemented: 3 props under budget, upright, scale 1, origin on the floor; showcase; a test for cases 1–3.",
+              "Catches: an unapplied scale leaking through export (demonstrated).",
+              "Limits: hidden faces, flat barrel, dark sides, SCALE column shows the root.",
+              "Human judgment: colours, proportions, the hand-edit, the editor walk-around."
+            ]
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B21.mp3",
+      "actual_duration_s": 22.23,
+      "render_duration_s": 22.233333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B21.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Paste this: 'Use Walker on my DERELICT project. Rebuild the rusted barrel in Blender with eight sides instead of twelve. Before you export, predict its triangle count. Then export it, run the showcase test, and tell me whether the prediction and the test agree.' Here's the number to beat: eight sides give sixteen side triangles, and each cap splits into six, so twenty-eight. If the test says otherwise, find out why before you believe either. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 33.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "GODOT · 3D ASSETS",
+            "segment": "DERELICT",
+            "command": "Use Walker on my DERELICT project. Rebuild the rusted barrel in Blender with 8 sides instead of 12. Before you export, predict its triangle count. Then export it, run godot/tests/showcase_3d_test.tscn, and tell me whether the prediction and the test agree.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "One change.",
+              "One prediction.",
+              "One test to check it."
+            ],
+            "animateTyping": true
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B22.mp3",
+      "actual_duration_s": 25.85,
+      "render_duration_s": 25.866666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B22.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "OUTRO",
+      "narration_text": "Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 7.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "mascot-title",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "DERELICT: Three Props, Built and Checked",
+            "slug": "claude-liam-derelict-a3-gamedev"
+          }
+        }
+      },
+      "audio_policy": "silence",
+      "role_note": "Locked outro: @NikBearBrown, slug-seeded mascot, stock jingle only; no narration or game audio.",
+      "render_duration_s": 7.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B23.mp4",
+        "filled_by": "media",
+        "at": "2026-10-15T17:12:08"
+      }
+    }
+  ]
+}

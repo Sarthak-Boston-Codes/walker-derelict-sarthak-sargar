@@ -1,0 +1,28 @@
+[art] compiled B00  VIDEO    15.3s  ← B00.mp4
+[art] compiled B01  VIDEO    10.3s  ← B01.mp4
+[art] compiled B02  VIDEO    14.0s  ← B02.mp4
+[art] compiled B03  VIDEO    14.3s  ← B03.mp4
+[art] compiled B04  STILL    14.5s  ← B04.png
+[art] compiled B05  STILL    14.5s  ← B05.png
+[art] compiled B06  STILL    15.3s  ← B06.png
+[art] compiled B07  STILL    11.5s  ← B07.png
+[art] compiled B08  STILL     9.4s  ← B08.png
+[art] compiled B09  STILL    15.9s  ← B09.png
+[art] compiled B10  VIDEO    13.9s  ← B10.mp4
+[art] compiled B11  VIDEO     8.0s  ← B11.mp4
+[art] compiled B12  VIDEO    12.2s  ← B12.mp4
+[art] compiled B13  STILL     9.9s  ← B13.png
+[art] compiled B14  STILL    15.1s  ← B14.png
+[art] compiled B15  VIDEO    13.4s  ← B15.mp4
+[art] compiled B16  STILL    14.6s  ← B16.png
+[art] compiled B17  VIDEO    10.3s  ← B17.mp4
+[art] compiled B18  STILL    14.0s  ← B18.png
+[art] compiled B19  VIDEO    14.3s  ← B19.mp4
+[art] compiled B20  STILL    14.0s  ← B20.png
+[art] compiled B21  VIDEO    22.2s  ← B21.mp4
+[art] compiled B22  VIDEO    25.9s  ← B22.mp4
+[art] compiled B23  VIDEO     7.0s  ← B23.mp4
+[art] motion histogram: hold:11  line-highlight:4  type-on:2  tree-reveal:2  footage:2  type-on-correct:1  artifact-reveal:1  mascot-title:1
+[art] build stamp → beat_sheet.json (24/24 filled)
+[art] wrote exports\landscape\claude-liam-derelict-a3-gamedev.mp4  (329.9s, audio: per-beat timeline (source audio preserved), drawtext: no — PIL overlays)
+[art] slots: 24/24 filled — B00:VIDEO B01:VIDEO B02:VIDEO B03:VIDEO B04:STILL B05:STILL B06:STILL B07:STILL B08:STILL B09:STILL B10:VIDEO B11:VIDEO B12:VIDEO B13:STILL B14:STILL B15:VIDEO B16:STILL B17:VIDEO B18:STILL B19:VIDEO B20:STILL B21:VIDEO B22:VIDEO B23:VIDEO
