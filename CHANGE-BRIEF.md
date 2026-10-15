@@ -94,3 +94,12 @@ N/A for this assignment — this is a new project, not an extension of an existi
 
 ### Revisions
 (dated entries go here as the build proceeds)
+
+#### 2026-10-15 — PROP-SUPPLY-CRATE built in Blender (not yet exported)
+- Built via the Blender MCP in a cleared scene (default cube, light and camera deleted; units metric, metres, scale 1.0). No asset libraries or generators used.
+- Single object `SupplyCrate`: body box plus two strap boxes, joined. Rotation and scale applied — rot 0,0,0, scale 1,1,1, origin at base centre (0,0,0).
+- Size exactly 0.5 × 0.5 × 0.5 m. To hit that exactly, the straps fit inside the cube: the body is 0.50 × 0.48 × 0.49 m and the straps (0.06 m wide, at x = ±0.15) sit 1 cm proud on the top and ±Y faces. Straps run over the top and down the front/back; the ±X sides are plain.
+- 36 triangles (budget ≤100). Materials: `M_Crate_Wood` (0.40, 0.24, 0.12, roughness 0.8), `M_Crate_Strap` (0.08, 0.08, 0.08, metallic 0.3, roughness 0.5).
+- Known limitations: the parts are overlapping closed shells, not one merged surface, so some strap faces are hidden inside the body (counted in the 36). Strap and body bottoms are coplanar at z = 0 and may z-fight when seen from below (not visible on a floor).
+- Open question: in Material Preview the wood reads as light tan, because the brief's colour values are applied as linear. If they were meant as sRGB, the body should be darker — to judge by eye.
+- Not yet verified: export, Godot import (predicted failure cases 1–3), final render, showcase scene (floor, light, camera not built yet). The .blend file is not saved.
