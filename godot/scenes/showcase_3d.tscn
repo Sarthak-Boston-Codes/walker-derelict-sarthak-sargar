@@ -22,8 +22,8 @@ rotation_degrees = Vector3(-50, 30, 0)
 shadow_enabled = true
 
 [node name="Camera" type="Camera3D" parent="."]
-position = Vector3(0, 1.3, 2.6)
-rotation_degrees = Vector3(-20, 0, 0)
+position = Vector3(0, 1.6, 2.0)
+rotation_degrees = Vector3(-35, 0, 0)
 current = true
 
 [node name="SupplyCrate" parent="." instance=ExtResource("1_crate")]

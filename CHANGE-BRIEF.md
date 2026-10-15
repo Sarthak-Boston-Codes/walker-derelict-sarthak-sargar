@@ -128,3 +128,9 @@ N/A for this assignment — this is a new project, not an extension of an existi
 - Predicted failure cases 1–3 checked by `godot --headless --path godot res://tests/showcase_3d_test.tscn`: every asset and its mesh node reads rotation 0,0,0 and scale 1,1,1, sits on the floor within 1 mm, matches its brief size, and is within its triangle budget. Exit code 0, 0 failures. A windowed run with `-- --shot=<png>` saved a 1280×720 screenshot: all three stand upright on the floor with shadows.
 - Build note: the first camera transform was written in the wrong order and pointed at the sky; replaced with explicit position/rotation before the passing screenshot.
 - Known limitations: at this camera distance the medkit's red cross is only a few pixels, so it doesn't yet read strongly as a pickup (camera closer or taller cross would help). Headless runs print the project's known harmless MUS-LOOP leak warning at exit (see `audio_director.gd`). Not checked in the Godot editor itself.
+
+#### 2026-10-15 — medkit proportions approved; cross enlarged; showcase camera lowered angle
+- Medkit case and lid proportions approved as built (case 0.30 × 0.20 × 0.12 m, lid 0.28 × 0.18 × 0.02 m inset 1 cm per side).
+- Cross enlarged so it reads as a pickup: equal arms 0.14 m long × 0.045 m wide (was 0.12 × 0.04), still 1 cm tall so the medkit stays exactly 0.15 m. Overall size 0.3 × 0.2 × 0.15 m, origin, rot 0 / scale 1, 48 triangles and approved colours all unchanged — checked in Blender and in the re-exported `medkit.glb`.
+- Showcase camera moved from (0, 1.3, 2.6) at −20° pitch to (0, 1.6, 2.0) at −35°: the shallow angle hid the medkit's top, and the bigger cross alone barely helped. The cross now reads clearly in the 1280×720 screenshot; the barrel top and crate straps also show more.
+- `showcase_3d_test` still passes (exit 0, 0 failures).
