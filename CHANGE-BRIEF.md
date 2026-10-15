@@ -112,3 +112,11 @@ N/A for this assignment — this is a new project, not an extension of an existi
 - Material `M_Barrel_Rust`: the brief gives no numeric value, so a muted rust-orange was chosen — sRGB (0.52, 0.28, 0.15) ≈ `#854726`, converted to linear (0.2330, 0.0637, 0.0196); roughness 0.9, metallic 0. Not yet approved; easy to change.
 - Known limitations: flat-shaded, so the 12 facets are visible on the sides. Caps are n-gons; the triangle count assumes they triangulate on export (unchecked).
 - Not yet verified: export, Godot import (predicted failure cases 1–3), final render, showcase scene.
+
+#### 2026-10-15 — PICKUP-MEDKIT built in Blender (not yet exported)
+- Built in its own file, `tools/blender/medkit.blend`, from a cleared scene (units metric, metres, scale 1.0); `supply_crate.blend` and `rusted_barrel.blend` left untouched. No asset libraries or generators used.
+- Single object `Medkit`: case (0.30 × 0.20 × 0.12 m), flattened lid inset 1 cm per side (0.28 × 0.18 × 0.02 m), and a cross of two thin crossed cuboids on top (0.12 × 0.04 × 0.01 m and 0.04 × 0.12 × 0.01 m), joined. Rotation and scale applied — rot 0,0,0, scale 1,1,1, origin at base centre (0,0,0).
+- Size exactly 0.3 × 0.2 × 0.15 m, base at z = 0. 48 triangles (budget ≤150). 0 non-manifold, 0 boundary edges, 0 loose verts.
+- Materials (brief gives no numeric values, so these were chosen; not yet approved): `M_Medkit_Cream` sRGB (0.90, 0.86, 0.74) ≈ `#E6DBBD` → linear (0.7874, 0.7106, 0.5071), roughness 0.6; `M_Medkit_Red` sRGB (0.75, 0.10, 0.10) ≈ `#BF1A1A` → linear (0.5225, 0.0100, 0.0100), roughness 0.5. Lid and cross proportions are also choices, not from the brief.
+- Known limitations: the parts are overlapping closed shells, so some faces are hidden inside (counted in the 48). The two cross bars' top faces are coplanar where they overlap (same material, so any z-fighting should be invisible — unchecked in Godot). The cross is only 1 cm tall, so it's a thin sliver from front/side views. In Material Preview the cream reads slightly gray-white, likely from AgX and preview lighting rather than the stored values.
+- Not yet verified: export, Godot import (predicted failure cases 1–3), final render, showcase scene.
