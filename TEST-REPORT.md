@@ -28,3 +28,24 @@ Author playtest, sound on. Controls (WASD, aim, fire, M, N) all worked as expect
 - CHAR-WALK/CHAR-RECOVER/CHAR-CELEBRATE are drawn from a slightly different art angle and come out larger than the other five poses.
 - The flashlight/darkness mechanic from CONCEPT.md's art direction was not built in this slice (predicted failure case #4 — not tested, not fixed).
 - The zombie can re-grab the player if they stand still through the full hurt/recover/invulnerability window (~2.8s) — documented in CHANGE-BRIEF.md Revisions, not rebuilt.
+
+## Assignment 3 — 3D assets
+
+Blender: 5.2.2 LTS (build hash d13f752e3b9c). Godot: 4.7.2.stable.official.ed1daf0bf.
+
+| Check | Evidence to collect | Result |
+|---|---|---|
+| Interface notes | Six parts in own words + screenshot | See BLENDER-NOTES.md |
+| Size | Dimensions match brief, both in Blender and Godot | All three confirmed exact matches, verified both in Blender (get_scene_info) and in the exported .glb files: SupplyCrate 0.5x0.5x0.5m, RustedBarrel 0.6m dia x 0.9m tall, Medkit 0.3x0.2x0.15m. |
+| Upright and scale | Stands correctly; node scale 1,1,1 | PASS, automated check (`showcase_3d_test.gd`): all three read rotation 0,0,0 and scale 1,1,1 after export. |
+| Origin | Sits on floor, doesn't float | PASS, automated check: all three bases sit on the floor plane within 1mm. |
+| Triangle count | Within budget | SupplyCrate 36/100, RustedBarrel 44/200, Medkit 48/150 — all within budget. |
+| Imports and appears | All three import without error, appear in scene | PASS — confirmed by the automated check (exit 0) and by direct human viewing in the Godot 3D editor. |
+| HUMAN CHECK: look | Walk the camera around each asset, including behind and below | Done, author's own session in the Godot editor (not the automated check). Orbited the showcase scene: the crate reads as a wooden crate, the barrel as a rusted drum, the medkit as a white case with a red cross — all three recognisable at a glance. Viewed from behind and below: no missing faces or obvious breakage; shadows read as slightly small; the underside of the floor plane is a plain flat gray surface, as expected for a single-sided floor plane. |
+| What Claude got wrong | At least one thing | Two real instances, both caught before the final commit: (1) the showcase camera's first transform was written with rows in the wrong order, which pointed it at the sky — found and fixed before any passing screenshot was taken; (2) the medkit's red cross was initially too small to read clearly from the showcase camera's original angle — required both enlarging the cross geometry and re-angling the camera to actually resolve, not just one fix alone. |
+
+## Inspect-and-revise cycle
+**Observed:** after building the medkit and viewing it in the Godot showcase at the planned camera angle, the red cross — the one visual feature meant to identify it as a pickup — was only a few pixels and didn't read. **Changed:** enlarged the cross's arms from 0.12x0.04m to 0.14x0.045m (kept at the same 1cm height to stay within the medkit's approved 0.15m total height), and separately lowered/re-angled the showcase camera from -20° to -35° pitch, since the shallow angle alone was hiding the medkit's top regardless of cross size. **Why:** the enlarged cross alone was a small improvement; the real fix needed addressing the camera angle too, confirmed by re-running the automated check (still 0 failures) and a new screenshot showing the cross clearly on all three assets.
+
+## Playtester
+Author's own session, walking the Godot 3D viewport camera around all three assets including from behind and below (see HUMAN CHECK row above for the specific observations).

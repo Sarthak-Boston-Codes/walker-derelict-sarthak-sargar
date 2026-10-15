@@ -47,3 +47,13 @@ Empty Godot 4 project (Godot 4.7.2, GDScript). Not an extension of Assignment 1 
 - CHAR-WALK/CHAR-RECOVER/CHAR-CELEBRATE were generated from a slightly different art angle and come out ~25% larger than the other five poses.
 - The art's fixed-elevation perspective (not true top-down) means the sprite can't stay upright at every facing under free rotation; Option C (mirror + ±30° tilt, capped) was adopted so it's never upside-down, at the cost of the held weapon not always pointing exactly where the shot goes.
 - Player readability against the final floor art, and the floor's visual detail (walls, machinery, doorway gaps) not matching the actual collision shapes — both cosmetic, collision behavior itself is correct.
+
+## Assignment 3 — 3D asset tools
+
+| Tool | Version | Notes |
+|---|---|---|
+| Blender | 5.2.2 LTS (build hash d13f752e3b9c) | Used with the Blender MCP, free, local |
+| mcp-for-blender | Installed fresh today via `uvx mcp-for-blender install-addon` | Community MCP connecting Claude Code to a live Blender session via a local socket (port 9876). DISABLE_TELEMETRY=true set at registration. All asset-library/generation checkboxes (Poly Haven, Sketchfab, Poly Pizza, Hyper3D, Hunyuan3D, Tripo) left off — not used. |
+| uv | Installed fresh today via the official installer script | Required by mcp-for-blender; not installed via pip, per the project's own warning. |
+
+All three geometry assets (SupplyCrate, RustedBarrel, Medkit) were built from Blender's own basic primitives (cube, cylinder) directly through the MCP's `execute_blender_code` tool — no downloaded models, no AI-generated meshes, no asset-library or generation-service calls.

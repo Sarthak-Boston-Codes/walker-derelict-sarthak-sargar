@@ -35,3 +35,8 @@ WASD to move · hold right mouse to aim · left click to fire · M toggles music
 
 ## Final film
 [claude-liam-derelict-gamedev.mp4](https://northeastern-my.sharepoint.com/:v:/g/personal/sargar_s_northeastern_edu/IQCFoi1kkFy2Q4daIwhOXtEYAXZkEDaRUn4HmrIvm5dfSfs?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=LiBMqC) (4K, 5:03, SHA-256 `6f4d313043854ce67adaaf5a8509140ba76a20bc89d3593a7f2b627f3cff82b1`)
+
+## Assignment 3 added
+A Godot 3D showcase scene (`godot/scenes/showcase_3d.tscn`) with three assets built in Blender via the Blender MCP: a supply crate, a rusted barrel, and a medkit pickup. Each asset has its own `.blend` source in `tools/blender/` and exports to `godot/assets/3d/`. An automated check (`godot/tests/showcase_3d_test.gd`) verifies each asset's rotation, scale, floor contact, size, and triangle budget against CHANGE-BRIEF.md's specs.
+
+Blender: 5.2.2 LTS (build hash d13f752e3b9c). MCP: mcp-for-blender, installed fresh for this assignment.
