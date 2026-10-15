@@ -104,3 +104,11 @@ N/A for this assignment — this is a new project, not an extension of an existi
 - Open question: in Material Preview the wood reads as light tan, because the brief's colour values are applied as linear. If they were meant as sRGB, the body should be darker — to judge by eye.
 - Not yet verified: export, Godot import (predicted failure cases 1–3), final render, showcase scene (floor, light, camera not built yet). The .blend file is not saved.
 - Colour fix (resolves the open question above): the brief's RGB values are sRGB colour-picker values. Converted sRGB → linear with the standard formula before setting Base Color: `M_Crate_Wood` (0.40, 0.24, 0.12) → linear (0.1329, 0.0470, 0.0134); `M_Crate_Strap` (0.08, 0.08, 0.08) → linear (0.0072, 0.0072, 0.0072). Round-trip back to sRGB matches exactly; re-rendered in Material Preview, it now reads as darker wood-brown with near-black straps. All future asset colours in this project get the same conversion.
+
+#### 2026-10-15 — ENV-RUSTED-BARREL built in Blender (not yet exported)
+- Built in its own file, `tools/blender/rusted_barrel.blend`, from a cleared scene (units metric, metres, scale 1.0); `supply_crate.blend` left untouched. No asset libraries or generators used.
+- Single object `RustedBarrel`: one 12-sided cylinder. Rotation and scale applied — rot 0,0,0, scale 1,1,1, origin at base centre (0,0,0).
+- Size 0.6 × 0.6 × 0.9 m (radius 0.3, height 0.9), base at z = 0. 44 triangles (budget ≤200), counting the two 12-gon caps as triangulated. 0 non-manifold, 0 boundary edges, 0 loose verts.
+- Material `M_Barrel_Rust`: the brief gives no numeric value, so a muted rust-orange was chosen — sRGB (0.52, 0.28, 0.15) ≈ `#854726`, converted to linear (0.2330, 0.0637, 0.0196); roughness 0.9, metallic 0. Not yet approved; easy to change.
+- Known limitations: flat-shaded, so the 12 facets are visible on the sides. Caps are n-gons; the triangle count assumes they triangulate on export (unchecked).
+- Not yet verified: export, Godot import (predicted failure cases 1–3), final render, showcase scene.

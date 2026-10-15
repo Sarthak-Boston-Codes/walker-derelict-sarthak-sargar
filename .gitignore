@@ -9,3 +9,5 @@ youtube/**/*.avi
 # Scoped to youtube/: the game's own WAVs in godot/audio/ must stay committed.
 youtube/**/*.wav
 __pycache__/
+# Blender auto-backup files (written on every re-save).
+*.blend1
