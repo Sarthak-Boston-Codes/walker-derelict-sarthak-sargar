@@ -2,7 +2,7 @@ Assignment: Assignment 3 - Your First 3D Game Assets with Claude, the Blender MC
 Student: Sarthak Sargar
 Project name: walker-derelict-sarthak-sargar
 GitHub repository URL: https://github.com/Sarthak-Boston-Codes/walker-derelict-sarthak-sargar
-Git tag and submitted commit SHA: a3 / 6e5358f946ce105ed69bd0a164ca7d817bbc9088
+Git tag and submitted commit SHA: a3 / the commit the a3 tag points to (`git rev-parse a3`; a commit can't contain its own hash, so the exact SHA is given in the Canvas submission note)
 Game-source revision shown in the film: e0a1e00 (HEAD at capture time, per youtube/claude-liam-derelict-a3-gamedev/SOURCES.md; the "before" camera comparison also shows b74d239). No game files changed between e0a1e00 and the a3 tag; later commits are film sources only.
 Godot version, Blender version, and operating system: Godot 4.7.2.stable.official.ed1daf0bf / Blender 5.2.2 LTS (build hash d13f752e3b9c) / Windows 11
 The three assets and what each is for: (1) PROP-SUPPLY-CRATE — a scavengeable supply crate prop: 0.5 × 0.5 × 0.5 m, wood-brown body with two dark-gray metal straps, ≤100 triangles. (2) ENV-RUSTED-BARREL — environment set-dressing, an industrial barrel for the derelict site: 0.6 m diameter × 0.9 m tall, low-segment cylinder in rust orange, ≤200 triangles. (3) PICKUP-MEDKIT — a collectible medical-supply pickup: 0.3 × 0.2 × 0.15 m, cream case with a flattened lid and a red cross, ≤150 triangles. All three have their origin at the centre of the underside and live in a separate 3D showcase scene (floor, one light, one camera); DERELICT's 2D gameplay is untouched.
