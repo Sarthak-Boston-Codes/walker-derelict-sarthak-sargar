@@ -39,6 +39,7 @@ static func _shrink_curve() -> Curve:
 static func _burst(pos: Vector3, dir: Vector3, amount: int, mesh_size: float, material: Material,
 		speed: Vector2, spread: float, lifetime: float, gravity := Vector3(0, -9.8, 0)) -> CPUParticles3D:
 	var p := CPUParticles3D.new()
+	p.emitting = false # it defaults to true and would burst at the origin on add_child
 	var mesh := BoxMesh.new()
 	mesh.size = Vector3.ONE * mesh_size
 	mesh.material = material
@@ -58,8 +59,8 @@ static func _burst(pos: Vector3, dir: Vector3, amount: int, mesh_size: float, ma
 	p.angular_velocity_min = -360
 	p.angular_velocity_max = 360
 	p.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	p.position = root.to_local(pos)
 	root.add_child(p)
-	p.global_position = pos
 	p.emitting = true
 	_free_after(p, lifetime + 0.2)
 	return p

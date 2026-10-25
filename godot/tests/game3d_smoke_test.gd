@@ -48,6 +48,7 @@ func _run() -> void:
 	await _extra_checks()
 
 	# Damage and death last.
+	p.hp = p.MAX_HP
 	p.take_damage(30, p.global_position + Vector3.RIGHT)
 	check(p.hp == p.MAX_HP - 30, "taking damage lowers health")
 	await frames(30)
@@ -64,6 +65,47 @@ func _run() -> void:
 ## Later steps add their checks here.
 func _extra_checks() -> void:
 	await _zombie_checks()
+	await _prop_checks()
+
+
+func _prop_checks() -> void:
+	var p: CharacterBody3D = game.player
+	# Medkit heals when hurt.
+	p.hp = 50.0
+	var medkit: Node3D = get_tree().get_nodes_in_group("pickups").filter(func(n: Node) -> bool: return n.kind == "medkit")[0]
+	check(medkit.try_pick(p) and p.hp == 90.0, "medkit heals 40")
+	# Crate breaks after two hits and drops an ammo box that tops up reserve.
+	var crate: Node3D = get_tree().get_nodes_in_group("crates")[0]
+	var cpos: Vector3 = crate.global_position
+	crate.hit(1.0, cpos, Vector3.FORWARD, Vector3.BACK)
+	crate.hit(1.0, cpos, Vector3.FORWARD, Vector3.BACK)
+	await frames(3)
+	var ammo: Array = get_tree().get_nodes_in_group("pickups").filter(func(n: Node) -> bool: return n.kind == "ammo")
+	check(not is_instance_valid(crate) and ammo.size() == 1, "crate breaks and drops ammo")
+	var r0: int = p.reserve
+	check(ammo[0].try_pick(p) and p.reserve > r0, "ammo box adds reserve (%d -> %d)" % [r0, p.reserve])
+	# Rusted barrel gets knocked about by bullets.
+	var barrel: RigidBody3D = get_tree().get_nodes_in_group("barrels").filter(func(n: Node) -> bool: return not n.explosive)[0]
+	var b0: Vector3 = barrel.global_position
+	for i in 4:
+		barrel.hit(1.0, barrel.global_position + Vector3(0, 0.8, 0.3), Vector3.FORWARD, Vector3.BACK)
+		await frames(5)
+	await frames(30)
+	check(barrel.global_position.distance_to(b0) > 0.2 or barrel.global_basis.y.dot(Vector3.UP) < 0.8, "shot barrel moves or topples")
+	# Explosive barrel: kills a zombie in range, chains into a second barrel.
+	game.waves.active = false
+	var boom: Array = get_tree().get_nodes_in_group("explosive_barrels")
+	var e1: RigidBody3D = boom[0]
+	var e2: RigidBody3D = boom[1]
+	e2.global_position = e1.global_position + Vector3(2.0, 0, 0)
+	var z: Node3D = game.waves.spawn_zombie("shambler", e1.global_position + Vector3(-1.5, 0, 0))
+	await frames(5)
+	e1.hit(1.0, e1.global_position, Vector3.FORWARD, Vector3.BACK)
+	e1.hit(1.0, e1.global_position, Vector3.FORWARD, Vector3.BACK)
+	await frames(30)
+	check(not is_instance_valid(e1) and not is_instance_valid(e2), "explosive barrel blows and chains into its neighbour")
+	check(not z.is_in_group("zombies"), "blast kills a nearby zombie")
+	await frames(10)
 
 
 func _zombie_checks() -> void:

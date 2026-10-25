@@ -22,3 +22,8 @@ Branch `a2-redo-3d`. Summary goes here at the end.
 16. **Chase:** NavigationAgent3D with avoidance. It repaths every ~0.3 s (jittered so a pack doesn't repath on the same frame) and steers straight at the player inside 3 m, because navmesh corners look robotic up close. Zombies rise out of the floor over 0.7 s with a dust puff, so they can't pop in on top of you.
 17. **Waves:** wave N = 3 + 3N zombies, trickled in. Runners from wave 2 (15% per wave, cap 55%). Max 16 alive. They spawn 9–26 m from the player, in unlocked rooms only, with a 7 s breather between waves. Waves never stop; the win comes from extraction (step 5).
 18. **Boilers shortened to 2.6 m**, because at 3.4 m they filled the screen from the top-down camera.
+19. **Crates are shot open** (2 hits), not opened with a key. They splinter into short-lived debris and always drop an ammo box (12–20 rounds). They're static bodies on the prop layer, so they block movement but stay out of the navmesh.
+20. **Barrels are RigidBody3D** (rusted 14 kg, explosive 25 kg, low centre of mass). Bullets, the player and zombies all apply impulses, so they slide and topple.
+21. **Explosive barrel:** 2 hits. Blast radius 5 m with a line-of-sight check (walls block it). It deals 10 to zombies (kills any type), 10–55 to the player by distance, breaks crates, flings barrels, and chains into other explosive barrels after 0.18 s. A damaged barrel's hazard light stutters as a warning.
+22. **Pickups stay put if useless** (medkit at full health, ammo at cap), so they're never wasted. Medkit heals 40.
+23. **Bug found by screenshot:** `CPUParticles3D` defaults to `emitting = true`, so every burst fired at the world origin before being moved. Particles are now positioned before `add_child` and started after.

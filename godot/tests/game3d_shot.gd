@@ -1,7 +1,7 @@
 extends Node
 ## Screenshot harness for the 3D game (needs a window, not --headless):
 ##
-##   godot --path godot res://tests/game3d_shot.tscn -- --shot=out.png [--frames=90] [--cam=x,y,z] [--look=x,y,z] [--aim=x,z] [--pos=x,z] [--zombies=N]
+##   godot --path godot res://tests/game3d_shot.tscn -- --shot=out.png [--frames=90] [--cam=x,y,z] [--look=x,y,z] [--aim=x,z] [--pos=x,z] [--zombies=N] [--boom=frames]
 ##
 ## Loads game3d/game.tscn, waits, optionally moves the camera, saves a PNG.
 
@@ -41,6 +41,14 @@ func _ready() -> void:
 		cam.global_position = _vec(_args.cam)
 		cam.look_at(_vec(_args.get("look", "0,0,0")), Vector3.UP)
 		for i in 10:
+			await get_tree().process_frame
+	if _args.has("boom"):
+		var best: Node3D = null
+		for b in get_tree().get_nodes_in_group("explosive_barrels"):
+			if best == null or b.global_position.distance_to(game.player.global_position) < best.global_position.distance_to(game.player.global_position):
+				best = b
+		best.explode()
+		for i in int(_args.boom):
 			await get_tree().process_frame
 	await RenderingServer.frame_post_draw
 	var img := get_viewport().get_texture().get_image()

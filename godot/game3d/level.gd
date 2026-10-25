@@ -22,6 +22,9 @@ const Phys := preload("res://game3d/phys.gd")
 const ModelTable := preload("res://game3d/model_table.gd")
 const P := preload("res://game3d/placeholder_models.gd")
 const FloorShader := preload("res://game3d/shaders/concrete_floor.gdshader")
+const Crate := preload("res://game3d/crate.gd")
+const Barrel := preload("res://game3d/barrel.gd")
+const Pickup := preload("res://game3d/pickup.gd")
 
 const WALL_H := 2.4
 const WALL_T := 0.6
@@ -43,6 +46,7 @@ var locked_rooms := {"Control Room": true}
 ## Filled by _place_props(); game.gd hooks these up.
 var locked_door: Node3D
 var extraction: Node3D
+var keycard: Node3D
 
 var _mats := {}
 
@@ -524,16 +528,27 @@ func _place_props() -> void:
 		_prop("explosive_barrel", p)
 	for p in [Vector3(-1.2, 0, 12.6), Vector3(25.5, 0, 1.0), Vector3(12.0, 0, -13.0), Vector3(-8.5, 0, -4.0)]:
 		_prop("medkit", p)
-	_prop("keycard", Vector3(29.8, 0.85, -16.6))
+	keycard = _prop("keycard", Vector3(29.8, 0.85, -16.6))
 
 
-## Places one prop. Step 1: static models only.
+## Places one interactive prop.
 func _prop(id: String, pos: Vector3) -> Node3D:
-	var model := ModelTable.make(id)
-	model.position = pos
-	model.rotation.y = randf() * TAU if id != "keycard" else 0.0
-	add_child(model)
-	return model
+	var node: Node3D
+	match id:
+		"supply_crate":
+			node = Crate.new()
+		"rusted_barrel", "explosive_barrel":
+			node = Barrel.new()
+			node.explosive = id == "explosive_barrel"
+		"medkit", "keycard":
+			node = Pickup.new()
+			node.kind = id
+			node.bob = id == "keycard"
+	add_child(node)
+	node.global_position = pos
+	if id != "keycard":
+		node.rotation.y = randf() * TAU
+	return node
 
 
 func _place_spawns() -> void:
