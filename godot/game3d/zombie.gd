@@ -117,6 +117,7 @@ func _tick_state(delta: float) -> void:
 				state = State.WINDUP
 				_state_left = _stats.windup
 				_arms(0.9)
+				Sfx.play_at("SFX-DOWN", global_position, 0.5 if kind == "shambler" else 0.7, -6.0) # growl
 		State.WINDUP:
 			if _state_left <= 0.0:
 				_arms(-0.5)
@@ -208,7 +209,7 @@ func _die(dir: Vector3) -> void:
 	collision_layer = 0
 	collision_mask = Phys.WORLD
 	_agent.avoidance_enabled = false
-	Sfx.play("SFX-DOWN", 1.0 if kind == "shambler" else 1.25)
+	Sfx.play_at("SFX-DOWN", global_position, 1.0 if kind == "shambler" else 1.25)
 	Fx.blood(global_position + Vector3.UP * 1.0, dir, 30)
 	Fx.decal(global_position + dir * 0.8, randf_range(1.6, 2.4))
 	died.emit(self)

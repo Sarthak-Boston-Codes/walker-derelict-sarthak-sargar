@@ -32,7 +32,7 @@ func hit(damage: float, point: Vector3, dir: Vector3, normal: Vector3) -> void:
 		return
 	hp -= damage
 	Fx.sparks(point, normal)
-	Sfx.play("SFX-HURT", 1.8, -10.0)
+	Sfx.play_at("SFX-HURT", point, 1.8, -8.0)
 	var t := create_tween()
 	t.tween_property(_model, "scale", Vector3(1.08, 0.92, 1.08), 0.05)
 	t.tween_property(_model, "scale", Vector3.ONE, 0.08)
@@ -70,7 +70,7 @@ func _break(dir: Vector3) -> void:
 		tw.tween_property(chunk, "scale", Vector3.ONE * 0.01, 0.6)
 		tw.tween_callback(chunk.queue_free)
 	Fx.dust(global_position, 14)
-	Sfx.play("SFX-DOWN", 1.6, -4.0)
+	Sfx.play_at("SFX-DOWN", global_position, 1.6, -2.0)
 	var ammo := Pickup.new()
 	ammo.kind = "ammo"
 	get_parent().add_child(ammo)

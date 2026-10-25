@@ -68,7 +68,7 @@ func hit(damage: float, point: Vector3, dir: Vector3, normal: Vector3) -> void:
 		return
 	apply_impulse(dir * BULLET_IMPULSE, point - global_position)
 	Fx.sparks(point, normal)
-	Sfx.play("SFX-SHOT", 2.2, -10.0) # metallic ping
+	Sfx.play_at("SFX-SHOT", point, 2.2, -8.0) # metallic ping
 	if explosive:
 		hp -= damage
 		if hp <= 0.0:
@@ -81,8 +81,8 @@ func explode() -> void:
 	_exploded = true
 	var center := global_position + Vector3.UP * 0.5
 	Fx.explosion(global_position)
-	Sfx.play("SFX-DOWN", 0.45, 6.0)
-	Sfx.play("SFX-SHOT", 0.35, 4.0)
+	Sfx.play_at("SFX-DOWN", center, 0.45, 8.0)
+	Sfx.play_at("SFX-SHOT", center, 0.35, 6.0)
 	var space := get_world_3d().direct_space_state
 	var tree := get_tree()
 	var cam := get_viewport().get_camera_3d()

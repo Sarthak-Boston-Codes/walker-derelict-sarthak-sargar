@@ -150,6 +150,7 @@ func set_paused(on: bool) -> void:
 	if state != State.PLAYING:
 		return
 	get_tree().paused = on
+	Sfx.muffle_music(on)
 	hud.show_pause(on)
 	UI.use_crosshair(not on)
 
@@ -200,6 +201,7 @@ func to_menu() -> void:
 
 func _leave() -> void:
 	get_tree().paused = false
+	Sfx.muffle_music(false)
 	UI.use_crosshair(false)
 	# Death fades the music out and stops it; bring it back for the next run.
 	if not Sound.is_music_playing():
