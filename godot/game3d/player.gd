@@ -22,7 +22,7 @@ const ACCEL := 16.0
 const TURN_SPEED := 22.0
 const MAX_HP := 100.0
 const MAG_SIZE := 15
-const START_RESERVE := 45
+const START_RESERVE := 60
 const MAX_RESERVE := 150
 const FIRE_INTERVAL := 0.14
 const RELOAD_TIME := 1.25
@@ -41,6 +41,11 @@ var controls_enabled := true
 var camera: Camera3D
 var aim_point := Vector3.ZERO
 var flashlight: SpotLight3D
+## Run stats for the end screen.
+var shots_fired := 0
+var shots_hit := 0
+## Test hook: when set (non-null), used instead of WASD.
+var move_override: Variant = null
 
 var _aim: Node3D
 var _model: Node3D
@@ -128,7 +133,9 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	_grace = maxf(_grace - delta, 0.0)
 	var input := Vector2.ZERO
-	if alive and controls_enabled:
+	if alive and move_override != null:
+		input = move_override
+	elif alive and controls_enabled:
 		input = Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	var want := Vector3(input.x, 0, input.y) * SPEED
 	var horizontal := Vector3(velocity.x, 0, velocity.z).move_toward(want, ACCEL * SPEED * delta / 4.0)
@@ -234,6 +241,7 @@ func _finish_reload() -> void:
 func fire() -> void:
 	_cooldown = FIRE_INTERVAL
 	mag -= 1
+	shots_fired += 1
 	ammo_changed.emit(mag, reserve)
 	var origin := global_position + Vector3.UP * SHOT_HEIGHT
 	var target := aim_point
@@ -251,6 +259,8 @@ func fire() -> void:
 		end = hit.position
 		var target_node: Object = hit.collider
 		if target_node.has_method("hit"):
+			if target_node.is_in_group("zombies"):
+				shots_hit += 1
 			target_node.hit(DAMAGE, end, dir, hit.normal)
 		else:
 			Fx.sparks(end, hit.normal)

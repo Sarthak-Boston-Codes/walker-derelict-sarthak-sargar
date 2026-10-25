@@ -20,6 +20,8 @@ const GLOW := {
 
 var kind := "medkit"
 var bob := true
+## Rounds an ammo pickup gives (random in range). Zombie drops give fewer.
+var amount := AMMO
 
 var _model: Node3D
 var _t := randf() * TAU
@@ -69,7 +71,7 @@ func try_pick(player: Node3D) -> bool:
 		"medkit":
 			used = player.heal(HEAL)
 		"ammo":
-			used = player.add_ammo(randi_range(AMMO.x, AMMO.y))
+			used = player.add_ammo(randi_range(amount.x, amount.y))
 		"keycard":
 			used = true
 	if not used:

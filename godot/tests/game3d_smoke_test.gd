@@ -128,6 +128,9 @@ func _prop_checks() -> void:
 	var medkit: Node3D = get_tree().get_nodes_in_group("pickups").filter(func(n: Node) -> bool: return n.kind == "medkit")[0]
 	check(medkit.try_pick(p) and p.hp == 90.0, "medkit heals 40")
 	# Crate breaks after two hits and drops an ammo box that tops up reserve.
+	for n in get_tree().get_nodes_in_group("pickups"):
+		if n.kind == "ammo":
+			n.free()
 	var crate: Node3D = get_tree().get_nodes_in_group("crates")[0]
 	var cpos: Vector3 = crate.global_position
 	crate.hit(1.0, cpos, Vector3.FORWARD, Vector3.BACK)
@@ -174,9 +177,9 @@ func _zombie_checks() -> void:
 	await get_tree().create_timer(3.0).timeout
 	check(p.hp < hp0, "shambler reaches and hurts the player (hp %.0f -> %.0f)" % [hp0, p.hp])
 	var kills0: int = game.waves.kills
-	for i in 5:
+	for i in 4:
 		z.hit(1.0, z.global_position + Vector3.UP, Vector3.FORWARD, Vector3.BACK)
-	check(game.waves.kills == kills0 + 1 and not z.is_in_group("zombies"), "five hits kill a shambler")
+	check(game.waves.kills == kills0 + 1 and not z.is_in_group("zombies"), "four hits kill a shambler")
 	var r: Node3D = game.waves.spawn_zombie("runner", p.global_position + Vector3(0, 0, -6))
 	r.hit(1.0, r.global_position, Vector3.FORWARD, Vector3.BACK)
 	r.hit(1.0, r.global_position, Vector3.FORWARD, Vector3.BACK)

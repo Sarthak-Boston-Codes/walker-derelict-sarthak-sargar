@@ -157,7 +157,8 @@ func set_paused(on: bool) -> void:
 
 func _stats() -> String:
 	var minutes := int(elapsed) / 60
-	return "Wave reached: %d    Kills: %d    Time: %d:%02d" % [waves.wave, waves.kills, minutes, int(elapsed) % 60]
+	var accuracy := 100.0 * player.shots_hit / maxf(player.shots_fired, 1.0)
+	return "Wave reached: %d    Kills: %d    Accuracy: %d%%    Time: %d:%02d" % [waves.wave, waves.kills, roundi(accuracy), minutes, int(elapsed) % 60]
 
 
 func _on_player_died() -> void:

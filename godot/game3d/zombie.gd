@@ -12,10 +12,15 @@ const Sfx := preload("res://game3d/sfx.gd")
 const Phys := preload("res://game3d/phys.gd")
 
 const TYPES := {
-	"shambler": {"model": "zombie_shambler", "hp": 5.0, "speed": 1.9, "damage": 18.0, "windup": 0.5, "reach": 1.35, "stagger": 0.35},
+	"shambler": {"model": "zombie_shambler", "hp": 4.0, "speed": 1.9, "damage": 18.0, "windup": 0.5, "reach": 1.35, "stagger": 0.35},
 	"runner": {"model": "zombie_runner", "hp": 2.0, "speed": 4.4, "damage": 9.0, "windup": 0.25, "reach": 1.2, "stagger": 0.18},
 }
 const REPATH := 0.3
+const AMMO_DROP_CHANCE := 0.3
+const PUSH_IMPULSE := 7.0 # per physics frame; enough to shove a barrel aside
+const STUCK_CHECK := 1.5 # seconds between progress checks
+const STUCK_MIN_MOVE := 0.4 # metres expected per check while chasing
+const Pickup := preload("res://game3d/pickup.gd")
 const ATTACK_COOLDOWN := 0.9
 const RISE_TIME := 0.7
 
@@ -36,6 +41,10 @@ var _flash_left := 0.0
 var _walk_phase := randf() * TAU
 var _knock := Vector3.ZERO
 var _safe_velocity := Vector3.ZERO
+var _stuck_check := STUCK_CHECK
+var _stuck_from := Vector3.ZERO
+var _sidestep := Vector3.ZERO
+var _sidestep_left := 0.0
 var _flash_mat := StandardMaterial3D.new()
 
 
@@ -133,6 +142,19 @@ func _tick_state(delta: float) -> void:
 
 func _chase_velocity(delta: float) -> Vector3:
 	var to_player := _to_player()
+	# Wedged on a prop or another zombie: step sideways for a moment.
+	_stuck_check -= delta
+	if _stuck_check <= 0.0:
+		_stuck_check = STUCK_CHECK
+		if global_position.distance_to(_stuck_from) < STUCK_MIN_MOVE and to_player.length() > _stats.reach + 0.5:
+			var side := to_player.normalized().cross(Vector3.UP) * (1.0 if randf() < 0.5 else -1.0)
+			_sidestep = (side + to_player.normalized() * 0.3).normalized() * _stats.speed
+			_sidestep_left = 0.7
+			_repath_left = 0.0
+		_stuck_from = global_position
+	if _sidestep_left > 0.0:
+		_sidestep_left -= delta
+		return _sidestep
 	# Close and in plain sight: go straight for them (navmesh corners make
 	# the last metre look robotic).
 	if to_player.length() < 3.0:
@@ -181,7 +203,7 @@ func _push_bodies() -> void:
 		if body:
 			var push := -c.get_normal()
 			push.y = 0.0
-			body.apply_central_impulse(push.normalized() * 1.2)
+			body.apply_central_impulse(push.normalized() * PUSH_IMPULSE)
 
 
 ## Bullet / blast entry point.
@@ -213,6 +235,12 @@ func _die(dir: Vector3) -> void:
 	Fx.blood(global_position + Vector3.UP * 1.0, dir, 30)
 	Fx.decal(global_position + dir * 0.8, randf_range(1.6, 2.4))
 	died.emit(self)
+	if randf() < AMMO_DROP_CHANCE:
+		var ammo := Pickup.new()
+		ammo.kind = "ammo"
+		ammo.amount = Vector2i(5, 9)
+		get_parent().add_child(ammo)
+		ammo.global_position = global_position + dir * 0.4
 	# Topple away from the shot, then sink into the floor.
 	var away := atan2(-dir.x, -dir.z)
 	_model.rotation.y = away + PI
