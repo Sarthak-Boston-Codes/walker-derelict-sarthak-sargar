@@ -17,6 +17,8 @@ void fragment() {
 """
 
 var game: Node
+## World position the objective marker points at (null = hidden).
+var objective_target: Variant = null
 
 var _health_bar: ProgressBar
 var _health_label: Label
@@ -38,6 +40,9 @@ var _music_btn: Button
 var _sfx_btn: Button
 var _hurt := 0.0
 var _toast_tween: Tween
+var _marker: Polygon2D
+var _marker_label: Label
+var _out_warned := false
 
 
 func _ready() -> void:
@@ -141,6 +146,17 @@ func _ready() -> void:
 	hint.position += Vector2(-14, -10)
 	root.add_child(hint)
 
+	# Objective marker: a chevron over the target, or pinned to the screen
+	# edge pointing at it when it's off-screen.
+	_marker = Polygon2D.new()
+	_marker.polygon = PackedVector2Array([Vector2(0, -16), Vector2(12, 8), Vector2(0, 2), Vector2(-12, 8)])
+	_marker.color = UI.ACCENT
+	_marker.visible = false
+	root.add_child(_marker)
+	_marker_label = UI.label("", 14, UI.ACCENT)
+	_marker_label.visible = false
+	root.add_child(_marker_label)
+
 	_build_pause(root)
 	_build_end(root)
 
@@ -236,6 +252,43 @@ func _process(delta: float) -> void:
 		var p: Node = game.player
 		_reload_bar.modulate.a = 1.0 if p.is_reloading() else 0.0
 		_reload_bar.value = p.reload_progress()
+	_update_marker()
+
+
+func _update_marker() -> void:
+	var cam := get_viewport().get_camera_3d()
+	var show := objective_target != null and cam != null and not _end.visible
+	_marker.visible = show
+	_marker_label.visible = show
+	if not show:
+		return
+	var target: Vector3 = objective_target
+	var rect := get_viewport().get_visible_rect()
+	var margin := 48.0
+	var screen := cam.unproject_position(target + Vector3.UP * 1.6)
+	var behind := cam.is_position_behind(target)
+	var inner := rect.grow(-margin)
+	var pulse := 0.75 + 0.25 * sin(Time.get_ticks_msec() / 180.0)
+	_marker.modulate.a = pulse
+	if not behind and inner.has_point(screen):
+		_marker.position = screen + Vector2(0, -6.0 * pulse)
+		_marker.rotation = PI # chevron points down at the target
+		_marker_label.visible = false
+		return
+	var center := rect.size / 2.0
+	var dir := (screen - center) * (-1.0 if behind else 1.0)
+	if dir.length() < 1.0:
+		dir = Vector2.UP
+	var scale_x: float = (inner.size.x / 2.0) / maxf(absf(dir.x), 0.001)
+	var scale_y: float = (inner.size.y / 2.0) / maxf(absf(dir.y), 0.001)
+	var edge := center + dir * minf(scale_x, scale_y)
+	_marker.position = edge
+	_marker.rotation = dir.angle() + PI / 2.0
+	var dist := 0.0
+	if is_instance_valid(game.player):
+		dist = game.player.global_position.distance_to(target)
+	_marker_label.text = "%dm" % roundi(dist)
+	_marker_label.position = edge - dir.normalized() * 30.0 - Vector2(14, 10)
 
 
 # --- updates from game.gd ----------------------------------------------------
@@ -253,6 +306,11 @@ func flash_hurt() -> void:
 func set_ammo(mag: int, reserve: int) -> void:
 	_ammo_label.text = "%d / %d" % [mag, reserve]
 	_ammo_label.add_theme_color_override("font_color", UI.DANGER if mag == 0 else UI.ACCENT)
+	if mag == 0 and reserve == 0 and not _out_warned:
+		_out_warned = true
+		toast("OUT OF AMMO — shoot crates open", UI.DANGER, 2.2)
+	elif reserve > 0:
+		_out_warned = false
 
 
 func set_keycard(has: bool) -> void:

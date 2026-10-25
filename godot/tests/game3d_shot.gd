@@ -1,7 +1,7 @@
 extends Node
 ## Screenshot harness for the 3D game (needs a window, not --headless):
 ##
-##   godot --path godot res://tests/game3d_shot.tscn -- --shot=out.png [--frames=90] [--cam=x,y,z] [--look=x,y,z] [--aim=x,z] [--pos=x,z] [--zombies=N] [--boom=frames] [--scene=res://...]
+##   godot --path godot res://tests/game3d_shot.tscn -- --shot=out.png [--frames=90] [--cam=x,y,z] [--look=x,y,z] [--aim=x,z] [--pos=x,z] [--zombies=N] [--boom=frames] [--scene=res://...] [--fps]
 ##
 ## Loads game3d/game.tscn, waits, optionally moves the camera, saves a PNG.
 
@@ -50,6 +50,11 @@ func _ready() -> void:
 		best.explode()
 		for i in int(_args.boom):
 			await get_tree().process_frame
+	if _args.has("fps"):
+		print("fps %d  process %.1f ms  physics %.1f ms  draw calls %d" % [Engine.get_frames_per_second(),
+			Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0,
+			Performance.get_monitor(Performance.TIME_PHYSICS_PROCESS) * 1000.0,
+			Performance.get_monitor(Performance.RENDER_TOTAL_DRAW_CALLS_IN_FRAME)])
 	await RenderingServer.frame_post_draw
 	var img := get_viewport().get_texture().get_image()
 	img.save_png(_args.get("shot", "user://shot.png"))

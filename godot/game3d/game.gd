@@ -144,6 +144,17 @@ func _process(delta: float) -> void:
 	# changes where new ones appear.
 	_dust.global_position = player.global_position + Vector3.UP * 1.3
 	hud.set_wave(waves.wave, waves.in_break, waves.remaining(), waves.kills)
+	hud.objective_target = _objective_target()
+
+
+func _objective_target() -> Variant:
+	if state != State.PLAYING:
+		return null
+	if not has_keycard:
+		return level.keycard.global_position if is_instance_valid(level.keycard) else null
+	if not level.locked_door.is_open:
+		return level.locked_door.global_position
+	return level.extraction.global_position
 
 
 func set_paused(on: bool) -> void:
