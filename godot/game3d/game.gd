@@ -7,10 +7,12 @@ const Player := preload("res://game3d/player.gd")
 const CameraRig := preload("res://game3d/camera_rig.gd")
 const Sfx := preload("res://game3d/sfx.gd")
 const Fx := preload("res://game3d/fx.gd")
+const Waves := preload("res://game3d/waves.gd")
 
 var level: Node3D
 var player: CharacterBody3D
 var camera: Camera3D
+var waves: Node
 
 
 func _ready() -> void:
@@ -38,6 +40,16 @@ func _ready() -> void:
 	camera.current = true
 	player.camera = camera
 	player.aim_point = level.player_start + Vector3(0, 0, -4)
+
+	var actors := Node3D.new()
+	actors.name = "Zombies"
+	add_child(actors)
+	waves = Waves.new()
+	waves.name = "Waves"
+	waves.level = level
+	waves.player = player
+	waves.spawn_parent = actors
+	add_child(waves)
 
 
 func _unhandled_input(event: InputEvent) -> void:

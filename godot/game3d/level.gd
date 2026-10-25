@@ -463,18 +463,18 @@ func _build_assembly_hall() -> void:
 
 func _build_boiler_room() -> void:
 	for c in [Vector2(15.5, -5.5), Vector2(26.5, -5.5), Vector2(21.0, -13.5)]:
-		_cylinder(c, 1.7, 3.4, _mats.rust)
+		_cylinder(c, 1.4, 2.6, _mats.rust)
 		var top := CylinderMesh.new()
-		top.top_radius = 0.9
-		top.bottom_radius = 1.6
+		top.top_radius = 0.7
+		top.bottom_radius = 1.3
 		top.height = 0.5
-		_deco(top, _mats.steel, Vector3(c.x, 3.6, c.y))
+		_deco(top, _mats.steel, Vector3(c.x, 2.85, c.y))
 		var gauge := SphereMesh.new()
 		gauge.radius = 0.12
 		gauge.height = 0.24
-		_deco(gauge, _mats.screen_red, Vector3(c.x, 1.5, c.y + 1.72))
-	_pipe(Vector3(15.5, 2.8, -5.5), Vector3(26.5, 2.8, -5.5), 0.22)
-	_pipe(Vector3(21.0, 2.9, -5.5), Vector3(21.0, 2.9, -13.5), 0.2)
+		_deco(gauge, _mats.screen_red, Vector3(c.x, 1.5, c.y + 1.42))
+	_pipe(Vector3(15.5, 2.3, -5.5), Vector3(26.5, 2.3, -5.5), 0.18)
+	_pipe(Vector3(21.0, 2.4, -5.5), Vector3(21.0, 2.4, -13.5), 0.16)
 	_pipe(Vector3(10.4, 2.0, -17.5), Vector3(31.6, 2.0, -17.5), 0.16, _mats.steel)
 	# Keycard desk in the far north-east corner.
 	_block(Vector2(29.6, -16.6), Vector3(2.2, 0.85, 1.0), _mats.steel)

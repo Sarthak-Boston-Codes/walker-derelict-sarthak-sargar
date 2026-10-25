@@ -1,7 +1,7 @@
 extends Node
 ## Screenshot harness for the 3D game (needs a window, not --headless):
 ##
-##   godot --path godot res://tests/game3d_shot.tscn -- --shot=out.png [--frames=90] [--cam=x,y,z] [--look=x,y,z] [--aim=x,z] [--pos=x,z]
+##   godot --path godot res://tests/game3d_shot.tscn -- --shot=out.png [--frames=90] [--cam=x,y,z] [--look=x,y,z] [--aim=x,z] [--pos=x,z] [--zombies=N]
 ##
 ## Loads game3d/game.tscn, waits, optionally moves the camera, saves a PNG.
 
@@ -22,6 +22,15 @@ func _ready() -> void:
 		var a: PackedStringArray = str(_args.pos).split(",")
 		game.player.global_position = Vector3(float(a[0]), 0, float(a[1]))
 		game.camera.snap()
+	if _args.has("zombies"):
+		game.waves.active = false
+		var p: Vector3 = game.player.global_position
+		var aim: Vector3 = game.player.aim_point - p
+		aim.y = 0
+		aim = aim.normalized()
+		for i in int(_args.zombies):
+			var side := aim.cross(Vector3.UP) * (i - int(_args.zombies) / 2.0) * 1.1
+			game.waves.spawn_zombie("runner" if i % 2 else "shambler", p + aim * (5.0 + (i % 3)) + side)
 	for i in int(_args.get("frames", "90")):
 		await get_tree().process_frame
 	if _args.has("cam"):
