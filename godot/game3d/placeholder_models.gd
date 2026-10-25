@@ -135,7 +135,7 @@ static func _zombie(flesh_color: Color, cloth_color: Color, height_scale: float,
 	var head := _part(torso, _sphere(0.16), flesh, Vector3(0.03, 0.83, -0.05))
 	head.rotation_degrees.z = 14.0
 	for side in [-1, 1]:
-		_part(head, _sphere(0.03), glow(Color("#FF3B1F"), 6.0), Vector3(0.06 * side, 0.03, -0.14))
+		_part(head, _sphere(0.03), glow(Color("#FF3B1F"), 6.0), Vector3(0.06 * side, 0.03, -0.14)).name = "Eye"
 	# Arms reach out towards the player, the classic silhouette.
 	for side in [-1, 1]:
 		var arm := _pivot(torso, "ArmL" if side < 0 else "ArmR", Vector3(0.28 * side, 0.6, 0))

@@ -10,13 +10,17 @@ extends RefCounted
 ## forward). Models are expected to have their origin at their feet/base.
 ## Optional "tint" multiplies every surface's albedo colour, so two IDs can
 ## share one mesh and still read as different (shambler vs runner).
+## Optional "eyes" lists points in the model's own space (before yaw/scale)
+## where small glowing eyes are added, so zombies read in the dark.
 
 const Placeholders := preload("res://game3d/placeholder_models.gd")
+const EYE_COLOR := Color("#FF3B1F")
+const ZOMBIE_EYES := [Vector3(0.705, 1.635, 0.025), Vector3(0.705, 1.635, 0.135)]
 
 const MODELS := {
 	"player": {"path": "res://assets/3d/characters/player.glb", "scale": 1.0, "yaw": 180.0},
-	"zombie_shambler": {"path": "res://assets/3d/characters/zombie.glb", "scale": 1.0, "yaw": 90.0},
-	"zombie_runner": {"path": "res://assets/3d/characters/zombie.glb", "scale": 0.9, "yaw": 90.0, "tint": Color(1.0, 0.5, 0.42)},
+	"zombie_shambler": {"path": "res://assets/3d/characters/zombie.glb", "scale": 1.0, "yaw": 90.0, "eyes": ZOMBIE_EYES},
+	"zombie_runner": {"path": "res://assets/3d/characters/zombie.glb", "scale": 0.9, "yaw": 90.0, "tint": Color(1.0, 0.5, 0.42), "eyes": ZOMBIE_EYES},
 	"supply_crate": {"path": "res://assets/3d/supply_crate.glb", "scale": 1.0, "yaw": 0.0},
 	"rusted_barrel": {"path": "res://assets/3d/rusted_barrel.glb", "scale": 1.0, "yaw": 0.0},
 	"explosive_barrel": {"path": "", "scale": 1.0, "yaw": 0.0},
@@ -43,12 +47,48 @@ static func make(id: String) -> Node3D:
 		model = Placeholders.build(id)
 	if spec.has("tint"):
 		_apply_tint(id, model, spec.tint)
+	if spec.has("eyes") and spec.path != "":
+		var mid := Vector3.ZERO
+		for p in spec.eyes:
+			model.add_child(eye(p))
+			mid += p / spec.eyes.size()
+		model.add_child(eye_glow(mid))
 	model.scale = Vector3.ONE * float(spec.scale)
 	model.rotation.y = deg_to_rad(float(spec.yaw))
 	var pivot := Node3D.new()
 	pivot.name = "Model"
 	pivot.add_child(model)
 	return pivot
+
+
+## A small glowing eye (unshaded-bright, so it shows outside any light).
+## Named "Eye" so the owner can find and dim it.
+static func eye(pos: Vector3, radius := 0.042) -> MeshInstance3D:
+	var mi := MeshInstance3D.new()
+	mi.name = "Eye"
+	var mesh := SphereMesh.new()
+	mesh.radius = radius
+	mesh.height = radius * 2.0
+	mesh.radial_segments = 8
+	mesh.rings = 4
+	mi.mesh = mesh
+	mi.material_override = Placeholders.glow(EYE_COLOR, 2.2)
+	mi.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	mi.position = pos
+	return mi
+
+
+## Faint red light just in front of the eyes: tints the face and floor so a
+## zombie still reads in the dark when it faces away from the camera.
+static func eye_glow(pos: Vector3) -> OmniLight3D:
+	var l := OmniLight3D.new()
+	l.name = "EyeGlow"
+	l.light_color = EYE_COLOR
+	l.light_energy = 0.35
+	l.omni_range = 0.75
+	l.light_volumetric_fog_energy = 0.0
+	l.position = pos + Vector3(0.12, 0.0, 0.0)
+	return l
 
 
 static func _apply_tint(id: String, model: Node, tint: Color) -> void:

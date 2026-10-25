@@ -254,6 +254,11 @@ func _die(dir: Vector3) -> void:
 	var t := create_tween()
 	t.tween_property(_model, "rotation:x", deg_to_rad(85.0), 0.45).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
 	t.parallel().tween_property(self, "global_position", global_position + dir * 0.6, 0.45)
+	for e in _model.find_children("Eye", "MeshInstance3D", true, false):
+		var em := (e as MeshInstance3D).material_override as StandardMaterial3D
+		create_tween().tween_property(em, "emission_energy_multiplier", 0.0, 0.8)
+	for g in _model.find_children("EyeGlow", "OmniLight3D", true, false):
+		create_tween().tween_property(g, "light_energy", 0.0, 0.8)
 	t.tween_interval(3.0)
 	t.tween_property(_model, "position:y", -0.8, 1.5)
 	t.tween_callback(queue_free)
