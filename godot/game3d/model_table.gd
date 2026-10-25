@@ -57,7 +57,7 @@ static func meshes_of(model: Node) -> Array[MeshInstance3D]:
 
 ## Plays the first animation whose name contains one of `names`, if the
 ## model has an AnimationPlayer (real models). Placeholders have none.
-static func play_anim(model: Node, names: Array[String]) -> bool:
+static func play_anim(model: Node, names: Array) -> bool:
 	var players := model.find_children("*", "AnimationPlayer", true, false)
 	if players.is_empty():
 		return false

@@ -318,11 +318,6 @@ func _door_frame(along_x: bool, line: float, from: float, to: float) -> void:
 
 
 func _lamp(pos_xz: Vector2, energy := 1.6, light_range := 8.0, color := Color("#FFD9A0"), shadow := false) -> OmniLight3D:
-	var shade := CylinderMesh.new()
-	shade.top_radius = 0.12
-	shade.bottom_radius = 0.26
-	shade.height = 0.22
-	_deco(shade, _mats.steel, Vector3(pos_xz.x, WALL_H + 0.15, pos_xz.y))
 	var bulb := SphereMesh.new()
 	bulb.radius = 0.12
 	bulb.height = 0.24
@@ -331,7 +326,7 @@ func _lamp(pos_xz: Vector2, energy := 1.6, light_range := 8.0, color := Color("#
 	var light := OmniLight3D.new()
 	light.position = Vector3(pos_xz.x, WALL_H - 0.1, pos_xz.y)
 	light.light_color = color
-	light.light_energy = energy * 2.6
+	light.light_energy = energy * 2.0
 	light.omni_range = light_range
 	light.omni_attenuation = 0.9
 	light.shadow_enabled = shadow
