@@ -2,7 +2,7 @@ extends RefCounted
 ## Procedural walk cycle for placeholder humanoids: swings the "LegL",
 ## "LegR", "ArmL", "ArmR" pivots built by placeholder_models.gd and bobs
 ## "Torso". Real models without those nodes are left alone (they use their
-## own AnimationPlayer via ModelTable.play_anim).
+## own AnimationPlayer via ModelTable.play_anim, or get a simple bob).
 
 const PARTS := ["LegL", "LegR", "ArmL", "ArmR", "Torso"]
 
@@ -11,6 +11,7 @@ const PARTS := ["LegL", "LegR", "ArmL", "ArmR", "Torso"]
 static func walk(model: Node3D, phase: float, amount: float, arm_swing := true) -> void:
 	var parts := _parts(model)
 	if parts.is_empty():
+		_bob(model, phase, amount)
 		return
 	var swing := sin(phase) * 0.7 * amount
 	_rot(parts, "LegL", swing)
@@ -21,6 +22,16 @@ static func walk(model: Node3D, phase: float, amount: float, arm_swing := true) 
 	if parts.has("Torso"):
 		var torso: Node3D = parts.Torso
 		torso.position.y = float(torso.get_meta("base_y")) + absf(cos(phase)) * 0.05 * amount
+
+
+## Rigid models with no limb pivots (e.g. an image-to-3D mesh): a footstep
+## bob and side-to-side sway on the model itself so it doesn't slide.
+static func _bob(model: Node3D, phase: float, amount: float) -> void:
+	# `model` is the ModelTable pivot (forward = -Z); the mesh under it may
+	# carry a yaw fix, so animate the pivot, keeping its facing (rotation.y).
+	model.position.y = absf(sin(phase)) * 0.07 * amount
+	model.rotation.z = sin(phase) * 0.07 * amount
+	model.rotation.x = -0.08 * amount # lean into the run
 
 
 static func _parts(model: Node3D) -> Dictionary:

@@ -12,7 +12,7 @@ extends RefCounted
 const Placeholders := preload("res://game3d/placeholder_models.gd")
 
 const MODELS := {
-	"player": {"path": "", "scale": 1.0, "yaw": 0.0},
+	"player": {"path": "res://assets/3d/characters/player.glb", "scale": 1.0, "yaw": 180.0},
 	"zombie_shambler": {"path": "", "scale": 1.0, "yaw": 0.0},
 	"zombie_runner": {"path": "", "scale": 1.0, "yaw": 0.0},
 	"supply_crate": {"path": "res://assets/3d/supply_crate.glb", "scale": 1.0, "yaw": 0.0},
