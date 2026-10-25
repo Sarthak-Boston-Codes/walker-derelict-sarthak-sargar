@@ -30,6 +30,7 @@ var hud: CanvasLayer
 var state := State.PLAYING
 var has_keycard := false
 var elapsed := 0.0
+var _dust: CPUParticles3D
 
 
 func _ready() -> void:
@@ -58,6 +59,9 @@ func _ready() -> void:
 	camera.current = true
 	player.camera = camera
 	player.aim_point = level.player_start + Vector3(0, 0, -4)
+	_dust = Fx.make_dust_field()
+	add_child(_dust)
+	_dust.global_position = level.player_start + Vector3.UP * 1.3
 
 	var actors := Node3D.new()
 	actors.name = "Zombies"
@@ -136,6 +140,9 @@ func _on_door_opened() -> void:
 func _process(delta: float) -> void:
 	if state == State.PLAYING:
 		elapsed += delta
+	# Motes are emitted in world space, so moving the emitter only
+	# changes where new ones appear.
+	_dust.global_position = player.global_position + Vector3.UP * 1.3
 	hud.set_wave(waves.wave, waves.in_break, waves.remaining(), waves.kills)
 
 

@@ -27,6 +27,7 @@ const Barrel := preload("res://game3d/barrel.gd")
 const Pickup := preload("res://game3d/pickup.gd")
 const LockedDoor := preload("res://game3d/locked_door.gd")
 const Extraction := preload("res://game3d/extraction.gd")
+const LightAnimator := preload("res://game3d/light_animator.gd")
 
 const WALL_H := 2.4
 const WALL_T := 0.6
@@ -68,6 +69,7 @@ func _ready() -> void:
 	_build_control_room()
 	_place_props()
 	_place_spawns()
+	add_child(LightAnimator.new())
 	nav_region.bake_navigation_mesh(false)
 
 

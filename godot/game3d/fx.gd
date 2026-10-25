@@ -175,5 +175,34 @@ static func decal(pos: Vector3, size: float, scorch := false) -> void:
 			old.queue_free()
 
 
+## Slow drifting dust motes around `follow`. They're lit, not glowing, so
+## they only show up where a light (usually the flashlight) hits them.
+static func make_dust_field() -> CPUParticles3D:
+	var p := CPUParticles3D.new()
+	p.amount = 260
+	p.lifetime = 9.0
+	p.preprocess = 9.0
+	p.emission_shape = CPUParticles3D.EMISSION_SHAPE_BOX
+	p.emission_box_extents = Vector3(13, 1.2, 10)
+	p.direction = Vector3(1, 0.1, 0.3)
+	p.spread = 180.0
+	p.initial_velocity_min = 0.05
+	p.initial_velocity_max = 0.25
+	p.gravity = Vector3(0, -0.015, 0)
+	p.scale_amount_min = 0.4
+	p.scale_amount_max = 1.0
+	var mesh := QuadMesh.new()
+	mesh.size = Vector2(0.035, 0.035)
+	var m := StandardMaterial3D.new()
+	m.billboard_mode = BaseMaterial3D.BILLBOARD_PARTICLES
+	m.transparency = BaseMaterial3D.TRANSPARENCY_ALPHA
+	m.albedo_color = Color(0.9, 0.86, 0.78, 0.55)
+	m.roughness = 1.0
+	mesh.material = m
+	p.mesh = mesh
+	p.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	return p
+
+
 static func clear() -> void:
 	_decals.clear()

@@ -34,3 +34,5 @@ Branch `a2-redo-3d`. Summary goes here at the end.
 28. **Music after death:** I use `Sound.fade_out_music()` and restart the track on restart/menu. That reaches into `Sound._music`, a private field of the shared autoload, because I didn't want to edit the 2D slice's audio director.
 29. **Crosshair:** a generated ring-and-dot cursor in flashlight yellow while playing; the normal arrow in menus.
 30. **No pipes over walkways.** From above, an overhead pipe hid the player completely.
+31. **Light animation lives in one node** (`light_animator.gd`), not a script per light. Lamps tagged `flicker` stutter and black out at random, `dead` lamps sputter on for a frame or two, and emergency lights pulse red on staggered phases. Each bulb's emission dims with its light, so you can see which lamp is failing.
+32. **Dust motes are shaded, not glowing**: 260 tiny world-space billboards around the player that only show where light hits them, so they sparkle in the flashlight cone. Fog is volumetric (set up in step 1), so the beam and the lamps get visible shafts.
