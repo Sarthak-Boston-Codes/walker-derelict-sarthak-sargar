@@ -351,6 +351,7 @@ func show_end(won: bool, stats: String) -> void:
 	_end_title.text = "EXTRACTED" if won else "YOU DIED"
 	_end_title.add_theme_color_override("font_color", Color("#3BE07A") if won else UI.DANGER)
 	_end_stats.text = stats
+	_objective.text = ""
 	_end.visible = true
 	_end.modulate.a = 0.0
 	create_tween().tween_property(_end, "modulate:a", 1.0, 0.6)

@@ -1,6 +1,55 @@
 # REDO-LOG — Assignment 2 redo as a top-down 3D shooter
 
-Branch `a2-redo-3d`. Summary goes here at the end.
+Branch `a2-redo-3d`, tagged `a2-redo`.
+
+## Needs you (nothing is blocked)
+
+1. **A better textured player model (optional).** The free image-to-3D quota ran out after the shape step, so `assets/3d/characters/player.glb` has a real Hunyuan3D-2 shape but a texture I projected from your drawing. It reads fine from the top-down camera, but the sides are stretched camo. To redo it, either:
+   - make a free Hugging Face read token (huggingface.co/settings/tokens), set it as `HF_TOKEN`, and re-run `tencent/Hunyuan3D-2` `/generation_all`; or
+   - wait about 24 h for the anonymous quota to reset; or
+   - use the TRELLIS / Hunyuan3D-2 Space in a browser.
+
+   Save the result over `player.glb`. A side or 3/4 view of the character works better as input than the overhead art. Leave `yaw` at 180 if the new model also faces +Z.
+2. **Play it and judge the feel.** I tested headless and with screenshots, so I've never heard the audio mix or aimed with a real mouse. Tuning knobs are all named constants at the top of `player.gd`, `zombie.gd`, `waves.gd`, `barrel.gd` and `camera_rig.gd`.
+3. **`godot/scenes/showcase_3d.tscn` has your uncommitted editor change from before this session.** I never staged it; it's still sitting in your working tree.
+
+## What was built
+
+A top-down 3D zombie shooter that is now the project's main scene (`res://game3d/menu.tscn`). Everything is real 3D with real lights, and all of it lives in `godot/game3d/`. The 2D slice is untouched and still runs from `scenes/main.tscn`.
+
+- **Level:** four connected derelict factory rooms built from primitives at runtime: Loading Bay, Assembly Hall, Boiler Room, Control Room. Conveyors, presses, shipping containers, boilers, consoles, hazard-striped doorways, procedural concrete floor. The A3 crate, barrel and medkit models are placed as interactive props.
+- **Player:** WASD + mouse aim + hold-to-fire hitscan gun. Shadow-casting flashlight that follows the aim, muzzle-flash light, tracers. 15-round mag, R to reload, auto-reload on empty. Health with hurt knockback and a red vignette. Smooth camera follow with look-ahead and trauma-based screen shake.
+- **Zombies:** shamblers (slow, tough) and runners (fast, fragile). They chase on the navmesh with avoidance, with a windup growl before the swipe, a white hit flash, stagger, and topple-and-sink deaths with blood decals. Endless waves trickle in from spawn points away from the player. Zombies sidestep when wedged on props.
+- **Interactions:**
+  - medkits heal 40
+  - crates splinter after 2 shots and drop ammo
+  - rusted barrels are physics bodies that bullets, the player and zombies knock over
+  - red explosive barrels blow up after 2 shots, with line-of-sight blast damage, knockback, scorch decals and chain reactions
+  - 30% of kills drop a few rounds
+- **Flow:**
+  - the main menu orbits the real level
+  - pause menu with music/SFX toggles
+  - HUD: health, ammo + reload bar, wave / infected left / kills, objective line, an objective marker with an edge arrow and distance, keycard indicator, toasts
+  - death and win screens with stats and Restart
+  - **win:** find the keycard in the Boiler Room → open the security door (which triggers an ambush) → hold the extraction lift for 4 s
+- **Atmosphere:** dark ambient, volumetric fog, flickering and dying lamps, pulsing red emergency lights, dust motes lit by the flashlight, blood/spark/dust/explosion particles, glow, SSAO.
+- **Audio:** reuses the generated SFX and music through the existing `Assets`/`Sound` autoloads, pitch-shifted for new events, with distance falloff. Music and SFX mutes stay separate; pause muffles the music.
+- **Model swap table:** `game3d/model_table.gd`. One line per model; empty path = generated placeholder.
+- **Tests:** `tests/game3d_smoke_test.tscn` (27 checks covering every system end to end), `tests/game3d_soak_test.tscn` (a bot plays for 4 min), and `tests/game3d_shot.tscn` (windowed screenshot harness). Last results: smoke PASS; the soak bot reached wave 4 with 40 kills and no script errors; 137 FPS with 14 zombies in a window on the RTX 4050.
+
+## Controls
+
+| Key | Action |
+|---|---|
+| WASD | Move |
+| Mouse | Aim (the flashlight follows) |
+| Left click (hold) | Fire |
+| R | Reload |
+| F | Flashlight on/off |
+| Esc | Pause |
+| M / N | Mute music / mute SFX |
+
+Run headless tests: `godot --headless --path godot res://tests/game3d_smoke_test.tscn` (exit code = failures).
 
 ## Decision log
 

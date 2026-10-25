@@ -1,7 +1,7 @@
 extends Node
 ## Screenshot harness for the 3D game (needs a window, not --headless):
 ##
-##   godot --path godot res://tests/game3d_shot.tscn -- --shot=out.png [--frames=90] [--cam=x,y,z] [--look=x,y,z] [--aim=x,z] [--pos=x,z] [--zombies=N] [--boom=frames] [--scene=res://...] [--fps]
+##   godot --path godot res://tests/game3d_shot.tscn -- --shot=out.png [--frames=90] [--cam=x,y,z] [--look=x,y,z] [--aim=x,z] [--pos=x,z] [--zombies=N] [--boom=frames] [--scene=res://...] [--fps] [--end=dead|won]
 ##
 ## Loads game3d/game.tscn, waits, optionally moves the camera, saves a PNG.
 
@@ -50,6 +50,13 @@ func _ready() -> void:
 		best.explode()
 		for i in int(_args.boom):
 			await get_tree().process_frame
+	if _args.get("end", "") == "dead":
+		game.player.take_damage(999, game.player.global_position + Vector3.RIGHT)
+		await get_tree().create_timer(2.6).timeout
+	elif _args.get("end", "") == "won":
+		game.player.global_position = game.level.extraction.global_position
+		game._on_extracted()
+		await get_tree().create_timer(3.0).timeout
 	if _args.has("fps"):
 		print("fps %d  process %.1f ms  physics %.1f ms  draw calls %d" % [Engine.get_frames_per_second(),
 			Performance.get_monitor(Performance.TIME_PROCESS) * 1000.0,
