@@ -27,3 +27,10 @@ Branch `a2-redo-3d`. Summary goes here at the end.
 21. **Explosive barrel:** 2 hits. Blast radius 5 m with a line-of-sight check (walls block it). It deals 10 to zombies (kills any type), 10–55 to the player by distance, breaks crates, flings barrels, and chains into other explosive barrels after 0.18 s. A damaged barrel's hazard light stutters as a warning.
 22. **Pickups stay put if useless** (medkit at full health, ammo at cap), so they're never wasted. Medkit heals 40.
 23. **Bug found by screenshot:** `CPUParticles3D` defaults to `emitting = true`, so every burst fired at the world origin before being moved. Particles are now positioned before `add_child` and started after.
+24. **Win condition:** keycard (on a desk in the far corner of the Boiler Room) → security door on the Boiler Room's west wall → stand on the freight lift for 4 s. Stepping off resets the countdown. Opening the door rebakes the navmesh, unlocks Control Room spawns, and triggers an 8-zombie ambush there, so the finale is a fight, not a walk.
+25. **The door sinks into the floor** instead of sliding, so nothing has to clip into the walls.
+26. **Pause/mute keys are read by the HUD** (`PROCESS_MODE_ALWAYS`), because a paused game root never sees Esc.
+27. **Main menu renders the real level** under a slow orbit camera, so there's no separate art to keep in sync. Music/SFX toggles are on the menu, in pause, and on M/N everywhere.
+28. **Music after death:** I use `Sound.fade_out_music()` and restart the track on restart/menu. That reaches into `Sound._music`, a private field of the shared autoload, because I didn't want to edit the 2D slice's audio director.
+29. **Crosshair:** a generated ring-and-dot cursor in flashlight yellow while playing; the normal arrow in menus.
+30. **No pipes over walkways.** From above, an overhead pipe hid the player completely.

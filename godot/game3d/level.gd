@@ -25,6 +25,8 @@ const FloorShader := preload("res://game3d/shaders/concrete_floor.gdshader")
 const Crate := preload("res://game3d/crate.gd")
 const Barrel := preload("res://game3d/barrel.gd")
 const Pickup := preload("res://game3d/pickup.gd")
+const LockedDoor := preload("res://game3d/locked_door.gd")
+const Extraction := preload("res://game3d/extraction.gd")
 
 const WALL_H := 2.4
 const WALL_T := 0.6
@@ -477,8 +479,11 @@ func _build_boiler_room() -> void:
 		gauge.radius = 0.12
 		gauge.height = 0.24
 		_deco(gauge, _mats.screen_red, Vector3(c.x, 1.5, c.y + 1.42))
-	_pipe(Vector3(15.5, 2.3, -5.5), Vector3(26.5, 2.3, -5.5), 0.18)
-	_pipe(Vector3(21.0, 2.4, -5.5), Vector3(21.0, 2.4, -13.5), 0.16)
+	# Feed pipes run from each boiler to the nearest wall, never across a
+	# walkway (from the top-down camera a pipe overhead hides the player).
+	_pipe(Vector3(15.5, 2.2, -4.0), Vector3(15.5, 2.2, -0.3), 0.18)
+	_pipe(Vector3(26.5, 2.2, -4.0), Vector3(26.5, 2.2, -0.3), 0.18)
+	_pipe(Vector3(21.0, 2.2, -15.0), Vector3(21.0, 2.2, -17.7), 0.18)
 	_pipe(Vector3(10.4, 2.0, -17.5), Vector3(31.6, 2.0, -17.5), 0.16, _mats.steel)
 	# Keycard desk in the far north-east corner.
 	_block(Vector2(29.6, -16.6), Vector3(2.2, 0.85, 1.0), _mats.steel)
@@ -508,6 +513,14 @@ func _build_control_room() -> void:
 			led.size = Vector3(1.4, 0.04, 0.02)
 			_deco(led, _mats.screen if y != 1.2 else _mats.screen_red, Vector3(x, y, -2.48))
 	_lamp(Vector2(-2, -9), 1.3, 9.0)
+	locked_door = LockedDoor.new()
+	locked_door.name = "LockedDoor"
+	nav_region.add_child(locked_door)
+	locked_door.position = Vector3(10, 0, -9)
+	extraction = Extraction.new()
+	extraction.name = "Extraction"
+	add_child(extraction)
+	extraction.position = Vector3(-5, 0, -11)
 	_lamp(Vector2(-7, -4), 1.0, 6.0).set_meta("flicker", true)
 	_emergency(Vector3(9.4, 2.1, -11.4))
 

@@ -1,7 +1,7 @@
 extends Node
 ## Screenshot harness for the 3D game (needs a window, not --headless):
 ##
-##   godot --path godot res://tests/game3d_shot.tscn -- --shot=out.png [--frames=90] [--cam=x,y,z] [--look=x,y,z] [--aim=x,z] [--pos=x,z] [--zombies=N] [--boom=frames]
+##   godot --path godot res://tests/game3d_shot.tscn -- --shot=out.png [--frames=90] [--cam=x,y,z] [--look=x,y,z] [--aim=x,z] [--pos=x,z] [--zombies=N] [--boom=frames] [--scene=res://...]
 ##
 ## Loads game3d/game.tscn, waits, optionally moves the camera, saves a PNG.
 
@@ -12,7 +12,7 @@ func _ready() -> void:
 	for a in OS.get_cmdline_user_args():
 		var kv := a.trim_prefix("--").split("=", true, 1)
 		_args[kv[0]] = kv[1] if kv.size() > 1 else ""
-	var game: Node = load("res://game3d/game.tscn").instantiate()
+	var game: Node = load(str(_args.get("scene", "res://game3d/game.tscn"))).instantiate()
 	add_child(game)
 	if _args.has("aim"):
 		var a: PackedStringArray = str(_args.aim).split(",")

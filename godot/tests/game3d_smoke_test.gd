@@ -47,14 +47,28 @@ func _run() -> void:
 
 	await _extra_checks()
 
-	# Damage and death last.
+	# Damage and death last, on a fresh run.
+	game.queue_free()
+	await frames(2)
+	game = load("res://game3d/game.tscn").instantiate()
+	add_child(game)
+	await frames(10)
+	p = game.player
+	game.waves.active = false
 	p.hp = p.MAX_HP
 	p.take_damage(30, p.global_position + Vector3.RIGHT)
 	check(p.hp == p.MAX_HP - 30, "taking damage lowers health")
 	await frames(30)
 	p.take_damage(999, p.global_position + Vector3.RIGHT)
 	check(not p.alive, "lethal damage kills the player")
-	await frames(30)
+	await get_tree().create_timer(2.0).timeout
+	check(game.state == game.State.DEAD and game.hud.is_end_shown(), "death screen appears")
+	# Menu scene builds without errors.
+	var menu: Node = load("res://game3d/menu.tscn").instantiate()
+	add_child(menu)
+	await frames(10)
+	menu.queue_free()
+	await frames(2)
 
 	print("\n%s: %d failure(s)" % ["PASS" if _failures == 0 else "FAIL", _failures])
 	game.queue_free()
@@ -62,10 +76,49 @@ func _run() -> void:
 	get_tree().quit(_failures)
 
 
+func _flow_checks() -> void:
+	var p: CharacterBody3D = game.player
+	var lvl: Node3D = game.level
+	game.waves.active = false
+	# Pause toggles the tree and the overlay.
+	game.set_paused(true)
+	check(get_tree().paused and game.hud._pause.visible, "pause freezes the game and shows the menu")
+	game.set_paused(false)
+	check(not get_tree().paused and not game.hud._pause.visible, "resume unfreezes")
+	# Door refuses without the keycard.
+	p.global_position = lvl.locked_door.global_position + Vector3(1.5, 0, 0)
+	await frames(5)
+	check(not lvl.locked_door.is_open, "security door stays shut without the keycard")
+	# Keycard -> door opens -> nav rebakes -> ambush in the control room.
+	p.global_position = lvl.keycard.global_position * Vector3(1, 0, 1) + Vector3(0, 0, 0.9)
+	await frames(15)
+	check(game.has_keycard and game.hud._key_label.visible, "walking onto the keycard picks it up")
+	var zombies0: int = game.waves.alive_count()
+	p.global_position = lvl.locked_door.global_position + Vector3(1.5, 0, 0)
+	await get_tree().create_timer(2.5).timeout
+	check(lvl.locked_door.is_open and lvl.locked_door.collision_layer == 0, "door opens with the keycard")
+	check(game.waves.alive_count() >= zombies0 + game.AMBUSH_SIZE, "opening the door triggers the ambush")
+	check(not lvl.locked_rooms.has("Control Room"), "control room unlocked for spawns")
+	# Zombies can now path through the doorway: a path from boiler to lift exists.
+	await frames(30)
+	var map: RID = game.get_world_3d().navigation_map
+	var path := NavigationServer3D.map_get_path(map, Vector3(14, 0, -9), lvl.extraction.global_position, true)
+	check(path.size() > 1 and path[path.size() - 1].distance_to(lvl.extraction.global_position) < 1.0, "navmesh routes through the opened door")
+	for z in get_tree().get_nodes_in_group("zombies"):
+		z.queue_free()
+	await frames(2)
+	# Extraction: standing on the lift long enough wins.
+	p.hp = p.MAX_HP
+	p.global_position = lvl.extraction.global_position + Vector3(0, 0.05, 0)
+	await get_tree().create_timer(lvl.extraction.HOLD_TIME + 2.6).timeout
+	check(game.state == game.State.WON and game.hud.is_end_shown(), "holding the lift extracts and shows the win screen")
+
+
 ## Later steps add their checks here.
 func _extra_checks() -> void:
 	await _zombie_checks()
 	await _prop_checks()
+	await _flow_checks()
 
 
 func _prop_checks() -> void:
