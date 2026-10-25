@@ -8,13 +8,15 @@ extends RefCounted
 ##
 ## "yaw" is degrees around Y applied to the model so it faces -Z (Godot
 ## forward). Models are expected to have their origin at their feet/base.
+## Optional "tint" multiplies every surface's albedo colour, so two IDs can
+## share one mesh and still read as different (shambler vs runner).
 
 const Placeholders := preload("res://game3d/placeholder_models.gd")
 
 const MODELS := {
 	"player": {"path": "res://assets/3d/characters/player.glb", "scale": 1.0, "yaw": 180.0},
-	"zombie_shambler": {"path": "", "scale": 1.0, "yaw": 0.0},
-	"zombie_runner": {"path": "", "scale": 1.0, "yaw": 0.0},
+	"zombie_shambler": {"path": "res://assets/3d/characters/zombie.glb", "scale": 1.0, "yaw": 90.0},
+	"zombie_runner": {"path": "res://assets/3d/characters/zombie.glb", "scale": 0.9, "yaw": 90.0, "tint": Color(1.0, 0.5, 0.42)},
 	"supply_crate": {"path": "res://assets/3d/supply_crate.glb", "scale": 1.0, "yaw": 0.0},
 	"rusted_barrel": {"path": "res://assets/3d/rusted_barrel.glb", "scale": 1.0, "yaw": 0.0},
 	"explosive_barrel": {"path": "", "scale": 1.0, "yaw": 0.0},
@@ -24,6 +26,8 @@ const MODELS := {
 }
 
 static var _scenes := {}
+## Tinted copies of materials, shared by every instance of the same ID.
+static var _tinted := {}
 
 
 ## Returns a fresh "Model" pivot node holding the model for `id`.
@@ -37,12 +41,28 @@ static func make(id: String) -> Node3D:
 		model = (_scenes[id] as PackedScene).instantiate()
 	else:
 		model = Placeholders.build(id)
+	if spec.has("tint"):
+		_apply_tint(id, model, spec.tint)
 	model.scale = Vector3.ONE * float(spec.scale)
 	model.rotation.y = deg_to_rad(float(spec.yaw))
 	var pivot := Node3D.new()
 	pivot.name = "Model"
 	pivot.add_child(model)
 	return pivot
+
+
+static func _apply_tint(id: String, model: Node, tint: Color) -> void:
+	for mi in meshes_of(model):
+		for i in mi.mesh.get_surface_count():
+			var base := mi.get_active_material(i) as BaseMaterial3D
+			if base == null:
+				continue
+			var key := "%s/%d" % [id, base.get_instance_id()]
+			if not _tinted.has(key):
+				var m := base.duplicate() as BaseMaterial3D
+				m.albedo_color *= tint
+				_tinted[key] = m
+			mi.set_surface_override_material(i, _tinted[key])
 
 
 ## All mesh instances under a model, for hit flashes and tinting.

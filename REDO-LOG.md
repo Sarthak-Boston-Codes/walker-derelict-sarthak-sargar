@@ -4,12 +4,12 @@ Branch `a2-redo-3d`, tagged `a2-redo`.
 
 ## Needs you (nothing is blocked)
 
-1. **A better textured player model (optional).** The free image-to-3D quota ran out after the shape step, so `assets/3d/characters/player.glb` has a real Hunyuan3D-2 shape but a texture I projected from your drawing. It reads fine from the top-down camera, but the sides are stretched camo. To redo it, either:
+1. **Better textured character models (optional).** Both `assets/3d/characters/player.glb` and `zombie.glb` have a real Hunyuan3D-2 shape but a texture I projected from your drawing, because the free GPU quota for texturing was used up both times. They read fine from the top-down camera, but the sides and back are stretched. To redo either one:
    - make a free Hugging Face read token (huggingface.co/settings/tokens), set it as `HF_TOKEN`, and re-run `tencent/Hunyuan3D-2` `/generation_all`; or
    - wait about 24 h for the anonymous quota to reset; or
    - use the TRELLIS / Hunyuan3D-2 Space in a browser.
 
-   Save the result over `player.glb`. A side or 3/4 view of the character works better as input than the overhead art. Leave `yaw` at 180 if the new model also faces +Z.
+   Save the result over the `.glb`. A side or 3/4 view works better as input than overhead art. The `yaw` in `model_table.gd` must turn the model to face −Z: the current player faces +Z (yaw 180), the current zombie faces +X (yaw 90). Inputs: `design/character/keyed/char_aim.png`, `design/zombie/keyed/zombie.png`.
 2. **Play it and judge the feel.** I tested headless and with screenshots, so I've never heard the audio mix or aimed with a real mouse. Tuning knobs are all named constants at the top of `player.gd`, `zombie.gd`, `waves.gd`, `barrel.gd` and `camera_rig.gd`.
 3. **`godot/scenes/showcase_3d.tscn` has your uncommitted editor change from before this session.** I never staged it; it's still sitting in your working tree.
 
@@ -34,7 +34,7 @@ A top-down 3D zombie shooter that is now the project's main scene (`res://game3d
   - **win:** find the keycard in the Boiler Room → open the security door (which triggers an ambush) → hold the extraction lift for 4 s
 - **Atmosphere:** dark ambient, volumetric fog, flickering and dying lamps, pulsing red emergency lights, dust motes lit by the flashlight, blood/spark/dust/explosion particles, glow, SSAO.
 - **Audio:** reuses the generated SFX and music through the existing `Assets`/`Sound` autoloads, pitch-shifted for new events, with distance falloff. Music and SFX mutes stay separate; pause muffles the music.
-- **Model swap table:** `game3d/model_table.gd`. One line per model; empty path = generated placeholder.
+- **Model swap table:** `game3d/model_table.gd`. One line per model; empty path = generated placeholder. The player and both zombie types now use image-to-3D models made from your art. The runner shares the zombie mesh with a red-brown tint and 0.9 scale.
 - **Tests:** `tests/game3d_smoke_test.tscn` (27 checks covering every system end to end), `tests/game3d_soak_test.tscn` (a bot plays for 4 min), and `tests/game3d_shot.tscn` (windowed screenshot harness). Last results: smoke PASS; the soak bot reached wave 4 with 40 kills and no script errors; 137 FPS with 14 zombies in a window on the RTX 4050.
 
 ## Controls
@@ -89,7 +89,19 @@ Run headless tests: `godot --headless --path godot res://tests/game3d_smoke_test
 34. **Distance falloff without AudioStreamPlayer3D:** world events use `Sfx.play_at()`, which drops 0.55 dB per metre from the player and is silent past 32 m, so a growl in another room doesn't sound like it's next to you. Shared voices, no per-zombie players.
 35. **Pause muffles the music** with a temporary low-pass on the Music bus, added at runtime. The 2D slice's `default_bus_layout.tres` is untouched. Music and SFX mutes stay separate (M / N, and buttons in the menu and pause screen).
 36. **Image-to-3D:** `tencent/Hunyuan3D-2` (`/shape_generation`, anonymous) made the shape from `design/character/keyed/char_aim.png`. `char_idle` has a flashlight cone painted in, so I didn't use it. Every texturing endpoint (Hunyuan3D-2 `/generation_all`, 2.1, TRELLIS, stable-fast-3d, TripoSG) failed on the anonymous ZeroGPU quota. I cleaned and decimated the mesh locally (1.04M → 20k triangles, removed a floor sheet the generator added) and textured it by projecting the input image front-to-back. Result: `assets/3d/characters/player.glb`, 1.8 m, feet at the origin, facing +Z, so the table line uses yaw 180.
-37. **It's now the player model**, with a procedural footstep bob/sway because it has no rig. Back to the placeholder = set its path to `""` in `model_table.gd`. Zombies stay placeholders; there's no zombie art to convert.
+37. **It's now the player model**, with a procedural footstep bob/sway because it has no rig. Back to the placeholder = set its path to `""` in `model_table.gd`. (Zombies: see 41.)
 38. **Soak test with a bot** (`tests/game3d_soak_test.tscn`): it plays 4 minutes of game time at 2× speed. It aims at the nearest visible zombie and forages for crates/pickups on the navmesh between fights. It found two real bugs: (a) a zombie wedged behind a barrel stalled a wave forever, (b) ammo ran dry in wave 2.
 39. **Fixes from the soak:** zombies push props hard enough to bulldoze barrels (7 per physics frame), and a chasing zombie that moves less than 0.4 m in 1.5 s sidesteps for 0.7 s and repaths. Balance: shambler 5 → 4 HP, 60 spare rounds at start (was 45), 30% chance a kill drops 5–9 rounds. Bot results after the fixes: waves 4, 4 and 8 (up to 115 kills) at 71–87% accuracy, no script errors.
 40. **End screen shows accuracy** (zombie hits / shots fired).
+41. **Zombie model from your Gemini art.** Gemini prompt: *"Full-body game character: an infected former lab test subject in torn grey scrubs, pale sickly green-grey skin, hunched shambling stance, arms reaching forward, three-quarter front view, simple clean shapes, flat colors, dark outline, on a solid flat bright green background"*. Original: `design/zombie/zombie_original.jpg`. Keyed: `design/zombie/keyed/zombie.png`.
+42. **Keying:** `python tools/chroma_key.py design/zombie/zombie_original.jpg design/zombie/keyed/zombie.png --low 0.2 --high 0.8`. The defaults (0.10/0.97) left the green-grey skin and scrubs only about 88% opaque, because the tool reads green-ish pixels as partly background, and a few JPEG-noise pixels reached the image edges. With 0.2/0.8 the body is fully opaque and the bounds fit the figure. The despill step pulls the skin slightly toward grey.
+43. **Generators tried, in order (all anonymous):**
+    - `tencent/Hunyuan3D-2` `/generation_all` (textured): ZeroGPU quota exceeded (135 s needed, 127 s left, resets in ~23 h).
+    - `trellis-community/TRELLIS` `/generate_and_extract_glb`: quota exceeded (120 s needed, 127 s left; it still refuses).
+    - `tencent/Hunyuan3D-2mini-Turbo`: its API returns HTTP 500.
+    - `stabilityai/stable-fast-3d` `/run_button`: generic error (almost certainly the same quota).
+
+    I checked the HF API: every running free image-to-3D Space (Unique3D, InstantMesh, TripoSG, LGM, TRELLIS.2, Hi3DGen, Hunyuan3D-2.1/2mv…) is on ZeroGPU and shares that one quota. TripoSR and CRM are down. So I used **the same fallback as the player**: `tencent/Hunyuan3D-2` `/shape_generation` worked (about 10 s, 355k faces). I cleaned it locally: removed 140k zero-area faces, kept the main body (no floor sheet this time), decimated to 12k triangles, and textured it by projecting your drawing front-to-back. **The texture is my projection, not AI-generated.**
+44. **Zombie model details:** `assets/3d/characters/zombie.glb`, 776 KB, 12k triangles (lighter than the player's 20k because up to 16 can be on screen), 1.8 m tall. Hunyuan read the 3/4 drawing as a side-on hunched figure facing +X, so the table uses yaw 90. I re-centred the pivot on the hips, not the bounding box, so the reaching arms don't push the collision capsule off the body.
+45. **Telling the types apart:** both zombie types use `zombie.glb`. I added an optional `tint` field to the table; the runner gets `Color(1.0, 0.5, 0.42)` (feverish red-brown skin) and 0.9 scale. Combined with its speed it reads as a different creature from the grey shambler at a glance.
+46. **Attack tell on a rigless mesh:** there are no arm pivots to swing, so the windup rears the body back and the strike lunges it forward. The growl still plays. Trade-off: the placeholder zombies had glowing red eyes, which made them visible outside the flashlight; these don't. They're darker in unlit areas now, which suits the horror but is a tuning call for you.

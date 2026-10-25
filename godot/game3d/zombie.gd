@@ -189,11 +189,18 @@ func _face(dir: Vector3, delta: float) -> void:
 	_model.rotation.y = lerp_angle(_model.rotation.y, yaw, 1.0 - exp(-10.0 * delta))
 
 
+## Attack pose: raise (x > 0), strike (x < 0) or rest (0). Placeholders
+## swing their arm pivots; rigless real models rear back and lunge instead.
 func _arms(x: float) -> void:
+	var found := false
 	for arm in ["ArmL", "ArmR"]:
 		var n := _model.find_child(arm, true, false) as Node3D
 		if n:
+			found = true
 			n.create_tween().tween_property(n, "rotation:x", x, 0.12)
+	if not found and _model.get_child_count() > 0:
+		var body := _model.get_child(0) as Node3D
+		body.create_tween().tween_property(body, "position:z", x * (0.18 if x > 0.0 else 0.6), 0.12)
 
 
 func _push_bodies() -> void:
