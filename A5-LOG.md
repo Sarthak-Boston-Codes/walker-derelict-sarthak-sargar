@@ -23,3 +23,32 @@ Written by Claude Code while executing the kit's `A5-RUNBOOK.md`. Every entry is
 | trigger_count_test.tscn | 0 | `PASS: 0 failure(s)` | 7 `ok` rows, 0 FAIL |
 
 Known noise in two logs: `WARNING: N ObjectDB instances were leaked at exit` and `ERROR: 1 resources still in use at exit` (smoke, showcase). These predate A5 (showcase_3d_test.gd:41 comments on it) and contain neither SHADER ERROR nor SCRIPT ERROR, so the wrapper passes them.
+
+## Phase 1 — specification
+
+- CHANGE-BRIEF.md committed alone at 7917c8c. Every reference checked; all correct. Dated revision (28920da) adds three facts the brief did not cover: the label's theme drop shadow (`ui_theme.gd:21-23`), DANGER colour at `mag == 0` (`hud.gd:308`), HUD `PROCESS_MODE_ALWAYS` (`hud.gd:49`).
+
+## Phase 2 — CLAUDE.md
+
+- Draft committed unreviewed (a3b… see `git log -- CLAUDE.md`). Review found three defects, fixed in a separate commit: the test list included `game3d_shot.tscn`, which is a screenshot harness, not a test; it listed two tests that did not exist yet; it cited a "§0" the brief does not have.
+- Headless facts in CLAUDE.md come from a probe script run 2026-10-29 (not committed; kept in the session scratchpad).
+
+## Phase 3 — shader 1, driver, test, mutations
+
+- `godot/shaders/low_ammo.gdshader` copied unchanged from the kit (725d4b4). Reimport: no SHADER ERROR.
+- **D7 Wiring.** `hud.gd` gets `attach_low_ammo(player)` (creates the driver as a HUD child, gives `_ammo_label` a new ShaderMaterial); `game.gd` calls it right after `_connect_signals()`. These are the only edits to existing game files.
+- **D8 Driver priority.** The player fires in `_process` at priority 0; the driver runs at `process_priority = 100` so a shot shows the same frame; the test's sampler runs at 1000.
+- **D9 R7 is unreachable in play.** The state can only end through a reload (`RELOAD_TIME` 1.25 s, `player.gd:28`), longer than the 0.25 s fade-in. The test drives R7 by emitting the real `ammo_changed(6, reserve)` signal itself and labels that line `[signal emitted by test]`. Every other rule is reached with `Input.action_press("fire")` / `("reload")` through the game loop.
+- **D10 R4 setup.** To make a reload give exactly 6 rounds, the test sets `player.reserve = 1` before reloading (test setup writes state; the driver never does).
+- **D11 R9 weakness, stated.** The label's material never sets `warning_color`, so `get_shader_parameter("warning_color")` is `null` throughout and the shader default applies. The per-frame check proves nothing wrote it; the source-text check proves the default is #FF3030.
+- Results (35 PASS lines, 0 FAIL, exit 0 at each rate; logs `docs/evidence/low_ammo_test_{30,60,144}fps.log`):
+
+| fps | R1 fade-in (want 0.25) | R2 fade-out (want 0.50) | R4 extend | R5 real / game | R6 | R7 |
+|---|---|---|---|---|---|---|
+| 30 | 0.2667 | 0.5000 | from 0.533: 0.1333 (want 0.1167 ± 0.0333) | 0.5000 / 0.2500 | 0.2667 | 0.2667 (want 0.2667) |
+| 60 | 0.2500 | 0.5000 | from 0.533: 0.1167 | 0.5000 / 0.2500 | 0.2500 | 0.2667 |
+| 144 | 0.2500 | 0.5000 | from 0.542: 0.1181 (want 0.1146 ± 0.0069) | 0.5000 / 0.2500 | 0.2500 | 0.2500 |
+
+- Earlier suites after the wiring change, 60 fps: smoke PASS 0 failures, soak PASS, showcase PASS 0 failures, trigger_count PASS 0 failures (same as baseline).
+- **Mutation (a)** removed the `;` after `= 0.0` in the `low_ammo` declaration → `SHADER ERROR: Expected a ';'.`, 5 FAILs, exit 1 (`docs/evidence/mutation_a_semicolon.log`). Restored with `git checkout`.
+- **Mutation (b)** renamed `low_ammo` → `low_ammo_level` in the shader only (declaration and its use in the colour line, so it still compiles) → 4 FAILs, exit 1 (`docs/evidence/mutation_b_rename.log`). Note: every R1–R7 timing line still PASSED under this mutation, because `set_shader_parameter` silently stores an undeclared name and reads it back — failure case 4 is real, and only the uniform-list check catches it. Restored; rerun exit 0.
