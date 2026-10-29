@@ -76,3 +76,26 @@ Dated log of the design thinking, filled in daily. A rejected attempt is just as
 - Next: none.
 - Human / Claude / model: Human — the hand-edit itself was the student's. Claude measured the result, reverted it to the approved spec, re-exported and re-ran the check.
 - Still unresolved: none.
+
+## 2026-10-29 — Assignment 5: shaders and materials (log by Claude Code)
+
+Sources: the `a5` branch commits (`git log main..a5`), `A5-LOG.md` and Claude Code's own session. Authors: **student**, **Claude chat** (wrote the kit), **Claude Code** (ran it), **model** (Godot's own generated output). Nothing here records the student's opinions or struggles; the student's section is at the end and is theirs to fill.
+
+- **Wanted:** a state shown by a shader (low ammo), a textured material, the hint experiment, and Godot's generated shader for comparison. Spec in CHANGE-BRIEF.md. *Design decisions:* student, accepting Claude chat's defaults. *Spec text, shaders, predictions:* Claude chat.
+- **Asked:** the student asked Claude Code to extract the kit and run `A5-RUNBOOK.md` end to end without questions.
+- **Got / decided, in commit order:**
+  - Brief references all checked correct. Three facts it missed were added as a revision: the label's drop shadow, the mag-0 colour, and the HUD never pausing. *Claude Code.*
+  - CLAUDE.md first draft listed a screenshot harness as a test and cited a nonexistent brief section; corrected in a separate commit. *Claude Code.*
+  - Driver and test passed at 30/60/144 fps on the first full run. Mutation (b) showed every timing rule still passing with a renamed uniform, which confirms failure case 4: only the uniform-list check caught it. *Claude Code.*
+  - Kit's `normal_map_check` came out reversed (GL 1.30, DX 0.70) and weakly separated. The sign was flipped and the maps downsampled to 256 px (0.33 / 1.67), and the threshold set from that pair. *Claude Code, correcting Claude chat's file.*
+  - Claude Code's own mistake: it committed the flipped file under the message "as copied". Caught before pushing and redone as two commits.
+  - StandardMaterial3D's shader is not reachable through `get_shader_rid()` from GDScript; found by scanning RenderingServer RIDs instead. *Claude Code; the code itself: model (Godot).*
+  - **First windowed capture showed the drop shadow turning red at full warning** (failure case 5). Brief revision first, then the fix (skip pure-black pixels); recapture confirmed. *Shader: Claude chat; bug found and fixed by Claude Code; not yet seen by the student.*
+  - Claude Code's capture script hung on its first play run (a reload press timed after `frame_post_draw` was never "just pressed"); fixed.
+  - Hint experiment measured exactly as predicted; `hint_range` confirmed not to clamp (2.0 → (255, 0, 18)).
+- **Next:** the student's own checks (HUMAN-CHECK-NOTES.md), the TA's written confirmation, and the film upload.
+- **Still unresolved:** the default `uv_scale` makes the concrete read as near-uniform grey from the game camera; R7 cannot be reached by real input.
+
+### Student's own notes
+
+(empty)
