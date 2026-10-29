@@ -9,7 +9,7 @@ PASS uniform warning_color is declared
 PASS warning_color is a vec4 with source_color (reported as Color)
 PASS low_ammo default in source is 0.0 (got '0.0')
 PASS warning_color default in source is #FF3030 = vec4(1.0, 0.188, 0.188, 1.0) (got 'vec4(1.0, 0.188, 0.188, 1.0)')
-PASS fragment() holds the spec's colour line
+PASS fragment() holds the spec's revised colour line
 PASS driver's only set_shader_parameter target is PARAM = "low_ammo" (["PARAM", "PARAM"])
 PASS the name the driver writes is a uniform the shader declares
 PASS driver source assigns no player.* field

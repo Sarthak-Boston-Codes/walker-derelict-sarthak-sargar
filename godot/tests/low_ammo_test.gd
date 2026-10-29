@@ -101,7 +101,9 @@ func _check_shader_interface() -> void:
 	check(d.get("low_ammo", "") == "0.0", "low_ammo default in source is 0.0 (got '%s')" % d.get("low_ammo", ""))
 	check(d.get("warning_color", "") == "vec4(1.0, 0.188, 0.188, 1.0)",
 			"warning_color default in source is #FF3030 = vec4(1.0, 0.188, 0.188, 1.0) (got '%s')" % d.get("warning_color", ""))
-	check(src.contains("COLOR.rgb = mix(COLOR.rgb, warning_color.rgb, low_ammo);"), "fragment() holds the spec's colour line")
+	# Colour line as revised in CHANGE-BRIEF.md (2026-10-29, failure case 5).
+	check(src.contains("COLOR.rgb = mix(COLOR.rgb, warning_color.rgb, low_ammo * glyph);")
+			and src.contains("float glyph = step(0.004, max(COLOR.r, max(COLOR.g, COLOR.b)));"), "fragment() holds the spec's revised colour line")
 	# The driver writes the uniform the shader declares, and nothing else.
 	var drv := FileAccess.get_file_as_string(DRIVER_PATH)
 	var re := RegEx.create_from_string("set_shader_parameter\\(([^,]+),")
