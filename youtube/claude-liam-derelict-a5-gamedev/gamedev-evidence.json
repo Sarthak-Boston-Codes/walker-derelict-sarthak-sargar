@@ -1,0 +1,892 @@
+{
+  "schema_version": 1,
+  "teaching_contract": "code-then-result-v1",
+  "files": [
+    {
+      "path": "MATERIALS.md",
+      "sha256": "4b9a5f120e6c6fb92fb92b0889074f3d09d17dc0bf7d356efc1135d0daa56877",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "material_audit"
+      ]
+    },
+    {
+      "path": "game3d/game.gd",
+      "sha256": "8450fd16606288886f890f4bd7ba66fd3c9453511e38c721d5ad03184291bbe7",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "low_ammo_effect"
+      ]
+    },
+    {
+      "path": "game3d/hud.gd",
+      "sha256": "9b575ef0d445a4b061df0f0ac7265d6f0910da675bc087fdfb9778dda9b0b4a8",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "low_ammo_effect"
+      ]
+    },
+    {
+      "path": "game3d/level.gd",
+      "sha256": "519dc4beb9d62e9d1a8b98445ffde4e8ad30eff2482624c7922a8acd856cef92",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "game3d/low_ammo_driver.gd",
+      "sha256": "e27251b0952fc048aa11cbf032f0daded7a194a3222160efc6840f7389f04968",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "low_ammo_effect"
+      ]
+    },
+    {
+      "path": "game3d/player.gd",
+      "sha256": "750b86f3cbc4e5e993f6904545ee9a41ddc8bc54493bca6da1e0a2c923c618f3",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "low_ammo_effect"
+      ]
+    },
+    {
+      "path": "game3d/ui_theme.gd",
+      "sha256": "23bbb482bcbbd9abf8df0241595cad4d693814de6af1c075f3737534375fe1f1",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "low_ammo_effect"
+      ]
+    },
+    {
+      "path": "materials/concrete_dry.tres",
+      "sha256": "ed5c510371d6df6467a4ecf7a618a81c982e737ad4becbfe8767d35340e8fafd",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "materials/concrete_wet.tres",
+      "sha256": "ccb0c7ab4caafbf70e87c0dd508372c9375c2ec258bb736d64a810704f05bd5c",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "materials/hint_as_colour.tres",
+      "sha256": "9d9942e82ebf26b44ca95021253e698a2772531b6a685ecad63f1c36e65844af",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hint_experiment"
+      ]
+    },
+    {
+      "path": "materials/hint_as_data.tres",
+      "sha256": "e58a1679a49301f9c67e9303fa30187a5687d51ed19bf19d2fcca368aaab9120",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hint_experiment"
+      ]
+    },
+    {
+      "path": "scenes/hint_experiment.tscn",
+      "sha256": "cd3641732665ca9146a499485d06212e4c501099643881816a620fd987653237",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hint_experiment"
+      ]
+    },
+    {
+      "path": "scenes/material_lab.tscn",
+      "sha256": "509af99cf75f388796ed9ec4824163226d53d5a77bfa10afb534ddf9bd8ff36a",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "shaders/concrete_surface.gdshader",
+      "sha256": "8113e45416c21dd74e692eb43e25ef62af6623794ae3d49ddbbe91c58963f1bc",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "shaders/hint_experiment.gdshader",
+      "sha256": "f0653bce34469520bcd8a0c7394b3b9254fc672b7c6766a9a2f5651f88273a3b",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hint_experiment"
+      ]
+    },
+    {
+      "path": "shaders/low_ammo.gdshader",
+      "sha256": "90591685d58f013a84fa5eb95efdbc17aed0c6ac64aeb5f5abf3123b954e459a",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "low_ammo_effect"
+      ]
+    },
+    {
+      "path": "shaders/standard_generated.gdshader",
+      "sha256": "ca1c191c44fb614ae64a258fce3efbc13b77fdc82f480e98ac4582e30805650d",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "generated_shader"
+      ]
+    },
+    {
+      "path": "tests/calibrate_normal_map_check.gd",
+      "sha256": "96ebaa46f1c7283ac7823929c149ca343603e7268b27acbeb6ac20edbb4dbdc4",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "material_audit"
+      ]
+    },
+    {
+      "path": "tests/fixtures/.gdignore",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "material_audit"
+      ]
+    },
+    {
+      "path": "tests/fixtures/normal_maps/concrete_floor_worn_001_nor_dx_1k.png",
+      "sha256": "f099c30d7730636b5b7e0710a723115225df2a9f9f177a876387a7007cc31f28",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "material_audit"
+      ]
+    },
+    {
+      "path": "tests/low_ammo_test.gd",
+      "sha256": "f200c68f82ca341ece6368f8272805ef1fcbd33372640b22360476c8dc51be3b",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "low_ammo_test"
+      ]
+    },
+    {
+      "path": "tests/normal_map_check.gd",
+      "sha256": "cebee084d48d954e339029061d9b9e6094b78a7256d73cda66d72a34f741d235",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "material_audit"
+      ]
+    },
+    {
+      "path": "tests/test_materials.gd",
+      "sha256": "f2fddc0d5a9792bf2a878d3abcbb02810aa4cbd6876a7abbfcaf41e701aa81e0",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "material_audit"
+      ]
+    },
+    {
+      "path": "textures/concrete/ATTRIBUTION.md",
+      "sha256": "e8119395466e16dad00c1791d044efa7519fc1c45cfce82470adfae65f6a82f0",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_diff_1k.png",
+      "sha256": "dde1944b011f2536fba8d1d611213bb76ab27e49155763bbe449397967e738fa",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_diff_1k.png.import",
+      "sha256": "57a3e03252abd9156553dad6a8f980dd48b1d3e73a14716545caee5caf5dea79",
+      "role": "import settings",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_nor_gl_1k.png",
+      "sha256": "156fd005f3e675fc25e8afb73d65252a3534d78485ad4cc9c2377ae1a0ff1fbe",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_nor_gl_1k.png.import",
+      "sha256": "c9e8b8aa35bc2d8c34b700bc04e1f9becd9e4520ce533d9904675bec5353d77e",
+      "role": "import settings",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_rough_1k.png",
+      "sha256": "7dd22f951434499a42c088cf908247eef897d615eed7067210b649ed491394c4",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_rough_1k.png.import",
+      "sha256": "fa777af67293b7f0900d4aff049521f22b7d7aec09bf50770c906b73141d6eb8",
+      "role": "import settings",
+      "component_ids": [
+        "concrete_material"
+      ]
+    },
+    {
+      "path": "textures/hint_experiment/greys_3x1.png",
+      "sha256": "deb9df2a9689dd2297f2d37a3fa2759104f49dbb2eb3e33c00e1fa6292060ca6",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hint_experiment"
+      ]
+    },
+    {
+      "path": "textures/hint_experiment/greys_3x1.png.import",
+      "sha256": "7da12f99911eb7637d35bd3652cdaf99f6ef8fd97993909df35fd2765cd30d2f",
+      "role": "import settings",
+      "component_ids": [
+        "hint_experiment"
+      ]
+    },
+    {
+      "path": "textures/hint_experiment/make_greys_3x1.gd",
+      "sha256": "082666e3f4de51a6a1d81493367659fe9b1cd418162b7167740ca19c55ee71c5",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hint_experiment"
+      ]
+    },
+    {
+      "path": "tools/a5_capture.gd",
+      "sha256": "7e7c22db0b561be1d251b327cafac5dd96e18c1b01979fa6a6f7a5c589839977",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "capture_tool"
+      ]
+    },
+    {
+      "path": "tools/dump_standard_shader.gd",
+      "sha256": "b7bf7c995b8765631de978ab03b81a976487db9f88f631cfae552d60eab6f0a5",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "generated_shader"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "low_ammo_effect",
+      "explanation": "canvas_item shader on the HUD ammo label, driven by a presentation-only node from the player's ammo_changed signal; the shader's line 12 skips the black theme shadow (revision).",
+      "beat_ids": [
+        "B02",
+        "B04",
+        "B05",
+        "B06",
+        "B07",
+        "B19"
+      ],
+      "files": [
+        "shaders/low_ammo.gdshader",
+        "game3d/low_ammo_driver.gd",
+        "game3d/hud.gd",
+        "game3d/game.gd",
+        "game3d/player.gd",
+        "game3d/ui_theme.gd"
+      ]
+    },
+    {
+      "id": "low_ammo_test",
+      "explanation": "Headless SceneTree test: uniform list and source defaults, R1-R9 with real input at a pinned frame rate; R7 uses a test-emitted signal.",
+      "beat_ids": [
+        "B08",
+        "B18"
+      ],
+      "files": [
+        "tests/low_ammo_test.gd"
+      ]
+    },
+    {
+      "id": "hint_experiment",
+      "explanation": "One 3x1 grey PNG read through a source_color sampler and a plain one on two unshaded quads; measured against the brief's prediction.",
+      "beat_ids": [
+        "B09",
+        "B10"
+      ],
+      "files": [
+        "shaders/hint_experiment.gdshader",
+        "materials/hint_as_colour.tres",
+        "materials/hint_as_data.tres",
+        "scenes/hint_experiment.tscn",
+        "textures/hint_experiment/greys_3x1.png",
+        "textures/hint_experiment/greys_3x1.png.import",
+        "textures/hint_experiment/make_greys_3x1.gd"
+      ]
+    },
+    {
+      "id": "concrete_material",
+      "explanation": "Lit spatial shader with one colour and two data textures (Poly Haven CC0), two ShaderMaterials (dry, wet) from it, a lab scene to judge them, and level.gd putting them on the floors.",
+      "beat_ids": [
+        "B11",
+        "B12",
+        "B13",
+        "B14",
+        "B15"
+      ],
+      "files": [
+        "shaders/concrete_surface.gdshader",
+        "materials/concrete_dry.tres",
+        "materials/concrete_wet.tres",
+        "scenes/material_lab.tscn",
+        "game3d/level.gd",
+        "textures/concrete/concrete_floor_worn_001_diff_1k.png",
+        "textures/concrete/concrete_floor_worn_001_diff_1k.png.import",
+        "textures/concrete/concrete_floor_worn_001_rough_1k.png",
+        "textures/concrete/concrete_floor_worn_001_rough_1k.png.import",
+        "textures/concrete/concrete_floor_worn_001_nor_gl_1k.png",
+        "textures/concrete/concrete_floor_worn_001_nor_gl_1k.png.import",
+        "textures/concrete/ATTRIBUTION.md"
+      ]
+    },
+    {
+      "id": "generated_shader",
+      "explanation": "Godot 4.7.2's generated StandardMaterial3D shader, saved by a RID-scan tool, compared line for line with concrete_surface.",
+      "beat_ids": [
+        "B16",
+        "B17"
+      ],
+      "files": [
+        "shaders/standard_generated.gdshader",
+        "tools/dump_standard_shader.gd"
+      ]
+    },
+    {
+      "id": "material_audit",
+      "explanation": "Material test (hints from source, values, import settings, formats, normal-map convention) and the calibrated kit normal-map check with its DX fixture.",
+      "beat_ids": [
+        "B18",
+        "B20"
+      ],
+      "files": [
+        "tests/test_materials.gd",
+        "tests/calibrate_normal_map_check.gd",
+        "tests/normal_map_check.gd",
+        "tests/fixtures/normal_maps/concrete_floor_worn_001_nor_dx_1k.png",
+        "tests/fixtures/.gdignore",
+        "MATERIALS.md"
+      ]
+    },
+    {
+      "id": "capture_tool",
+      "explanation": "Windowed 4K SubViewport capture and pixel measurement for the controlled values, hint experiment, sweep and two-material comparison.",
+      "beat_ids": [
+        "B05",
+        "B10",
+        "B13",
+        "B15"
+      ],
+      "files": [
+        "tools/a5_capture.gd"
+      ]
+    }
+  ],
+  "excerpts": [
+    {
+      "beat_id": "B04",
+      "path": "shaders/low_ammo.gdshader",
+      "start_line": 6,
+      "end_line": 13,
+      "text": "uniform float low_ammo : hint_range(0.0, 1.0) = 0.0;\nuniform vec4 warning_color : source_color = vec4(1.0, 0.188, 0.188, 1.0);\n\nvoid fragment() {\n\t// The label's theme drop shadow is drawn through this same CanvasItem in\n\t// pure black; leave it black (CHANGE-BRIEF revision 2026-10-29).\n\tfloat glyph = step(0.004, max(COLOR.r, max(COLOR.g, COLOR.b)));\n\tCOLOR.rgb = mix(COLOR.rgb, warning_color.rgb, low_ammo * glyph);"
+    },
+    {
+      "beat_id": "B06",
+      "path": "game3d/low_ammo_driver.gd",
+      "start_line": 36,
+      "end_line": 45,
+      "text": "func _on_ammo_changed(mag: int, _reserve: int) -> void:\n\ttarget = 1.0 if mag <= THRESHOLD else 0.0\n\n\nfunc _process(delta: float) -> void:\n\tif value == target:\n\t\treturn\n\t# Moves from wherever it is, so a retrigger extends (R4, R7).\n\tvalue = move_toward(value, target, (RATE_UP if target > value else RATE_DOWN) * delta)\n\tmaterial.set_shader_parameter(PARAM, value)"
+    },
+    {
+      "beat_id": "B09",
+      "path": "shaders/hint_experiment.gdshader",
+      "start_line": 7,
+      "end_line": 13,
+      "text": "uniform sampler2D tex_as_colour : source_color, filter_nearest;\nuniform sampler2D tex_as_data : filter_nearest;\nuniform bool read_as_colour = true;\n\nvoid fragment() {\n\tvec3 c = read_as_colour ? texture(tex_as_colour, UV).rgb : texture(tex_as_data, UV).rgb;\n\tALBEDO = c;"
+    },
+    {
+      "beat_id": "B11",
+      "path": "shaders/concrete_surface.gdshader",
+      "start_line": 31,
+      "end_line": 37,
+      "text": "void fragment() {\n\tvec3 base = texture(albedo_tex, world_uv).rgb * albedo_tint.rgb;\n\tfloat rough = texture(roughness_tex, world_uv).r * roughness_scale;\n\tALBEDO = base * (1.0 - wetness * wet_darkening);\n\tROUGHNESS = mix(rough, 0.08, wetness);\n\tNORMAL_MAP = texture(normal_tex, world_uv).rgb;\n\tNORMAL_MAP_DEPTH = normal_strength;"
+    },
+    {
+      "beat_id": "B14",
+      "path": "materials/concrete_wet.tres",
+      "start_line": 11,
+      "end_line": 20,
+      "text": "shader = ExtResource(\"1_shader\")\nshader_parameter/albedo_tint = Color(0.784314, 0.8, 0.815686, 1)\nshader_parameter/uv_scale = 0.5\nshader_parameter/albedo_tex = ExtResource(\"2_albedo\")\nshader_parameter/roughness_tex = ExtResource(\"3_rough\")\nshader_parameter/normal_tex = ExtResource(\"4_normal\")\nshader_parameter/roughness_scale = 1.0\nshader_parameter/normal_strength = 1.0\nshader_parameter/wetness = 0.8\nshader_parameter/wet_darkening = 0.35"
+    },
+    {
+      "beat_id": "B16",
+      "path": "shaders/standard_generated.gdshader",
+      "start_line": 33,
+      "end_line": 47,
+      "text": "\n\tvec4 albedo_tex = texture(texture_albedo, base_uv);\n\tALBEDO = albedo.rgb * albedo_tex.rgb;\n\n\tfloat metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);\n\tMETALLIC = metallic_tex * metallic;\n\tSPECULAR = specular;\n\n\tvec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);\n\tfloat roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);\n\tROUGHNESS = roughness_tex * roughness;\n\n\t// Normal Map: Enabled\n\tNORMAL_MAP = texture(texture_normal, base_uv).rgb;\n\tNORMAL_MAP_DEPTH = normal_scale;"
+    }
+  ],
+  "exclusions": [
+    {
+      "path": ".editorconfig",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": ".gitattributes",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": ".gitignore",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/.gdkeep",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_aim.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_aim.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_celebrate.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_celebrate.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_grabbed.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_grabbed.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_hurt.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_hurt.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_idle.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_idle.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_recover.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_recover.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_reference.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_reference.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_shoot.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_shoot.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_walk.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/char_walk.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/env_factory_floor.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "art/env_factory_floor.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "assets/3d/characters/player.glb",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "assets/3d/characters/player.glb.import",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "assets/3d/characters/player_0.png",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "assets/3d/characters/player_0.png.import",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "assets/3d/characters/zombie.glb",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "assets/3d/characters/zombie.glb.import",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "assets/3d/characters/zombie_0.png",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "assets/3d/characters/zombie_0.png.import",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "assets/3d/medkit.glb",
+      "reason": "A3 asset, unchanged by A5"
+    },
+    {
+      "path": "assets/3d/medkit.glb.import",
+      "reason": "A3 asset, unchanged by A5"
+    },
+    {
+      "path": "assets/3d/rusted_barrel.glb",
+      "reason": "A3 asset, unchanged by A5"
+    },
+    {
+      "path": "assets/3d/rusted_barrel.glb.import",
+      "reason": "A3 asset, unchanged by A5"
+    },
+    {
+      "path": "assets/3d/supply_crate.glb",
+      "reason": "A3 asset, unchanged by A5"
+    },
+    {
+      "path": "assets/3d/supply_crate.glb.import",
+      "reason": "A3 asset, unchanged by A5"
+    },
+    {
+      "path": "assets/asset_manifest.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "assets/placeholder_factory.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/.gdkeep",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/audio_director.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/mus_loop.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/mus_loop.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/sfx_clear.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/sfx_clear.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/sfx_down.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/sfx_down.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/sfx_hurt.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/sfx_hurt.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/sfx_shot.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "audio/sfx_shot.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "default_bus_layout.tres",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "game3d/actor_anim.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/barrel.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/camera_rig.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/crate.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/extraction.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/fx.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/game.tscn",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/light_animator.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/locked_door.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/menu.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/menu.tscn",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/model_table.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/phys.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/pickup.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/placeholder_models.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/sfx.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/shaders/concrete_floor.gdshader",
+      "reason": "the pre-A5 procedural floor shader, now unused (level.gd no longer preloads it)"
+    },
+    {
+      "path": "game3d/waves.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "game3d/zombie.gd",
+      "reason": "3D game code/asset unchanged by A5 (A2 redo); not part of the shader or material work"
+    },
+    {
+      "path": "icon.svg",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "icon.svg.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "project.godot",
+      "reason": "project config, unchanged by A5 (renderer default Forward+; cited in B03 notes)"
+    },
+    {
+      "path": "scenes/exit_marker.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "scenes/exit_marker.tscn",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "scenes/facing.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "scenes/main.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "scenes/main.tscn",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "scenes/player.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "scenes/player.tscn",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "scenes/showcase_3d.tscn",
+      "reason": "A3 showcase scene; unchanged by A5"
+    },
+    {
+      "path": "scenes/zombie.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "scenes/zombie.tscn",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "tests/game3d_shot.gd",
+      "reason": "earlier test suite, unchanged by A5; its before/after counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_shot.tscn",
+      "reason": "earlier test suite, unchanged by A5; its before/after counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_smoke_test.gd",
+      "reason": "earlier test suite, unchanged by A5; its before/after counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_smoke_test.tscn",
+      "reason": "earlier test suite, unchanged by A5; its before/after counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_soak_test.gd",
+      "reason": "earlier test suite, unchanged by A5; its before/after counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_soak_test.tscn",
+      "reason": "earlier test suite, unchanged by A5; its before/after counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/showcase_3d_test.gd",
+      "reason": "earlier test suite, unchanged by A5; its before/after counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/showcase_3d_test.tscn",
+      "reason": "earlier test suite, unchanged by A5; its before/after counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/trigger_count_test.gd",
+      "reason": "earlier test suite, unchanged by A5; its before/after counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/trigger_count_test.tscn",
+      "reason": "earlier test suite, unchanged by A5; its before/after counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "ui/hud.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    },
+    {
+      "path": "ui/hud.tscn",
+      "reason": "2D slice or shared asset from A2, unchanged by A5"
+    }
+  ],
+  "code_result_pairs": [
+    {
+      "code_beat": "B04",
+      "result_beat": "B05",
+      "observation": "Driver paused, low_ammo set to 0, 0.5, 1, 2: pixels A and B read (242,193,78), (248,120,63), (255,48,48), (255,0,18); the first three match CHANGE-BRIEF §2, the last shows no clamp.",
+      "media": {
+        "path": "media/B05.png",
+        "sha256": "eab2e404ce90cb4409de9846e246d65003cf0f2d6a4d2d6c3d91d46f9cd505d4"
+      }
+    },
+    {
+      "code_beat": "B06",
+      "result_beat": "B07",
+      "observation": "SCRIPTED PLAY, real Input.action_press fire/reload: mag 15 → 5, low_ammo 0 → 1 (frames 59-67), reload, back to 0 (logs/film_capture_playclip.log).",
+      "media": {
+        "path": "media/B07.mp4",
+        "sha256": "cd68b9e10170843336a027057783e7c6f669e06ccf79602e63c11425938f221f"
+      }
+    },
+    {
+      "code_beat": "B09",
+      "result_beat": "B10",
+      "observation": "hint_experiment.tscn captured: source_color quad 64/128/192, plain quad 137/188/225, identical to CHANGE-BRIEF §3's predictions.",
+      "media": {
+        "path": "media/B10.png",
+        "sha256": "fd7926f11369291a41016b24df8cef1f7a134e8e251afb8ffa6b8027bf17a4eb"
+      }
+    },
+    {
+      "code_beat": "B11",
+      "result_beat": "B12",
+      "observation": "Staged in-game still at the Boiler Room doorway (difference barely visible) beside material_lab.tscn (wet tile visibly darker with a specular patch).",
+      "media": {
+        "path": "media/B12.png",
+        "sha256": "b9bef0d7f0438386530734e96a324c37e6379695ed0c73ac7462c3f7446a9549"
+      }
+    },
+    {
+      "code_beat": "B14",
+      "result_beat": "B15",
+      "observation": "Shader line edited: dry G 100.3 → 79.5 and wet G 55.8 → 35.9 (both). Dry albedo_tint edited: dry G → 69.3, wet unchanged at 55.8. Reverts return 100.3 / 55.8.",
+      "media": {
+        "path": "media/B15.png",
+        "sha256": "c080b1722d03357cb34a3f46b395c2bdcf8278c8aaa26b68c8d95f232d54a406"
+      }
+    },
+    {
+      "code_beat": "B16",
+      "result_beat": "B17",
+      "observation": "dump_standard_shader.gd windowed run printed 'generated StandardMaterial3D shaders found: 1' and 'wrote … (1698 characters)'; card sets G:7/34/19/46 beside C:9/32/13/36.",
+      "media": {
+        "path": "media/B17.png",
+        "sha256": "f3b5d3c4cfd83efc7f72b5a996403c046b75a901e21c7dc149b2a33f849b24db"
+      }
+    }
+  ]
+}

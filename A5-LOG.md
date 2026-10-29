@@ -98,3 +98,18 @@ Known noise in two logs: `WARNING: N ObjectDB instances were leaked at exit` and
 - Pixel A = (581, 296), B = (653, 299) in the 3840×2160 frame (picked automatically: fully covered #F2C14E pixels with a 5×5 neighbourhood in the first two glyph runs of "5 / 60"). Measured: see TEST-REPORT.md; all within ±0 of the prediction.
 - Mutations (a) and (b) re-run on the revised shader: both still exit 1 (dc422d9).
 - **D19 Archive.** The A2–A3 `TEST-REPORT.md` and A3 `SUBMISSION.md` were moved to `docs/archive/` (9d4b5b8) rather than overwritten.
+
+## Phase 8 — docs
+
+- README rewritten for the 3D game and A5 (the old one still described the 2D slice); A2/A3 film links kept. SOURCES.md and FRICTIONAL.md: A5 sections appended, so their history is kept. FRICTIONAL's A5 entry is built only from commits, this log and the session, with an empty "Student's own notes". New root ATTRIBUTION.md. SUBMISSION.md uses the A3 field list plus the A5 items the runbook names; **D20:** the official A5 template was not in the kit, so the field names should be checked against the handout. "Summary of my changes" is left for the student to write in their own words; "Changed games since Assignment 2: no".
+- CLAUDE.md updated (f2f6124): the floor material, the new test commands, ownership of the shader fix, and the unknowns now resolved.
+
+## Phase 9 — film (in progress)
+
+- **D21 Skill location.** No godot-gamedev skill is installed in this Claude Code session. Its source is `C:\Users\sarth\brutalist.art\skills\make\godot-gamedev\SKILL.md` (the toolkit A3's BUILD-PROMPT names as `<brutalist>`); read in full, walker mode = composer ASK → hesitant-writer BLUF → body → verdict → Your Turn → locked outro.
+- Narration approval gates: `validate_approvals` requires human records only for "fellows" sheets and professor-notes beats; this sheet has neither (A3 had none either).
+- Film captures: `captures/routes/film_capture.gd` (film-only, outside `godot/`). playclip = SCRIPTED PLAY with real input, 174 frames; floor = STAGED still. The first floor still was covered by the start toast; retaken after 150 frames. Even then, from the game camera the wet floor barely shows. The film says so, and it is human check H7.
+- Evidence checker `verify_gamedev.py`: PASS (35 files, 97 exclusions, 7 components, 6 exact excerpts, 6 code→result pairs).
+- Kokoro narration: 24 beats, 390.3 s + 7 s outro. QC flags: B08 and B18 peaked at 0 dBFS → limited to −1 dB; B23 at 3.77 words/s (flag > 3.6), left as is (it reads a prompt aloud).
+- B07 conformed: capture 5.80 s, narration 6.63 s → 25 labelled HOLD frames, not slowed.
+- Remotion pilot B04: the first attempt timed out connecting to headless Chrome; the retry rendered. Frame inspected by Claude: code readable at 4K, "Godot editor reconstruction" label present, highlight on line 13.

@@ -1,0 +1,1067 @@
+{
+  "metadata": {
+    "title": "DERELICT: Two Shaders, Measured",
+    "slug": "claude-liam-derelict-a5-gamedev",
+    "topic": "GODOT · SHADERS",
+    "kind": "gamedev",
+    "mode": "walker",
+    "brand": "claude-liam",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fit": "pad",
+    "captions": false,
+    "greeting": "Kia ora, Liam",
+    "greeting_note": "hello lexicon: Kia ora (Māori); previous reels used Jambo, Bula, Hej.",
+    "persona": "Liam (in for Bear)",
+    "presenter": "Liam (in for Bear)",
+    "in_for_bear": true,
+    "game": "walker-derelict-sarthak-sargar",
+    "game_code_revision": "a8f1bc2",
+    "note": "godot-gamedev walker film, Assignment 5, built by Claude Code. Captures: godot/tools/a5_capture.gd and captures/routes/film_capture.gd. No game change, paid call, upload or publication.",
+    "build": {
+      "at": "2026-10-29T18:29:26",
+      "cut": "master",
+      "filled": 25,
+      "of": 25,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Kia ora. This is Liam, in for Bear. DERELICT is a top-down 3D zombie shooter in Godot. For this assignment it gained two shaders and two materials: a warning that turns the ammo counter red, and a real concrete floor. Here's how each was specified, built and checked.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Kia ora, Liam",
+            "topic": "GODOT · SHADERS",
+            "segment": "DERELICT",
+            "command": "Please use Walker to convert my game design document about DERELICT's low-ammo warning and concrete factory floor into Godot shaders and materials, with a test for every rule the brief predicts.",
+            "runningText": "reading CHANGE-BRIEF.md, Assignment 5…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "One warning, timed by delta.",
+              "One floor, two materials.",
+              "Every prediction measured."
+            ]
+          }
+        }
+      },
+      "role_note": "COLD OPEN: reconstructed Walker prompt (labelled in FACTCHECK.md), not a recording.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.21,
+      "render_duration_s": 15.233333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Two shaders and two materials, written and measured. A test for the timing, and a person for the look, though that person hasn't looked yet. And the plain fact up front: the shader code is AI-written, with the TA's permission.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on-correct",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Two shaders, written and compiled.\nA test for the timing,\na person for the look.",
+            "triggerWords": "compiled",
+            "replacementWords": "measured",
+            "contextTitle": "DERELICT · SHADERS",
+            "brandLabel": "@NikBearBrown",
+            "fontSize": 92,
+            "lineSpacing": 1.5,
+            "align": "center",
+            "seed": "derelict-a5-gamedev",
+            "mistakeRate": 2,
+            "hesitateWithin": 0,
+            "hesitateBetween": 1,
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#FAF9F5"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "role_note": "Misconception corrected: done once it 'compiled' -> done once it's 'measured'.",
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 12.9,
+      "lead_silence_baked": 0.8,
+      "render_duration_s": 12.9,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SETUP",
+      "narration_text": "The state is low ammo: five rounds or fewer in the magazine. It lives in player dot g d, and reaches the HUD through the ammo-changed signal. Left, a full magazine in yellow. Right, five rounds, and the counter has turned red. The textured object is the factory floor.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B02.png",
+        "label": "SCRIPTED PLAY frames 0 and 90 (film_capture.gd playclip) + CHANGE-BRIEF §1 references"
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.68,
+      "render_duration_s": 15.7,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B02.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ANSWERS",
+      "narration_text": "Four answers, each pinned to a line. A shader is a small program the GPU runs for every pixel; this one's whole job is line thirteen of low ammo. A material is one shader plus its current values: concrete wet points at the shared shader, then sets wetness to point eight. A texture is information: the normal map's numbers are slopes, so it's read as data. And the Godot shading language is GLSL-like code with Godot's built-ins and hints: shader type spatial, then ALBEDO, and no main function.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 35.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "tree-reveal",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "tree",
+            "title": "Four answers, four lines.",
+            "project": "walker-derelict-sarthak-sargar",
+            "source": "Answers by Claude Code (LANGUAGE-NOTES.md); line numbers from the files",
+            "treeLabel": "LANGUAGE-NOTES.md · the brief's questions",
+            "tree": [
+              "Shader: runs per pixel → low_ammo.gdshader:13  COLOR.rgb = mix(…)",
+              "Material: shader + values → concrete_wet.tres:11 shader, :19 wetness = 0.8",
+              "Texture = information → concrete_surface.gdshader:13 normal_tex : hint_normal",
+              "Shading language → concrete_surface.gdshader:1 shader_type spatial; :34 ALBEDO"
+            ],
+            "notes": [
+              {
+                "label": "Renderer",
+                "value": "Forward+ (default)"
+              },
+              {
+                "label": "Godot",
+                "value": "4.7.2"
+              }
+            ],
+            "durationSeconds": 29.58
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 29.58,
+      "render_duration_s": 29.6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MECHANISM",
+      "narration_text": "The shader. Two uniforms: low ammo, a number from zero to one, and the warning colour, red. Then the colour line. COLOR already holds the label's own yellow for this pixel, and mix slides it toward red by low ammo. The glyph test above it is a fix we'll come back to.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Two uniforms, one colour line.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "shaders/low_ammo.gdshader",
+            "source": "godot/shaders/low_ammo.gdshader lines 6-13 · Godot editor reconstruction",
+            "code": "uniform float low_ammo : hint_range(0.0, 1.0) = 0.0;\nuniform vec4 warning_color : source_color = vec4(1.0, 0.188, 0.188, 1.0);\n\nvoid fragment() {\n\t// The label's theme drop shadow is drawn through this same CanvasItem in\n\t// pure black; leave it black (CHANGE-BRIEF revision 2026-10-29).\n\tfloat glyph = step(0.004, max(COLOR.r, max(COLOR.g, COLOR.b)));\n\tCOLOR.rgb = mix(COLOR.rgb, warning_color.rgb, low_ammo * glyph);",
+            "startLine": 6,
+            "cues": [
+              {
+                "at": 1.4,
+                "line": 6,
+                "label": "0 → 1, set by the driver"
+              },
+              {
+                "at": 3.7,
+                "line": 7,
+                "label": "#FF3030, source_color"
+              },
+              {
+                "at": 5.1,
+                "line": 13,
+                "label": "the colour line"
+              },
+              {
+                "at": 11.8,
+                "line": 12,
+                "label": "the shadow fix (revision 2026-10-29)"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "shader_type",
+                "value": "canvas_item (line 1)"
+              },
+              {
+                "label": "Written by",
+                "value": "Claude (chat);\nline 12 fix: Claude Code"
+              }
+            ],
+            "output": [
+              "shaders/low_ammo.gdshader · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 14.7
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 14.7,
+      "render_duration_s": 14.7,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "RESULT",
+      "narration_text": "With the driver paused, the capture script sets the value by hand. At zero, pixel A in the five and pixel B in the slash read exactly the predicted yellow. At a half: two forty-eight, one twenty, sixty-three, as predicted. At one, pure warning red. And at two, outside the slider's range: two fifty-five, zero, eighteen. So hint range doesn't clamp a value set from code.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27.0,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B05.png",
+        "media": "media/B05.png",
+        "motion": "hold",
+        "label": "label crops of 4K captures (a5_capture.gd ammo) + logs/capture_ammo_fixed.log"
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 19.58,
+      "render_duration_s": 19.6,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B05.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "MECHANISM",
+      "narration_text": "The driver never writes game state. The signal sets a target: one at five rounds or fewer, otherwise zero. Each frame, the value moves toward it by rate times delta: four per second up, two down. Delta is scaled game time, and the node is pausable, so pause freezes it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.6,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Target from a signal, motion by delta.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "game3d/low_ammo_driver.gd",
+            "source": "godot/game3d/low_ammo_driver.gd lines 36-45 · Godot editor reconstruction",
+            "code": "func _on_ammo_changed(mag: int, _reserve: int) -> void:\n\ttarget = 1.0 if mag <= THRESHOLD else 0.0\n\n\nfunc _process(delta: float) -> void:\n\tif value == target:\n\t\treturn\n\t# Moves from wherever it is, so a retrigger extends (R4, R7).\n\tvalue = move_toward(value, target, (RATE_UP if target > value else RATE_DOWN) * delta)\n\tmaterial.set_shader_parameter(PARAM, value)",
+            "startLine": 36,
+            "cues": [
+              {
+                "at": 0.0,
+                "line": 45,
+                "label": "writes only low_ammo"
+              },
+              {
+                "at": 2.0,
+                "line": 37,
+                "label": "mag <= 5 → 1.0"
+              },
+              {
+                "at": 7.3,
+                "line": 44,
+                "label": "move_toward × delta"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Rates",
+                "value": "RATE_UP 4.0 /s\nRATE_DOWN 2.0 /s"
+              },
+              {
+                "label": "_ready()",
+                "value": "PROCESS_MODE_PAUSABLE\npriority 100"
+              }
+            ],
+            "output": [
+              "game3d/low_ammo_driver.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 15.13
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 15.13,
+      "render_duration_s": 15.133333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "RESULT",
+      "narration_text": "Scripted play, with real fire input. At five rounds the counter warms to red; reload, and it fades back.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 8.2,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B07.mp4",
+        "media": "media/B07.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 · 3840×2160 SubViewport · SCRIPTED PLAY (film_capture.gd playclip)",
+        "hold_policy": "capture plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after it (never slowed). conform_clips.py."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_reason": "Full-frame dark engine capture: the dark scene is the picture. The text that must read is the HUD ammo counter and the SCRIPTED PLAY label, checked as regions.",
+        "contrast_regions": [
+          {
+            "label": "HUD ammo counter",
+            "box": [
+              0.12,
+              0.08,
+              0.23,
+              0.17
+            ]
+          },
+          {
+            "label": "SCRIPTED PLAY label",
+            "box": [
+              0.25,
+              0.91,
+              0.75,
+              0.985
+            ]
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 6.63,
+      "render_duration_s": 6.633333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "TESTS",
+      "narration_text": "The test drives that with real input and samples the value every frame, at thirty, sixty and a hundred forty-four frames a second. The fade-in takes a quarter second of game time at each, within one frame. Pause freezes it. Half time-scale doubles the real time. One caveat: the state can't end during a fade-in in play, so the test emits that signal itself.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 26.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B08.png",
+        "label": "logs/final_low_ammo_test_{30,60,144}fps.log rendered as a table"
+      },
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 19.16,
+      "render_duration_s": 19.166666666666668,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B08.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "MECHANISM",
+      "narration_text": "The hint experiment. One grey strip, three bands: sixty-four, one twenty-eight, one ninety-two. Two samplers read the same file: one marked source colour, one not. A bool picks which one writes albedo, unshaded, so lighting can't interfere.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "One file, two samplers.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "shaders/hint_experiment.gdshader",
+            "source": "godot/shaders/hint_experiment.gdshader lines 7-13 · Godot editor reconstruction",
+            "code": "uniform sampler2D tex_as_colour : source_color, filter_nearest;\nuniform sampler2D tex_as_data : filter_nearest;\nuniform bool read_as_colour = true;\n\nvoid fragment() {\n\tvec3 c = read_as_colour ? texture(tex_as_colour, UV).rgb : texture(tex_as_data, UV).rgb;\n\tALBEDO = c;",
+            "startLine": 7,
+            "cues": [
+              {
+                "at": 7.3,
+                "line": 7,
+                "label": "source_color: decoded as sRGB"
+              },
+              {
+                "at": 8.8,
+                "line": 8,
+                "label": "no hint: read as stored"
+              },
+              {
+                "at": 9.3,
+                "line": 9,
+                "label": "which sampler writes"
+              },
+              {
+                "at": 10.6,
+                "line": 13,
+                "label": "ALBEDO, unshaded"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Texture",
+                "value": "greys_3x1.png\n64 · 128 · 192\nLossless, no mipmaps"
+              },
+              {
+                "label": "render_mode",
+                "value": "unshaded (line 2)"
+              }
+            ],
+            "output": [
+              "shaders/hint_experiment.gdshader · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 13.57
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 13.57,
+      "render_duration_s": 13.6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B09.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "RESULT",
+      "narration_text": "Predicted, then measured. Through source colour, the bands come back unchanged: sixty-four, one twenty-eight, one ninety-two. Without it: one thirty-seven, one eighty-eight, two twenty-five. Exactly the prediction. A colour read as data comes out too bright.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.0,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B10.png",
+        "media": "media/B10.png",
+        "motion": "hold",
+        "label": "4K capture (a5_capture.gd hint) + logs/capture_hint.log"
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 13.97,
+      "render_duration_s": 14.0,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B10.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "MECHANISM",
+      "narration_text": "The floor. One colour texture, sampled as colour, tinted, then darkened by wetness. Roughness is read from the red channel as data, and wetness pulls it toward glossy. The normal map goes straight into NORMAL_MAP, as data.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "One colour texture, two data textures.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "shaders/concrete_surface.gdshader",
+            "source": "godot/shaders/concrete_surface.gdshader lines 31-37 · Godot editor reconstruction",
+            "code": "void fragment() {\n\tvec3 base = texture(albedo_tex, world_uv).rgb * albedo_tint.rgb;\n\tfloat rough = texture(roughness_tex, world_uv).r * roughness_scale;\n\tALBEDO = base * (1.0 - wetness * wet_darkening);\n\tROUGHNESS = mix(rough, 0.08, wetness);\n\tNORMAL_MAP = texture(normal_tex, world_uv).rgb;\n\tNORMAL_MAP_DEPTH = normal_strength;",
+            "startLine": 31,
+            "cues": [
+              {
+                "at": 0.7,
+                "line": 32,
+                "label": "albedo_tex (source_color)"
+              },
+              {
+                "at": 5.0,
+                "line": 33,
+                "label": "roughness: red channel"
+              },
+              {
+                "at": 8.6,
+                "line": 35,
+                "label": "wet → glossy"
+              },
+              {
+                "at": 10.1,
+                "line": 36,
+                "label": "normal map as data"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "UVs",
+                "value": "world-space,\nvertex() lines 25-29"
+              },
+              {
+                "label": "Texture set",
+                "value": "Poly Haven\nconcrete_floor_worn_001\nCC0"
+              }
+            ],
+            "output": [
+              "shaders/concrete_surface.gdshader · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 13.33
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 13.33,
+      "render_duration_s": 13.333333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "RESULT",
+      "narration_text": "In the game the floor is now the photo texture: dry everywhere, wet in the Boiler Room. Honestly, from the game's camera, the wet floor is hard to tell apart. Under the lab's single light, the wet tile is darker and glossier. Whether it reads in play is a human check, still pending.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21.8,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B12.png",
+        "media": "media/B12.png",
+        "motion": "hold",
+        "label": "film_capture.gd floor (STAGED) + a5_capture.gd twomat baseline"
+      },
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 15.08,
+      "render_duration_s": 15.1,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B12.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "SWEEP",
+      "narration_text": "Then every uniform, from minimum to maximum, on the dry tile. Most move the picture a little. Two findings: only the smallest UV scale shows readable concrete detail from this distance, and wet darkening at full strength turns the floor into a black mirror.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B13.png",
+        "label": "16 SCRIPTED captures (a5_capture.gd sweep) + logs/capture_sweep.log"
+      },
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 14.51,
+      "render_duration_s": 14.533333333333333,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B13.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "MECHANISM",
+      "narration_text": "Two materials share that shader. This is the wet one: the same shader path, the same three textures, wetness point eight and a cooler tint. The dry file is identical except those two lines.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 14.2,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "A material: a shader plus values.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "materials/concrete_wet.tres",
+            "source": "godot/materials/concrete_wet.tres lines 11-20 · Godot editor reconstruction",
+            "code": "shader = ExtResource(\"1_shader\")\nshader_parameter/albedo_tint = Color(0.784314, 0.8, 0.815686, 1)\nshader_parameter/uv_scale = 0.5\nshader_parameter/albedo_tex = ExtResource(\"2_albedo\")\nshader_parameter/roughness_tex = ExtResource(\"3_rough\")\nshader_parameter/normal_tex = ExtResource(\"4_normal\")\nshader_parameter/roughness_scale = 1.0\nshader_parameter/normal_strength = 1.0\nshader_parameter/wetness = 0.8\nshader_parameter/wet_darkening = 0.35",
+            "startLine": 11,
+            "cues": [
+              {
+                "at": 3.2,
+                "line": 11,
+                "label": "the shared shader"
+              },
+              {
+                "at": 6.0,
+                "line": 19,
+                "label": "wetness = 0.8"
+              },
+              {
+                "at": 7.4,
+                "line": 12,
+                "label": "tint #C8CCD0"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "concrete_dry.tres",
+                "value": "wetness 0.0\nalbedo_tint white"
+              }
+            ],
+            "output": [
+              "materials/concrete_wet.tres · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 11.14
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 11.14,
+      "render_duration_s": 11.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B14.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "RESULT",
+      "narration_text": "So: edit one line of the shared shader, in memory, and both tiles turn red. Revert. Edit one value in the dry material, and only the dry tile changes. Each revert lands back on the exact baseline numbers.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 15.8,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B15.png",
+        "media": "media/B15.png",
+        "motion": "hold",
+        "label": "4K captures (a5_capture.gd twomat) + logs/capture_twomat.log"
+      },
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 12.74,
+      "render_duration_s": 12.766666666666667,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B15.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "MECHANISM",
+      "narration_text": "This shader was written by Godot itself, for a standard material with three textures. Line thirty-four samples albedo, from a sampler declared as source colour. Line forty-six samples the normal map, declared as data. No main function, no lighting code: Godot's built-ins carry it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.2,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Godot's own shader.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "shaders/standard_generated.gdshader",
+            "source": "godot/shaders/standard_generated.gdshader lines 33-47 · Godot editor reconstruction",
+            "code": "\n\tvec4 albedo_tex = texture(texture_albedo, base_uv);\n\tALBEDO = albedo.rgb * albedo_tex.rgb;\n\n\tfloat metallic_tex = dot(texture(texture_metallic, base_uv), metallic_texture_channel);\n\tMETALLIC = metallic_tex * metallic;\n\tSPECULAR = specular;\n\n\tvec4 roughness_texture_channel = vec4(1.0, 0.0, 0.0, 0.0);\n\tfloat roughness_tex = dot(texture(texture_roughness, base_uv), roughness_texture_channel);\n\tROUGHNESS = roughness_tex * roughness;\n\n\t// Normal Map: Enabled\n\tNORMAL_MAP = texture(texture_normal, base_uv).rgb;\n\tNORMAL_MAP_DEPTH = normal_scale;",
+            "startLine": 33,
+            "cues": [
+              {
+                "at": 4.9,
+                "line": 34,
+                "label": "albedo sampled (G:7 source_color)"
+              },
+              {
+                "at": 5.9,
+                "line": 35,
+                "label": "ALBEDO written"
+              },
+              {
+                "at": 9.3,
+                "line": 46,
+                "label": "normal sampled as data (G:19)"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Generated by",
+                "value": "Godot 4.7.2 from a\nStandardMaterial3D"
+              },
+              {
+                "label": "Saved by",
+                "value": "tools/\ndump_standard_shader.gd"
+              }
+            ],
+            "output": [
+              "shaders/standard_generated.gdshader · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 16.17
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B16.mp3",
+      "actual_duration_s": 16.17,
+      "render_duration_s": 16.2,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B16.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "act": "RESULT",
+      "narration_text": "Beside ours: the same pattern, line for line. The colour sampler carries source colour; the normal sampler doesn't. Getting this file was its own problem: the obvious call isn't available to scripts, so a tool found the shader on the rendering server. One match, sixteen ninety-eight characters.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.4,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B17.png",
+        "media": "media/B17.png",
+        "motion": "hold",
+        "label": "logs/dump_standard_shader.log + lines read from both shader files"
+      },
+      "audio_file": "mp3/beat-B17.mp3",
+      "actual_duration_s": 15.66,
+      "render_duration_s": 15.666666666666666,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B17.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "act": "TESTS",
+      "narration_text": "What the tests proved, and proof they can fail. Delete a semicolon: shader error, exit one. Rename the uniform in the shader only: exit one, but every timing rule still passed, because set shader parameter accepts a name that doesn't exist. Remove source colour from the albedo sampler: exit one. And no headless run can show colour, gloss or readability.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B18.png",
+        "label": "logs/mutation_{a,b,c}*.log rendered as a card"
+      },
+      "audio_file": "mp3/beat-B18.mp3",
+      "actual_duration_s": 19.41,
+      "render_duration_s": 19.433333333333334,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B18.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B19",
+      "act": "REVISION",
+      "narration_text": "The mistake a capture caught. The label has a drop shadow, drawn through the same shader. At full warning the black shadow turned red, and the counter smeared. The brief had flagged that risk. The revision went into the brief first, then the fix: tint only where the colour isn't black. The glyph pixels didn't move.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23.0,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B19.png",
+        "label": "before/after 4K label crops (af736a7, a8f1bc2) + CHANGE-BRIEF revision e434f65"
+      },
+      "role_note": "What went wrong, part 1: found by Claude Code's capture inspection, not by the student.",
+      "audio_file": "mp3/beat-B19.mp3",
+      "actual_duration_s": 15.64,
+      "render_duration_s": 15.666666666666666,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B19.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "TRACE",
+      "narration_text": "Other mistakes. The kit's normal-map check had its sign reversed, and only separated the two conventions after downsampling. Claude Code committed that fix labelled 'as copied', then redid it honestly. Its own capture script hung once on a reload press. The uncertainty: every look claim here is Claude's. Next, the student plays it and writes down what they see.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B20.png",
+        "label": "text card from A5-LOG.md and git history"
+      },
+      "audio_file": "mp3/beat-B20.mp3",
+      "actual_duration_s": 18.82,
+      "render_duration_s": 18.833333333333332,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B20.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "CREDITS",
+      "narration_text": "Who wrote what. Claude chat wrote the three shaders, the colour line and the predictions. Claude Code wrote the driver, tests, materials, tools, documents and this film, and made the shadow fix. Godot wrote the generated shader. The student chose the design by accepting Claude's defaults, and wrote no shader code. The TA allowed that verbally, on condition the student understands it. The concrete is CC0, from Poly Haven.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 28.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B21.png",
+        "label": "text card from SOURCES.md and ATTRIBUTION.md"
+      },
+      "audio_file": "mp3/beat-B21.mp3",
+      "actual_duration_s": 21.55,
+      "render_duration_s": 21.566666666666666,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B21.png",
+        "filled_by": "still",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "VERDICT",
+      "narration_text": "Implemented: a low-ammo warning timed by delta, frozen on pause, tested at three frame rates; a textured floor with two materials from one shader; and a hint experiment measured exactly as predicted. Limits: the wet floor barely reads from the game camera, one rule needs a test-emitted signal, and the shadow fix skips black. Human judgment: still to come, from the student.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "artifact-reveal",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Two shaders, measured.",
+            "brandLabel": "@NikBearBrown",
+            "artifactLines": [
+              "Implemented: low-ammo tint timed by delta, paused with the tree, tested at 30/60/144 fps.",
+              "Implemented: concrete floor, dry and wet materials from one shader; hint experiment exact.",
+              "Limits: wet floor faint in game; R7 via a test-emitted signal; shadow fix skips black.",
+              "Human judgment: pending, from the student (HUMAN-CHECK-NOTES.md)."
+            ]
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B22.mp3",
+      "actual_duration_s": 19.71,
+      "render_duration_s": 19.733333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B22.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Paste this: 'Use Walker on my DERELICT project. Change the low-ammo fade-in rate from four to two per second. Before you run anything, predict what low ammo test reports for the fade-in at thirty, sixty and a hundred forty-four frames a second, then run it at each.' My prediction: half a second everywhere, and the R1 line fails, because the brief still says a quarter. If it passes, find out why. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 31.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "GODOT · SHADERS",
+            "segment": "DERELICT",
+            "command": "Use Walker on my DERELICT project. Change RATE_UP in godot/game3d/low_ammo_driver.gd from 4.0 to 2.0. Before you run anything, predict what low_ammo_test.gd reports for R1 at 30, 60 and 144 fps, then run scripts/run-test.sh low_ammo_test.gd at each.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "One change.",
+              "One prediction.",
+              "Three runs to check it."
+            ],
+            "animateTyping": true
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B23.mp3",
+      "actual_duration_s": 20.44,
+      "render_duration_s": 20.466666666666665,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B23.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    },
+    {
+      "beat_id": "B24",
+      "act": "OUTRO",
+      "narration_text": "Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 7.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "mascot-title",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "DERELICT: Two Shaders, Measured",
+            "slug": "claude-liam-derelict-a5-gamedev"
+          }
+        }
+      },
+      "audio_policy": "silence",
+      "role_note": "Locked outro: @NikBearBrown, slug-seeded mascot, stock jingle only; no narration or game audio.",
+      "render_duration_s": 7.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B24.mp4",
+        "filled_by": "media",
+        "at": "2026-10-29T18:29:26"
+      }
+    }
+  ]
+}
