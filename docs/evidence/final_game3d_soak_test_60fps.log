@@ -1,0 +1,19 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+bot died at 114 s (wave 4, 36 kills)
+
+== game3d_soak_test ==
+alive zombie shambler (28.6, 0.0, 5.3) state=1 room='Assembly Hall' agent_target=(29.0, 0.0, 6.5) finished=false
+alive zombie shambler (29.5, 0.0, 5.1) state=1 room='Assembly Hall' agent_target=(29.0, 0.0, 6.5) finished=false
+alive zombie shambler (28.0, 0.0, 4.7) state=1 room='Assembly Hall' agent_target=(29.0, 0.0, 6.5) finished=false
+alive zombie shambler (28.9, 0.0, 4.5) state=1 room='Assembly Hall' agent_target=(29.0, 0.0, 6.5) finished=false
+alive zombie shambler (27.1, 0.0, 4.8) state=1 room='Assembly Hall' agent_target=(28.9, 0.0, 6.4) finished=false
+alive zombie runner (28.0, 0.0, 6.6) state=1 room='Assembly Hall' agent_target=(29.0, 0.0, 6.5) finished=false
+player at (28.9, 0.0, 6.3)
+shots 160, zombie hits 131 (82%)
+game time 117 s, wave 4, kills 36, max alive 6, hp 0, ammo 0/0, died at 114 s
+PASS
+WARNING: 14 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

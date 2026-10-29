@@ -1,0 +1,46 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== low_ammo_test ==
+PASS uniform low_ammo is declared (get_shader_uniform_list)
+PASS low_ammo is a float
+PASS low_ammo has hint_range(0.0, 1.0) (hint_string '0.0,1.0,0.0010000000475')
+PASS uniform warning_color is declared
+PASS warning_color is a vec4 with source_color (reported as Color)
+PASS low_ammo default in source is 0.0 (got '0.0')
+PASS warning_color default in source is #FF3030 = vec4(1.0, 0.188, 0.188, 1.0) (got 'vec4(1.0, 0.188, 0.188, 1.0)')
+PASS fragment() holds the spec's revised colour line
+PASS driver's only set_shader_parameter target is PARAM = "low_ammo" (["PARAM", "PARAM"])
+PASS the name the driver writes is a uniform the shader declares
+PASS driver source assigns no player.* field
+frame period 0.016667 s (60.0 fps)
+PASS R8 the ammo label has a ShaderMaterial on low_ammo.gdshader
+PASS R8 no other node uses the label's material (0 sharers)
+PASS low_ammo is 0.0 with a full magazine
+PASS still 0.0 at mag 6 (threshold is mag <= 5)
+PASS R1/R3 fade-in 0 -> 1 took 0.2500 s game time (want 0.25 +- 0.0167)
+PASS R1 rises at most 4.0/s x delta per frame (max step 0.0667)
+PASS holds at 1.0 while mag stays 5
+PASS R2/R3 fade-out 1 -> 0 took 0.5000 s game time (want 0.50 +- 0.0167)
+PASS R2 falls at most 2.0/s x delta per frame (max step 0.0333)
+PASS R9 warning_color kept its material value every frame
+PASS reload with 1 in reserve gives mag 6 (state ends)
+PASS R4 retrigger at 0.533 never dropped below it (min 0.6000)
+PASS R4 extend from 0.533 took 0.1167 s (want 0.1167 +- 0.0167)
+PASS R9 warning_color kept its material value every frame
+PASS R5 at time_scale 0.5 fade-in took 0.5000 s real time (want 0.50 +- 0.0167)
+PASS R5 ... and 0.2500 s game time (want 0.25 +- 0.0083)
+PASS R9 warning_color kept its material value every frame
+PASS R6 paused mid fade-in: low_ammo stayed 0.1333 for 30 frames
+PASS R6 continued from 0.1333 to 0.2000 on unpause (no jump)
+PASS R6 fade-in took 0.2500 s of unpaused game time (want 0.25 +- 0.0167)
+PASS R9 warning_color kept its material value every frame
+PASS R7 fell from 0.5333 with no jump (first step 0.0333)
+PASS R7 from 0.533 reached 0 in 0.2667 s (want 0.2667 +- 0.0167) [signal emitted by test]
+PASS R9 warning_color kept its material value every frame
+
+PASS: 0 failure(s)
+WARNING: 13 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
