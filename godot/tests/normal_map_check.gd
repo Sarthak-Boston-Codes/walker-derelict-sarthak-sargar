@@ -5,7 +5,10 @@ static func curl_ratio(source: Image, directx := false, stride := 4) -> float:
 	var img := source.duplicate() as Image
 	if img.is_compressed():
 		img.decompress()
-	var s: float = -1.0 if directx else 1.0
+	# Sign flipped from the kit (Claude Code, 2026-10-29): image rows run
+	# downward but OpenGL green points up, so GL needs -1. Calibrated on
+	# concrete_floor_worn_001 nor_gl / nor_dx; see calibrate_normal_map_check.gd.
+	var s: float = 1.0 if directx else -1.0
 	var curl_sq := 0.0
 	var terms_sq := 0.0
 	for v in range(1, img.get_height() - 1, stride):
