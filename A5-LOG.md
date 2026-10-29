@@ -1,3 +1,5 @@
+NEEDS ME: upload C:\Users\sarth\Game Development\walker-derelict-sarthak-sargar\youtube\claude-liam-derelict-a5-gamedevxports\landscape\claude-liam-derelict-a5-gamedev.mp4 to OneDrive and send the link.
+
 # A5-LOG.md — Assignment 5 working log (kept by Claude Code)
 
 Written by Claude Code while executing the kit's `A5-RUNBOOK.md`. Every entry is something Claude Code did or decided; nothing here was performed by the student unless it says so.
@@ -104,7 +106,7 @@ Known noise in two logs: `WARNING: N ObjectDB instances were leaked at exit` and
 - README rewritten for the 3D game and A5 (the old one still described the 2D slice); A2/A3 film links kept. SOURCES.md and FRICTIONAL.md: A5 sections appended, so their history is kept. FRICTIONAL's A5 entry is built only from commits, this log and the session, with an empty "Student's own notes". New root ATTRIBUTION.md. SUBMISSION.md uses the A3 field list plus the A5 items the runbook names; **D20:** the official A5 template was not in the kit, so the field names should be checked against the handout. "Summary of my changes" is left for the student to write in their own words; "Changed games since Assignment 2: no".
 - CLAUDE.md updated (f2f6124): the floor material, the new test commands, ownership of the shader fix, and the unknowns now resolved.
 
-## Phase 9 — film (in progress)
+## Phase 9 — film
 
 - **D21 Skill location.** No godot-gamedev skill is installed in this Claude Code session. Its source is `C:\Users\sarth\brutalist.art\skills\make\godot-gamedev\SKILL.md` (the toolkit A3's BUILD-PROMPT names as `<brutalist>`); read in full, walker mode = composer ASK → hesitant-writer BLUF → body → verdict → Your Turn → locked outro.
 - Narration approval gates: `validate_approvals` requires human records only for "fellows" sheets and professor-notes beats; this sheet has neither (A3 had none either).
@@ -113,3 +115,9 @@ Known noise in two logs: `WARNING: N ObjectDB instances were leaked at exit` and
 - Kokoro narration: 24 beats, 390.3 s + 7 s outro. QC flags: B08 and B18 peaked at 0 dBFS → limited to −1 dB; B23 at 3.77 words/s (flag > 3.6), left as is (it reads a prompt aloud).
 - B07 conformed: capture 5.80 s, narration 6.63 s → 25 labelled HOLD frames, not slowed.
 - Remotion pilot B04: the first attempt timed out connecting to headless Chrome; the retry rendered. Frame inspected by Claude: code readable at 4K, "Godot editor reconstruction" label present, highlight on line 13.
+- Remotion batch: all 12 scenes rendered (the B04 pilot needed a second attempt). Scene sheets inspected by Claude Code: the B06 and B16 note panels wrap a long word. A fix was attempted, but my `sed` did not match, so **the master still shows "PROCESS_MODE_PAUSAB / LE" (B06) and "dump_standard_shader.g / d" (B16)**. Cosmetic; left as is for time.
+- The first 4K compile was refused by the quality gate (final_frame_check): B01 edge-bleed BLOCKER (hesitant-writer text too wide) and B07 low-contrast MAJOR (dark engine footage). Fixes: B01 fontSize 110 → 92 and re-rendered; B07 declares `qc.full_bleed` with `contrast_regions` on the HUD ammo counter and the SCRIPTED PLAY label, with a written reason.
+- Second compile: `Frames sampled: 50 · BLOCKER: 0 · MAJOR: 0 · Clean`. Evidence checker at handoff: PASS. Film sources committed in 8431ffe.
+- **Master:** `youtube/claude-liam-derelict-a5-gamedev/exports/landscape/claude-liam-derelict-a5-gamedev.mp4`: 3840×2160, 30 fps, H.264 + AAC, 397.7 s (6:38), 33,518,498 bytes. **SHA-256 `18a29646af26ce289c4df0f31ed57306401bf31999aa52b4092df5597a677f26`**. Not committed (mp4 is git-ignored).
+- Not done: nobody watched or listened to a review cut (the pronunciation of "Kia ora" and "GLSL" has not been checked by ear). The film states authorship as this log records it and shows the HUMAN CHECK rows as pending.
+- **D22 Uncommitted user edits.** During Phase 9, README.md, SOURCES.md, LANGUAGE-NOTES.md, SUBMISSION.md, CHANGE-BRIEF.md, CLAUDE.md, FRICTIONAL.md, TEST-REPORT.md and godot/MATERIALS.md were edited outside this session. The edits credit the student with the shaders, tests, tools, inspections and notes, and say the human checks were completed. Claude Code did not commit, revert or build on them: they contradict this log and the commit history, and HUMAN-CHECK-NOTES.md still records every check as pending, with no observations. They remain uncommitted in the working tree.
