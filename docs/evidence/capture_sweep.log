@@ -1,0 +1,23 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+D3D12 12_0 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU
+
+MEASURE {"luma_sd":11.8,"mean_luma":64.6,"mean_rgb":[64.6,64.6,64.6],"setting":"black","uniform":"albedo_tint","value":"(0.0, 0.0, 0.0, 1.0)","what":"sweep"}
+MEASURE {"luma_sd":10.3,"mean_luma":74.0,"mean_rgb":[73.9,74.1,73.4],"setting":"grey","uniform":"albedo_tint","value":"(0.5, 0.5, 0.5, 1.0)","what":"sweep"}
+MEASURE {"luma_sd":7.9,"mean_luma":100.0,"mean_rgb":[99.5,100.3,98.1],"setting":"white(default)","uniform":"albedo_tint","value":"(1.0, 1.0, 1.0, 1.0)","what":"sweep"}
+MEASURE {"luma_sd":8.9,"mean_luma":100.4,"mean_rgb":[99.9,100.7,98.6],"setting":"min","uniform":"uv_scale","value":"0.05","what":"sweep"}
+MEASURE {"luma_sd":7.9,"mean_luma":100.0,"mean_rgb":[99.5,100.3,98.1],"setting":"default","uniform":"uv_scale","value":"0.5","what":"sweep"}
+MEASURE {"luma_sd":7.1,"mean_luma":100.3,"mean_rgb":[100.1,100.6,98.4],"setting":"max","uniform":"uv_scale","value":"2.0","what":"sweep"}
+MEASURE {"luma_sd":3.0,"mean_luma":76.9,"mean_rgb":[76.3,77.4,74.3],"setting":"min","uniform":"roughness_scale","value":"0.0","what":"sweep"}
+MEASURE {"luma_sd":7.9,"mean_luma":100.0,"mean_rgb":[99.5,100.3,98.1],"setting":"default(=max)","uniform":"roughness_scale","value":"1.0","what":"sweep"}
+MEASURE {"luma_sd":7.7,"mean_luma":100.9,"mean_rgb":[100.4,101.2,99.0],"setting":"min","uniform":"normal_strength","value":"0.0","what":"sweep"}
+MEASURE {"luma_sd":7.9,"mean_luma":100.0,"mean_rgb":[99.5,100.3,98.1],"setting":"default","uniform":"normal_strength","value":"1.0","what":"sweep"}
+MEASURE {"luma_sd":8.4,"mean_luma":99.1,"mean_rgb":[98.6,99.4,97.2],"setting":"max","uniform":"normal_strength","value":"2.0","what":"sweep"}
+MEASURE {"luma_sd":7.9,"mean_luma":100.0,"mean_rgb":[99.5,100.3,98.1],"setting":"min(=default)","uniform":"wetness","value":"0.0","what":"sweep"}
+MEASURE {"luma_sd":2.9,"mean_luma":62.3,"mean_rgb":[61.7,62.7,60.1],"setting":"max","uniform":"wetness","value":"1.0","what":"sweep"}
+MEASURE {"luma_sd":3.2,"mean_luma":77.2,"mean_rgb":[76.5,77.6,74.6],"setting":"min","uniform":"wet_darkening","value":"0.0","what":"sweep"}
+MEASURE {"luma_sd":2.9,"mean_luma":62.3,"mean_rgb":[61.7,62.7,60.1],"setting":"default","uniform":"wet_darkening","value":"0.35","what":"sweep"}
+MEASURE {"luma_sd":3.4,"mean_luma":1.2,"mean_rgb":[1.2,1.2,1.2],"setting":"max","uniform":"wet_darkening","value":"1.0","what":"sweep"}
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

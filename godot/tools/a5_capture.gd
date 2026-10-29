@@ -320,6 +320,10 @@ func _play() -> void:
 		var low: float = mat.get_shader_parameter("low_ammo")
 		if low != 1.0:
 			bad_state += 1
+		# Press at the start of a frame: after frame_post_draw the press would be
+		# stamped with the finished frame and is_action_just_pressed misses it.
+		await process_frame
+		frame_i += 1
 		Input.action_press("reload")
 		await process_frame
 		Input.action_release("reload")

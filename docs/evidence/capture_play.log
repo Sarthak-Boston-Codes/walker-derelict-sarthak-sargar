@@ -1,0 +1,4 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+D3D12 12_0 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU
+
+MEASURE {"FIRE_INTERVAL":0.14,"MAG_SIZE":15,"RELOAD_TIME":1.25,"cycles":3,"final_text":"15 / 30","fire_gap_frames_min_max":[9,163],"low_ammo_wrong_after_settle":0,"other_labels_with_material":0,"reload_frames":[75,75,75],"what":"play"}

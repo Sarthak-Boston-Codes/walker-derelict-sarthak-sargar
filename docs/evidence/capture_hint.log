@@ -1,0 +1,5 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+D3D12 12_0 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU
+
+MEASURE {"bands_64_128_192":[[64,64,64],[128,128,128],[192,192,192]],"quad":"QuadSourceColor","sampler":"source_color","what":"hint_bands"}
+MEASURE {"bands_64_128_192":[[137,137,137],[188,188,188],[225,225,225]],"quad":"QuadNoHint","sampler":"no hint","what":"hint_bands"}
