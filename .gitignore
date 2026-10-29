@@ -11,3 +11,6 @@ youtube/**/*.wav
 __pycache__/
 # Blender auto-backup files (written on every re-save).
 *.blend1
+
+# Test logs (scripts/run-test.sh); cited logs are copied to docs/evidence/
+logs/
