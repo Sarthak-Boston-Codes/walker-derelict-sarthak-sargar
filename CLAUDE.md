@@ -14,10 +14,8 @@
   bash scripts/run-test.sh game3d_soak_test.tscn 60
   bash scripts/run-test.sh showcase_3d_test.tscn 60
   bash scripts/run-test.sh trigger_count_test.tscn 60
-  bash scripts/run-test.sh game3d_shot.tscn 60
-  bash scripts/run-test.sh low_ammo_test.gd 30   # also 60 and 144
-  bash scripts/run-test.sh test_materials.gd 60
   ```
+  `godot/tests/game3d_shot.tscn` is a screenshot harness (needs a window, asserts nothing), not a test.
   Import first after any asset change: `"$GODOT" --headless --path godot --import`.
 
 ## Current change
@@ -27,7 +25,7 @@
 ## Ownership
 
 - The three A5 shaders (`low_ammo`, `concrete_surface`, `hint_experiment`), the CHANGE-BRIEF colour line, predictions and brief answers were written by Claude (chat). The driver, tests, materials, scenes, MATERIALS.md and LANGUAGE-NOTES.md are written by Claude Code. The TA verbally allowed AI-written work for A5 provided the student understands it; written confirmation is pending from the student.
-- The student chose the six design decisions in CHANGE-BRIEF §0 by accepting Claude's defaults.
+- The student chose the state and the six design decisions listed in CHANGE-BRIEF.md's opening paragraph by accepting Claude's defaults.
 - Shaders in `godot/shaders/` change only when a test or capture shows a real bug, and then a dated revision goes into CHANGE-BRIEF.md first and the fix is its own commit.
 - Never write that the student wrote shader code or performed a check they did not perform. HUMAN CHECK rows stay "pending" until the student reports them.
 
