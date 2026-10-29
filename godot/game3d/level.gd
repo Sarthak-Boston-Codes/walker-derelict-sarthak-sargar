@@ -21,7 +21,10 @@ signal nav_rebaked
 const Phys := preload("res://game3d/phys.gd")
 const ModelTable := preload("res://game3d/model_table.gd")
 const P := preload("res://game3d/placeholder_models.gd")
-const FloorShader := preload("res://game3d/shaders/concrete_floor.gdshader")
+## A5: textured concrete (CHANGE-BRIEF.md section 4). Dry everywhere, wet
+## on the Boiler Room floor.
+const ConcreteDry := preload("res://materials/concrete_dry.tres")
+const ConcreteWet := preload("res://materials/concrete_wet.tres")
 const Crate := preload("res://game3d/crate.gd")
 const Barrel := preload("res://game3d/barrel.gd")
 const Pickup := preload("res://game3d/pickup.gd")
@@ -126,11 +129,8 @@ func _stripe_tex() -> ImageTexture:
 
 func _make_materials() -> void:
 	var grit := _noise_tex(0.03, 7)
-	var floor_mat := ShaderMaterial.new()
-	floor_mat.shader = FloorShader
-	floor_mat.set_shader_parameter("grit", grit)
-	floor_mat.set_shader_parameter("stains", _noise_tex(0.012, 21))
-	_mats.floor = floor_mat
+	_mats.floor = ConcreteDry
+	_mats.floor_wet = ConcreteWet
 	_mats.concrete = _tex_mat(Color("#7A7C76"), grit, 0.35)
 	_mats.paint = _tex_mat(Color("#3F5A52"), grit, 0.5, 0.8)
 	_mats.cap = P.mat(Color("#202322"), 1.0)
@@ -396,6 +396,18 @@ func _build_shell() -> void:
 	floor_body.add_child(mi)
 	floor_body.position = Vector3(11, -0.5, -2)
 	nav_region.add_child(floor_body)
+	# Wet Boiler Room floor: a visual-only plane just above the main floor.
+	# No collider, so physics and the navmesh (static colliders) are unchanged.
+	var boiler: Rect2 = ROOMS["Boiler Room"]
+	var wet := MeshInstance3D.new()
+	wet.name = "BoilerRoomWetFloor"
+	var wet_plane := PlaneMesh.new()
+	wet_plane.size = boiler.size
+	wet.mesh = wet_plane
+	wet.material_override = _mats.floor_wet
+	wet.cast_shadow = GeometryInstance3D.SHADOW_CASTING_SETTING_OFF
+	wet.position = Vector3(boiler.get_center().x, 0.01, boiler.get_center().y)
+	add_child(wet)
 	var h := WALL_T / 2.0
 	# Outer walls (south wall has the loading-dock shutters as decoration).
 	_wall(Vector2(-10 - h, 14), Vector2(32 + h, 14))
