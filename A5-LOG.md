@@ -30,7 +30,7 @@ Known noise in two logs: `WARNING: N ObjectDB instances were leaked at exit` and
 
 ## Phase 2 — CLAUDE.md
 
-- Draft committed unreviewed (a3b… see `git log -- CLAUDE.md`). Review found three defects, fixed in a separate commit: the test list included `game3d_shot.tscn`, which is a screenshot harness, not a test; it listed two tests that did not exist yet; it cited a "§0" the brief does not have.
+- Draft committed unreviewed (3321b3b); corrections in 55fd5fb. Review found three defects, fixed in a separate commit: the test list included `game3d_shot.tscn`, which is a screenshot harness, not a test; it listed two tests that did not exist yet; it cited a "§0" the brief does not have.
 - Headless facts in CLAUDE.md come from a probe script run 2026-10-29 (not committed; kept in the session scratchpad).
 
 ## Phase 3 — shader 1, driver, test, mutations
@@ -52,3 +52,14 @@ Known noise in two logs: `WARNING: N ObjectDB instances were leaked at exit` and
 - Earlier suites after the wiring change, 60 fps: smoke PASS 0 failures, soak PASS, showcase PASS 0 failures, trigger_count PASS 0 failures (same as baseline).
 - **Mutation (a)** removed the `;` after `= 0.0` in the `low_ammo` declaration → `SHADER ERROR: Expected a ';'.`, 5 FAILs, exit 1 (`docs/evidence/mutation_a_semicolon.log`). Restored with `git checkout`.
 - **Mutation (b)** renamed `low_ammo` → `low_ammo_level` in the shader only (declaration and its use in the colour line, so it still compiles) → 4 FAILs, exit 1 (`docs/evidence/mutation_b_rename.log`). Note: every R1–R7 timing line still PASSED under this mutation, because `set_shader_parameter` silently stores an undeclared name and reads it back — failure case 4 is real, and only the uniform-list check catches it. Restored; rerun exit 0.
+
+## Phase 4 — textures, textured shader, materials, hint experiment
+
+- **D12 Texture set.** Poly Haven API listed 80 concrete textures; `concrete_floor_worn_001` chosen: categories include "floor", "indoor", "dirty" (an indoor factory floor), the most downloaded floor set in that list. 1k PNG (lossless source; 16-bit, Godot loads it as RGB8). MD5 of all four files matched the API.
+- **D13 Fixture isolation.** `nor_dx` lives in `godot/tests/fixtures/normal_maps/` with a `.gdignore`, so it is never imported or packed; tests read it with `Image.load_from_file`.
+- Import settings written explicitly into each `.import`: `compress/mode=2` (VRAM Compressed), `mipmaps/generate=true`, `compress/normal_map=2` (Disabled) for diff and rough, `=1` (Enabled) for nor_gl. **D14** also `detect_3d/compress_to=0` so the editor's 3D-use detection cannot rewrite them later. Greys PNG: `compress/mode=0` (Lossless), `mipmaps/generate=false`, `detect_3d/compress_to=0`.
+- **D15 Wet floor.** `level.gd` builds one floor plane for the whole map, so the Boiler Room cannot get its own material without a second mesh. Added a visual-only PlaneMesh the size of `ROOMS["Boiler Room"]` at y = 0.01 with the wet material, no collider, no shadow. Navmesh bakes from static colliders (`level.gd` `PARSED_GEOMETRY_STATIC_COLLIDERS`), so it is unchanged. The old `game3d/shaders/concrete_floor.gdshader` is now unused; left in place (not deleted).
+- **D16 Lab light.** DirectionalLight3D at `rotation_degrees (-45, 180, 0)`: 45° down, shining toward the camera so the wet tile's specular is visible; camera at 60° down.
+- After the floor change, at 60 fps: smoke, soak, showcase, trigger_count and low_ammo_test all exit 0 with no SHADER ERROR.
+- **normal_map_check calibration** (`docs/evidence/calibrate_normal_map_check_60fps.log`). As copied, at 1k / stride 4: nor_gl 1.299 (directx=false) / 0.701 (true); nor_dx 0.701 / 1.299. Expected low / near 2, so the sign was **reversed**, and the gap was weak. A probe at 1024/512/256/128 px showed the gap widen when downsampled (best 0.31 / 1.69 at 256), so the weakness is the photo's fine noise, which scores near 1 ("no surface"). Fix (own commit 1ddd300, after committing the kit file unchanged in 33398ad): sign flipped (GL = −1, because image rows run downward), maps downsampled to 256 px before the check. Result: nor_gl 0.328 / 1.672, nor_dx 1.673 / 0.327, flat 0.000. **Threshold: own convention < 0.6 and the other > 1.4.** It never got near 0 vs 2.
+- **Mistake caught (Claude Code):** the first commit of `normal_map_check.gd` was labelled "as copied" but already contained the flip. It was reset (unpushed) and redone as two commits so the history shows the kit file and the change separately.

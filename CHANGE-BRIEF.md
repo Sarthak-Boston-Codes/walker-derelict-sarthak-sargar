@@ -143,3 +143,11 @@ Three facts the text above does not account for (added, not corrections of it):
 1. **The label has a drop shadow.** `ui_theme.gd:21-23` gives every Label a theme shadow (`font_shadow_color` black at 0.8 alpha, offset 2,2), and the HUD root uses that theme (`hud.gd:54`). A Label draws its shadow through the same CanvasItem, so the shader runs on the shadow too, and `mix(black, warning_color, 1.0)` would make the shadow red. Failure case 5 is therefore live, not hypothetical; the 1.0 capture decides it.
 2. **At `mag == 0` the label is not #F2C14E.** `hud.gd:308` switches `font_color` to `UI.DANGER` = #E5483B (`ui_theme.gd:8`) when the magazine is empty. The pixel A/B predictions hold for `mag` 1–5; at 0 the input colour is (229, 72, 59) and only the t = 1.0 row (255, 48, 48) still applies.
 3. **The HUD never pauses.** `hud.gd:49` sets `process_mode = PROCESS_MODE_ALWAYS` so the pause menu works. A driver added under the HUD inherits that, so R6 (freeze on pause) needs the driver to set its own `process_mode = PROCESS_MODE_PAUSABLE`.
+
+### 2026-10-29 — texture set chosen (Claude Code)
+
+Section 4's concrete set is Poly Haven **`concrete_floor_worn_001`** ("Concrete Floor Worn 001"), authors Dimitrios Savva (photography) and Rico Cilliers (processing), licence **CC0 1.0**, checked 2026-10-29 through `https://api.polyhaven.com/files/concrete_floor_worn_001`. 1k PNG maps: Diffuse, Rough, `nor_gl` used by the game; `nor_dx` kept only as a calibration fixture. Details and MD5s in `godot/textures/concrete/ATTRIBUTION.md`.
+
+Two observations while wiring section 4, not corrections of it:
+1. The committed `concrete_surface.gdshader` names its last group `group_uniforms wet;`; the uniform table above says group "wetness". Only the Inspector heading differs; no test or capture shows a bug, so the shader is unchanged (ground rule: shaders change only for a real bug).
+2. The kit's `normal_map_check.gd` scored this pair reversed (GL looked like DX). Its sign was flipped and the threshold set from this pair; see A5-LOG.md Phase 4.
