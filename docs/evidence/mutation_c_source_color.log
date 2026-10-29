@@ -1,0 +1,89 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== test_materials ==
+PASS concrete_dry uses res://shaders/concrete_surface.gdshader (got res://shaders/concrete_surface.gdshader)
+PASS concrete_wet uses res://shaders/concrete_surface.gdshader (got res://shaders/concrete_surface.gdshader)
+PASS dry and wet share one Shader resource
+PASS dry and wet are two ShaderMaterials
+FAIL albedo_tex is sampled as colour (source_color) ["filter_linear_mipmap", "repeat_enable"]
+PASS roughness_tex is sampled as data (no source_color) ["filter_linear_mipmap", "repeat_enable"]
+PASS normal_tex is data with hint_normal, no source_color ["hint_normal", "filter_linear_mipmap", "repeat_enable"]
+PASS albedo_tint is a source_color vec4
+PASS albedo_tex filters with mipmaps and repeats
+PASS roughness_tex filters with mipmaps and repeats
+PASS normal_tex filters with mipmaps and repeats
+PASS hint shader: tex_as_colour is source_color, filter_nearest ["source_color", "filter_nearest"]
+PASS hint shader: tex_as_data is filter_nearest only ["filter_nearest"]
+PASS uniform list: albedo_tint type 20
+PASS uniform list: uv_scale type 3 range 0.05,2.0
+PASS uniform list: roughness_scale type 3 range 0.0,1.0
+PASS uniform list: normal_strength type 3 range 0.0,2.0
+PASS uniform list: wetness type 3 range 0.0,1.0
+PASS uniform list: wet_darkening type 3 range 0.0,1.0
+PASS uniform list: albedo_tex type 24
+PASS uniform list: roughness_tex type 24
+PASS uniform list: normal_tex type 24
+PASS dry wetness = 0.0
+PASS wet wetness = 0.8
+PASS dry albedo_tint = white
+PASS wet albedo_tint = #C8CCD0 (got c8ccd0)
+PASS concrete_dry.tres uv_scale = 0.5
+PASS concrete_dry.tres roughness_scale = 1.0
+PASS concrete_dry.tres normal_strength = 1.0
+PASS concrete_dry.tres wet_darkening = 0.35
+PASS concrete_dry.tres albedo_tex -> res://textures/concrete/concrete_floor_worn_001_diff_1k.png
+PASS concrete_dry.tres roughness_tex -> res://textures/concrete/concrete_floor_worn_001_rough_1k.png
+PASS concrete_dry.tres normal_tex -> res://textures/concrete/concrete_floor_worn_001_nor_gl_1k.png
+PASS concrete_wet.tres uv_scale = 0.5
+PASS concrete_wet.tres roughness_scale = 1.0
+PASS concrete_wet.tres normal_strength = 1.0
+PASS concrete_wet.tres wet_darkening = 0.35
+PASS concrete_wet.tres albedo_tex -> res://textures/concrete/concrete_floor_worn_001_diff_1k.png
+PASS concrete_wet.tres roughness_tex -> res://textures/concrete/concrete_floor_worn_001_rough_1k.png
+PASS concrete_wet.tres normal_tex -> res://textures/concrete/concrete_floor_worn_001_nor_gl_1k.png
+PASS concrete_floor_worn_001_diff_1k.png.import loads
+PASS diff compress/mode = 2 (VRAM Compressed)
+PASS diff compress/normal_map = 2 (Disable)
+PASS diff mipmaps/generate = true
+PASS concrete_floor_worn_001_rough_1k.png.import loads
+PASS rough compress/mode = 2 (VRAM Compressed)
+PASS rough compress/normal_map = 2 (Disable)
+PASS rough mipmaps/generate = true
+PASS concrete_floor_worn_001_nor_gl_1k.png.import loads
+PASS nor_gl compress/mode = 2 (VRAM Compressed)
+PASS nor_gl compress/normal_map = 1 (Enable)
+PASS nor_gl mipmaps/generate = true
+PASS greys_3x1 compress/mode = 0 (Lossless)
+PASS greys_3x1 mipmaps/generate = false
+PASS diff imported as format 17, mipmaps true
+PASS rough imported as format 17, mipmaps true
+PASS nor_gl imported as format 21, mipmaps true
+PASS greys_3x1 imported as RGB8 3x1, no mipmaps (format 4)
+PASS greys_3x1 texels are 64, 128, 192
+PASS concrete_floor_worn_001_nor_gl_1k.png curl_ratio in its own convention (directx=false) 0.328 < 0.6
+PASS concrete_floor_worn_001_nor_gl_1k.png curl_ratio in the other convention (directx=true) 1.672 > 1.4
+PASS concrete_floor_worn_001_nor_dx_1k.png curl_ratio in its own convention (directx=true) 0.327 < 0.6
+PASS concrete_floor_worn_001_nor_dx_1k.png curl_ratio in the other convention (directx=false) 1.673 > 1.4
+PASS both hint materials use hint_experiment.gdshader
+PASS read_as_colour true / false
+PASS hint_as_colour.tres tex_as_colour -> greys_3x1.png
+PASS hint_as_colour.tres tex_as_data -> greys_3x1.png
+PASS hint_as_data.tres tex_as_colour -> greys_3x1.png
+PASS hint_as_data.tres tex_as_data -> greys_3x1.png
+PASS hint scene: Linear tonemap, exposure 1.0
+PASS hint scene: glow, fog, adjustments off
+PASS material lab: Linear 1.0, SSAO/SSR/glow/fog off
+PASS material lab: light pitched 45 degrees down ((-45.0, 180.0, 0.0))
+PASS material lab: TileDry uses dry, TileWet uses wet
+ERROR: Parameter "material" is null.
+   at: material_get_instance_shader_parameters (servers/rendering/dummy/storage/material_storage.cpp:264)
+   GDScript backtrace (most recent call first):
+       [0] _hint_experiment (res://tests/test_materials.gd:180)
+       [1] _initialize (res://tests/test_materials.gd:37)
+
+FAIL: 1 failure(s)
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

@@ -1,0 +1,37 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== game3d_smoke_test ==
+ok    player stands on the floor
+ok    navmesh map is live
+ok    firing uses ammo
+ok    reload refills the magazine from reserve
+ok    shambler chases the player (7.6 m -> 3.2 m)
+ok    shambler reaches and hurts the player (hp 100 -> 82)
+ok    four hits kill a shambler
+ok    two hits kill a runner
+ok    wave 1 starts and spawns zombies (3 alive)
+ok    medkit heals 40
+ok    crate breaks and drops ammo
+ok    ammo box adds reserve (55 -> 72)
+ok    shot barrel moves or topples
+ok    explosive barrel blows and chains into its neighbour
+ok    blast kills a nearby zombie
+ok    pause freezes the game and shows the menu
+ok    resume unfreezes
+ok    security door stays shut without the keycard
+ok    walking onto the keycard picks it up
+ok    door opens with the keycard
+ok    opening the door triggers the ambush
+ok    control room unlocked for spawns
+ok    navmesh routes through the opened door
+ok    holding the lift extracts and shows the win screen
+ok    taking damage lowers health
+ok    lethal damage kills the player
+ok    death screen appears
+
+PASS: 0 failure(s)
+WARNING: 3 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

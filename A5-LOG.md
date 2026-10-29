@@ -63,3 +63,22 @@ Known noise in two logs: `WARNING: N ObjectDB instances were leaked at exit` and
 - After the floor change, at 60 fps: smoke, soak, showcase, trigger_count and low_ammo_test all exit 0 with no SHADER ERROR.
 - **normal_map_check calibration** (`docs/evidence/calibrate_normal_map_check_60fps.log`). As copied, at 1k / stride 4: nor_gl 1.299 (directx=false) / 0.701 (true); nor_dx 0.701 / 1.299. Expected low / near 2, so the sign was **reversed**, and the gap was weak. A probe at 1024/512/256/128 px showed the gap widen when downsampled (best 0.31 / 1.69 at 256), so the weakness is the photo's fine noise, which scores near 1 ("no surface"). Fix (own commit 1ddd300, after committing the kit file unchanged in 33398ad): sign flipped (GL = −1, because image rows run downward), maps downsampled to 256 px before the check. Result: nor_gl 0.328 / 1.672, nor_dx 1.673 / 0.327, flat 0.000. **Threshold: own convention < 0.6 and the other > 1.4.** It never got near 0 vs 2.
 - **Mistake caught (Claude Code):** the first commit of `normal_map_check.gd` was labelled "as copied" but already contained the flip. It was reset (unpushed) and redone as two commits so the history shows the kit file and the change separately.
+
+## Phase 5 — audit, fresh cache, mutation
+
+- `godot/MATERIALS.md` and `godot/tests/test_materials.gd` committed as a first draft (c7f0a31), test at 74 PASS. Before that commit, two test defects were fixed while getting it to run: the `uv_scale` range check compared strings but Godot prints float32 (`0.05000000074506,2.0,...`), now compared as floats; nothing else changed.
+- Review (15d15cb): every integer enum was looked up — Image formats and Variant/PropertyHint types printed by the 4.7.2 engine; importer enums from `editor/import/resource_importer_texture.cpp` at tag 4.7.2-stable (lines 232, 241, 260; the online class reference does not list the integers). Formats and mip counts re-read with `get_image()`. Removed: an unverified claim that Godot rebuilds Z "in the shader". Relabelled: the noise explanation for the weak 1k separation is an inference. Replaced a hex I had computed (#050506) with the scene's literal `Color(0.02, 0.02, 0.025)`. Added measured mip counts (10).
+- **Headless fact:** freeing an instanced scene with ShaderMaterials prints `ERROR: Parameter "material" is null` from `servers/rendering/dummy/storage/material_storage.cpp:264` (dummy renderer). It is not a SHADER/SCRIPT ERROR and the wrapper passes it.
+- **Fresh cache:** `godot/.godot` deleted, `--import` re-run (exit 0, no SHADER/SCRIPT ERROR), `git status` clean afterwards (no `.import` rewritten). Every suite then:
+
+| Suite | fps | Exit | Result |
+|---|---|---|---|
+| game3d_smoke_test.tscn | 60 | 0 | 27 ok, 0 FAIL |
+| game3d_soak_test.tscn | 60 | 0 | PASS |
+| showcase_3d_test.tscn | 60 | 0 | 3 ok, 0 FAIL |
+| trigger_count_test.tscn | 60 | 0 | 7 ok, 0 FAIL |
+| low_ammo_test.gd | 30 / 60 / 144 | 0 / 0 / 0 | 35 PASS each |
+| test_materials.gd | 60 | 0 | 74 PASS |
+| calibrate_normal_map_check.gd | 60 | 0 | PASS |
+
+- **Mutation (c)** removed `source_color` from `albedo_tex` in `concrete_surface.gdshader` → `FAIL albedo_tex is sampled as colour (source_color)`, 1 failure, exit 1 (`docs/evidence/mutation_c_source_color.log`). Restored with `git checkout`; rerun exit 0.
