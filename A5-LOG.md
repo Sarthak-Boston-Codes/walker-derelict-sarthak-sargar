@@ -82,3 +82,19 @@ Known noise in two logs: `WARNING: N ObjectDB instances were leaked at exit` and
 | calibrate_normal_map_check.gd | 60 | 0 | PASS |
 
 - **Mutation (c)** removed `source_color` from `albedo_tex` in `concrete_surface.gdshader` → `FAIL albedo_tex is sampled as colour (source_color)`, 1 failure, exit 1 (`docs/evidence/mutation_c_source_color.log`). Restored with `git checkout`; rerun exit 0.
+
+## Phase 6 — the language
+
+- **Route to the generated code.** `RenderingServer.shader_get_code(mat.get_shader_rid())` fails: StandardMaterial3D has no `get_shader_rid()` in GDScript, and `Material._get_shader_rid` is bound only as a virtual (`call()` → "Nonexistent function", headless and windowed). **Working route (D17):** BaseMaterial3D still creates a shader on the RenderingServer; RIDs are `(counter << 32) | slot`, so `godot/tools/dump_standard_shader.gd` makes a shader before and after the material and tries every id in between with `shader_get_code()`. Windowed run: exactly one match, 1698 characters, header `// NOTE: Shader automatically converted from Godot Engine 4.7.2.stable's StandardMaterial3D.` Saved as `godot/shaders/standard_generated.gdshader` (d1d74d9). The editor route was not needed.
+- **D18 Order.** LANGUAGE-NOTES.md answers 4 and 5 cite the hint experiment and the 2.0 capture, so it was written after the Phase 7 captures (4fa46ea).
+- One wrong line reference in my first draft (G:29 for `uv1_scale`; it is G:28) was caught by re-reading and fixed before commit.
+
+## Phase 7 — Use It
+
+- Capture tool `godot/tools/a5_capture.gd`: windowed, renders into an off-screen 3840×2160 SubViewport (as A3's `showcase_capture.gd`), 2D laid out at 1280×720 via `size_2d_override`. The driver is set to `PROCESS_MODE_DISABLED` before each controlled capture, then `low_ammo` is set by hand. Full frames in `youtube/claude-liam-derelict-a5-gamedev/captures/frames/` (git-ignored); crops/thumbnails in `docs/evidence/captures/`.
+- `git status` after the first windowed run: no `.import` rewritten, nothing to explain.
+- **Bug found by capture (failure case 5):** the label's drop shadow turned red at 1.0. Brief revision e434f65, fix a8f1bc2, recapture confirmed. Full cycle in TEST-REPORT.md.
+- **Capture-tool bug (mine):** the first play capture hung (exit 124): a reload press issued right after `await frame_post_draw` was stamped with the finished frame, so `is_action_just_pressed` never fired. Fixed by pressing at the start of a frame (752adca).
+- Pixel A = (581, 296), B = (653, 299) in the 3840×2160 frame (picked automatically: fully covered #F2C14E pixels with a 5×5 neighbourhood in the first two glyph runs of "5 / 60"). Measured: see TEST-REPORT.md; all within ±0 of the prediction.
+- Mutations (a) and (b) re-run on the revised shader: both still exit 1 (dc422d9).
+- **D19 Archive.** The A2–A3 `TEST-REPORT.md` and A3 `SUBMISSION.md` were moved to `docs/archive/` (9d4b5b8) rather than overwritten.
