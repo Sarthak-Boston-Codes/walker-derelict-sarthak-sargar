@@ -151,3 +151,16 @@ Section 4's concrete set is Poly Haven **`concrete_floor_worn_001`** ("Concrete 
 Two observations while wiring section 4, not corrections of it:
 1. The committed `concrete_surface.gdshader` names its last group `group_uniforms wet;`; the uniform table above says group "wetness". Only the Inspector heading differs; no test or capture shows a bug, so the shader is unchanged (ground rule: shaders change only for a real bug).
 2. The kit's `normal_map_check.gd` scored this pair reversed (GL looked like DX). Its sign was flipped and the threshold set from this pair; see A5-LOG.md Phase 4.
+
+### 2026-10-29 — failure case 5 observed; colour line revised (Claude Code)
+
+**Observed** (windowed capture, `godot/tools/a5_capture.gd` MODE=ammo, commit af736a7; inspected by Claude Code, not yet by the student): at `low_ammo = 1.0` the ammo label's drop shadow turns red. Shadow-only pixels (6 px below-right of fully covered glyph pixels at the 3× capture scale) average (18, 15, 8) at 0.0 and (212, 42, 42) at 1.0; the counter reads as a doubled, smeared red shape (`docs/evidence/captures/ammo_1.0_label.png`). Cause, as predicted in the first revision: the theme shadow is drawn through the same CanvasItem, its `COLOR.rgb` is black, and `mix(black, warning_color, 1.0)` is red.
+
+Pixel predictions for the glyphs themselves held exactly: A and B read (242, 193, 78) at 0.0, (248, 120, 63) at 0.5, (255, 48, 48) at 1.0.
+
+**Revision.** The tint is applied only where the drawn colour is not black, so the shadow (pure black, `font_shadow_color` = #000000 at 0.8) keeps its colour and the glyphs are unchanged from the predictions:
+```glsl
+float glyph = step(0.004, max(COLOR.r, max(COLOR.g, COLOR.b)));
+COLOR.rgb = mix(COLOR.rgb, warning_color.rgb, low_ammo * glyph);
+```
+`step(0.004, …)` is 0 for a pixel whose largest channel is below about 1/255 and 1 otherwise; coverage lives in alpha, so antialiased glyph edges still count as glyph. Glyph pixels (largest channel 0.949 for #F2C14E, 0.898 for DANGER #E5483B) get exactly the original line, so every prediction in section 2 stands. Known limit: a deliberately black label colour would never tint; no HUD label uses black. Revision written by Claude Code; the student has not yet reviewed it.
