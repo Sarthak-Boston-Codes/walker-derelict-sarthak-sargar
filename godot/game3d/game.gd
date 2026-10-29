@@ -78,6 +78,7 @@ func _ready() -> void:
 	hud.game = self
 	add_child(hud)
 	_connect_signals()
+	hud.attach_low_ammo(player)
 	hud.set_health(player.hp, player.MAX_HP)
 	hud.set_ammo(player.mag, player.reserve)
 	hud.set_objective("Find the security keycard — somewhere in the Boiler Room")

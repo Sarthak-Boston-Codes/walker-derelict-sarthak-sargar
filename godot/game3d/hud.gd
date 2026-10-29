@@ -3,6 +3,7 @@ extends CanvasLayer
 ## Keeps running while the tree is paused so the pause menu works.
 
 const UI := preload("res://game3d/ui_theme.gd")
+const LowAmmoDriver := preload("res://game3d/low_ammo_driver.gd")
 
 const VIGNETTE_SHADER := """
 shader_type canvas_item;
@@ -43,6 +44,8 @@ var _toast_tween: Tween
 var _marker: Polygon2D
 var _marker_label: Label
 var _out_warned := false
+## A5 low-ammo tint on the ammo counter (attach_low_ammo).
+var low_ammo: Node
 
 
 func _ready() -> void:
@@ -301,6 +304,14 @@ func set_health(hp: float, max_hp: float) -> void:
 
 func flash_hurt() -> void:
 	_hurt = 0.75
+
+
+## Gives the ammo counter its low-ammo shader, driven from `player`.
+func attach_low_ammo(player: Node) -> void:
+	low_ammo = LowAmmoDriver.new()
+	low_ammo.name = "LowAmmoDriver"
+	add_child(low_ammo)
+	low_ammo.setup(_ammo_label, player)
 
 
 func set_ammo(mag: int, reserve: int) -> void:
