@@ -1,4 +1,4 @@
-NEEDS ME: upload C:\Users\sarth\Game Development\walker-derelict-sarthak-sargar\youtube\claude-liam-derelict-a5-gamedevxports\landscape\claude-liam-derelict-a5-gamedev.mp4 to OneDrive and send the link.
+NEEDS ME: upload C:\Users\sarth\Game Development\walker-derelict-sarthak-sargar\youtube\claude-liam-derelict-a5-gamedev\exports\landscape\claude-liam-derelict-a5-gamedev.mp4 to OneDrive and send the link.
 
 # A5-LOG.md — Assignment 5 working log (kept by Claude Code)
 
