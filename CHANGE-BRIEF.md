@@ -133,3 +133,13 @@ The quad **with `source_color`** shows the file's values unchanged: the sampler 
 ## Revisions
 
 (Dated entries below. The text above stays as committed.)
+
+### 2026-10-29 — reference check (Claude Code)
+
+Every file/line reference above was checked against commit 7917c8c and is correct: `player.gd:9` declares `signal ammo_changed(mag: int, reserve: int)`; `:37` is `var mag := MAG_SIZE`; `:233` is `mag += take` in `_finish_reload()`; `:243` is `mag -= 1` in `fire()`; `hud.gd:88` creates `_ammo_label = UI.label("15 / 45", 30, UI.ACCENT)`; `ui_theme.gd:5` is `ACCENT := Color("#F2C14E")`; `ui_theme.gd:9` is `PANEL := Color(0.06, 0.065, 0.07, 0.86)` (= #0F1112 at 86 %); `project.godot` has no `rendering_method` and no `hdr_2d` line (its features list says "Forward Plus").
+
+Three facts the text above does not account for (added, not corrections of it):
+
+1. **The label has a drop shadow.** `ui_theme.gd:21-23` gives every Label a theme shadow (`font_shadow_color` black at 0.8 alpha, offset 2,2), and the HUD root uses that theme (`hud.gd:54`). A Label draws its shadow through the same CanvasItem, so the shader runs on the shadow too, and `mix(black, warning_color, 1.0)` would make the shadow red. Failure case 5 is therefore live, not hypothetical; the 1.0 capture decides it.
+2. **At `mag == 0` the label is not #F2C14E.** `hud.gd:308` switches `font_color` to `UI.DANGER` = #E5483B (`ui_theme.gd:8`) when the magazine is empty. The pixel A/B predictions hold for `mag` 1–5; at 0 the input colour is (229, 72, 59) and only the t = 1.0 row (255, 48, 48) still applies.
+3. **The HUD never pauses.** `hud.gd:49` sets `process_mode = PROCESS_MODE_ALWAYS` so the pause menu works. A driver added under the HUD inherits that, so R6 (freeze on pause) needs the driver to set its own `process_mode = PROCESS_MODE_PAUSABLE`.
