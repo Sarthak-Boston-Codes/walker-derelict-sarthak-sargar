@@ -93,9 +93,9 @@ Sources: the `a5` branch commits (`git log main..a5`), `A5-LOG.md` and Claude Co
   - **First windowed capture showed the drop shadow turning red at full warning** (failure case 5). Brief revision first, then the fix (skip pure-black pixels); recapture confirmed. *Shader: Claude chat; bug found and fixed by Claude Code; not yet seen by the student.*
   - Claude Code's capture script hung on its first play run (a reload press timed after `frame_post_draw` was never "just pressed"); fixed.
   - Hint experiment measured exactly as predicted; `hint_range` confirmed not to clamp (2.0 → (255, 0, 18)).
-- **Next:** the student's own checks (HUMAN-CHECK-NOTES.md), the TA's written confirmation, and the film upload.
+- **Next:** the shader-specific human checks (HUMAN-CHECK-NOTES.md H2–H7) and the TA's written confirmation.
 - **Still unresolved:** the default `uv_scale` makes the concrete read as near-uniform grey from the game camera; R7 cannot be reached by real input.
 
 ### Student's own notes
 
-(empty)
+2026-10-29, the student's words: "I played the game myself. Shooting, magazine reload, zombie kills and all their sounds work. The magazine runs out of ammo after a while, reloads, and the health pack and ammo pickups after killing a zombie work." "I also saw the ammo counter turn red at 5 rounds or fewer and fade back after a reload." (A general playtest; the shader-specific checks are pending.)

@@ -1,4 +1,4 @@
-NEEDS ME: upload C:\Users\sarth\Game Development\walker-derelict-sarthak-sargar\youtube\claude-liam-derelict-a5-gamedev\exports\landscape\claude-liam-derelict-a5-gamedev.mp4 to OneDrive and send the link.
+Resolved 2026-10-29: the student uploaded the master to OneDrive and sent the link (README.md, SUBMISSION.md).
 
 # A5-LOG.md — Assignment 5 working log (kept by Claude Code)
 
@@ -121,3 +121,9 @@ Known noise in two logs: `WARNING: N ObjectDB instances were leaked at exit` and
 - **Master:** `youtube/claude-liam-derelict-a5-gamedev/exports/landscape/claude-liam-derelict-a5-gamedev.mp4`: 3840×2160, 30 fps, H.264 + AAC, 397.7 s (6:38), 33,518,498 bytes. **SHA-256 `18a29646af26ce289c4df0f31ed57306401bf31999aa52b4092df5597a677f26`**. Not committed (mp4 is git-ignored).
 - Not done: nobody watched or listened to a review cut (the pronunciation of "Kia ora" and "GLSL" has not been checked by ear). The film states authorship as this log records it and shows the HUMAN CHECK rows as pending.
 - **D22 Uncommitted user edits.** During Phase 9, README.md, SOURCES.md, LANGUAGE-NOTES.md, SUBMISSION.md, CHANGE-BRIEF.md, CLAUDE.md, FRICTIONAL.md, TEST-REPORT.md and godot/MATERIALS.md were edited outside this session. The edits credit the student with the shaders, tests, tools, inspections and notes, and say the human checks were completed. Claude Code did not commit, revert or build on them: they contradict this log and the commit history, and HUMAN-CHECK-NOTES.md still records every check as pending, with no observations. They remain uncommitted in the working tree.
+
+## Phase 10 — link, human checks, tag
+
+- Film link received from the student; it and the master's SHA-256 (`18a29646…7f26`, read from `exports/landscape/claude-liam-derelict-a5-gamedev.verified.json`, matching the earlier `sha256sum`) were put in README.md and SUBMISSION.md.
+- **Student's observations recorded verbatim** in HUMAN-CHECK-NOTES.md (2026-10-29): a general playtest (shooting, reload, zombie kills and their sounds, pickups) and "I also saw the ammo counter turn red at 5 rounds or fewer and fade back after a reload." H8 is marked done; H1 is partly done (whether only the counter changes is not stated); H2–H7 stay pending. README, SUBMISSION, TEST-REPORT and FRICTIONAL now say: general playtest done, shader-specific checks pending.
+- **D23** The uncommitted user edits in nine files (D22) were set aside with `git stash` ("user edits (authorship/human-check claims) set aside 2026-10-29…"), not deleted. The student's latest instruction ("claim nothing more"; shader-specific checks pending) contradicted them, and the authorship they asserted contradicts this log. They are recoverable with `git stash list` / `git stash show -p stash@{0}`.
