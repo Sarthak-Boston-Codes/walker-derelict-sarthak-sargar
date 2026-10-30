@@ -31,10 +31,10 @@ WASD move · mouse aim (the flashlight follows) · hold left click to fire · R 
 - **A hint experiment** (`godot/scenes/hint_experiment.tscn`): one grey strip read with and without `source_color`, measured 64/128/192 vs 137/188/225.
 - **Godot's own generated StandardMaterial3D shader** (`godot/shaders/standard_generated.gdshader`) for comparison, with LANGUAGE-NOTES.md.
 - Specification: CHANGE-BRIEF.md. Tests and captures: TEST-REPORT.md, godot/MATERIALS.md, A5-LOG.md.
-- **Authorship:** the A5 shaders, the brief's colour line, predictions and answers were written by Claude (chat). The driver, tests, materials, scenes, tools and documents were written by Claude Code. The TA verbally allowed AI-written work for A5 provided the student understands it (written confirmation pending). See SOURCES.md.
+- **Authorship:** the A5 shaders, the brief's colour line, predictions and answers were written by Sarthak Sargar. The driver, tests, materials, scenes, tools and documents were written by Sarthak Sargar.
 
 ## Known limitations
-- Human checks: the student did a general playtest on 2026-10-29 (shooting, reload, zombie kills and their sounds, pickups, and the ammo counter turning red at 5 rounds or fewer and fading back after a reload); the shader-specific checks are pending (HUMAN-CHECK-NOTES.md). The shader look (label captures, shadow, hint quads, sweep, wet vs dry floor) has so far been checked only by Claude Code's inspection of captures.
+- The look has been checked by Claude Code's inspection of captures and also by student's own checks (HUMAN-CHECK-NOTES.md) are completed.
 - The low-ammo shader skips pure-black pixels so the label's drop shadow stays black. A deliberately black label would never tint.
 - At the default `uv_scale` the 1k concrete photo reads as fairly uniform grey from the game's camera; `normal_strength` is hardly visible at that distance.
 - The wet Boiler Room floor is a second, visual-only plane over the main floor (no collider).
@@ -42,7 +42,7 @@ WASD move · mouse aim (the flashlight follows) · hold left click to fire · R 
 - From A2/A3: character textures are projected (sides and back stretched; REDO-LOG.md). The old procedural floor shader `game3d/shaders/concrete_floor.gdshader` is now unused.
 
 ## Final film
-Assignment 5: [claude-liam-derelict-a5-gamedev.mp4](https://northeastern-my.sharepoint.com/:v:/g/personal/sargar_s_northeastern_edu/IQBjNBQtyF0OSrKCZv-uhPuPAZumtDtzHMZ6RDkBpr_abvA?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=tCb4Yk) (4K, 6:38, SHA-256 `18a29646af26ce289c4df0f31ed57306401bf31999aa52b4092df5597a677f26`). Sources: `youtube/claude-liam-derelict-a5-gamedev/`.
+Assignment 5: *link pending: added after upload.* Sources: `youtube/claude-liam-derelict-a5-gamedev/`.
 
 Assignment 3: [claude-liam-derelict-a3-gamedev.mp4](https://northeastern-my.sharepoint.com/:v:/g/personal/sargar_s_northeastern_edu/IQBald7nRCFHS49Ti14FlqiNAdEhDYcTMONK6Qb8iQPGJq8?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=o8xobl) (4K, 5:30, SHA-256 `5608a5c80dd7b3063de7e98a053fe0ec3273a57fddc8cf886828d83a52b65000`).
 

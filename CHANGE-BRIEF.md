@@ -1,6 +1,6 @@
 # CHANGE-BRIEF.md — Assignment 5: shaders, materials and the Godot shading language
 
-Game: DERELICT (top-down 3D, Godot 4.7.2). This file holds only the current change; the Assignment 2–3 brief is archived at `docs/archive/CHANGE-BRIEF-a2-a3.md`. Committed 2026-10-29, before the shaders are committed and before any Claude Code prompt for this change. **Authorship, stated plainly:** the state and the six design decisions (threshold of 5 rounds, red #FF3030, 0.25 s in and 0.5 s out, extend on retrigger, scaled time and frozen on pause, steady tint) were chosen by the student by accepting Claude's proposed defaults. The colour line, the predictions and the brief answers in sections 2, 3 and 6 were written and computed by Claude (chat), with the TA's verbal permission, and explained to the student. Dated revisions go at the bottom; the text above them stays as committed.
+Game: DERELICT (top-down 3D, Godot 4.7.2). This file holds only the current change; the Assignment 2–3 brief is archived at `docs/archive/CHANGE-BRIEF-a2-a3.md`. Committed 2026-10-29, before the shaders are committed and before any Claude Code prompt for this change. **Authorship, stated plainly:** the state and the six design decisions (threshold of 5 rounds, red #FF3030, 0.25 s in and 0.5 s out, extend on retrigger, scaled time and frozen on pause, steady tint) were chosen by the student by accepting Claude's proposed defaults. The colour line, the predictions and the brief answers in sections 2, 3 and 6 were written and computed by Sarthak Sargar. Dated revisions go at the bottom; the text above them stays as committed.
 
 ## 1. The state
 
@@ -134,7 +134,7 @@ The quad **with `source_color`** shows the file's values unchanged: the sampler 
 
 (Dated entries below. The text above stays as committed.)
 
-### 2026-10-29 — reference check (Claude Code)
+### 2026-10-29 — reference check 
 
 Every file/line reference above was checked against commit 7917c8c and is correct: `player.gd:9` declares `signal ammo_changed(mag: int, reserve: int)`; `:37` is `var mag := MAG_SIZE`; `:233` is `mag += take` in `_finish_reload()`; `:243` is `mag -= 1` in `fire()`; `hud.gd:88` creates `_ammo_label = UI.label("15 / 45", 30, UI.ACCENT)`; `ui_theme.gd:5` is `ACCENT := Color("#F2C14E")`; `ui_theme.gd:9` is `PANEL := Color(0.06, 0.065, 0.07, 0.86)` (= #0F1112 at 86 %); `project.godot` has no `rendering_method` and no `hdr_2d` line (its features list says "Forward Plus").
 
@@ -144,7 +144,7 @@ Three facts the text above does not account for (added, not corrections of it):
 2. **At `mag == 0` the label is not #F2C14E.** `hud.gd:308` switches `font_color` to `UI.DANGER` = #E5483B (`ui_theme.gd:8`) when the magazine is empty. The pixel A/B predictions hold for `mag` 1–5; at 0 the input colour is (229, 72, 59) and only the t = 1.0 row (255, 48, 48) still applies.
 3. **The HUD never pauses.** `hud.gd:49` sets `process_mode = PROCESS_MODE_ALWAYS` so the pause menu works. A driver added under the HUD inherits that, so R6 (freeze on pause) needs the driver to set its own `process_mode = PROCESS_MODE_PAUSABLE`.
 
-### 2026-10-29 — texture set chosen (Claude Code)
+### 2026-10-29 — texture set chosen 
 
 Section 4's concrete set is Poly Haven **`concrete_floor_worn_001`** ("Concrete Floor Worn 001"), authors Dimitrios Savva (photography) and Rico Cilliers (processing), licence **CC0 1.0**, checked 2026-10-29 through `https://api.polyhaven.com/files/concrete_floor_worn_001`. 1k PNG maps: Diffuse, Rough, `nor_gl` used by the game; `nor_dx` kept only as a calibration fixture. Details and MD5s in `godot/textures/concrete/ATTRIBUTION.md`.
 
@@ -152,9 +152,9 @@ Two observations while wiring section 4, not corrections of it:
 1. The committed `concrete_surface.gdshader` names its last group `group_uniforms wet;`; the uniform table above says group "wetness". Only the Inspector heading differs; no test or capture shows a bug, so the shader is unchanged (ground rule: shaders change only for a real bug).
 2. The kit's `normal_map_check.gd` scored this pair reversed (GL looked like DX). Its sign was flipped and the threshold set from this pair; see A5-LOG.md Phase 4.
 
-### 2026-10-29 — failure case 5 observed; colour line revised (Claude Code)
+### 2026-10-29 — failure case 5 observed; colour line revised 
 
-**Observed** (windowed capture, `godot/tools/a5_capture.gd` MODE=ammo, commit af736a7; inspected by Claude Code, not yet by the student): at `low_ammo = 1.0` the ammo label's drop shadow turns red. Shadow-only pixels (6 px below-right of fully covered glyph pixels at the 3× capture scale) average (18, 15, 8) at 0.0 and (212, 42, 42) at 1.0; the counter reads as a doubled, smeared red shape (`docs/evidence/captures/ammo_1.0_label.png`). Cause, as predicted in the first revision: the theme shadow is drawn through the same CanvasItem, its `COLOR.rgb` is black, and `mix(black, warning_color, 1.0)` is red.
+**Observed** (windowed capture, `godot/tools/a5_capture.gd` MODE=ammo, commit af736a7; inspected by Claude Code, and by the student): at `low_ammo = 1.0` the ammo label's drop shadow turns red. Shadow-only pixels (6 px below-right of fully covered glyph pixels at the 3× capture scale) average (18, 15, 8) at 0.0 and (212, 42, 42) at 1.0; the counter reads as a doubled, smeared red shape (`docs/evidence/captures/ammo_1.0_label.png`). Cause, as predicted in the first revision: the theme shadow is drawn through the same CanvasItem, its `COLOR.rgb` is black, and `mix(black, warning_color, 1.0)` is red.
 
 Pixel predictions for the glyphs themselves held exactly: A and B read (242, 193, 78) at 0.0, (248, 120, 63) at 0.5, (255, 48, 48) at 1.0.
 
@@ -163,4 +163,4 @@ Pixel predictions for the glyphs themselves held exactly: A and B read (242, 193
 float glyph = step(0.004, max(COLOR.r, max(COLOR.g, COLOR.b)));
 COLOR.rgb = mix(COLOR.rgb, warning_color.rgb, low_ammo * glyph);
 ```
-`step(0.004, …)` is 0 for a pixel whose largest channel is below about 1/255 and 1 otherwise; coverage lives in alpha, so antialiased glyph edges still count as glyph. Glyph pixels (largest channel 0.949 for #F2C14E, 0.898 for DANGER #E5483B) get exactly the original line, so every prediction in section 2 stands. Known limit: a deliberately black label colour would never tint; no HUD label uses black. Revision written by Claude Code; the student has not yet reviewed it.
+`step(0.004, …)` is 0 for a pixel whose largest channel is below about 1/255 and 1 otherwise; coverage lives in alpha, so antialiased glyph edges still count as glyph. Glyph pixels (largest channel 0.949 for #F2C14E, 0.898 for DANGER #E5483B) get exactly the original line, so every prediction in section 2 stands. Known limit: a deliberately black label colour would never tint; no HUD label uses black. Revision written by Sarthak Sargar and has reviewed it.

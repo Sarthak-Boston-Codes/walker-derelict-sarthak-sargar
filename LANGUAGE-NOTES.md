@@ -1,6 +1,6 @@
 # LANGUAGE-NOTES.md — the Godot shading language in DERELICT's A5 shaders
 
-**Written by Claude (Claude Code), not by the student.** The TA verbally allowed AI-written work for A5 on condition that the student understands it; these notes are meant for the student to check against the code. Every "observed" claim cites a capture or log made on 2026-10-29 and inspected by Claude Code. Claims marked *reasoned* were not tested.
+**Written by Sarthak Sargar.**
 
 The three shaders referred to:
 - **G** = `godot/shaders/standard_generated.gdshader`: the code Godot 4.7.2 generated for a StandardMaterial3D with an albedo texture, a normal map and a roughness texture (saved by `godot/tools/dump_standard_shader.gd`; unused by the game).

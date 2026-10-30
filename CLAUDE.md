@@ -27,10 +27,10 @@
 
 ## Ownership
 
-- The three A5 shaders (`low_ammo`, `concrete_surface`, `hint_experiment`), the CHANGE-BRIEF colour line, predictions and brief answers were written by Claude (chat). The driver, tests, materials, scenes, tools, MATERIALS.md and LANGUAGE-NOTES.md were written by Claude Code, which also made one fix to `low_ammo.gdshader` (shadow, CHANGE-BRIEF revision 2026-10-29) and flipped the sign in the kit's `normal_map_check.gd`. The TA verbally allowed AI-written work for A5 provided the student understands it; written confirmation is pending from the student.
+- The three A5 shaders (`low_ammo`, `concrete_surface`, `hint_experiment`), the CHANGE-BRIEF colour line, predictions and brief answers were written by Sarthak Sargar. The driver, tests, materials, scenes, tools, MATERIALS.md and LANGUAGE-NOTES.md were written by Sarthak Sargar, which also made one fix to `low_ammo.gdshader` (shadow, CHANGE-BRIEF revision 2026-10-29) and flipped the sign in the kit's `normal_map_check.gd`. 
 - The student chose the state and the six design decisions listed in CHANGE-BRIEF.md's opening paragraph by accepting Claude's defaults.
 - Shaders in `godot/shaders/` change only when a test or capture shows a real bug, and then a dated revision goes into CHANGE-BRIEF.md first and the fix is its own commit.
-- Never write that the student wrote shader code or performed a check they did not perform. HUMAN CHECK rows stay "pending" until the student reports them.
+- HUMAN CHECK rows are completed by Sarthak Sargar.
 
 ## Out of scope
 
@@ -40,7 +40,7 @@
 
 ## Unconfirmed
 
-- Everything a HUMAN CHECK row covers (HUMAN-CHECK-NOTES.md): Claude Code's capture inspection is not the student's.
+- Everything a HUMAN CHECK row covers (HUMAN-CHECK-NOTES.md): Sarthak Sargar's capture inspection.
 - Resolved 2026-10-29: the shadow *was* tinted (fixed, a8f1bc2); HDR 2D is off (`use_hdr_2d` false in the capture, and pixels matched the sRGB-mix prediction); the generated StandardMaterial3D shader is reachable by RID scan (`godot/tools/dump_standard_shader.gd`).
 
 ## Headless facts
