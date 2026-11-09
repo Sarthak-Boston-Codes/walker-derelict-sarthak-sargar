@@ -49,3 +49,21 @@ My verdict (running game), r0: pending: not yet performed by the student.
 | 30, 50 | | | nothing |
 
   Net: the puff will now visibly **grow** (about 2× in the frames read, 3.2× over its life). It will read as a small cluster of separate dark-red dots, much less mass than the r0 disc, and is likely **too weak over the light floor**, which is the puff's job. Flash and sparks: identical to r0 (same seed).
+
+- **Strips:** `captures/impact_burst/r0/strip.png` (before) and `captures/impact_burst/r1/strip.png` (after), dark; `r0-light/strip.png` and `r1-light/strip.png`, light. Same seed, same camera, same crop.
+- **Claude's comparison (read by Claude, frame by frame):**
+
+| Frame | Predicted | r1 shows | Held? |
+|---|---|---|---|
+| 10 | nothing | nothing | yes |
+| 11 | 2–5 px blobs under the flash; no 0.5 m ring | the dark-red ring around the flash is **gone**; only the flash shows | yes |
+| 12 | 3–5 px blobs starting to spread | one or two dark-red specks ~2 px beside the sparks; in the dark strip a faint grey disc where the flash was | partly: the specks are at the small end and barely spread |
+| 15 | 3–7 px blobs, a cluster 0.2–0.4 m across, alpha ~0.43 | 2–3 specks of 2–4 px within ~0.1 m | size at the low end; **the cluster is much tighter than predicted** (damping 2.5–4 stops them within ~0.1 m) |
+| 20 | 5–9 px blobs, faint, widest | one faint blob of ~4 px (~0.07 m) | growth visible but smaller than predicted |
+| 30, 50 | nothing | nothing | yes |
+
+  Flash and sparks are pixel-for-pixel as in r0 apart from where the r0 puff disc overlapped them: yes, as predicted.
+  **Against the intent:** the mechanism now works (the puff grows over its life, ~2× in the frames read), but the puff no longer does its job. At its widest it is ~0.07 m, not 0.3–0.5 m, and over the light floor, where it is meant to read, it is a few specks you have to look for. r0's static 0.5 m disc was closer to the intent on size and contrast, which matter more for "a hit landed here" than growth does. The prediction's direction held ("too weak over the light floor"); its numbers for spread were too generous.
+- **Decision: reverted.** The comparison does not support keeping this change on its own. The puff's table scale (0.15–0.3) only makes sense together with keep_scale if the scale values are raised about 3×. That is a **second setting**, outside this revision's one-setting approval.
+- **Next step (needs a fresh approval, not taken):** A-r2 = keep_scale true **and** Puff `scale_min/max` 0.15/0.3 → 0.5/0.9. Predicted: blobs 0.12–0.23 m at birth growing to 0.4–0.7 m. Recorded for Claude/the student to approve or reject.
+- **My verdict (running game):** pending: not yet performed by the student.
