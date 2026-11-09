@@ -1,0 +1,47 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== test_wound_smoke_config ==
+PASS res://effects/wound_smoke.tscn loads
+PASS one GPUParticles3D, no children (got GPUParticles3D with 0 children)
+PASS amount = 40 (got 40)
+PASS amount_ratio in the scene file (driven at run time) = 1.0 (got 1.0)
+PASS one_shot = false (got false)
+PASS explosiveness = 0.0 (got 0.0)
+PASS lifetime = 1.8 (got 1.8)
+PASS preprocess = 0.0 (got 0.0)
+PASS not emitting in the scene file (nothing at load, full health)
+PASS local_coords = false (got false)
+PASS visibility_aabb = [P: (-3.0, -1.0, -3.0), S: (6.0, 5.0, 6.0)] (got [P: (-3.0, -1.0, -3.0), S: (6.0, 5.0, 6.0)])
+PASS process_material is a ParticleProcessMaterial
+PASS emission_shape = sphere (got 1)
+PASS emission_sphere_radius = 0.15 (got 0.15000000596046)
+PASS direction = (0.0, 1.0, 0.0) (got (0.0, 1.0, 0.0))
+PASS spread = 25.0 (got 25.0)
+PASS initial_velocity_min = 0.4 (got 0.40000000596046)
+PASS initial_velocity_max = 0.8 (got 0.80000001192093)
+PASS gravity = (0.0, 0.3, 0.0) (got (0.0, 0.3, 0.0))
+PASS damping_min = 0.3 (got 0.30000001192093)
+PASS damping_max = 0.6 (got 0.60000002384186)
+PASS turbulence_enabled = true (got true)
+PASS turbulence_noise_strength = 0.6 (got 0.60000002384186)
+PASS scale_min = 0.2 (got 0.20000000298023)
+PASS scale_max = 0.35 (got 0.34999999403954)
+PASS scale curve 0.6 -> 1.8 (got 0.6 -> 1.8)
+PASS alpha curve 0.5 -> 0.0 (got 0.5 -> 0.0)
+PASS colour ramp (0.18,0.18,0.20) at both ends, alpha 1 (got (0.18, 0.18, 0.2, 1.0) -> (0.18, 0.18, 0.2, 1.0))
+PASS draw_pass_1 is a QuadMesh 0.5 m
+PASS draw material is a StandardMaterial3D
+PASS draw: unshaded (got 0)
+PASS draw: transparency alpha (got 1)
+PASS draw: blend_mode mix (got 0)
+PASS draw: billboard_mode particles (got 3)
+PASS draw: billboard_keep_scale false (got false)
+PASS draw: vertex_color_use_as_albedo true
+PASS draw: texture is a radial GradientTexture2D written in the scene
+
+PASS: 0 failure(s)
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

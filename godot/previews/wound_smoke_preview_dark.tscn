@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://previews/effect_preview.gd" id="1_prev"]
+
+[node name="WoundSmokePreviewDark" type="Node"]
+script = ExtResource("1_prev")
+effect = "wound_smoke"
+player_xz = Vector2(30.5, 12.5)
+aim_xz = Vector2(27, 9)

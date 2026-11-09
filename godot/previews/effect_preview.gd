@@ -9,11 +9,14 @@ extends Node
 ## in-game offset), switches waves off, removes zombies, parks the player
 ## and freezes its controls; the HUD layer is hidden. Then, by frame number (frame 0 = first frame
 ## written), it either fires the impact burst or drives the wound smoke.
+## `-- --control` never starts the effect (a background plate to diff against).
 ## Optional user arg `-- --repeat=N` re-fires the burst every N frames
 ## (a held trigger: FIRE_INTERVAL 0.14 s is 4.2 frames at 30 fps).
 
 const IMPACT_BURST := "res://effects/impact_burst.tscn"
 const WOUND_SMOKE := "res://effects/wound_smoke.tscn"
+## Same as wound_smoke_driver.gd CHEST_HEIGHT.
+const CHEST_HEIGHT := 1.25
 
 @export_enum("impact_burst", "wound_smoke") var effect := "impact_burst"
 ## Where the player stands and looks (x, z on the floor).
@@ -28,6 +31,7 @@ const WOUND_SMOKE := "res://effects/wound_smoke.tscn"
 ## Effect B: frames where the condition begins and ends.
 @export var condition_begin := 10
 @export var condition_end := 130
+## amount_ratio while the condition holds: 0.6 = the mapping at hp 30.
 @export var smoke_ratio := 0.6
 @export var fixed_seed := 12345
 
@@ -45,6 +49,10 @@ func _ready() -> void:
 		if a.begins_with("--repeat="):
 			_repeat = int(a.trim_prefix("--repeat="))
 		_noglow = _noglow or a == "--noglow"
+		if a == "--control":
+			condition_begin = -1
+			trigger_frame = -1
+			print("control run: the effect is never started")
 	game = load("res://game3d/game.tscn").instantiate()
 	add_child(game)
 	game.waves.active = false
@@ -73,6 +81,7 @@ func _ready() -> void:
 		_seed(burst)
 	else:
 		smoke = (load(WOUND_SMOKE) as PackedScene).instantiate()
+		smoke.position = Vector3(0, CHEST_HEIGHT, 0)
 		p.add_child(smoke)
 		_seed(smoke)
 	print("preview %s: player %s aim %s" % [effect, p.global_position, p.aim_point])
