@@ -10,6 +10,8 @@ signal ammo_changed(mag: int, reserve: int)
 signal reload_changed(active: bool)
 signal hurt
 signal died
+## A6: a bullet from fire() hit a victim (Effect A, impact_fx.gd).
+signal bullet_hit(point: Vector3, normal: Vector3)
 
 const ModelTable := preload("res://game3d/model_table.gd")
 const ActorAnim := preload("res://game3d/actor_anim.gd")
@@ -261,6 +263,7 @@ func fire() -> void:
 		if target_node.has_method("hit"):
 			if target_node.is_in_group("zombies"):
 				shots_hit += 1
+			bullet_hit.emit(end, hit.normal)
 			target_node.hit(DAMAGE, end, dir, hit.normal)
 		else:
 			Fx.sparks(end, hit.normal)
