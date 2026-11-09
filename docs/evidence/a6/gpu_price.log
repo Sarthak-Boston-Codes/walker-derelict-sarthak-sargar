@@ -1,0 +1,13 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+D3D12 12_0 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU
+
+GPU: NVIDIA GeForce RTX 4050 Laptop GPU | forward_plus d3d12 | window (1280, 720) | vsync mode 0 (0 = disabled) | screen refresh 144.0 Hz
+both effects off (first)       GPU 1.1599 ms (sd 0.0337)   render CPU 0.6341 ms (sd 0.4810)   439 FPS over 600 frames
+Effect A worst (12 bursts)     GPU 1.1704 ms (sd 0.0029)   render CPU 0.8736 ms (sd 0.6014)   354 FPS over 600 frames  (12 bursts alive at the end, 288 particles)
+Effect B ratio 1.0             GPU 1.1752 ms (sd 0.0135)   render CPU 0.7942 ms (sd 0.5954)   362 FPS over 600 frames  (emitting true, amount_ratio 1.00, amount 40)
+both effects off (last)        GPU 1.1446 ms (sd 0.0319)   render CPU 0.8570 ms (sd 0.5935)   323 FPS over 600 frames
+
+off drift (last - first): -0.0153 ms GPU
+Effect A worst over the mean of the two off runs: 0.0181 ms GPU (budget 0.30 ms)
+Effect B ratio 1.0 over the mean of the two off runs: 0.0229 ms GPU (budget 0.20 ms)
+FPS rises above the refresh rate (439 FPS vs 144.0 Hz): not vsync-capped
