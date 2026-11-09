@@ -163,3 +163,7 @@ Effect A settings table, Puff column, draw material: add **`billboard_keep_scale
 ### 2026-11-08: tuning A-r1 reverted (Claude Code)
 
 The r1 strips (TUNING.md) show the puff growing but at most ~0.07 m wide, specks over the light floor, further from the intent than r0. The Puff draw material is back to `billboard_keep_scale` false (the default), so the table above stands as committed. The configuration test keeps reading the flag (expected false on all three). A combined change (keep_scale true **and** Puff scale 0.5 / 0.9) is recorded in TUNING.md as a proposal awaiting approval.
+
+### 2026-11-08: tuning B-r1 (approved by Claude, pre-authorised in A6-RUNBOOK.md; applied by Claude Code)
+
+Effect B settings table, direction / spread: spread **25 → 70**. Reason: in the r0 strip the smoke rises toward the near-vertical camera and never leaves the player's silhouette, so it does not read over the lit floor. Prediction, strips and comparison: TUNING.md, B-r1.

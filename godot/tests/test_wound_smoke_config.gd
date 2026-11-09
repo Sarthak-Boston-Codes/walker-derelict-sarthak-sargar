@@ -14,7 +14,7 @@ const EPS := 1e-4
 const E := {
 	"amount": 40, "one_shot": false, "explosiveness": 0.0, "lifetime": 1.8, "preprocess": 0.0,
 	"emission_shape": ParticleProcessMaterial.EMISSION_SHAPE_SPHERE, "emission_sphere_radius": 0.15,
-	"direction": Vector3(0, 1, 0), "spread": 25.0,
+	"direction": Vector3(0, 1, 0), "spread": 70.0, # tuning B-r1 (CHANGE-BRIEF revision 2026-11-08)
 	"initial_velocity_min": 0.4, "initial_velocity_max": 0.8,
 	"gravity": Vector3(0, 0.3, 0), "damping_min": 0.3, "damping_max": 0.6,
 	"turbulence_enabled": true, "turbulence_noise_strength": 0.6,
