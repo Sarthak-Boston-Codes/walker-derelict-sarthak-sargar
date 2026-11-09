@@ -25,6 +25,7 @@ const EXPECT := {
 		"scale_min": 0.8, "scale_max": 1.2, "scale_curve": [1.0, 0.3],
 		"colors": [Color(1.0, 0.95, 0.8), Color(1.0, 0.95, 0.8)],
 		"alpha_curve": [1.0, 0.0], "quad": 0.3, "blend": BaseMaterial3D.BLEND_MODE_ADD,
+		"keep_scale": false,
 	},
 	"Sparks": {
 		"amount": 14, "one_shot": true, "explosiveness": 1.0, "lifetime": 0.45,
@@ -35,6 +36,7 @@ const EXPECT := {
 		"scale_min": 0.03, "scale_max": 0.06, "scale_curve": null,
 		"colors": [Color(1.0, 0.7, 0.2), Color(1.0, 0.25, 0.06)],
 		"alpha_curve": [1.0, 0.0], "quad": 0.1, "blend": BaseMaterial3D.BLEND_MODE_ADD,
+		"keep_scale": false,
 	},
 	"Puff": {
 		"amount": 8, "one_shot": true, "explosiveness": 0.9, "lifetime": 0.6,
@@ -45,6 +47,9 @@ const EXPECT := {
 		"scale_min": 0.15, "scale_max": 0.3, "scale_curve": [0.5, 1.6],
 		"colors": [Color(0.23, 0.06, 0.04), Color(0.23, 0.06, 0.04)],
 		"alpha_curve": [0.6, 0.0], "quad": 0.5, "blend": BaseMaterial3D.BLEND_MODE_MIX,
+		# Tuning A-r1 (CHANGE-BRIEF revision 2026-11-08): billboard particles
+		# ignore the process scale unless this is true.
+		"keep_scale": true,
 	},
 }
 
@@ -157,6 +162,7 @@ func _emitter(n: String, node: Node, e: Dictionary) -> void:
 	check(mat.blend_mode == e.blend, "%s draw: blend_mode %s (got %d)" % [n, "add" if e.blend == BaseMaterial3D.BLEND_MODE_ADD else "mix", mat.blend_mode])
 	check(mat.billboard_mode == BaseMaterial3D.BILLBOARD_PARTICLES, "%s draw: billboard_mode particles (got %d)" % [n, mat.billboard_mode])
 	check(mat.vertex_color_use_as_albedo, "%s draw: vertex_color_use_as_albedo true" % n)
+	check(mat.billboard_keep_scale == e.keep_scale, "%s draw: billboard_keep_scale %s (got %s)" % [n, e.keep_scale, mat.billboard_keep_scale])
 	var tex := mat.albedo_texture as GradientTexture2D
 	var in_scene := tex != null and (tex.resource_path.is_empty() or tex.resource_path.contains("::"))
 	check(tex != null and tex.fill == GradientTexture2D.FILL_RADIAL and in_scene,
