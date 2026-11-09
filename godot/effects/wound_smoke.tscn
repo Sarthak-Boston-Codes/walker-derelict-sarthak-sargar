@@ -55,6 +55,8 @@ color_ramp = SubResource("GradientTexture1D_smoke_color")
 alpha_curve = SubResource("CurveTexture_smoke_alpha")
 turbulence_enabled = true
 turbulence_noise_strength = 0.6
+turbulence_influence_min = 0.03
+turbulence_influence_max = 0.03
 
 [sub_resource type="StandardMaterial3D" id="Mat_smoke"]
 transparency = 1

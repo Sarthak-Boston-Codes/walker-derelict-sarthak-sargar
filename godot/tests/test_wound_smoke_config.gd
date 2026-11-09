@@ -18,6 +18,8 @@ const E := {
 	"initial_velocity_min": 0.4, "initial_velocity_max": 0.8,
 	"gravity": Vector3(0, 0.3, 0), "damping_min": 0.3, "damping_max": 0.6,
 	"turbulence_enabled": true, "turbulence_noise_strength": 0.6,
+	# Tuning B-r2 (CHANGE-BRIEF revision 2026-11-08); the 4.7.2 default is 0.1.
+	"turbulence_influence_min": 0.03, "turbulence_influence_max": 0.03,
 	"scale_min": 0.2, "scale_max": 0.35, "scale_curve": [0.6, 1.8],
 	"color": Color(0.18, 0.18, 0.20), "alpha_curve": [0.5, 0.0],
 	"quad": 0.5, "blend": BaseMaterial3D.BLEND_MODE_MIX, "keep_scale": false,
@@ -85,6 +87,8 @@ func _check(p: GPUParticles3D) -> void:
 	_num("damping_max", m.damping_max, E.damping_max)
 	check(m.turbulence_enabled == E.turbulence_enabled, "turbulence_enabled = true (got %s)" % m.turbulence_enabled)
 	_num("turbulence_noise_strength", m.turbulence_noise_strength, E.turbulence_noise_strength)
+	_num("turbulence_influence_min", m.turbulence_influence_min, E.turbulence_influence_min)
+	_num("turbulence_influence_max", m.turbulence_influence_max, E.turbulence_influence_max)
 	_num("scale_min", m.scale_min, E.scale_min)
 	_num("scale_max", m.scale_max, E.scale_max)
 	_curve("scale curve", m.scale_curve, E.scale_curve)

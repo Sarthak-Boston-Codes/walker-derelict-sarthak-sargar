@@ -167,3 +167,7 @@ The r1 strips (TUNING.md) show the puff growing but at most ~0.07 m wide, specks
 ### 2026-11-08: tuning B-r1 (approved by Claude, pre-authorised in A6-RUNBOOK.md; applied by Claude Code)
 
 Effect B settings table, direction / spread: spread **25 → 70**. Reason: in the r0 strip the smoke rises toward the near-vertical camera and never leaves the player's silhouette, so it does not read over the lit floor. Prediction, strips and comparison: TUNING.md, B-r1.
+
+### 2026-11-08: tuning B-r2 (approved by Claude, pre-authorised in A6-RUNBOOK.md; applied by Claude Code)
+
+Effect B settings table, turbulence: add **`turbulence_influence_min/max` 0.03 / 0.03** (the 4.7.2 default, which the table left implicit, is 0.1 / 0.1). Turbulence stays enabled at noise strength 0.6. Reason: B-r1's diagnostic showed the default influence pins the wisps in place. Prediction, strips and comparison: TUNING.md, B-r2.
