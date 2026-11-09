@@ -6,12 +6,12 @@
 - Renderer: Forward+. `project.godot` has no `rendering_method` line, so the default applies; `config/features` lists "Forward Plus" (`:15`); `rendering_device/driver.windows="d3d12"` (`:91`).
 - Window: 1280 × 720, stretch `canvas_items`, aspect `expand` (`project.godot:25-28`).
 - Main scene `res://game3d/menu.tscn` (`run/main_scene`); the game is `res://game3d/game.tscn`, script `game3d/game.gd`, which builds the level (`game.gd:42-44`, node "Level"), the player (`game.gd:51-54`, node "Player", built in code, no scene) and the HUD.
-- Effect A's event, a bullet hitting a victim: `fire()` in `godot/game3d/player.gd:241`; the shot ray is cast at `:257`; a collider with `hit()` (zombie, barrel, crate) is hit at `:264` with `end = hit.position` and `hit.normal`. Victims implement `hit(damage, point, dir, normal)` (`player.gd:5-6`). `FIRE_INTERVAL := 0.14` (`:27`). A6 adds `signal bullet_hit(point, normal)` and one emit there (the only gameplay edit). Non-victim surfaces already get the A5-era CPU `Fx.sparks(end, hit.normal)` (`player.gd:266`, `fx.gd:100`); a barrel blast hits its victims from `barrel.gd:104-106`, not through `fire()`, so it fires no burst.
+- Effect A's event, a bullet hitting a victim: `fire()` in `godot/game3d/player.gd:241`; the shot ray is cast at `:257`; a collider with `hit()` (zombie, barrel, crate) is hit at `:264` with `end = hit.position` and `hit.normal`. Victims implement `hit(damage, point, dir, normal)` (`player.gd:5-6`). `FIRE_INTERVAL := 0.14` (`:27`). A6 added `signal bullet_hit(point, normal)` (`player.gd:14`) and one emit at `:266`, before the victim's `hit()` at `:267` (the only gameplay edit). Non-victim surfaces already get the A5-era CPU `Fx.sparks(end, hit.normal)` (`player.gd:266`, `fx.gd:100`); a barrel blast hits its victims from `barrel.gd:104-106`, not through `fire()`, so it fires no burst.
 - Effect B's condition: `player.hp` (`player.gd:36`), `MAX_HP := 100.0` (`:23`), reported by `signal health_changed(hp, max_hp)` (`:8`), emitted by `take_damage()` (`:297`) and `heal()` (`:315`, used by medkits through `pickup.gd:72`). Death: `_die()` (`:327`) sets `alive = false` and emits `died`.
 - Effects (A6): `godot/effects/impact_burst.tscn` (Node3D root, three `GPUParticles3D`: Flash, Sparks, Puff) and `godot/effects/wound_smoke.tscn` (one `GPUParticles3D`), each with a `ParticleProcessMaterial` and a `StandardMaterial3D` draw material, all written in the scene file.
-- Trigger code (A6): `godot/game3d/impact_fx.gd` (pool of 12 bursts under the level root, listens to `bullet_hit`) and `godot/game3d/wound_smoke_driver.gd` (listens to `health_changed`/`died`, writes only `emitting` and `amount_ratio`).
+- Trigger code (A6): `godot/game3d/impact_fx.gd` (pool of 12 bursts under the level root, listens to `bullet_hit`; "alive" is its own clock of the longest emitter lifetime, because a one-shot emitter's `emitting` goes false when emission ends) and `godot/game3d/wound_smoke_driver.gd` (listens to `health_changed`/`died`, writes only `emitting` and `amount_ratio`; the smoke sits at chest height 1.25 m).
 - Wiring: `game.gd` `_ready()` attaches the two A6 presentation nodes after the HUD, as A5 did with `hud.attach_low_ammo(player)` (`game.gd:81`). Presentation only; no game state is written.
-- Preview scenes: `godot/previews/impact_burst_preview.tscn`, `godot/previews/wound_smoke_preview.tscn`. Frame strips: `captures/<effect>/r<N>/`.
+- Preview scenes (one script, `godot/previews/effect_preview.gd`): `impact_burst_preview.tscn` (dark), `impact_burst_preview_light.tscn`, `wound_smoke_preview.tscn` (light), `wound_smoke_preview_dark.tscn`. Frame strips: `captures/<effect>/r<N>[-light|-dark]/`, readings in TUNING.md. Tools: `godot/tools/gpu_price.gd` (windowed GPU price), `dump_particles_shader.gd`, `probe_particle_scale.gd`; `tools/strip_sheet.py`.
 - Tests: run every one through the wrapper from the repo root in Git Bash. `bash scripts/run-test.sh <file> <fps|realtime> [timeout]` writes `logs/<name>_<fps>fps.log` (or `_realtime.log`, no `--fixed-fps`) and fails on SHADER ERROR / SCRIPT ERROR.
   ```
   bash scripts/run-test.sh game3d_smoke_test.tscn 60
@@ -25,7 +25,7 @@
   bash scripts/run-test.sh test_impact_burst_state.gd 60
   bash scripts/run-test.sh test_wound_smoke_config.gd 60
   bash scripts/run-test.sh test_wound_smoke_state.gd 60
-  bash scripts/run-test.sh cost_effects.gd 60 300     # written in A6 Phase 8 (no such file at a5)
+  bash scripts/run-test.sh cost_effects.gd 60 300
   bash scripts/run-test.sh <test> realtime               # real time, for anything that awaits audio
   ```
   Import first after any asset change: `"$GODOT" --headless --path godot --import`.
@@ -55,14 +55,18 @@
 ## Unconfirmed
 
 - Every human check (HUMAN-CHECK-NOTES.md): rapid repeats in play, Effect B start/stop/pause/hide, size at 1280 × 720, dark and light backgrounds, screen edge, scene load, the Visual Profiler read, and the student's verdict on each tuning revision.
-- What a float written to `initial_velocity` does in 4.7.2 (it is a Vector2 range property there).
+- Resolved 2026-11-08: a float written to `initial_velocity` in a scene file is dropped silently (it is a Vector2 range property in 4.7.2) and `initial_velocity_min` keeps its default 0.0.
+- Open: Effect A's two-setting tuning proposal A-r2 (TUNING.md) awaits approval.
 
 ## Headless facts
 
-- A headless run uses a dummy renderer (`servers/rendering/dummy/`, observed in A5): nothing is drawn, so no particles are drawn. Pixels and particle positions cannot be checked headless. That the dummy renderer also runs no particle process step is stated by the runbook and checked in Phase 8.
-- A GPU effect's headless CPU price is near zero by construction: its simulation is a process shader on the GPU, which the dummy renderer never runs. The Phase 8 cost run records the measured number.
+- A headless run uses a dummy renderer (`servers/rendering/dummy/`): nothing is drawn and no particle process shader runs. Pixels and particle positions cannot be checked headless; a one-shot emitter's `finished` signal still fires on CPU-side time.
+- A GPU effect's headless CPU price is near zero by construction: its simulation is a process shader on the GPU, which the dummy renderer never runs. Measured (`cost_effects.gd`): not separable from frame-to-frame drift.
+- Headless the window is 64 × 64 with the 1280-wide canvas stretched onto it: a mouse event must be in window pixels (`root.get_final_transform() * viewport_pos`).
+- `PROCESS_MODE_DISABLED` on a CollisionObject3D removes it from physics (bullets pass through); a `preload` of `pickup.gd` in a `--script` test breaks on the `Assets` autoload.
 - Frame strips come from a windowed Movie Maker run (`--write-movie <abs path>/frame.png --fixed-fps 30`), never headless.
 - The dummy renderer still parses shaders; a broken one prints `SHADER ERROR`.
 - `ShaderMaterial.set_shader_parameter()` accepts names the shader does not declare; read back from resources to check.
 - A `--script` whose `_init()` stops on a SCRIPT ERROR never reaches `quit()`; the wrapper's timeout (exit 124) catches it.
-- `StandardMaterial3D` has no `get_shader_rid()` in GDScript; generated shaders are reached by RID scan (`godot/tools/dump_standard_shader.gd`).
+- `StandardMaterial3D` has no `get_shader_rid()` in GDScript; generated shaders are reached by RID scan (`godot/tools/dump_standard_shader.gd`, `dump_particles_shader.gd`).
+- Windowed fact: `billboard_mode = particles` ignores the process scale and scale curve unless `billboard_keep_scale` is true (`probe_particle_scale.gd`).
