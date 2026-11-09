@@ -1,166 +1,139 @@
-# CHANGE-BRIEF.md — Assignment 5: shaders, materials and the Godot shading language
+# CHANGE-BRIEF.md — Assignment 6: two particle effects for DERELICT
 
-Game: DERELICT (top-down 3D, Godot 4.7.2). This file holds only the current change; the Assignment 2–3 brief is archived at `docs/archive/CHANGE-BRIEF-a2-a3.md`. Committed 2026-10-29, before the shaders are committed and before any Claude Code prompt for this change. **Authorship, stated plainly:** the state and the six design decisions (threshold of 5 rounds, red #FF3030, 0.25 s in and 0.5 s out, extend on retrigger, scaled time and frozen on pause, steady tint) were chosen by the student by accepting Claude's proposed defaults. The colour line, the predictions and the brief answers in sections 2, 3 and 6 were written and computed by Sarthak Sargar. Dated revisions go at the bottom; the text above them stays as committed.
+Game: DERELICT, a top-down 3D zombie shooter (Godot 4.7.2, Forward+). This file replaces the Assignment 5 brief, which stays in history at tag `a5`. Written by Claude; the student accepted the two effects below by running this kit. It is committed before the first Claude Code build prompt. Dated revisions go at the bottom; the text above them stays as committed. References marked (verify) are checked by Claude Code in Phase 1 and corrected by a dated revision, never by editing this text.
 
-## 1. The state
+## Effect A — Impact burst (one-shot, repeating event)
 
-**Low ammo**: the player's magazine holds 5 rounds or fewer, `player.mag <= 5` (`godot/game3d/player.gd:37`, `var mag`), reported to the HUD by the `ammo_changed(mag, reserve)` signal (`player.gd:9`). It begins when a shot takes `mag` from 6 to 5 (`player.gd:243`) and ends when `mag` rises above 5, normally when a reload finishes (`player.gd:233`).
+### The job
+Tells the player that a bullet landed, where, and on what. The player fires several shots a second into a dark room; without a visible hit, a miss and a hit feel the same.
+Event: a bullet hit. Victims implement `hit(damage, point, dir, normal)` (`godot/game3d/player.gd:5-6`); the bullet's hit is resolved in player.gd's fire path (line: verify). Fire interval is 0.14 s (`FIRE_INTERVAL`, A5 capture log), so a second hit regularly lands while the first burst is alive.
 
-Why the player needs it: running dry with a zombie in reach is the easiest death to avoid. The magazine count sits in peripheral vision while the player watches the dark, so the warning has to change colour, not only a number.
+### Intent block
+- **Timing phases:** 0–0.07 s a strong white-yellow flash on the first frame; 0.07–0.35 s sparks fly outward fast; 0.2–0.6 s a dark puff expands slowly and fades. Gone before 1.3 s. A held trigger must read as a stream of separate bursts, never one smeared cloud.
+- **Contrast:** value, not hue. Sparks are additive and bright, so they read over the darkest stretch (Assembly Hall corners lit only by the flashlight); the puff is dark and alpha-blended, so it reads over the lightest stretch (floor under a lamp or the red emergency light, wet or dry). Neither is judged over the editor's grey.
+- **Scale against the character:** the player is about 1.7 m tall. The flash is about 0.3 m across (an adult's head), sparks 4–6 cm, the puff 0.3–0.5 m. Judged in the running game at the project window size (verify in `project.godot`).
+- **Change over life:** flash shrinks to 30 % and fades; sparks go orange to red and fade; puff grows to about 3× and fades from 60 % alpha.
+- **Variation:** random velocity, scale and lifetime on every emitter; the sparks' lifetime varies by 30 %.
+- **Emitters (one root, three jobs):** `Flash` (the instant of impact), `Sparks` (direction and energy), `Puff` (lingering mass and darkness).
 
-## 2. Effect specification
+### The settings (the configuration test reads every one back)
+Node: three `GPUParticles3D` under one `Node3D` root, `godot/effects/impact_burst.tscn`. GPU, because the effect needs per-particle curves and gravity at no CPU cost; 3D, because the game is 3D. Process material: `ParticleProcessMaterial`. Godot 4 names only.
 
-**Object:** the HUD ammo counter, `_ammo_label` (a Label created at `godot/game3d/hud.gd:88`), drawn in `UI.ACCENT` = #F2C14E (`godot/game3d/ui_theme.gd:5`) at font size 30. It is 2D HUD on a CanvasLayer with no 2D lights, so its output is unlit and can be modelled.
+| | Flash | Sparks | Puff |
+|---|---|---|---|
+| amount | 2 | 14 | 8 |
+| one_shot | true | true | true |
+| explosiveness | 1.0 | 1.0 | 0.9 |
+| lifetime (s) | 0.08 | 0.45, lifetime_randomness 0.3 | 0.6 |
+| emission_shape | point | point | point |
+| direction / spread | (0,1,0) / 180 | (0,1,0) / 55 | (0,1,0) / 70 |
+| initial_velocity min / max (m/s) | 0 / 0 | 3.0 / 6.0 | 0.6 / 1.4 |
+| gravity (m/s²) | (0,0,0) | (0,-9.8,0) | (0,0.4,0) |
+| damping min / max | 0 / 0 | 0.5 / 1.5 | 2.5 / 4.0 |
+| scale min / max | 0.8 / 1.2 | 0.03 / 0.06 (on a 1.0 m quad base: draw mesh size below) | 0.15 / 0.3 |
+| scale curve | 1.0 → 0.3 | none | 0.5 → 1.6 (a 3.2× growth) |
+| colour ramp | (1.0,0.95,0.8) | (1.0,0.7,0.2) → (1.0,0.25,0.06) | (0.23,0.06,0.04) |
+| alpha curve | 1 → 0 | 1 → 0 | 0.6 → 0 |
+| draw mesh | QuadMesh 0.3 m | QuadMesh 0.1 m | QuadMesh 0.5 m |
+| draw material | StandardMaterial3D, unshaded, transparency alpha, blend add, billboard_mode particles, vertex_color_use_as_albedo true | same | same but blend mix |
+| texture | radial soft-dot `GradientTexture2D` written in the scene (no external texture) | same | same |
 
-**Shader:** `godot/shaders/low_ammo.gdshader`, `shader_type canvas_item;`, no render_mode. No sampler uniforms of its own; the label's glyphs arrive in `COLOR`. No `TIME`: a steady tint.
-
-| Uniform | Type | Hint | Default | Set by |
-|---|---|---|---|---|
-| `low_ammo` | float | `hint_range(0.0, 1.0)` | `0.0` | the driver, every frame, from the low-ammo state |
-| `warning_color` | vec4 | `source_color` | #FF3030 = (1.0, 0.188, 0.188, 1.0) | the label's ShaderMaterial; never by code |
-
-**The colour line**, inside `fragment()` (written by Claude):
-```glsl
-COLOR.rgb = mix(COLOR.rgb, warning_color.rgb, low_ammo);
-```
-`COLOR` already holds the label's own colour for this pixel; `mix` blends it toward `warning_color` by `low_ammo` (0 = no change, 1 = fully the warning colour). Alpha is untouched, so glyph edges keep their antialiasing.
-
-**Driver:** a presentation-only node that reads `player.mag` through `ammo_changed` and writes only the `low_ammo` uniform on the label's material. It never writes game state.
+All three: `local_coords` false (the burst stays where the bullet landed even if the victim moves or is freed); `preprocess` 0 (nothing should be running at load); `visibility_aabb` set, not generated, to position (-2,-1,-2) size (4,3,4) and checked by the configuration test.
 
 ### Observable rules
+- **A1:** the effect fires once per hit the retrigger rule allows, never otherwise (including on scene load, and including shots that miss everything), at the hit `point`.
+- **A2 retrigger = overlap:** each hit instances its own burst from a pool of 12 (`godot/game3d/impact_fx.gd`), so two hits 0.14 s apart give two live bursts. At most 5 are alive from continuous fire (ceil(0.6 / 0.14)); a barrel blast that hits several victims in one frame can use more, up to the pool's 12. If the pool is exhausted, the oldest burst is `restart()`ed (stated, tested).
+- **A3 freed parent:** bursts are children of the level root, not of the victim, so a zombie freed on the killing hit does not cut its burst off.
+- **A4:** the burst is oriented so its local +Y is the hit `normal`.
+- Only permitted touch of gameplay code: one signal declaration and one `emit` line in player.gd at the point where a bullet hit is resolved. No behaviour changes; every earlier suite gives its baseline counts.
 
-| # | Rule | Predicted behaviour |
-|---|---|---|
-| R1 | State begins | `low_ammo` rises from its current value at 4.0 per second; from 0.0 it reaches 1.0 after 0.25 s ± one frame period |
-| R2 | State ends | falls at 2.0 per second; from 1.0 it reaches 0.0 after 0.50 s ± one frame period |
-| R3 | Frame rate | R1 and R2 take the same game time at 30, 60 and 144 fps (tolerance 1/30, 1/60, 1/144 s) |
-| R4 | Begins again mid-transition | **extend**: rises from wherever it is and never resets to 0; from value v it reaches 1.0 after (1 − v) × 0.25 s |
-| R5 | Time scale | scaled game time: at `Engine.time_scale = 0.5` a full fade-in takes 0.5 s of real time (0.25 s of game time) |
-| R6 | Paused tree | the value freezes while paused and continues from the same value on unpause |
-| R7 | Ends before a transition finishes | falls from the value reached; from v it reaches 0.0 after v × 0.5 s, with no jump |
-| R8 | Instances | one ammo label; its ShaderMaterial is its own and shared with nothing |
-| R9 | Only `low_ammo` is driven | `warning_color` keeps its material value throughout |
+## Effect B — Wound smoke (feedback loop driven by a game value)
 
-### Boundaries — must not change
+### The job
+Feedback loop: the player's smouldering wounds. Tells the player how hurt they are without reading the health bar while watching the dark. Value: `player.hp`, range 0–`MAX_HP` = 100 (`player.gd:36`, `:23`), reported by `signal health_changed(hp, max_hp)` (`player.gd:8`).
+Uses features Effect A doesn't: **turbulence** (process) and a **value-driven `amount_ratio`** (emission), with `local_coords` false so the smoke trails behind a moving player like a trail.
 
-Collision, movement, input, the player's fire and reload state machine and its timings (`MAG_SIZE`, `RELOAD_TIME`), zombies, waves, every other HUD element and 3D object, the source model and texture files, and every existing test and its expectations. Presentation code may read game state; it never writes it.
+### Intent block
+- **Timing phases:** when hp first drops to 60 or below, a few wisps appear within about 0.5 s and the cloud reaches its steady state within about 2 s (one lifetime). As hp falls the cloud thickens. When the condition ends (a medkit lifts hp above 60, or the player dies) the emitter stops and the existing smoke thins out over one lifetime (1.8 s).
+- **Contrast:** dark grey smoke reads over lit floor and the flashlight cone; over the darkest corners it is meant to disappear (it is a close-range cue, and the health bar is still the exact number).
+- **Scale against the character:** wisps start at about 0.2 m and grow to about 0.5 m, rising about a body height over their life; the cloud sits at the chest.
+- **Change over life:** scale grows to about 3×, alpha 0.5 → 0, a slight grey-blue tint.
+- **Variation:** random velocity and scale; turbulence stops the wisps rising in straight lines.
+- **Emitter:** one `GPUParticles3D`, `godot/effects/wound_smoke.tscn`, child of the player at chest height.
 
-### Evidence split
+### The settings
+| | value |
+|---|---|
+| node | `GPUParticles3D` (GPU: turbulence exists only there) |
+| amount | 40 (never changed at run time) |
+| amount_ratio | driven, see mapping |
+| one_shot / explosiveness | false / 0.0 |
+| lifetime | 1.8 s |
+| preprocess | 0.0. Nothing is running at scene load (full health); the 2 s ramp-up is the intended read |
+| emission_shape | sphere, radius 0.15 |
+| direction / spread | (0,1,0) / 25 |
+| initial_velocity min / max | 0.4 / 0.8 m/s |
+| gravity | (0,0.3,0): slight buoyancy |
+| damping min / max | 0.3 / 0.6 |
+| turbulence | enabled, noise strength 0.6 (exact property names: verify against the 4.7.2 class reference) |
+| scale min / max, scale curve | 0.2 / 0.35, growth 0.6 → 1.8 |
+| colour ramp, alpha | (0.18,0.18,0.20); alpha curve 0.5 → 0 |
+| draw | QuadMesh 0.5 m, StandardMaterial3D unshaded, transparency alpha, blend mix, billboard_mode particles, vertex_color_use_as_albedo true, radial soft-dot texture |
+| local_coords | false |
+| visibility_aabb | set (-3,-1,-3) size (6,5,6), checked |
 
-| Rule | Checked by | How |
-|---|---|---|
-| R1–R7, R9 | headless test | drive low ammo with real fire input through the game loop; sample `low_ammo` every frame from a node with a high `process_priority`; run at 30, 60 and 144 fps |
-| R8 | headless test + my eyes | assert the label's material is not shared; in play, see only the ammo counter change |
-| Uniform names and types | headless test | `get_shader_uniform_list()`; defaults read from the shader source text |
-| The look | my eyes | in-engine captures at the controlled values below, compared with my predictions; normal play |
+Mapping: condition is `hp <= 60` and the player alive. Then `emitting = true` and `amount_ratio = clamp((60 - hp) / 50, 0.2, 1.0)`: 0.2 at hp 60, 1.0 at hp 10 or below. Otherwise `emitting = false`. `amount` is never written (changing it reallocates the buffer and the smoke would vanish and re-emit).
 
-### Controlled inputs and predicted values (computed by Claude with a script; formulas shown so they can be rechecked)
+### Observable rules
+- **B1:** starts when hp falls to 60 or below, stops (`emitting` false) when hp rises above 60 or the player dies.
+- **B2:** the driver writes `amount_ratio` (at least two different hp values give two different ratios) and never `amount`.
+- **B3 paused:** particles freeze in place and resume on unpause (the node is pausable).
+- **B4 hidden:** while `visible` is false nothing is drawn; `emitting` and the mapping are unchanged (predicted; the test records what the node actually reports).
+- **B5:** nothing is on screen on the first frames after the scene loads (full health), with preprocess 0.
 
-- **Pixel A:** inside a stroke of the magazine digits.
-- **Pixel B:** inside the stroke of the "/" separator.
+## Boundaries
+Collision, movement, input, the state machine and its timings, existing test expectations, the A5 shaders in `godot/shaders/`, and every other object stay unchanged, apart from the one signal in A's rules. Presentation code may read game state; it never writes it.
 
-Both are fully covered glyph pixels whose colour before the effect is #F2C14E = (242, 193, 78), so the background behind the label doesn't reach them. Antialiased edge pixels are observed, not predicted.
+## Evidence split
+| Rule | Checked by |
+|---|---|
+| every setting in both tables | headless configuration tests (`test_impact_burst_config.gd`, `test_wound_smoke_config.gd`) |
+| A1, A2, A3, A4 | headless state test through real fire input; the retrigger with two hits inside one lifetime |
+| B1, B2, B3, B4, B5 | headless state test through real health changes (damage via enemy contact, medkit) |
+| the look of both effects (timing phases, contrast, scale, change over life) | frame strips from a windowed Movie Maker run (fixture) read by Claude; **the student's own verdict in the running game** |
+| edge of screen, scene load, dark and light backgrounds | the student's eyes in the running game |
+| price | cost script (headless CPU), GPU time (see Price) |
 
-Assumption, to confirm by capture: HDR 2D is off (`project.godot` sets no `hdr_2d`), so the mix happens on the sRGB values as written, and `source_color` leaves `warning_color` at (255, 48, 48).
+## The frame strip
+Preview scenes `godot/previews/impact_burst_preview.tscn` and `wound_smoke_preview.tscn` hold the effect at in-game camera scale over a real stretch of the level (the darkest and the lightest are both captured).
+- **Effect A** at 30 fps, trigger at frame 10; read frames 10, 12, 15, 20, 30, 50: flash on the trigger frame; at +2 flash fading and sparks leaving; +5 sparks mid-flight; +10 sparks dying, puff at its widest; +20 puff almost gone; +40 nothing.
+- **Effect B**: condition begins at frame 10, ends at frame 130; read frames 10 (nothing), 40 (first wisps), 100 (steady), 130 (stopped), 160 (thinning), 190 (gone).
+Seeds: if the node has `use_fixed_seed`, use it on the preview instance only, never in the effect scene.
 
-Formula, per channel: result = a + (b − a) × t, with a = (242, 193, 78) and b = (255, 48, 48), rounded to the nearest integer.
+## Predicted failures, each with its check
+1. **Godot 3 property names** (`ParticlesMaterial`, `initial_velocity`, `scale`) load silently and leave defaults. Check: the configuration test reads back every setting; the Godot 3 name mutation must exit 1.
+2. **Colour ramp has no effect** because the draw material lacks `vertex_color_use_as_albedo`, or the alpha fade has no transparency. Check: configuration test reads both flags; the strip shows colour and fade.
+3. **Quads don't face the camera** (billboard mode missing). Check: configuration test; the strip.
+4. **Dropped retrigger:** a single one-shot node ignores the second hit. Check: state test fires two hits inside one lifetime and counts two live bursts.
+5. **Burst dies with a freed victim.** Check: state test kills a zombie on the hit and asserts the burst is still emitting.
+6. **Visibility box too small:** the effect pops out at the screen edge. Check: configuration test reads the AABB; the student's edge-of-screen check.
+7. **Popping feedback loop:** the driver changes `amount`. Check: state test asserts `amount` is unchanged and `amount_ratio` moves.
+8. **The cost script measures itself.** Check: the empty-scene control, and cases that should differ must differ.
 
-| `low_ammo` (t) | Pixel A (R, G, B) | Pixel B (R, G, B) |
-|---|---|---|
-| 0.0 | (242, 193, 78) | (242, 193, 78) |
-| 0.5 | (248.5, 120.5, 63): displays 248 or 249, 120 or 121, 63 (the .5 can round either way, so ±1 counts as a match) | same as A |
-| 1.0 | (255, 48, 48) | (255, 48, 48) |
-
-Contrast against #0F1112, the HUD panel colour (`ui_theme.gd:9`; the panel is 86 % opaque over the 3D scene, so the real background drifts and this is a best case): ratio at 0.0 = **11.28 : 1**; ratio at 1.0 = **5.15 : 1**.
-So the warning stays readable (above 4.5 : 1) but communicates by hue, not contrast: red on dark is less luminous than the yellow it replaces. The capture check records the real figure.
-(decode each channel c in 0–1: c/12.92 if c ≤ 0.04045, else ((c + 0.055)/1.055)^2.4. Luminance L = 0.2126 R + 0.7152 G + 0.0722 B on the decoded values. Ratio = (L_lighter + 0.05) / (L_darker + 0.05).)
-
-## 3. The hint experiment
-
-A committed GDScript writes `godot/textures/hint_experiment/greys_3x1.png`: one row of three texels, greys 64, 128 and 192, imported Lossless with no mipmaps. `godot/shaders/hint_experiment.gdshader` (`spatial`, `render_mode unshaded`) binds that file to two samplers, one with `source_color, filter_nearest` and one with `filter_nearest` only, and a bool uniform picks which one writes `ALBEDO`. Two materials (bool true and false) go on two quads facing the camera, under a WorldEnvironment with a Linear tonemap at exposure 1.0 and glow, fog and adjustments off. Renderer: Forward+.
-
-Prediction (computed by Claude with a script). encode(x) = 12.92x for x ≤ 0.0031308, otherwise 1.055·x^(1/2.4) − 0.055, with x = value / 255; displayed = round(255 × result).
-
-| Band in the file | Quad with source_color | Quad without |
-|---|---|---|
-| 64 | **64** | **137** (encode(0.251) = 0.538) |
-| 128 | **128** | **188** (encode(0.502) = 0.737) |
-| 192 | **192** | **225** (encode(0.753) = 0.882) |
-
-The quad **with `source_color`** shows the file's values unchanged: the sampler decodes each texel from sRGB to linear on the way in and the display encodes it back on the way out, so the two steps cancel. Without `source_color` the raw numbers are treated as linear and encoded once, which brightens them (64 becomes 137). A colour read as data comes out too bright; data read as colour, such as a roughness map, would come out too dark.
-
-## 4. Material plan — the textured shader
-
-**Object:** the factory floor. **Judged under:** a material lab scene, `godot/scenes/material_lab.tscn`: two floor tiles side by side, one DirectionalLight3D at a fixed 45°, low ambient light, SSAO, SSR, glow and fog off, Linear tonemap at exposure 1.0. In the game, the dry material covers the floors and the wet one the Boiler Room.
-
-**Shader:** `godot/shaders/concrete_surface.gdshader`, `shader_type spatial;`, default (lit) render mode.
-
-| Texture | Role | Source | What its numbers mean | Sampled as | Import settings, set explicitly |
+## Price predictions and budgets
+| | peak particles | predicted headless CPU (above the empty-scene control) | predicted GPU time | budget | compared on |
 |---|---|---|---|---|---|
-| albedo | colour | a Poly Haven concrete floor set (asset ID, authors, licence and date added as a dated revision and in ATTRIBUTION.md at download) | sRGB-encoded surface colour | colour, `source_color` | compress/mode VRAM Compressed, compress/normal_map Disabled, mipmaps/generate on |
-| roughness | data | same set | 0 = mirror-smooth, 1 = fully rough, stored linearly | data, no `source_color` | VRAM Compressed, normal_map Disabled, mipmaps on |
-| normal | data | same set, `_nor_gl` (the OpenGL convention Godot expects) | tangent-space slopes; (0.5, 0.5, 1.0) = flat | data, `hint_normal` | VRAM Compressed, normal_map Enabled, mipmaps on |
+| Effect A | typical 5 bursts × 24 = 120; worst 12 × 24 = 288 | under 0.05 ms | 0.05–0.15 ms | 0.30 ms at 288 particles | GPU time |
+| Effect B | 40 at amount_ratio 1.0 | under 0.05 ms | 0.03–0.10 ms | 0.20 ms | GPU time |
+Both are GPU nodes, so their headless CPU price is near zero by construction and is reported, not compared. Measured on the student's GPU (named in TEST-REPORT.md).
 
-| Uniform | Type | Hint / range | Default | Group | Expected change across its range |
-|---|---|---|---|---|---|
-| `albedo_tint` | vec4 | `source_color` | white | surface | multiplies the colour: white = the texture as is, darker = a darker floor |
-| `uv_scale` | float | `hint_range(0.05, 2.0)` | 0.5 | surface | texture repeats per metre, using world-space UVs set in `vertex()`: low = large slabs, high = a small, busy pattern |
-| `roughness_scale` | float | `hint_range(0.0, 1.0)` | 1.0 | response | 0 = glossy everywhere, 1 = the texture's own roughness |
-| `normal_strength` | float | `hint_range(0.0, 2.0)` | 1.0 | response | 0 = flat, 2 = exaggerated bumps |
-| `wetness` | float | `hint_range(0.0, 1.0)` | 0.0 | wetness | 0 = dry, 1 = darker and glossy |
-| `wet_darkening` | float | `hint_range(0.0, 1.0)` | 0.35 | wetness | how much darker the floor gets when fully wet |
-
-**Two materials,** `godot/materials/concrete_dry.tres` and `godot/materials/concrete_wet.tres`, share the shader and differ in `wetness` (0.0 vs 0.8) and `albedo_tint` (white vs a cooler #C8CCD0). Why: most floors are dry; the Boiler Room's leaking pipes leave its floor wet, so it reads as a different place under the flashlight.
-
-## 5. Predicted failure cases
-
-1. **Retrigger resets instead of extending:** the driver restarts a timer from 0. Check: the headless test makes low ammo begin again during a fade-out and asserts the value never drops below its value on that frame.
-2. **Duration depends on frame rate:** a frame-counting fade. Check: the test at 30, 60 and 144 fps asserts 0.25 s and 0.5 s of game time within one frame period.
-3. **A data texture sampled with source_color:** roughness or normal decoded as colour. Check: the material test asserts each sampler's hints from the shader source, and the source_color mutation must fail it.
-4. **Driver and shader disagree on the uniform name:** `set_shader_parameter` silently accepts a name the shader doesn't declare. Check: the uniform-list assertion; the rename mutation must fail it.
-5. **The colour line also tints the label's outline or shadow,** if it has one. Check: my eyes on the 1.0 capture.
-
-## 6. Brief answers
-
-1. **Renderer:** `project.godot` names none (it has no `rendering_method` line), so Godot's default, Forward+, applies. That rules out none of the listed features: decals, compute shaders, VoxelGI, SDFGI and SSIL are all available.
-2. **What arrives in `fragment()` before I change it, and what would the tempting alternative give?** `COLOR` already holds the label's own colour (#F2C14E, with glyph coverage in alpha): the vertex colour multiplied by the texture sample. The tempting alternative, `texture(TEXTURE, UV)`, returns only the raw glyph texture, which is white coverage, so the label would lose its yellow.
-3. **(canvas_item) `texture(TEXTURE, UV)` instead of `COLOR`:** the texture value without the node's own colour. For this label that is white-on-transparent glyphs, so mixing from it would blend white toward red, not yellow toward red.
-4. **(spatial) `ALBEDO` and `COLOR`:** if `ALBEDO` is never written the surface is white, `vec3(1.0)`. In a spatial `fragment()`, `COLOR` is the interpolated vertex colour and is read-only, so it is not the surface colour.
-5. **A frame-counting fade-in tuned to 0.25 s at 60 fps** is 15 frames, so it lasts 0.50 s at 30 fps, 0.25 s at 60 fps and 0.104 s at 144 fps. Mine moves by `delta`, so it takes the same game time at every rate.
-6. **Default vs current value:** the shader holds the default (the `= 0.0` in the declaration); the `ShaderMaterial` holds the current value, set with `set_shader_parameter`. Two objects sharing one material share the current value, so changing it on one changes both.
-7. **Does `hint_range` clamp a value set from code?** Prediction: no. It shapes the Inspector slider only, so the shader receives 2.0 as 2.0. Checked in Use It with a capture at 2.0.
+## Brief answers
+1. **Node type and what it lacks:** both `GPUParticles3D`. Effect A has no turbulence and nothing value-driven; Effect B has no burst or one-shot behaviour. (Property availability checked against the 4.7.2 class reference.)
+2. **A's `local_coords` is false:** if A's parent moves after the event, the burst stays where the bullet hit; if it is freed, nothing changes.
+3. **Overlap, peak:** 5 bursts alive from continuous fire, so 120 particles; up to 12 bursts and 288 particles in the worst blast case.
+4. **Headless GPU price:** about the same as the empty-scene control, because the dummy renderer runs no GPU particle process. With vsync on, FPS reads the display's refresh rate with the effect off and on, until a frame misses, so FPS hides the cost.
+5. **B on load and when paused or hidden:** nothing at full health either way (preprocess would only matter if it were emitting at load). Paused: frozen, resumes in place. Hidden: not drawn, `emitting` unchanged.
+6. **Emission:** amount, amount_ratio, one_shot, explosiveness, lifetime, emission_shape. **Process:** direction, spread, velocity, gravity, damping, turbulence, scale and alpha curves, colour ramp. **Draw:** mesh, texture, material, blend mode, billboard mode, vertex colour, transparency.
 
 ## Revisions
-
 (Dated entries below. The text above stays as committed.)
-
-### 2026-10-29 — reference check 
-
-Every file/line reference above was checked against commit 7917c8c and is correct: `player.gd:9` declares `signal ammo_changed(mag: int, reserve: int)`; `:37` is `var mag := MAG_SIZE`; `:233` is `mag += take` in `_finish_reload()`; `:243` is `mag -= 1` in `fire()`; `hud.gd:88` creates `_ammo_label = UI.label("15 / 45", 30, UI.ACCENT)`; `ui_theme.gd:5` is `ACCENT := Color("#F2C14E")`; `ui_theme.gd:9` is `PANEL := Color(0.06, 0.065, 0.07, 0.86)` (= #0F1112 at 86 %); `project.godot` has no `rendering_method` and no `hdr_2d` line (its features list says "Forward Plus").
-
-Three facts the text above does not account for (added, not corrections of it):
-
-1. **The label has a drop shadow.** `ui_theme.gd:21-23` gives every Label a theme shadow (`font_shadow_color` black at 0.8 alpha, offset 2,2), and the HUD root uses that theme (`hud.gd:54`). A Label draws its shadow through the same CanvasItem, so the shader runs on the shadow too, and `mix(black, warning_color, 1.0)` would make the shadow red. Failure case 5 is therefore live, not hypothetical; the 1.0 capture decides it.
-2. **At `mag == 0` the label is not #F2C14E.** `hud.gd:308` switches `font_color` to `UI.DANGER` = #E5483B (`ui_theme.gd:8`) when the magazine is empty. The pixel A/B predictions hold for `mag` 1–5; at 0 the input colour is (229, 72, 59) and only the t = 1.0 row (255, 48, 48) still applies.
-3. **The HUD never pauses.** `hud.gd:49` sets `process_mode = PROCESS_MODE_ALWAYS` so the pause menu works. A driver added under the HUD inherits that, so R6 (freeze on pause) needs the driver to set its own `process_mode = PROCESS_MODE_PAUSABLE`.
-
-### 2026-10-29 — texture set chosen 
-
-Section 4's concrete set is Poly Haven **`concrete_floor_worn_001`** ("Concrete Floor Worn 001"), authors Dimitrios Savva (photography) and Rico Cilliers (processing), licence **CC0 1.0**, checked 2026-10-29 through `https://api.polyhaven.com/files/concrete_floor_worn_001`. 1k PNG maps: Diffuse, Rough, `nor_gl` used by the game; `nor_dx` kept only as a calibration fixture. Details and MD5s in `godot/textures/concrete/ATTRIBUTION.md`.
-
-Two observations while wiring section 4, not corrections of it:
-1. The committed `concrete_surface.gdshader` names its last group `group_uniforms wet;`; the uniform table above says group "wetness". Only the Inspector heading differs; no test or capture shows a bug, so the shader is unchanged (ground rule: shaders change only for a real bug).
-2. The kit's `normal_map_check.gd` scored this pair reversed (GL looked like DX). Its sign was flipped and the threshold set from this pair; see A5-LOG.md Phase 4.
-
-### 2026-10-29 — failure case 5 observed; colour line revised 
-
-**Observed** (windowed capture, `godot/tools/a5_capture.gd` MODE=ammo, commit af736a7; inspected by Claude Code, and by the student): at `low_ammo = 1.0` the ammo label's drop shadow turns red. Shadow-only pixels (6 px below-right of fully covered glyph pixels at the 3× capture scale) average (18, 15, 8) at 0.0 and (212, 42, 42) at 1.0; the counter reads as a doubled, smeared red shape (`docs/evidence/captures/ammo_1.0_label.png`). Cause, as predicted in the first revision: the theme shadow is drawn through the same CanvasItem, its `COLOR.rgb` is black, and `mix(black, warning_color, 1.0)` is red.
-
-Pixel predictions for the glyphs themselves held exactly: A and B read (242, 193, 78) at 0.0, (248, 120, 63) at 0.5, (255, 48, 48) at 1.0.
-
-**Revision.** The tint is applied only where the drawn colour is not black, so the shadow (pure black, `font_shadow_color` = #000000 at 0.8) keeps its colour and the glyphs are unchanged from the predictions:
-```glsl
-float glyph = step(0.004, max(COLOR.r, max(COLOR.g, COLOR.b)));
-COLOR.rgb = mix(COLOR.rgb, warning_color.rgb, low_ammo * glyph);
-```
-`step(0.004, …)` is 0 for a pixel whose largest channel is below about 1/255 and 1 otherwise; coverage lives in alpha, so antialiased glyph edges still count as glyph. Glyph pixels (largest channel 0.949 for #F2C14E, 0.898 for DANGER #E5483B) get exactly the original line, so every prediction in section 2 stands. Known limit: a deliberately black label colour would never tint; no HUD label uses black. Revision written by Sarthak Sargar and has reviewed it.
