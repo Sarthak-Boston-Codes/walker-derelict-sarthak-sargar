@@ -114,3 +114,36 @@ My verdict (running game), r0: pending: not yet performed by the student.
 | 190 | gone |
 
   Risk: it may read as a halo around the player rather than smoke rising from wounds. Growth is still absent (keep_scale).
+
+- **Strips:** `captures/wound_smoke/r0/strip.png` → `r1/strip.png` (light), `r0-dark/strip.png` → `r1-dark/strip.png` (dark); diffs against fresh control runs: `docs/evidence/a6/wound_smoke_r1_{light,dark}_diff_vs_control.png`.
+- **Claude's comparison (read by Claude):** the prediction **failed on its main claim**. Changed pixels against the control (±130 px window):
+
+| Frame | r0 light / dark | Predicted r1 | r1 light / dark |
+|---|---|---|---|
+| 40 | 116 / 108 | a few wisps outside the silhouette | 198 / 232 |
+| 100 | 127 / 471 | several thousand, a 1–2 m cloud | **150 / 796** |
+| 130 | 277 / 1501 | same | 374 / 1552 |
+| 160 | 583 / 1385 | thinning, further out | 651 / 1523 |
+| 190 | – | gone | 41 / 234 (noise level: gone) |
+
+  By eye, r1 is nearly the same as r0: a pale patch ~0.4 m over the head and shoulder, slightly larger on the dark background, still nothing on the lit floor. The prediction assumed the wisps keep their launch direction. They do not.
+- **Why (diagnostic, run by Claude Code, not a tuning revision):** the same dark preview with `turbulence_enabled` switched off in a throwaway copy of the scene (restored at once, never committed): changed pixels 780 / 2200 / 3082 at frames 40 / 100 / 130, a cloud ~2.2 × 2.6 m, wisps visible by frame 40 (`docs/evidence/a6/diag_wound_smoke_spread70_turbulence_off.png`). Turbulence at the 4.7.2 defaults the brief leaves untouched (`turbulence_influence_min/max` = 0.1, noise scale 9.0; read from the engine) turns the wisps' velocity toward the noise field, so they wander in place instead of drifting out. With turbulence on, spread has little to act on.
+- **Decision: kept.** The change moves the right way (dark +70 % at frame 100, light +20 %, no new problem), and the diagnostic shows it becomes effective once turbulence lets the wisps travel. The size of the improvement on its own is far short of the prediction; that is stated, not hidden.
+- **My verdict (running game):** pending: not yet performed by the student.
+
+### Revision B-r2: `turbulence_influence_min/max` 0.1 / 0.1 → 0.03 / 0.03
+
+- **Biggest gap now:** the smoke still barely reads; turbulence pins the wisps in place (B-r1 diagnostic).
+- **The one setting:** the turbulence influence range (min and max are one row, as `initial_velocity` min/max is): **0.1 / 0.1 → 0.03 / 0.03**. Turbulence stays on, with noise strength 0.6 as the brief says.
+- **Approved by:** Claude, pre-authorised in A6-RUNBOOK.md.
+- **Prediction (before editing, committed before the change).** A third of the pull toward the noise field, so the wisps keep most of their launch direction for most of a second and then bend. Between r1 and the turbulence-off diagnostic:
+
+| Frame | Predicted changed px, light / dark (r1 → r2) | By eye |
+|---|---|---|
+| 40 | 198 / 232 → 300–600 / 400–700 | first wisps visible at the silhouette edge (the brief: first wisps by +1 s) |
+| 100 | 150 / 796 → 400–1000 / 1500–2200 | a cloud ~1.5–2 m across around the player; on the lit floor, dark-grey smudges beside the player; on the dark background still lighter than the corner |
+| 130 | 374 / 1552 → 600–1500 / 2000–3000 | the same, just stopped |
+| 160 | 651 / 1523 → falling | thinning and drifting outward |
+| 190 | gone | gone |
+
+  Wisps should curve rather than run straight (turbulence still visible). Value inversion on dark and no growth: unchanged.
