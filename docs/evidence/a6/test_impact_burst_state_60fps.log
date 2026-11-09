@@ -1,0 +1,48 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== test_impact_burst_state ==
+PASS ImpactFx exists under the level root
+PASS pool of 12 bursts, all children of the level root (A2, A3) (12/12)
+PASS A1 scene load: no burst emitting in the first 42 frames, 0 fired, 0 bullet_hit
+PASS one real shot fired at the wall (mag 15 -> 14)
+PASS A1 a shot that hits no victim (a wall) fires no burst (fired 0)
+  note: a ray that hits nothing at all cannot be produced in the closed level; that path has no emit (player.gd fire(): the emit is inside `if hit:`)
+  aim_point after mouse input: (-4.999958, 0.949999, 5.41576) (zombie at (-5.0, 0.0, 5.5))
+PASS exactly one real shot fired (1)
+PASS the shot hit the zombie: 1 bullet_hit, zombie hp 1000 -> 999
+PASS A1 exactly one burst started for one hit (fired 1)
+PASS A1 one burst emitting ([0])
+PASS A1 burst at the hit point (-5.020022, 1.515808, 5.807585) (got (-5.020022, 1.515808, 5.807585))
+PASS the hit point is on the zombie's capsule (r 0.35, h 1.7): 0.31 m from its axis, height 1.52
+PASS A4 burst +Y = hit normal (-0.057205, 0.473733, 0.878808) (got (-0.057205, 0.473733, 0.878808))
+PASS A1 Flash, Sparks, Puff all restarted (emitting) on the hit frame ([true, true, true])
+  finished signals, frames after the hit: Flash 5, Sparks 28, Puff 40 (lifetimes 0.08 / 0.45 / 0.6 s = 4.8 / 27 / 36 frames)
+PASS emitters finish in lifetime order Flash < Sparks <= Puff
+PASS the Puff, the longest, finishes 36..40 frames after the hit (40)
+PASS ImpactFx counts the burst free once its lifetime (0.60 s) has passed
+PASS two hits from two real shots (2)
+PASS the second hit came 9 frames (0.150 s) after the first, inside one burst lifetime (0.6 s)
+PASS A2 two live bursts after two hits inside one lifetime (2: [0, 1])
+PASS A2 the second hit used a different burst (0, 1)
+PASS A2 node truth: the first burst's Puff has not finished when the second burst starts
+PASS A2 two bursts started from the pool, none recycled (fired 2, recycled 0)
+PASS the hit killed the zombie (hp 0.0)
+PASS the victim is freed on the killing-hit frame
+PASS A3 its burst is still alive after the victim is freed (1 live)
+PASS A3 10 frames later the burst is still in the tree under the level and its Puff has not finished
+PASS A3 ... and it runs to its own end (Puff finished 40 frames after the hit)
+  held fire 2 s: 14 shots, 7 hits, 7 bursts fired, peak 3 alive (ImpactFx clock)
+PASS A1 one burst per hit under held fire, none for the misses (7 bursts, 7 hits, 14 shots)
+PASS A2 continuous fire keeps 2..5 bursts alive at once (peak 3; brief: at most 5)
+PASS A2 continuous fire never exhausts the pool (recycled 0)
+PASS 12 hits in one frame use all 12 bursts (12 live)
+PASS the 13th hit finds the pool exhausted (recycled 1)
+PASS A2 the oldest burst (index 0) is restarted at the 13th hit's point
+PASS still 12 live, 13 started (fired 13)
+
+PASS: 0 failure(s)
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
