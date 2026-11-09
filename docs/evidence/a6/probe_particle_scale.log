@@ -1,0 +1,8 @@
+Godot 4.7.2-stable (official), NVIDIA GeForce RTX 4050 Laptop GPU, 72 px per metre
+quad 1.00 m, scale 1.00, billboard_mode 3, keep_scale false -> drawn  72 px (scaled would be 72.0, unscaled 72.0)
+quad 1.00 m, scale 0.50, billboard_mode 3, keep_scale false -> drawn  72 px (scaled would be 36.0, unscaled 72.0)
+quad 1.00 m, scale 0.10, billboard_mode 3, keep_scale false -> drawn  72 px (scaled would be  7.2, unscaled 72.0)
+quad 1.00 m, scale 0.50, billboard_mode 3, keep_scale true  -> drawn  36 px (scaled would be 36.0, unscaled 72.0)
+quad 1.00 m, scale 0.50, billboard_mode 0, keep_scale false -> drawn  36 px (scaled would be 36.0, unscaled 72.0)
+quad 1.00 m, scale 0.50, billboard_mode 1, keep_scale false -> drawn  72 px (scaled would be 36.0, unscaled 72.0)
+quad 1.00 m, scale 0.50, billboard_mode 1, keep_scale true  -> drawn  36 px (scaled would be 36.0, unscaled 72.0)
