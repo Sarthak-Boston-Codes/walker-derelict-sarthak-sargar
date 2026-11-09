@@ -67,3 +67,31 @@ My verdict (running game), r0: pending: not yet performed by the student.
 - **Decision: reverted.** The comparison does not support keeping this change on its own. The puff's table scale (0.15–0.3) only makes sense together with keep_scale if the scale values are raised about 3×. That is a **second setting**, outside this revision's one-setting approval.
 - **Next step (needs a fresh approval, not taken):** A-r2 = keep_scale true **and** Puff `scale_min/max` 0.15/0.3 → 0.5/0.9. Predicted: blobs 0.12–0.23 m at birth growing to 0.4–0.7 m. Recorded for Claude/the student to approve or reject.
 - **My verdict (running game):** pending: not yet performed by the student.
+
+---
+
+## Effect B: wound smoke
+
+### First reading: r0 (scene as built from the brief's table, commit 27085b6). Read by Claude.
+
+Strips: `captures/wound_smoke/r0/strip.png` (light: Loading Bay floor under the lamp, 60.2 px/m) and `captures/wound_smoke/r0-dark/strip.png` (dark: Assembly Hall corner, 60.0 px/m). The emitter is a child of the parked player at chest height (1.25 m). `amount_ratio` is 0.6 (the mapping at hp 30) from frame 10, and `emitting` goes false at frame 130. Frame 25 (+0.5 s) is kept beside the brief's six frames for the "wisps within 0.5 s" claim. The smoke is faint, so each strip was also diffed against a **control run** of the same preview that never starts the smoke (`-- --control`; same seed and camera; lamp flicker and dust differ). Diff images: `docs/evidence/a6/wound_smoke_r0_{light,dark}_diff_vs_control.png` (grey = unchanged, white = brighter with smoke); changed-pixel counts are in the window ±130 px around the player.
+
+| Frame | Brief's intent | Strip (light / dark) | Changed px vs control (light / dark) |
+|---|---|---|---|
+| 10 | nothing | nothing | – |
+| 25 (+0.5 s) | first wisps within ~0.5 s | nothing visible | – |
+| 40 (+1 s) | first wisps | nothing visible by eye; a few changed pixels on the player's head | 116 / 108 (noise level) |
+| 100 (+3 s) | steady cloud | light: nothing by eye; dark: a pale crescent (~0.3 m) on the player's shoulder | 127 / 471 |
+| 130 (stop) | stopped | light: a faint pale patch on the head; dark: a pale grey puff ~0.4 m over the head and shoulder | 277 / 1501 |
+| 160 (+1 s after stop) | thinning | same patch, softer | 583 / 1385 |
+| 190 (+2 s after stop) | gone | nothing | – |
+
+**Reading.** Timing is right: nothing before the condition, a cloud while it holds, gone within one lifetime of the stop. But the cloud **barely reads**:
+1. **It never leaves the player's silhouette.** The camera looks almost straight down (offset (0, 14.5, 6.5)), so smoke rising "a body height" rises toward the lens and stays over the player's head and shoulders on screen. With spread 25° and damping, the sideways drift is small. Over the lit floor, where the brief says it should read, there is **no** visible smoke at all. (In play a moving player leaves a trail, because `local_coords` is false. This strip is stationary, so it shows the worst case; motion is for the student's check.)
+2. **Where it does show, it reads lighter, not darker.** Over the player's dark clothes and the dark corner, the unshaded (0.18, 0.18, 0.20) grey at alpha ≤ 0.5 is lighter than what is behind it. On the dark background it is more visible than on the light one: the opposite of the intent ("over the darkest corners it is meant to disappear").
+3. **The size does not grow** (same billboard/keep_scale cause as Effect A): every wisp draws at 0.5 m and fades.
+4. No visible ramp-up between 0.5 s and 2 s: the cloud only becomes measurable after ~3 s.
+
+**Gaps, largest first:** (1) the cloud is barely visible at all, especially over the lit floor (its job); (2) it stays inside the silhouette from this camera; (3) inverted value on dark; (4) no growth.
+
+My verdict (running game), r0: pending: not yet performed by the student.
