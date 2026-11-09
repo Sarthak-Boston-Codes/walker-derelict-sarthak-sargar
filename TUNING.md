@@ -31,3 +31,21 @@ Strips: `captures/impact_burst/r0/strip.png` (dark: Assembly Hall corner, flashl
 4. **One-frame delay** before the first particles: not a setting in the table. Recorded, not tuned.
 
 My verdict (running game), r0: pending: not yet performed by the student.
+
+### Revision A-r1: Puff draw material `billboard_keep_scale` false → true
+
+- **Biggest gap (from the r0 reading):** the puff does not expand. It is full size (0.5 m, its QuadMesh) on the first drawn frame and never grows, because billboard particles ignore the process scale and scale curve (diagnosed above).
+- **The one setting:** `Puff` draw material (`StandardMaterial3D`), `billboard_keep_scale`: **false → true**. Nothing else changes; Flash and Sparks have their own materials and are untouched.
+- **Approved by:** Claude, pre-authorised in A6-RUNBOOK.md.
+- **Prediction (made before editing, committed before the change).** The puff size becomes quad 0.5 m × scale 0.15–0.3 × the scale curve, which runs 0.5 → 1.6 linearly over the 0.6 s life. At ~57 px/m:
+
+| Frame | Age | Curve | Predicted puff |
+|---|---|---|---|
+| 10 | – | – | nothing (the one-frame delay is unchanged) |
+| 11 | ~0.03 s | 0.55 | 8 blobs of 0.04–0.08 m (2–5 px), hidden under the flash; no 0.5 m ring any more |
+| 12 | ~0.07 s | 0.62 | 0.05–0.09 m blobs (3–5 px), starting to spread (0.6–1.4 m/s, damped) |
+| 15 | ~0.17 s | 0.81 | 0.06–0.12 m blobs (3–7 px), alpha ~0.43, the cluster ~0.2–0.4 m across |
+| 20 | ~0.33 s | 1.11 | 0.08–0.17 m blobs (5–9 px), alpha ~0.27, faint: the widest point of each blob |
+| 30, 50 | | | nothing |
+
+  Net: the puff will now visibly **grow** (about 2× in the frames read, 3.2× over its life). It will read as a small cluster of separate dark-red dots, much less mass than the r0 disc, and is likely **too weak over the light floor**, which is the puff's job. Flash and sparks: identical to r0 (same seed).
