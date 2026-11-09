@@ -47,9 +47,9 @@ const EXPECT := {
 		"scale_min": 0.15, "scale_max": 0.3, "scale_curve": [0.5, 1.6],
 		"colors": [Color(0.23, 0.06, 0.04), Color(0.23, 0.06, 0.04)],
 		"alpha_curve": [0.6, 0.0], "quad": 0.5, "blend": BaseMaterial3D.BLEND_MODE_MIX,
-		# Tuning A-r1 (CHANGE-BRIEF revision 2026-11-08): billboard particles
-		# ignore the process scale unless this is true.
-		"keep_scale": true,
+		# Tuning A-r1 set this true and was reverted (TUNING.md, CHANGE-BRIEF
+		# revisions 2026-11-08): the table's value, the default false.
+		"keep_scale": false,
 	},
 }
 
