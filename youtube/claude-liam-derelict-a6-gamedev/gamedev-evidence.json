@@ -1,0 +1,877 @@
+{
+  "schema_version": 1,
+  "teaching_contract": "code-then-result-v1",
+  "files": [
+    {
+      "path": "effects/impact_burst.tscn",
+      "sha256": "c71023d939587c72395db54354f111b59a199717924d1f2693438eff14bf3970",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "impact_burst_effect"
+      ]
+    },
+    {
+      "path": "effects/wound_smoke.tscn",
+      "sha256": "23bbc402e7006b89ee111b5eefff5211fa1a73ca19cd72fb6f3d83aa05425f8a",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "wound_smoke_effect"
+      ]
+    },
+    {
+      "path": "game3d/game.gd",
+      "sha256": "1e6091d6b840970f7874fa2b99932b7e890daaa42f9fde6642c55b51baaf6f5b",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "impact_trigger"
+      ]
+    },
+    {
+      "path": "game3d/impact_fx.gd",
+      "sha256": "4813ff16fd40b51f5d94424ca960008a591bbdac2bc799c93c0f6508fc93dc1c",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "impact_trigger"
+      ]
+    },
+    {
+      "path": "game3d/player.gd",
+      "sha256": "7384b54d762a178d47899a198196d759783bd450548b2d84139959a036bb93dd",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "impact_trigger"
+      ]
+    },
+    {
+      "path": "game3d/wound_smoke_driver.gd",
+      "sha256": "4db835ae737bff0d24d43e0ccdf89db3822680cc88ec571fbcb85d789a8b12a5",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "wound_smoke_driver"
+      ]
+    },
+    {
+      "path": "previews/effect_preview.gd",
+      "sha256": "303aba5e28e93e994f0aef14bafc9fcdaeaafa23f5e89392d9553f7457c0e882",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "impact_burst_effect"
+      ]
+    },
+    {
+      "path": "previews/impact_burst_preview.tscn",
+      "sha256": "d893054b25f77c34a286f26274754ea27fd3386af6201ac84926fe4b6d1bcec4",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "impact_burst_effect"
+      ]
+    },
+    {
+      "path": "previews/impact_burst_preview_light.tscn",
+      "sha256": "4bb1a974b09cf14ce9f530c29496de0cb4ee013abc8fd3def30b4e04b691bbb3",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "impact_burst_effect"
+      ]
+    },
+    {
+      "path": "previews/wound_smoke_preview.tscn",
+      "sha256": "9bdf953cd1def966a49cf00abd1fa6ced2d47b28799e767e15d5401074744d97",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "wound_smoke_effect"
+      ]
+    },
+    {
+      "path": "previews/wound_smoke_preview_dark.tscn",
+      "sha256": "916050876d97af6158a9c1390d710619ec631fadb1c856a7385fc6f64935020e",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "wound_smoke_effect"
+      ]
+    },
+    {
+      "path": "shaders/particles_generated.gdshader",
+      "sha256": "297bdb39982218a9a59c1be746667ab276a1d7428d50a57908a4fa0a18982d0a",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "process_shader"
+      ]
+    },
+    {
+      "path": "tests/cost_effects.gd",
+      "sha256": "18e82beb1fc5d424ff3520f63fece376b478fed14ec9bf9ed3012a665b986afc",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "price"
+      ]
+    },
+    {
+      "path": "tests/test_impact_burst_config.gd",
+      "sha256": "3da8354f4520e2a755ab81a6f6a605b95f2e5906568da3ad6c5561b11ccc100f",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "impact_burst_effect"
+      ]
+    },
+    {
+      "path": "tests/test_impact_burst_state.gd",
+      "sha256": "90b259b05f1fcbe60edab267ff5d34929d1ba7a81d93ba13f037389b6c47a1f2",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "impact_trigger"
+      ]
+    },
+    {
+      "path": "tests/test_wound_smoke_config.gd",
+      "sha256": "50cad16a89831240b460b651e2d919c94a7f240dda70290c58794783a5d43045",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "wound_smoke_effect"
+      ]
+    },
+    {
+      "path": "tests/test_wound_smoke_state.gd",
+      "sha256": "3c38d480553df0d1b72453a3cc30d32af300d43e2f13dd6a9f3992e570222abc",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "wound_smoke_driver"
+      ]
+    },
+    {
+      "path": "tools/dump_particles_shader.gd",
+      "sha256": "11f9105cbf7baaa82e18bf523fc20d18fbe23dfb2d0a22a817a7a07cd1a18b13",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "process_shader"
+      ]
+    },
+    {
+      "path": "tools/gpu_price.gd",
+      "sha256": "c3b9ccf525a6e4b30182df91b4edda8fc276239b6f9071c4203fde2474457e82",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "price"
+      ]
+    },
+    {
+      "path": "tools/probe_particle_scale.gd",
+      "sha256": "7437751dbc8950422ead2802008a9291f3c2a41ff507ea65585d01c2d92e2f59",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "process_shader"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "impact_burst_effect",
+      "explanation": "Effect A scene: three GPUParticles3D (Flash, Sparks, Puff) under one Node3D, every setting from the brief, soft-dot GradientTexture2D in the scene; its config test and preview fixtures.",
+      "beat_ids": [
+        "B03",
+        "B04",
+        "B05",
+        "B10"
+      ],
+      "files": [
+        "effects/impact_burst.tscn",
+        "tests/test_impact_burst_config.gd",
+        "previews/effect_preview.gd",
+        "previews/impact_burst_preview.tscn",
+        "previews/impact_burst_preview_light.tscn"
+      ]
+    },
+    {
+      "id": "impact_trigger",
+      "explanation": "bullet_hit signal and emit in player.gd's fire path; impact_fx.gd pool of 12 under the level root (overlap, oldest restarted), wired in game.gd; the state test with real input.",
+      "beat_ids": [
+        "B02",
+        "B06",
+        "B07",
+        "B08",
+        "B09"
+      ],
+      "files": [
+        "game3d/player.gd",
+        "game3d/impact_fx.gd",
+        "game3d/game.gd",
+        "tests/test_impact_burst_state.gd"
+      ]
+    },
+    {
+      "id": "wound_smoke_effect",
+      "explanation": "Effect B scene: one GPUParticles3D with sphere emission, buoyancy and turbulence (influence tuned), config test and preview fixtures.",
+      "beat_ids": [
+        "B11",
+        "B12",
+        "B15"
+      ],
+      "files": [
+        "effects/wound_smoke.tscn",
+        "tests/test_wound_smoke_config.gd",
+        "previews/wound_smoke_preview.tscn",
+        "previews/wound_smoke_preview_dark.tscn"
+      ]
+    },
+    {
+      "id": "wound_smoke_driver",
+      "explanation": "Presentation-only driver: health_changed/died in, emitting and amount_ratio out; the state test with real zombie damage, a medkit, pause and hide.",
+      "beat_ids": [
+        "B02",
+        "B13",
+        "B14"
+      ],
+      "files": [
+        "game3d/wound_smoke_driver.gd",
+        "tests/test_wound_smoke_state.gd"
+      ]
+    },
+    {
+      "id": "process_shader",
+      "explanation": "Godot 4.7.2's generated ParticleProcessMaterial shader (Puff duplicate), the dump tool, and the probe showing billboard particles drop the process scale.",
+      "beat_ids": [
+        "B03",
+        "B16",
+        "B17"
+      ],
+      "files": [
+        "shaders/particles_generated.gdshader",
+        "tools/dump_particles_shader.gd",
+        "tools/probe_particle_scale.gd"
+      ]
+    },
+    {
+      "id": "price",
+      "explanation": "Headless CPU cost script with an empty-scene control, and the windowed GPU-counter script.",
+      "beat_ids": [
+        "B18"
+      ],
+      "files": [
+        "tests/cost_effects.gd",
+        "tools/gpu_price.gd"
+      ]
+    }
+  ],
+  "excerpts": [
+    {
+      "beat_id": "B04",
+      "path": "effects/impact_burst.tscn",
+      "start_line": 81,
+      "end_line": 94,
+      "text": "[sub_resource type=\"ParticleProcessMaterial\" id=\"PPM_sparks\"]\nlifetime_randomness = 0.3\nemission_shape = 0\ndirection = Vector3(0, 1, 0)\nspread = 55.0\ninitial_velocity_min = 3.0\ninitial_velocity_max = 6.0\ngravity = Vector3(0, -9.8, 0)\ndamping_min = 0.5\ndamping_max = 1.5\nscale_min = 0.03\nscale_max = 0.06\ncolor_ramp = SubResource(\"GradientTexture1D_sparks_color\")\nalpha_curve = SubResource(\"CurveTexture_sparks_alpha\")"
+    },
+    {
+      "beat_id": "B06",
+      "path": "game3d/player.gd",
+      "start_line": 258,
+      "end_line": 267,
+      "text": "\tvar q := PhysicsRayQueryParameters3D.create(origin, end, Phys.SHOT_MASK, [get_rid()])\n\tvar hit := get_world_3d().direct_space_state.intersect_ray(q)\n\tif hit:\n\t\tend = hit.position\n\t\tvar target_node: Object = hit.collider\n\t\tif target_node.has_method(\"hit\"):\n\t\t\tif target_node.is_in_group(\"zombies\"):\n\t\t\t\tshots_hit += 1\n\t\t\tbullet_hit.emit(end, hit.normal)\n\t\t\ttarget_node.hit(DAMAGE, end, dir, hit.normal)"
+    },
+    {
+      "beat_id": "B08",
+      "path": "game3d/impact_fx.gd",
+      "start_line": 56,
+      "end_line": 69,
+      "text": "func play(point: Vector3, normal: Vector3) -> void:\n\tvar i := _free_index()\n\tif i < 0:\n\t\ti = order[0]\n\t\trecycled += 1\n\torder.erase(i)\n\torder.append(i)\n\tvar b := pool[i]\n\tb.global_position = point\n\tb.global_basis = basis_y_to(normal)\n\tfor e in b.get_children():\n\t\t(e as GPUParticles3D).restart()\n\t_started[i] = clock\n\tfired += 1"
+    },
+    {
+      "beat_id": "B11",
+      "path": "effects/wound_smoke.tscn",
+      "start_line": 46,
+      "end_line": 59,
+      "text": "initial_velocity_min = 0.4\ninitial_velocity_max = 0.8\ngravity = Vector3(0, 0.3, 0)\ndamping_min = 0.3\ndamping_max = 0.6\nscale_min = 0.2\nscale_max = 0.35\nscale_curve = SubResource(\"CurveTexture_smoke_scale\")\ncolor_ramp = SubResource(\"GradientTexture1D_smoke_color\")\nalpha_curve = SubResource(\"CurveTexture_smoke_alpha\")\nturbulence_enabled = true\nturbulence_noise_strength = 0.6\nturbulence_influence_min = 0.03\nturbulence_influence_max = 0.03"
+    },
+    {
+      "beat_id": "B13",
+      "path": "game3d/wound_smoke_driver.gd",
+      "start_line": 41,
+      "end_line": 54,
+      "text": "\treturn clampf((THRESHOLD - hp) / (THRESHOLD - FULL_AT), MIN_RATIO, 1.0)\n\n\nfunc _on_health_changed(hp: float, _max_hp: float) -> void:\n\tvar on := _alive and hp > 0.0 and hp <= THRESHOLD\n\tif on:\n\t\tsmoke.amount_ratio = ratio_for(hp)\n\tif smoke.emitting != on:\n\t\tsmoke.emitting = on\n\n\nfunc _on_died() -> void:\n\t_alive = false\n\tsmoke.emitting = false"
+    },
+    {
+      "beat_id": "B16",
+      "path": "shaders/particles_generated.gdshader",
+      "start_line": 159,
+      "end_line": 163,
+      "text": "void process_display_param(inout DisplayParameters parameters, float lifetime) {\n\t// Compile-time add textures.\n\tparameters.scale *= texture(scale_curve, vec2(lifetime)).rgb;\n\tparameters.color *= texture(color_ramp, vec2(lifetime));\n\tparameters.color.a *= texture(alpha_curve, vec2(lifetime)).r;"
+    }
+  ],
+  "exclusions": [
+    {
+      "path": ".editorconfig",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": ".gitattributes",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": ".gitignore",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "MATERIALS.md",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/.gdkeep",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_aim.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_aim.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_celebrate.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_celebrate.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_grabbed.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_grabbed.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_hurt.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_hurt.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_idle.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_idle.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_recover.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_recover.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_reference.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_reference.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_shoot.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_shoot.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_walk.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/char_walk.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/env_factory_floor.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "art/env_factory_floor.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "assets/3d/characters/player.glb",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "assets/3d/characters/player.glb.import",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "assets/3d/characters/player_0.png",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "assets/3d/characters/player_0.png.import",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "assets/3d/characters/zombie.glb",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "assets/3d/characters/zombie.glb.import",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "assets/3d/characters/zombie_0.png",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "assets/3d/characters/zombie_0.png.import",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "assets/3d/medkit.glb",
+      "reason": "A3 asset, unchanged by A6"
+    },
+    {
+      "path": "assets/3d/medkit.glb.import",
+      "reason": "A3 asset, unchanged by A6"
+    },
+    {
+      "path": "assets/3d/rusted_barrel.glb",
+      "reason": "A3 asset, unchanged by A6"
+    },
+    {
+      "path": "assets/3d/rusted_barrel.glb.import",
+      "reason": "A3 asset, unchanged by A6"
+    },
+    {
+      "path": "assets/3d/supply_crate.glb",
+      "reason": "A3 asset, unchanged by A6"
+    },
+    {
+      "path": "assets/3d/supply_crate.glb.import",
+      "reason": "A3 asset, unchanged by A6"
+    },
+    {
+      "path": "assets/asset_manifest.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "assets/placeholder_factory.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/.gdkeep",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/audio_director.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/mus_loop.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/mus_loop.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/sfx_clear.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/sfx_clear.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/sfx_down.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/sfx_down.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/sfx_hurt.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/sfx_hurt.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/sfx_shot.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "audio/sfx_shot.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "default_bus_layout.tres",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "game3d/actor_anim.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/barrel.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/camera_rig.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/crate.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/extraction.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/fx.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/game.tscn",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/hud.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/level.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/light_animator.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/locked_door.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/low_ammo_driver.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/menu.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/menu.tscn",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/model_table.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/phys.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/pickup.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/placeholder_models.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/sfx.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/shaders/concrete_floor.gdshader",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/ui_theme.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/waves.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "game3d/zombie.gd",
+      "reason": "3D game code/asset unchanged by A6 (A2 redo / A5); not part of the particle work"
+    },
+    {
+      "path": "icon.svg",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "icon.svg.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "materials/concrete_dry.tres",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "materials/concrete_wet.tres",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "materials/hint_as_colour.tres",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "materials/hint_as_data.tres",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "project.godot",
+      "reason": "project config, unchanged by A6 (window 1280x720; renderer default Forward+; cited in B03)"
+    },
+    {
+      "path": "scenes/exit_marker.gd",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/exit_marker.tscn",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/facing.gd",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/hint_experiment.tscn",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/main.gd",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/main.tscn",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/material_lab.tscn",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/player.gd",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/player.tscn",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/showcase_3d.tscn",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/zombie.gd",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/zombie.tscn",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "shaders/concrete_surface.gdshader",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "shaders/hint_experiment.gdshader",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "shaders/low_ammo.gdshader",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "shaders/standard_generated.gdshader",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "tests/calibrate_normal_map_check.gd",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/fixtures/.gdignore",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/fixtures/normal_maps/concrete_floor_worn_001_nor_dx_1k.png",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_shot.gd",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_shot.tscn",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_smoke_test.gd",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_smoke_test.tscn",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_soak_test.gd",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_soak_test.tscn",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/low_ammo_test.gd",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/normal_map_check.gd",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/showcase_3d_test.gd",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/showcase_3d_test.tscn",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/test_materials.gd",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/trigger_count_test.gd",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/trigger_count_test.tscn",
+      "reason": "earlier test suite, unchanged by A6; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "textures/concrete/ATTRIBUTION.md",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_diff_1k.png",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_diff_1k.png.import",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_nor_gl_1k.png",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_nor_gl_1k.png.import",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_rough_1k.png",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_rough_1k.png.import",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/hint_experiment/greys_3x1.png",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/hint_experiment/greys_3x1.png.import",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/hint_experiment/make_greys_3x1.gd",
+      "reason": "A5 shader/material work, unchanged by A6 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "tools/a5_capture.gd",
+      "reason": "earlier capture/dump tool (A5), unchanged by A6"
+    },
+    {
+      "path": "tools/dump_standard_shader.gd",
+      "reason": "earlier capture/dump tool (A5), unchanged by A6"
+    },
+    {
+      "path": "ui/hud.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    },
+    {
+      "path": "ui/hud.tscn",
+      "reason": "2D slice or shared asset from A2, unchanged by A6"
+    }
+  ],
+  "code_result_pairs": [
+    {
+      "code_beat": "B04",
+      "result_beat": "B05",
+      "observation": "r0 strips: frame 10 empty, flash first on frame 11; sparks spread by +5; the puff is ~0.5 m from frame 11 and does not grow; nothing by +20 (read by Claude, TUNING.md).",
+      "media": {
+        "path": "media/B05.png",
+        "sha256": "75821859ec77e880c07e6d9cc52e1ae34d19a08e0fc3c3bda15cb6086947ee05"
+      }
+    },
+    {
+      "code_beat": "B06",
+      "result_beat": "B07",
+      "observation": "SCRIPTED PLAY, Input.action_press fire + mouse events: 26 shots, 16 victim hits, 16 bursts; peak 4 alive at frame 45 (logs/film_capture_burstplay.log; clip = frames 0-239).",
+      "media": {
+        "path": "media/B07.mp4",
+        "sha256": "da4425127caab1cb4ae8279fe01183c947fba05d32bec6fed802e7837dceba3d"
+      }
+    },
+    {
+      "code_beat": "B08",
+      "result_beat": "B09",
+      "observation": "test_impact_burst_state.gd @60: 34 PASS; A1-A4, overlap, freed victim, pool exhausted via 13 test-emitted signals (docs/evidence/a6/final).",
+      "media": {
+        "path": "media/B09.png",
+        "sha256": "dc35f403739f430e09f25ab1509177a4d2b44e285fcd0fa5cefa7f363cca8c1a"
+      }
+    },
+    {
+      "code_beat": "B11",
+      "result_beat": "B12",
+      "observation": "r0 → r2 strips with diffs against a no-smoke control: frame 100 changed px 127/471 → 558/1050 (light/dark); wisps by +0.5 s in r2 (TUNING.md).",
+      "media": {
+        "path": "media/B12.png",
+        "sha256": "bbeab4b92280959a75481f2977f55ddfbd71d6b60c2bcc7e5bcdd52bcd7881e9"
+      }
+    },
+    {
+      "code_beat": "B13",
+      "result_beat": "B14",
+      "observation": "SCRIPTED PLAY: hp 64 → 46 by a real swipe (frame 51), emitting true ratio 0.28; walk; paused frames ~205-235; medkit hp 86 emitting false (logs/film_capture_smokeplay.log).",
+      "media": {
+        "path": "media/B14.mp4",
+        "sha256": "0f2828fc349292caeb6fdf196234daaffee6099ced4bee1ab4a017e76524a1cf"
+      }
+    },
+    {
+      "code_beat": "B16",
+      "result_beat": "B17",
+      "observation": "probe_particle_scale.gd (windowed): quad 1 m, scale 0.5 → 72 px with keep_scale false, 36 px true; generated lines 161/162/358 shown beside the brief settings.",
+      "media": {
+        "path": "media/B17.png",
+        "sha256": "e7b54a9dd3baa5c1caf22266ac06f0eee098ce06ea376566b104e2716730a01d"
+      }
+    }
+  ]
+}

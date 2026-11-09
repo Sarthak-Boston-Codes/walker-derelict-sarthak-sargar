@@ -1,0 +1,1086 @@
+{
+  "metadata": {
+    "title": "DERELICT: Two Particle Effects, Measured",
+    "slug": "claude-liam-derelict-a6-gamedev",
+    "topic": "GODOT · PARTICLES",
+    "kind": "gamedev",
+    "mode": "walker",
+    "brand": "claude-liam",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fit": "pad",
+    "captions": false,
+    "greeting": "Ahoj, Liam",
+    "greeting_note": "hello lexicon: Ahoj (Czech); previous reels used Kia ora, Jambo, Bula, Hej.",
+    "persona": "Liam (in for Bear)",
+    "presenter": "Liam (in for Bear)",
+    "in_for_bear": true,
+    "game": "walker-derelict-sarthak-sargar",
+    "game_code_revision": "f4af1c4",
+    "note": "godot-gamedev walker film, Assignment 6, built by Claude Code. Captures: captures/routes/film_capture.gd and the repo's fixture strips. No game change, paid call, upload or publication.",
+    "build": {
+      "at": "2026-11-09T00:19:25",
+      "cut": "review",
+      "filled": 24,
+      "of": 24,
+      "slates": [],
+      "skin_warnings": []
+    }
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Ahoj. This is Liam, in for Bear. DERELICT is a top-down 3D zombie shooter in Godot. This time it gained two particle effects: a burst where every bullet lands, and smoke that rises from the player's wounds. Here's how each was specified, built, tuned and checked.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Ahoj, Liam",
+            "topic": "GODOT · PARTICLES",
+            "segment": "DERELICT",
+            "command": "Please use Walker to convert my game design document about DERELICT's bullet impacts and wound smoke into two Godot particle effects, with a test for every setting and rule the brief names.",
+            "runningText": "reading CHANGE-BRIEF.md, Assignment 6…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "One burst per hit.",
+              "Smoke from a game value.",
+              "Every setting read back."
+            ]
+          }
+        }
+      },
+      "role_note": "COLD OPEN: reconstructed Walker prompt (labelled in FACTCHECK.md), not a recording.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 14.91,
+      "render_duration_s": 14.933333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B00.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Two particle effects, built and measured. Tests for the rules, strips for the look, and a person for the verdict, though that person hasn't looked yet. And up front: Claude wrote the brief, and Claude Code wrote everything else, including this film.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on-correct",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Two effects, built and shipped.\nTests for the rules,\nstrips for the look.",
+            "triggerWords": "shipped",
+            "replacementWords": "measured",
+            "contextTitle": "DERELICT · PARTICLES",
+            "brandLabel": "@NikBearBrown",
+            "fontSize": 92,
+            "lineSpacing": 1.5,
+            "align": "center",
+            "seed": "derelict-a6-gamedev",
+            "mistakeRate": 2,
+            "hesitateWithin": 0,
+            "hesitateBetween": 1,
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#FAF9F5"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "role_note": "Misconception corrected: done once it 'shipped' -> done once it's 'measured'.",
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 13.39,
+      "lead_silence_baked": 0.8,
+      "render_duration_s": 13.4,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B01.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B02",
+      "act": "SETUP",
+      "narration_text": "Effect A tells you a bullet landed, and where. Its event is a new signal, bullet hit, emitted where the player's fire path resolves a hit on a zombie, barrel or crate. Effect B is a feedback loop: at sixty health or less, smoke rises from the player, and it thickens as health falls.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B02.png",
+        "label": "SCRIPTED PLAY frames (film_capture.gd burstplay 40, smokeplay 190) + CHANGE-BRIEF refs"
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 15.59,
+      "render_duration_s": 15.6,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B02.png",
+        "filled_by": "still",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B03",
+      "act": "ANSWERS",
+      "narration_text": "Every particle system has three parts. Emission decides how many and when: amount, one shot, explosiveness. Process moves each particle: velocity, gravity, the curves. Draw decides what you see: the mesh, the material, the blend. Both effects are GPU particles, so the process step is a shader on the graphics card. A headless test runs no graphics card work, so their headless price is near zero by construction.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "tree-reveal",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "tree",
+            "title": "Emission · process · draw.",
+            "project": "walker-derelict-sarthak-sargar",
+            "source": "Lines read from the files; the split of settings is Claude's (TEST-REPORT.md)",
+            "treeLabel": "effects/impact_burst.tscn · particles_generated.gdshader",
+            "tree": [
+              "Emission → impact_burst.tscn:173-177  amount = 14, one_shot = true, explosiveness = 1.0",
+              "Process  → particles_generated.gdshader:304  force = gravity;",
+              "Draw     → impact_burst.tscn:98, :102  blend_mode = 1 (add), billboard_mode = 3 (particles)",
+              "Headless → dummy renderer: no particle shader runs"
+            ],
+            "notes": [
+              {
+                "label": "Node",
+                "value": "GPUParticles3D ×4"
+              },
+              {
+                "label": "Godot",
+                "value": "4.7.2, Forward+"
+              }
+            ],
+            "durationSeconds": 21.93
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 21.93,
+      "render_duration_s": 21.933333333333334,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B03.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B04",
+      "act": "MECHANISM",
+      "narration_text": "Effect A's sparks, straight from the scene file. Fourteen of them, launched upward within a fifty-five degree cone at three to six metres a second. Real gravity pulls them down, damping slows them, and a colour ramp takes them from orange to red. Every value is the brief's.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Sparks: process settings, from the brief.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "effects/impact_burst.tscn",
+            "source": "godot/effects/impact_burst.tscn lines 81-94 · Godot editor reconstruction",
+            "code": "[sub_resource type=\"ParticleProcessMaterial\" id=\"PPM_sparks\"]\nlifetime_randomness = 0.3\nemission_shape = 0\ndirection = Vector3(0, 1, 0)\nspread = 55.0\ninitial_velocity_min = 3.0\ninitial_velocity_max = 6.0\ngravity = Vector3(0, -9.8, 0)\ndamping_min = 0.5\ndamping_max = 1.5\nscale_min = 0.03\nscale_max = 0.06\ncolor_ramp = SubResource(\"GradientTexture1D_sparks_color\")\nalpha_curve = SubResource(\"CurveTexture_sparks_alpha\")",
+            "startLine": 81,
+            "cues": [
+              {
+                "at": 5.0,
+                "line": 85,
+                "label": "spread 55°"
+              },
+              {
+                "at": 6.4,
+                "line": 86,
+                "label": "3.0 – 6.0 m/s"
+              },
+              {
+                "at": 8.0,
+                "line": 88,
+                "label": "gravity −9.8"
+              },
+              {
+                "at": 9.6,
+                "line": 89,
+                "label": "damping 0.5 – 1.5"
+              },
+              {
+                "at": 10.9,
+                "line": 93,
+                "label": "orange → red ramp"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Emitters",
+                "value": "Flash 2 · Sparks 14 · Puff 8\none Node3D root"
+              },
+              {
+                "label": "Config test",
+                "value": "108 settings\nread back, PASS"
+              }
+            ],
+            "output": [
+              "effects/impact_burst.tscn · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 14.76
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 14.76,
+      "render_duration_s": 14.766666666666667,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B04.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B05",
+      "act": "RESULT",
+      "narration_text": "The first strip, a fixture over the real level, dark and light. The brief wanted the flash on the trigger frame. It arrives one frame late. The sparks fly as planned, but the puff is a red-brown disc, full size from the start, and it never grows. Hold that thought.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B05.png",
+        "media": "media/B05.png",
+        "motion": "hold",
+        "label": "captures/impact_burst/r0*/strip.png (FIXTURE)"
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 13.95,
+      "render_duration_s": 13.966666666666667,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B05.png",
+        "filled_by": "still",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B06",
+      "act": "MECHANISM",
+      "narration_text": "The only gameplay change. Inside fire, when the ray hits something with a hit method, one new line emits bullet hit with the point and the surface normal, before the victim takes damage. So even a zombie that dies on that hit gets its burst.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.6,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "One signal, one emit.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "game3d/player.gd",
+            "source": "godot/game3d/player.gd lines 258-267 · Godot editor reconstruction",
+            "code": "\tvar q := PhysicsRayQueryParameters3D.create(origin, end, Phys.SHOT_MASK, [get_rid()])\n\tvar hit := get_world_3d().direct_space_state.intersect_ray(q)\n\tif hit:\n\t\tend = hit.position\n\t\tvar target_node: Object = hit.collider\n\t\tif target_node.has_method(\"hit\"):\n\t\t\tif target_node.is_in_group(\"zombies\"):\n\t\t\t\tshots_hit += 1\n\t\t\tbullet_hit.emit(end, hit.normal)\n\t\t\ttarget_node.hit(DAMAGE, end, dir, hit.normal)",
+            "startLine": 258,
+            "cues": [
+              {
+                "at": 3.2,
+                "line": 263,
+                "label": "the victim branch"
+              },
+              {
+                "at": 4.8,
+                "line": 266,
+                "label": "bullet_hit.emit(end, hit.normal)"
+              },
+              {
+                "at": 8.7,
+                "line": 267,
+                "label": "damage after the emit"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Signal",
+                "value": "bullet_hit(point, normal)\nplayer.gd:14"
+              },
+              {
+                "label": "Not a hit",
+                "value": "walls keep the old sparks;\nbarrel blasts never reach fire()"
+              }
+            ],
+            "output": [
+              "game3d/player.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 13.59
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 13.59,
+      "render_duration_s": 13.6,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B06.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B07",
+      "act": "RESULT",
+      "narration_text": "Scripted play, real fire input, four zombies. Sixteen hits, sixteen bursts, and with the trigger held they stack up: up to four alive at once, separate, not one smeared cloud. The puffs sit on top of the game's existing blood and hit flash.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17.8,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B07.mp4",
+        "media": "media/B07.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 · 3840×2160 SubViewport · SCRIPTED PLAY (film_capture.gd burstplay)",
+        "hold_policy": "capture plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after it (never slowed). conform_clips.py."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_reason": "Full-frame dark engine capture: the dark scene is the picture. The text that must read is the HUD health/ammo panel and the SCRIPTED PLAY label, checked as regions.",
+        "contrast_regions": [
+          {
+            "label": "HUD health and ammo",
+            "box": [
+              0.01,
+              0.02,
+              0.23,
+              0.19
+            ]
+          },
+          {
+            "label": "SCRIPTED PLAY label",
+            "box": [
+              0.15,
+              0.91,
+              0.85,
+              0.985
+            ]
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 13.53,
+      "render_duration_s": 13.533333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B07.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B08",
+      "act": "MECHANISM",
+      "narration_text": "The retrigger rule is overlap. Twelve bursts wait under the level root. Each hit takes the next free one, or if all twelve are busy, restarts the oldest. It moves the burst to the hit, turns its up axis to the normal, and restarts all three emitters.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "A pool of twelve.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "game3d/impact_fx.gd",
+            "source": "godot/game3d/impact_fx.gd lines 56-69 · Godot editor reconstruction",
+            "code": "func play(point: Vector3, normal: Vector3) -> void:\n\tvar i := _free_index()\n\tif i < 0:\n\t\ti = order[0]\n\t\trecycled += 1\n\torder.erase(i)\n\torder.append(i)\n\tvar b := pool[i]\n\tb.global_position = point\n\tb.global_basis = basis_y_to(normal)\n\tfor e in b.get_children():\n\t\t(e as GPUParticles3D).restart()\n\t_started[i] = clock\n\tfired += 1",
+            "startLine": 56,
+            "cues": [
+              {
+                "at": 4.3,
+                "line": 57,
+                "label": "next free burst"
+              },
+              {
+                "at": 7.0,
+                "line": 59,
+                "label": "pool full: the oldest"
+              },
+              {
+                "at": 9.8,
+                "line": 65,
+                "label": "+Y = normal"
+              },
+              {
+                "at": 11.7,
+                "line": 67,
+                "label": "restart() ×3"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Free means",
+                "value": "longest lifetime (0.6 s)\nhas passed: its own clock"
+              },
+              {
+                "label": "Parent",
+                "value": "level root, not the victim"
+              }
+            ],
+            "output": [
+              "game3d/impact_fx.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 13.23
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 13.23,
+      "render_duration_s": 13.233333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B08.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B09",
+      "act": "RESULT",
+      "narration_text": "The test drives that with a real mouse event and the real fire action. One hit, one burst, at the hit point, facing the normal. Two hits nine frames apart: two live bursts. The victim freed on the killing hit: its burst runs to the end. The pool case needs thirteen fake signals, because real fire never fills it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B09.png",
+        "media": "media/B09.png",
+        "motion": "hold",
+        "label": "recorded test output"
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 17.02,
+      "render_duration_s": 17.033333333333335,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B09.png",
+        "filled_by": "still",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B10",
+      "act": "REVISION",
+      "narration_text": "First tuning revision. The biggest gap was the puff that never grew. The one setting: keep scale on its material. The prediction, committed before the edit: it grows, but as small dots, too weak on the light floor. It did grow, to seven centimetres. Specks. So it was reverted. The student's verdict is still pending.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B10.png",
+        "label": "r0 vs r1 dark strips (FIXTURE) + TUNING.md A-r1"
+      },
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 16.47,
+      "render_duration_s": 16.5,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B10.png",
+        "filled_by": "still",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B11",
+      "act": "MECHANISM",
+      "narration_text": "Effect B's smoke. Born in a small sphere at the chest, drifting up slowly with a little buoyancy. Then the feature Effect A doesn't use: turbulence, at the brief's strength of point six, and an influence of point zero three. That last value is a tuning change, and we'll see why.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Smoke: a sphere, buoyancy, turbulence.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "effects/wound_smoke.tscn",
+            "source": "godot/effects/wound_smoke.tscn lines 46-59 · Godot editor reconstruction",
+            "code": "initial_velocity_min = 0.4\ninitial_velocity_max = 0.8\ngravity = Vector3(0, 0.3, 0)\ndamping_min = 0.3\ndamping_max = 0.6\nscale_min = 0.2\nscale_max = 0.35\nscale_curve = SubResource(\"CurveTexture_smoke_scale\")\ncolor_ramp = SubResource(\"GradientTexture1D_smoke_color\")\nalpha_curve = SubResource(\"CurveTexture_smoke_alpha\")\nturbulence_enabled = true\nturbulence_noise_strength = 0.6\nturbulence_influence_min = 0.03\nturbulence_influence_max = 0.03",
+            "startLine": 46,
+            "cues": [
+              {
+                "at": 2.9,
+                "line": 46,
+                "label": "0.4 – 0.8 m/s, slow"
+              },
+              {
+                "at": 4.1,
+                "line": 48,
+                "label": "gravity +0.3: buoyancy"
+              },
+              {
+                "at": 7.2,
+                "line": 56,
+                "label": "turbulence on"
+              },
+              {
+                "at": 8.6,
+                "line": 57,
+                "label": "noise strength 0.6"
+              },
+              {
+                "at": 10.0,
+                "line": 58,
+                "label": "influence 0.03 (tuning B-r2)"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Emission",
+                "value": "amount 40, never changed\namount_ratio driven"
+              },
+              {
+                "label": "Config test",
+                "value": "39 settings, PASS"
+              }
+            ],
+            "output": [
+              "effects/wound_smoke.tscn · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 14.61
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 14.61,
+      "render_duration_s": 14.633333333333333,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B11.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B12",
+      "act": "RESULT",
+      "narration_text": "Its strips, measured against a run with no smoke at all, because by eye it barely showed. As built, a hundred and twenty-seven changed pixels on the light floor. After two revisions, five hundred and fifty eight, and wisps appear within half a second. Better, and still faint, and still lighter than what's behind it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B12.png",
+        "media": "media/B12.png",
+        "motion": "hold",
+        "label": "captures/wound_smoke/r*/strip.png (FIXTURE) + diff counts"
+      },
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 16.21,
+      "render_duration_s": 16.233333333333334,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B12.png",
+        "filled_by": "still",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B13",
+      "act": "MECHANISM",
+      "narration_text": "The driver turns health into smoke. At sixty or less, and alive, it sets the amount ratio: point two at sixty, rising to one at ten. Otherwise it stops the emitter. It never touches amount, which would rebuild the particle buffer and make the smoke pop.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Health in, two properties out.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "game3d/wound_smoke_driver.gd",
+            "source": "godot/game3d/wound_smoke_driver.gd lines 41-54 · Godot editor reconstruction",
+            "code": "\treturn clampf((THRESHOLD - hp) / (THRESHOLD - FULL_AT), MIN_RATIO, 1.0)\n\n\nfunc _on_health_changed(hp: float, _max_hp: float) -> void:\n\tvar on := _alive and hp > 0.0 and hp <= THRESHOLD\n\tif on:\n\t\tsmoke.amount_ratio = ratio_for(hp)\n\tif smoke.emitting != on:\n\t\tsmoke.emitting = on\n\n\nfunc _on_died() -> void:\n\t_alive = false\n\tsmoke.emitting = false",
+            "startLine": 41,
+            "cues": [
+              {
+                "at": 2.0,
+                "line": 45,
+                "label": "hp ≤ 60 and alive"
+              },
+              {
+                "at": 5.1,
+                "line": 41,
+                "label": "clamp((60 − hp) / 50, 0.2, 1.0)"
+              },
+              {
+                "at": 7.4,
+                "line": 54,
+                "label": "death: off"
+              },
+              {
+                "at": 8.0,
+                "line": 49,
+                "label": "emitting on / off"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Writes only",
+                "value": "emitting, amount_ratio"
+              },
+              {
+                "label": "Reads",
+                "value": "health_changed, died"
+              }
+            ],
+            "output": [
+              "game3d/wound_smoke_driver.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 14.14
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 14.14,
+      "render_duration_s": 14.166666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B13.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B14",
+      "act": "RESULT",
+      "narration_text": "Scripted play. A real zombie swipe takes health to forty-six, and the smoke starts. Walk, and it trails behind as pale discs. Pause, and it freezes. A medkit lifts health to eighty-six: the emitter stops, and what's left thins out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 16.6,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B14.mp4",
+        "media": "media/B14.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 · 3840×2160 SubViewport · SCRIPTED PLAY (film_capture.gd smokeplay)",
+        "hold_policy": "capture plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after it (never slowed). conform_clips.py."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_reason": "Full-frame dark engine capture: the dark scene is the picture. The text that must read is the HUD health/ammo panel and the SCRIPTED PLAY label, checked as regions.",
+        "contrast_regions": [
+          {
+            "label": "HUD health and ammo",
+            "box": [
+              0.01,
+              0.02,
+              0.23,
+              0.19
+            ]
+          },
+          {
+            "label": "SCRIPTED PLAY label",
+            "box": [
+              0.15,
+              0.91,
+              0.85,
+              0.985
+            ]
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 12.89,
+      "render_duration_s": 12.9,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B14.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B15",
+      "act": "REVISION",
+      "narration_text": "Its tuning. Revision one widened the spread, predicting a cloud that leaves the player's silhouette. It failed. A throwaway run with turbulence off showed why: the default influence was pinning the wisps in place. Revision two cut the influence, and mostly held. The student's verdicts are pending.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.4,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B15.png",
+        "label": "B-r1/B-r2 diffs + turbulence-off diagnostic (not kept) + TUNING.md"
+      },
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 15.47,
+      "render_duration_s": 15.5,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B15.png",
+        "filled_by": "still",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B16",
+      "act": "MECHANISM",
+      "narration_text": "Godot writes the process shader itself. This is the one for the puff. Line one sixty-one multiplies the scale by the scale curve. Line one sixty-two multiplies the colour by the colour ramp. Those are the brief's curve and ramp, as shader code.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The brief's curves, as shader code.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "shaders/particles_generated.gdshader",
+            "source": "godot/shaders/particles_generated.gdshader lines 159-163 · Godot editor reconstruction",
+            "code": "void process_display_param(inout DisplayParameters parameters, float lifetime) {\n\t// Compile-time add textures.\n\tparameters.scale *= texture(scale_curve, vec2(lifetime)).rgb;\n\tparameters.color *= texture(color_ramp, vec2(lifetime));\n\tparameters.color.a *= texture(alpha_curve, vec2(lifetime)).r;",
+            "startLine": 159,
+            "cues": [
+              {
+                "at": 3.9,
+                "line": 161,
+                "label": "scale curve 0.5 → 1.6"
+              },
+              {
+                "at": 7.2,
+                "line": 162,
+                "label": "colour ramp"
+              },
+              {
+                "at": 12.7,
+                "line": 163,
+                "label": "alpha curve 0.6 → 0"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Generated by",
+                "value": "Godot 4.7.2 from a duplicate\nof the Puff's material"
+              },
+              {
+                "label": "Saved by",
+                "value": "tools/dump_particles_shader.gd"
+              }
+            ],
+            "output": [
+              "shaders/particles_generated.gdshader · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 13.48
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B16.mp3",
+      "actual_duration_s": 13.48,
+      "render_duration_s": 13.5,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B16.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B17",
+      "act": "RESULT",
+      "narration_text": "So why didn't the puff grow? The shader does write the scale into each particle. But the draw step, a billboard, throws it away unless keep scale is on. A probe measured it: the same quad at half scale, seventy-two pixels without it, thirty-six with.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B17.png",
+        "media": "media/B17.png",
+        "motion": "hold",
+        "label": "probe log + generated shader lines"
+      },
+      "audio_file": "mp3/beat-B17.mp3",
+      "actual_duration_s": 13.42,
+      "render_duration_s": 13.433333333333334,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B17.png",
+        "filled_by": "still",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B18",
+      "act": "TESTS",
+      "narration_text": "What the tests proved. Every setting in both tables, read back from the scenes. Rename a property to its Godot three name: the velocity silently falls to zero, the effect still fires, and only the test fails. Price: about two hundredths of a millisecond on the GPU, far inside both budgets. And no headless run can show you anything you'd see.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25.0,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B18.png",
+        "label": "final logs + gpu_price.log rendered as a card"
+      },
+      "audio_file": "mp3/beat-B18.mp3",
+      "actual_duration_s": 18.84,
+      "render_duration_s": 18.866666666666667,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B18.png",
+        "filled_by": "still",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B19",
+      "act": "TRACE",
+      "narration_text": "Mistakes caught along the way. Claude Code's first state test treated emitting as alive, but a one-shot emitter switches that off two frames in. Headless mouse aim was stretched twenty times. A commit message miscounted a test. Uncertainty: every look claim here is Claude's. Next, the student plays it.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B19.png",
+        "label": "text card from A6-LOG.md and git history"
+      },
+      "role_note": "What went wrong: found by Claude Code's own tests, not by the student.",
+      "audio_file": "mp3/beat-B19.mp3",
+      "actual_duration_s": 16.21,
+      "render_duration_s": 16.233333333333334,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B19.png",
+        "filled_by": "still",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B20",
+      "act": "CREDITS",
+      "narration_text": "Who wrote what. Claude wrote the brief, the predictions, the budgets and the tuning approvals. Claude Code wrote the effects, the code, the tests, the readings, the documents and this film. Godot generated the process shader. The student ran the kit, and every human check is still theirs to do. No external textures: the soft dots are gradients in the scenes.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 25.0,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B20.png",
+        "label": "text card from SOURCES.md"
+      },
+      "audio_file": "mp3/beat-B20.mp3",
+      "actual_duration_s": 18.65,
+      "render_duration_s": 18.666666666666668,
+      "build": {
+        "status": "STILL",
+        "src": "media\\B20.png",
+        "filled_by": "still",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B21",
+      "act": "VERDICT",
+      "narration_text": "Implemented: a pooled impact burst on every bullet hit, and wound smoke driven by health, both tested through real play and far inside their GPU budgets. Limits: particle sizes don't change over life, the smoke reads lighter than intended, and the burst is a frame late. Human judgment: still to come, from the student.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22.2,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "artifact-reveal",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Two effects, measured.",
+            "brandLabel": "@NikBearBrown",
+            "artifactLines": [
+              "Implemented: impact burst, pool of 12, one burst per hit; 34 state checks.",
+              "Implemented: wound smoke from hp via amount_ratio, turbulence; 21 state checks.",
+              "Limits: no growth over life (billboard keep_scale); smoke reads light; 1-frame delay.",
+              "Human judgment: pending, from the student (HUMAN-CHECK-NOTES.md)."
+            ]
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B21.mp3",
+      "actual_duration_s": 17.26,
+      "render_duration_s": 17.266666666666666,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B21.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B22",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Paste this: 'Use Walker on my DERELICT project. Turn on billboard keep scale for the puff and raise its scale to point five and point nine. Before you run anything, predict its size at frames twelve, fifteen and twenty of the strip, then capture it.' My prediction: twelve to twenty-three centimetres at birth, growing past forty. If it's smaller, find out why. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 27.8,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "GODOT · PARTICLES",
+            "segment": "DERELICT",
+            "command": "Use Walker on my DERELICT project. In godot/effects/impact_burst.tscn set the Puff material's billboard_keep_scale to true and its scale_min/max to 0.5/0.9. Before you run anything, predict the puff's size at strip frames 12, 15 and 20, then capture the strip.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "Two settings.",
+              "One prediction.",
+              "One strip to check it."
+            ],
+            "animateTyping": true
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B22.mp3",
+      "actual_duration_s": 19.09,
+      "render_duration_s": 19.1,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B22.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    },
+    {
+      "beat_id": "B23",
+      "act": "OUTRO",
+      "narration_text": "Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 7.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "mascot-title",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "DERELICT: Two Particle Effects, Measured",
+            "slug": "claude-liam-derelict-a6-gamedev"
+          }
+        }
+      },
+      "audio_policy": "silence",
+      "role_note": "Locked outro: @NikBearBrown, slug-seeded mascot, stock jingle only; no narration or game audio.",
+      "render_duration_s": 7.0,
+      "build": {
+        "status": "VIDEO",
+        "src": "media\\B23.mp4",
+        "filled_by": "media",
+        "at": "2026-11-09T00:19:25"
+      }
+    }
+  ]
+}
