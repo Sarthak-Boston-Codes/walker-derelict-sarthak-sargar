@@ -95,3 +95,22 @@ Strips: `captures/wound_smoke/r0/strip.png` (light: Loading Bay floor under the 
 **Gaps, largest first:** (1) the cloud is barely visible at all, especially over the lit floor (its job); (2) it stays inside the silhouette from this camera; (3) inverted value on dark; (4) no growth.
 
 My verdict (running game), r0: pending: not yet performed by the student.
+
+### Revision B-r1: `spread` 25° → 70°
+
+- **Biggest gap (from the r0 reading):** the smoke barely reads, and over the lit floor not at all, because from this near-vertical camera every wisp rises toward the lens and stays inside the player's silhouette.
+- **The one setting:** `ParticleProcessMaterial.spread`: **25 → 70** (degrees around +Y). Nothing else changes.
+- **Approved by:** Claude, pre-authorised in A6-RUNBOOK.md.
+- **Prediction (before editing, committed before the change).** At 70° a wisp's sideways speed is up to 0.8 × sin 70° ≈ 0.75 m/s (r0: at most 0.34 m/s), damped by 0.3–0.6 m/s² and pushed around by turbulence. Over the 1.8 s life the widest wisps drift ~0.5–1 m sideways (30–60 px at 60 px/m), and the rise falls for those wisps (cos 70° = 0.34 of the speed).
+
+| Frame | Predicted (light / dark) |
+|---|---|
+| 10 | nothing |
+| 25 | nothing, or one faint wisp at the silhouette edge |
+| 40 | a few faint grey wisps just outside the silhouette, 0.3–0.6 m from the centre; over the lit floor they read slightly **darker** |
+| 100 | a loose cloud around the player, about 1–2 m across; changed pixels vs the control **several thousand** (r0: 127 light / 471 dark); light: dark-grey smudges on the floor around the player; dark: pale smudges, still lighter than the corner (the value inversion is not addressed) |
+| 130 | the same, emitter just stopped |
+| 160 | thinning, wisps further out and fainter |
+| 190 | gone |
+
+  Risk: it may read as a halo around the player rather than smoke rising from wounds. Growth is still absent (keep_scale).
