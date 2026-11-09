@@ -99,3 +99,25 @@ Sources: the `a5` branch commits (`git log main..a5`), `A5-LOG.md` and Claude Co
 ### Student's own notes
 
 
+
+## 2026-11-08: Assignment 6: two particle effects
+
+Sources: the `a6-effects` branch commits (`git log refs/tags/a5..a6-effects`), `A6-LOG.md` and Claude Code's own session. Authors: **student**, **Claude** (chat: the kit, brief and approvals), **Claude Code** (ran it), **model** (Godot's own generated output). Nothing here records the student's opinions or struggles; the student's section is at the end and is theirs to fill.
+
+- **Wanted:** two particle effects: an impact burst on every bullet hit (one-shot, overlapping) and wound smoke driven by health (turbulence, value-driven `amount_ratio`). Spec in CHANGE-BRIEF.md. *Spec, predictions, budgets, approvals:* Claude. *Accepting the two effects:* student, by running the kit.
+- **Asked:** the student asked Claude Code to extract the kit and execute `A6-RUNBOOK.md` fully and autonomously.
+- **Got / decided, in commit order:**
+  - Brief references checked; two corrections added as a revision: barrel blasts never reach `fire()` (so the pool can't fill in play), and in 4.7.2 `initial_velocity` / `scale` exist as Vector2 properties, not missing Godot 3 names. *Claude Code.*
+  - "A bullet hit" decided as a hit on a victim (wall hits keep their existing sparks). *Claude Code.*
+  - First strip: the puff never grew and sparks drew ~10× the table's size. A windowed probe showed billboard particles ignore process scale unless `billboard_keep_scale`, which the brief's table doesn't name. *Claude Code; the engine behaviour: model (Godot).*
+  - Godot 3 rename mutation: the float was dropped silently and `initial_velocity_min` fell to 0.0; only the configuration test caught it. *Claude Code.*
+  - The first state-test run failed 12 checks. Three causes: a headless 64 × 64 window stretches mouse coordinates by 20; a `PROCESS_MODE_DISABLED` zombie leaves the physics space; and a one-shot emitter reports `emitting = false` once emission ends, not when its particles die. The pool now keeps its own clock, checked against each emitter's `finished` signal. *Claude Code's mistaken assumptions, found by its own test.*
+  - Tuning A-r1 (keep_scale on the puff) made it grow but shrank it to specks; reverted. *Approved by Claude, run and judged by Claude Code.*
+  - Wound smoke barely visible in its first strip; diffs against a no-smoke control run were needed to see it at all. B-r1 (spread) failed its prediction; a diagnostic showed the default turbulence influence pins the wisps; B-r2 (influence 0.03) mostly held. *Approved by Claude, run and judged by Claude Code.*
+  - Claude Code miscounted the wound-smoke state test as 22 PASS in a commit message (the log has 21); corrected in A6-LOG.
+  - Prices: GPU +0.018 / +0.023 ms against budgets 0.30 / 0.20 ms; headless CPU not separable from drift (near zero by construction).
+- **Next:** the student's checks and tuning verdicts (HUMAN-CHECK-NOTES.md); a decision on the two-setting A-r2 proposal; the film upload.
+- **Still unresolved:** Effect A's sizes don't change over life; the wound smoke reads lighter than its background and stays near the silhouette in a stationary view; the one-frame delay between trigger and first particles.
+
+### Student's own notes
+
