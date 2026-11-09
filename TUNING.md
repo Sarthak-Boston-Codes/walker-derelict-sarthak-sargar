@@ -147,3 +147,20 @@ My verdict (running game), r0: pending: not yet performed by the student.
 | 190 | gone | gone |
 
   Wisps should curve rather than run straight (turbulence still visible). Value inversion on dark and no growth: unchanged.
+
+- **Strips:** `captures/wound_smoke/r1/strip.png` → `r2/strip.png` (light), `r1-dark` → `r2-dark` (dark); diffs `docs/evidence/a6/wound_smoke_r2_{light,dark}_diff_vs_control.png`.
+- **Claude's comparison (read by Claude):**
+
+| Frame | Predicted light / dark | r2 light / dark | Held? |
+|---|---|---|---|
+| 25 | – | 249 / 309 (r1: 67 / 234) | wisps now show by +0.5 s, as the brief's intent asks |
+| 40 | 300–600 / 400–700 | 512 / 522 | yes |
+| 100 | 400–1000 / 1500–2200 | 558 / **1050** | light yes; dark **below** the range |
+| 130 | 600–1500 / 2000–3000 | 1008 / 2166 | yes |
+| 160 | falling | 868 / 1856 | yes |
+| 190 | gone | 29 / 160 (noise level) | yes |
+
+  By eye: on the light strip a blue-grey haze now sits on the player's back and shoulders from frame 25 to 160, clearly more than r1. It curves (no straight columns), as predicted. **Not as predicted:** it is still mostly inside the silhouette and spreads only ~0.5 m beyond it, not a 1.5–2 m cloud. Almost every changed pixel is *brighter* than the control (light 534 brighter vs 24 darker at frame 100), so over the lit floor the smoke still adds no dark smudge. The value inversion (lighter than what is behind it) holds on both backgrounds.
+- **Decision: kept.** It closes the "barely visible / too late" gap (wisps by +0.5 s, about 2–4× r1's pixels, inside the predicted range for most frames).
+- **Still open after B-r2 (for the student's judgement, no further revision taken):** (1) over the lit floor it does not read darker. Its grey is lighter than the player's clothes and it rarely leaves the silhouette in this **stationary** fixture; in play the player moves and the trail (`local_coords` false) is laid over the floor, which only the student's in-play check can judge. (2) No growth over life (billboard keep_scale, as in Effect A). (3) Lighter than the dark corner instead of disappearing.
+- **My verdict (running game):** pending: not yet performed by the student.
