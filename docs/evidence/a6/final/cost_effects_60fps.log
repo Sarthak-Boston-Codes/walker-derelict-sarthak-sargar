@@ -1,0 +1,22 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== cost_effects (headless, forward_plus) ==
+video adapter: '' (headless: the dummy renderer)
+warm-up (discarded)                    frame CPU mean 0.0257 ms  sd 0.0146  median 0.0250  p95 0.0320  (n=600)
+empty scene (control)                  frame CPU mean 0.0384 ms  sd 0.0173  median 0.0380  p95 0.0450  (n=600)
+game, both effects off                 frame CPU mean 0.5438 ms  sd 0.4281  median 0.3860  p95 1.6790  (n=600)
+  check: 12 bursts alive, 288 particles
+Effect A worst: 12 bursts alive        frame CPU mean 0.6416 ms  sd 0.8585  median 0.3960  p95 1.9570  (n=600)
+  check: emitting true, amount_ratio 1.00, amount 40
+Effect B at amount_ratio 1.0           frame CPU mean 0.8818 ms  sd 0.7084  median 0.5510  p95 2.3050  (n=600)
+game, both effects off (again, last)   frame CPU mean 1.5274 ms  sd 1.2133  median 1.0460  p95 4.1560  (n=600)
+
+above the control: game 0.5054 ms; A worst 0.0978 ms over game-off; B 0.3380 ms over game-off
+order drift: game-off first 0.5438 ms vs last 1.5274 ms (difference 0.9836 ms); A and B against the mean of the two: -0.3940 / -0.1538 ms
+PASS the control and the game differ by more than 3 control sd (the script is not only measuring itself)
+note: GPU effects run their simulation in a particle process shader on the GPU; the dummy renderer runs none, so A and B cost ~nothing here by construction.
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

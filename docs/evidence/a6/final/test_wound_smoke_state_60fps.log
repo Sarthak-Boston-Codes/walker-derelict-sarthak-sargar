@@ -1,0 +1,30 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== test_wound_smoke_state ==
+PASS B2 driver source assigns only smoke.emitting, smoke.amount_ratio (and its position once) (["position", "amount_ratio", "emitting"])
+PASS B2 driver source never assigns smoke.amount
+PASS driver source assigns no player.* field
+PASS the emitter is a child of the player
+PASS at chest height (y 1.25)
+PASS B5 scene load at full health: emitting false for the first 32 frames (preprocess 0.0)
+  health_changed seen (hp: emitting, ratio): ["82: false, 1.00", "64: false, 1.00", "46: true, 0.28", "28: true, 0.64"]
+PASS real enemy contact changed hp at least 4 times (4)
+PASS B1 above 60 hp: not emitting
+PASS B1/mapping at or below 60 hp: emitting, amount_ratio = clamp((60 - hp) / 50, 0.2, 1.0)
+PASS B2 at least two hp values gave two different ratios ({ 0.28: 46.0, 0.64: 28.0 })
+  medkit: hp 28 -> 68, emitting false
+PASS B1 a real medkit lifting hp above 60 (28 -> 68) stops the emitter
+PASS B1 hp falling to 60 or below again restarts it (hp 50, ratio 0.20)
+PASS (pause) the smoke is on before pausing
+  paused: tree.paused true, smoke.can_process() true -> false, emitting true, amount_ratio 0.20, speed_scale 1.00
+PASS B3 the game's own pause stops the emitter's processing (can_process false: the node is pausable)
+PASS B3 paused: emitting and amount_ratio unchanged (the driver does not touch them)
+PASS B3 unpaused: processing resumes with the same emitting / ratio
+PASS B4 hidden: is_visible_in_tree false, emitting unchanged (true)
+PASS B4 hidden: the mapping still follows hp (hp 32 -> ratio 0.56)
+PASS the player died from real enemy contact
+PASS B1 on death the emitter stops (emitting false)
+PASS B2 `amount` stayed 40 on every one of 1274 frames
+
+PASS: 0 failure(s)

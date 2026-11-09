@@ -1,0 +1,14 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== showcase_3d_test ==
+ASSET         ROT        SCALE             BASE-Y    SIZE                 EXPECTED             TRIS      RESULT
+SupplyCrate   (0,0,0)    (1.00,1.00,1.00)  0.0000    (0.500,0.500,0.500)  (0.500,0.500,0.500)  36/100    ok
+RustedBarrel  (0,0,0)    (1.00,1.00,1.00)  0.0000    (0.600,0.900,0.600)  (0.600,0.900,0.600)  44/200    ok
+Medkit        (0,0,0)    (1.00,1.00,1.00)  0.0000    (0.300,0.150,0.200)  (0.300,0.150,0.200)  48/150    ok
+
+PASS: 0 failure(s)
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
