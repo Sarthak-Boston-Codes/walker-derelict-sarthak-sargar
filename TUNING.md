@@ -164,3 +164,24 @@ My verdict (running game), r0: pending: not yet performed by the student.
 - **Decision: kept.** It closes the "barely visible / too late" gap (wisps by +0.5 s, about 2–4× r1's pixels, inside the predicted range for most frames).
 - **Still open after B-r2 (for the student's judgement, no further revision taken):** (1) over the lit floor it does not read darker. Its grey is lighter than the player's clothes and it rarely leaves the silhouette in this **stationary** fixture; in play the player moves and the trail (`local_coords` false) is laid over the floor, which only the student's in-play check can judge. (2) No growth over life (billboard keep_scale, as in Effect A). (3) Lighter than the dark corner instead of disappearing.
 - **My verdict (running game):** pending: not yet performed by the student.
+
+---
+
+## Summary
+
+| Revision | One setting | Prediction held? | Decision | Student's verdict |
+|---|---|---|---|---|
+| A-r1 | Puff draw `billboard_keep_scale` false → true | direction yes, spread too generous | **reverted** (puff too small to do its job) | pending: not yet performed by the student |
+| A-r2 | (proposal: keep_scale true + Puff scale 0.5 / 0.9, two settings) | not run | needs a fresh approval | pending: not yet performed by the student |
+| B-r1 | `spread` 25 → 70 | **no** (no 1–2 m cloud; turbulence pins the wisps) | kept (small gain, no harm) | pending: not yet performed by the student |
+| B-r2 | `turbulence_influence_min/max` 0.1 → 0.03 | mostly (dark frame 100 below range; still inside the silhouette) | kept | pending: not yet performed by the student |
+
+**Regenerate a strip** (windowed, from the repo root; replace `<abs>` with the absolute repo path):
+```
+godot --path godot res://previews/impact_burst_preview.tscn --write-movie <abs>/captures/impact_burst/rN/frame.png --fixed-fps 30 --quit-after 60
+godot --path godot res://previews/impact_burst_preview_light.tscn --write-movie <abs>/captures/impact_burst/rN-light/frame.png --fixed-fps 30 --quit-after 60
+godot --path godot res://previews/wound_smoke_preview.tscn --write-movie <abs>/captures/wound_smoke/rN/frame.png --fixed-fps 30 --quit-after 200
+godot --path godot res://previews/wound_smoke_preview_dark.tscn --write-movie <abs>/captures/wound_smoke/rN-dark/frame.png --fixed-fps 30 --quit-after 200
+python tools/strip_sheet.py <frames dir> <out.png> <cx> <cy> <half> <frame list> "<label>"   # STRIP_SCALE=2|3
+```
+Add `-- --control` to a wound smoke preview for the no-smoke plate the diffs use; `-- --repeat=4` to the impact burst preview for a held-trigger stream. Delete the `frame.wav` Movie Maker writes; it is never committed.
