@@ -17,6 +17,7 @@ const Hud := preload("res://game3d/hud.gd")
 const Pickup := preload("res://game3d/pickup.gd")
 const UI := preload("res://game3d/ui_theme.gd")
 const ImpactFx := preload("res://game3d/impact_fx.gd")
+const WoundSmokeDriver := preload("res://game3d/wound_smoke_driver.gd")
 
 const MENU_SCENE := "res://game3d/menu.tscn"
 const AMBUSH_SIZE := 8
@@ -32,8 +33,10 @@ var state := State.PLAYING
 var has_keycard := false
 var elapsed := 0.0
 var _dust: CPUParticles3D
-## A6 presentation: Effect A trigger (impact_fx.gd).
+## A6 presentation: Effect A trigger (impact_fx.gd), Effect B driver
+## (wound_smoke_driver.gd).
 var impact_fx: Node
+var wound_smoke: Node
 
 
 func _ready() -> void:
@@ -83,6 +86,7 @@ func _ready() -> void:
 	_connect_signals()
 	hud.attach_low_ammo(player)
 	impact_fx = ImpactFx.attach(level, player)
+	wound_smoke = WoundSmokeDriver.attach(player)
 	hud.set_health(player.hp, player.MAX_HP)
 	hud.set_ammo(player.mag, player.reserve)
 	hud.set_objective("Find the security keycard — somewhere in the Boiler Room")
