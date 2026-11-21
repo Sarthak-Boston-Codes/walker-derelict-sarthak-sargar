@@ -11,6 +11,7 @@
 - Clip 1, keycard spin (cycle): route 1, `Sprite2D` `KeycardIcon` + `AnimationPlayer` frame track. Scene `godot/game3d/keycard_icon.tscn`, clip `godot/animations/keycard_spin.tres`, sheet `godot/art/keycard_sheet.png` (from `tools/make_keycard_sheet.py`). 12 fps, `LOOP_LINEAR`.
 - Clip 2, pistol reload (committing action): route 3, `Node2D` cutout rig `PistolRig` (`Body`, `Slide`, `Mag` pivots with `Polygon2D` parts). Scene `godot/game3d/pistol_rig.tscn`, clip `godot/animations/pistol_reload.tres`, 24 fps, `LOOP_NONE`, length 1.25 s = `RELOAD_TIME`.
 - Animation driver: `godot/game3d/hud_anim.gd` (`HudAnim`), attached from `hud.gd`/`game.gd`.
+- Build status: the two clip scenes, the clips, the sheet, `HudAnim`, the previews and the A7 tests below are created in runbook Phases 3-9; until a file exists, its line here is the plan, not a fact (review 2026-11-20).
 - Previews: `godot/previews/pistol_reload_preview.tscn`, `keycard_spin_preview.tscn`. Strips: `captures/<clip>/r<N>[-light|-dark]/`, readings in TUNING.md.
 - Tests: run every one through the wrapper from the repo root in Git Bash. `bash scripts/run-test.sh <file> <fps|realtime> [timeout]` writes `logs/<name>_<fps>fps.log` (or `_realtime.log`, no `--fixed-fps`) and fails on SHADER ERROR, SCRIPT ERROR or Failed loading resource (`scripts/run-test.sh:23`).
   ```
