@@ -1,32 +1,32 @@
-# CLAUDE.md — DERELICT, Assignment 6 (two particle effects)
+# CLAUDE.md — DERELICT, Assignment 7 (two animations)
 
 ## Project context
 
-- Engine: Godot 4.7.2 (`godot/project.godot:15`, `config/features` lists "4.7"). Local binary: `C:\Users\sarth\GotDot\Godot_v4.7.2-stable_win64.exe` (export it as `GODOT` for `scripts/run-test.sh`).
-- Renderer: Forward+. `project.godot` has no `rendering_method` line, so the default applies; `config/features` lists "Forward Plus" (`:15`); `rendering_device/driver.windows="d3d12"` (`:91`).
+- Engine: Godot 4.7.2 (`godot/project.godot:15`, `config/features` lists "4.7"). Local binary: `C:\Users\sarth\GotDot\Godot_v4.7.2-stable_win64.exe` (export as `GODOT`; `scripts/run-test.sh` defaults to it).
+- Renderer: Forward+ (`project.godot:15` lists "Forward Plus"; no `rendering_method` line, so the default applies); `rendering_device/driver.windows="d3d12"` (`project.godot:91`).
 - Window: 1280 × 720, stretch `canvas_items`, aspect `expand` (`project.godot:25-28`).
-- Main scene `res://game3d/menu.tscn` (`run/main_scene`); the game is `res://game3d/game.tscn`, script `game3d/game.gd`, which builds the level (`game.gd:42-44`, node "Level"), the player (`game.gd:51-54`, node "Player", built in code, no scene) and the HUD.
-- Effect A's event, a bullet hitting a victim: `fire()` in `godot/game3d/player.gd:241`; the shot ray is cast at `:257`; a collider with `hit()` (zombie, barrel, crate) is hit at `:264` with `end = hit.position` and `hit.normal`. Victims implement `hit(damage, point, dir, normal)` (`player.gd:5-6`). `FIRE_INTERVAL := 0.14` (`:27`). A6 added `signal bullet_hit(point, normal)` (`player.gd:14`) and one emit at `:266`, before the victim's `hit()` at `:267` (the only gameplay edit). Non-victim surfaces already get the A5-era CPU `Fx.sparks(end, hit.normal)` (`player.gd:266`, `fx.gd:100`); a barrel blast hits its victims from `barrel.gd:104-106`, not through `fire()`, so it fires no burst.
-- Effect B's condition: `player.hp` (`player.gd:36`), `MAX_HP := 100.0` (`:23`), reported by `signal health_changed(hp, max_hp)` (`:8`), emitted by `take_damage()` (`:297`) and `heal()` (`:315`, used by medkits through `pickup.gd:72`). Death: `_die()` (`:327`) sets `alive = false` and emits `died`.
-- Effects (A6): `godot/effects/impact_burst.tscn` (Node3D root, three `GPUParticles3D`: Flash, Sparks, Puff) and `godot/effects/wound_smoke.tscn` (one `GPUParticles3D`), each with a `ParticleProcessMaterial` and a `StandardMaterial3D` draw material, all written in the scene file.
-- Trigger code (A6): `godot/game3d/impact_fx.gd` (pool of 12 bursts under the level root, listens to `bullet_hit`; "alive" is its own clock of the longest emitter lifetime, because a one-shot emitter's `emitting` goes false when emission ends) and `godot/game3d/wound_smoke_driver.gd` (listens to `health_changed`/`died`, writes only `emitting` and `amount_ratio`; the smoke sits at chest height 1.25 m).
-- Wiring: `game.gd` `_ready()` attaches the two A6 presentation nodes after the HUD, as A5 did with `hud.attach_low_ammo(player)` (`game.gd:81`). Presentation only; no game state is written.
-- Preview scenes (one script, `godot/previews/effect_preview.gd`): `impact_burst_preview.tscn` (dark), `impact_burst_preview_light.tscn`, `wound_smoke_preview.tscn` (light), `wound_smoke_preview_dark.tscn`. Frame strips: `captures/<effect>/r<N>[-light|-dark]/`, readings in TUNING.md. Tools: `godot/tools/gpu_price.gd` (windowed GPU price), `dump_particles_shader.gd`, `probe_particle_scale.gd`; `tools/strip_sheet.py`.
-- Tests: run every one through the wrapper from the repo root in Git Bash. `bash scripts/run-test.sh <file> <fps|realtime> [timeout]` writes `logs/<name>_<fps>fps.log` (or `_realtime.log`, no `--fixed-fps`) and fails on SHADER ERROR / SCRIPT ERROR.
+- Main scene `res://game3d/menu.tscn` (`project.godot:14`); the game is `res://game3d/game.tscn`, script `game3d/game.gd`, which builds the level, the player (node "Player", `game.gd:57-59`) and the HUD (node "Hud", `game.gd:82-87`).
+- HUD: `godot/game3d/hud.gd`, a `CanvasLayer` built in code, `PROCESS_MODE_ALWAYS` (`hud.gd:52`). Keycard element `_key_label` (`hud.gd:102-104`), setter `set_keycard()` (`hud.gd:327`), called from `game.gd:135`.
+- Player state machine: owned by `godot/game3d/player.gd` (implicit flags, no enum): `alive` (`:41`), `_reload_left` (`:59`), decremented on the process tick in `_update_weapon()` (`:195-198`, called from `_process` `:168`); fire lock `:204-205`; `start_reload()` `:217`; `_finish_reload()` `:233`; `_die()` `:330` (zeroes `_reload_left`, emits only `died`). Signals `reload_changed(active)` `:10`, `died` `:12`. Constants `MAG_SIZE` `:26`, `FIRE_INTERVAL` `:29`, `RELOAD_TIME` `:30`.
+- Clip 1, keycard spin (cycle): route 1, `Sprite2D` `KeycardIcon` + `AnimationPlayer` frame track. Scene `godot/game3d/keycard_icon.tscn`, clip `godot/animations/keycard_spin.tres`, sheet `godot/art/keycard_sheet.png` (from `tools/make_keycard_sheet.py`). 12 fps, `LOOP_LINEAR`.
+- Clip 2, pistol reload (committing action): route 3, `Node2D` cutout rig `PistolRig` (`Body`, `Slide`, `Mag` pivots with `Polygon2D` parts). Scene `godot/game3d/pistol_rig.tscn`, clip `godot/animations/pistol_reload.tres`, 24 fps, `LOOP_NONE`, length 1.25 s = `RELOAD_TIME`.
+- Animation driver: `godot/game3d/hud_anim.gd` (`HudAnim`), attached from `hud.gd`/`game.gd`.
+- Previews: `godot/previews/pistol_reload_preview.tscn`, `keycard_spin_preview.tscn`. Strips: `captures/<clip>/r<N>[-light|-dark]/`, readings in TUNING.md.
+- Tests: run every one through the wrapper from the repo root in Git Bash. `bash scripts/run-test.sh <file> <fps|realtime> [timeout]` writes `logs/<name>_<fps>fps.log` (or `_realtime.log`, no `--fixed-fps`) and fails on SHADER ERROR, SCRIPT ERROR or Failed loading resource (`scripts/run-test.sh:23`).
   ```
-  bash scripts/run-test.sh game3d_smoke_test.tscn 60
-  bash scripts/run-test.sh game3d_soak_test.tscn 60
-  bash scripts/run-test.sh showcase_3d_test.tscn 60
-  bash scripts/run-test.sh trigger_count_test.tscn 60
-  bash scripts/run-test.sh low_ammo_test.gd 30          # also 60 and 144
+  bash scripts/run-test.sh game3d_smoke_test.tscn 60        # also soak, showcase_3d, trigger_count (.tscn, 60)
+  bash scripts/run-test.sh low_ammo_test.gd 30              # also 60 and 144
   bash scripts/run-test.sh test_materials.gd 60
   bash scripts/run-test.sh calibrate_normal_map_check.gd 60
-  bash scripts/run-test.sh test_impact_burst_config.gd 60
-  bash scripts/run-test.sh test_impact_burst_state.gd 60
-  bash scripts/run-test.sh test_wound_smoke_config.gd 60
-  bash scripts/run-test.sh test_wound_smoke_state.gd 60
-  bash scripts/run-test.sh cost_effects.gd 60 300
-  bash scripts/run-test.sh <test> realtime               # real time, for anything that awaits audio
+  bash scripts/run-test.sh test_impact_burst_config.gd 60   # also _state, test_wound_smoke_config/_state
+  bash scripts/run-test.sh test_pins_player.gd 60
+  bash scripts/run-test.sh test_keycard_spin_readback.gd 60
+  bash scripts/run-test.sh test_pistol_reload_readback.gd 60
+  bash scripts/run-test.sh test_hud_anim_structure.gd 60
+  bash scripts/run-test.sh test_hud_anim_state.gd 60
+  bash scripts/run-test.sh test_pistol_reload_edges.gd 60
+  bash scripts/run-test.sh test_two_clocks.gd 60            # also 30
+  bash scripts/run-test.sh <test> realtime                  # real time, for anything that awaits audio
   ```
   Import first after any asset change: `"$GODOT" --headless --path godot --import`.
 
@@ -36,37 +36,41 @@
 
 ## Ownership
 
-- `godot/shaders/` holds the A5 shaders and is never edited in A6. `git diff --stat godot/shaders/` must print nothing after every phase. The one exception is the new, unused `godot/shaders/particles_generated.gdshader` (Phase 7 dump).
-- Effect settings live in the scene files in `godot/effects/`, never in code. Code writes only `emitting`, `amount_ratio`, transforms and `restart()`.
-- Authorship: the brief, its predictions, budgets and answers, the tuning approvals and the process-shader notes were written by Claude; the effects, previews, trigger code, tests, cost and GPU scripts, strip readings, documents and film were written by Claude Code. Never write that the student wrote any of it, and never record a check the student has not performed.
+- `godot/shaders/` holds the A5 shaders and is never edited. `git diff --stat godot/shaders/` must print nothing after every phase.
+- A6 effects (`godot/effects/`), their drivers (`impact_fx.gd`, `wound_smoke_driver.gd`) and the ammo label's `low_ammo_driver.gd` stay untouched.
+- Clips live as resources in `godot/animations/` or in the scene that owns them (`RESET` lives in `pistol_rig.tscn`), and are never built in code at run time. Code calls only `play()`, `stop()` and reads.
+- Authorship: the brief, its predictions, the phase table, the cycle spec and the approvals were written by Claude; the sheet generator, clips, rig, `HudAnim`, tests, pins, previews, captures, strip readings, documents and film were written by Claude Code. Never write that the student wrote any of it or did a check they did not do.
 - Human checks and tuning verdicts are the student's; they read "pending: not yet performed by the student" until the student gives them (`HUMAN-CHECK-NOTES.md`).
+
+## One authority
+
+- `HudAnim` (`godot/game3d/hud_anim.gd`) is the only writer of both animated nodes: it calls `play()`/`stop()` on `KeycardIcon`'s `AnimationPlayer` and `PistolRig`'s `AnimationPlayer`, and sets the icon's `visible`. The `AnimationPlayer`s are the only writers of `KeycardIcon:frame` and `Body`/`Slide`/`Mag` `position`/`rotation`.
+- No tween, no `autoplay`, no `AnimatedSprite2D`, no `AnimationTree`, no other script writes them. `test_hud_anim_structure.gd` asserts it.
+- Both `AnimationPlayer`s: `callback_mode_process` PROCESS_IDLE, `process_mode` PAUSABLE (the HUD root is ALWAYS).
 
 ## Godot 4 names
 
-- Use Godot 4.7.2 names only: `GPUParticles3D`, `ParticleProcessMaterial`, `initial_velocity_min/max`, `scale_min/max`, `damping_min/max`, `turbulence_enabled`, `turbulence_noise_strength`, `amount_ratio`, `visibility_aabb`, `use_fixed_seed`.
-- Never Godot 3 names such as `ParticlesMaterial`, `Particles`, a float `initial_velocity` or `scale`. If unsure a property exists, check `ClassDB.class_get_property_list()` or the class reference, and say so.
+- Godot 4.7.2 names only: `AnimationPlayer`, `Animation.loop_mode` (`LOOP_NONE`/`LOOP_LINEAR`), `speed_scale`, `step`, `value_track_set_update_mode`, `Sprite2D.hframes/vframes/frame`, `callback_mode_process`, `current_animation`.
+- Never Godot 3 names: `loop`, `playback_speed`, `AnimatedSprite`, `playback_process_mode`. If unsure a property exists, check `ClassDB.class_get_property_list()` and say so.
 
 ## Out of scope
 
-- Gameplay: collision, movement, input, fire/reload timings, zombies, waves, the state machine, HUD.
-- The A5 shaders in `godot/shaders/`; existing tests and their expectations; source models and textures.
-- Committing mp4/mp3/wav under `youtube/`, files over 25 MB, `godot/.godot/`, credentials.
+- Gameplay: collision, movement, input mapping, fire/reload timings (`FIRE_INTERVAL`, `RELOAD_TIME`, `MAG_SIZE`), zombies, waves, every other HUD element.
+- The A5 shaders, the A6 effects and drivers, the low-ammo driver; existing tests and their expectations; source models and textures.
+- Committing mp4/mp3/wav under `youtube/`, files over 25 MB, `godot/.godot/`, credentials. Never move or delete an existing tag.
 
 ## Unconfirmed
 
-- Every human check (HUMAN-CHECK-NOTES.md): rapid repeats in play, Effect B start/stop/pause/hide, size at 1280 × 720, dark and light backgrounds, screen edge, scene load, the Visual Profiler read, and the student's verdict on each tuning revision.
-- Resolved 2026-11-08: a float written to `initial_velocity` in a scene file is dropped silently (it is a Vector2 range property in 4.7.2) and `initial_velocity_min` keeps its default 0.0.
-- Open: Effect A's two-setting tuning proposal A-r2 (TUNING.md) awaits approval.
+- Every human check (`HUMAN-CHECK-NOTES.md`): cycle seam over five wraps, the reload in play with an interrupt in each phase, keycard registration, both backgrounds, the student's verdict on each tuning revision.
+- The two-clocks disagreement is measured by `test_two_clocks.gd`, not assumed.
+- `test_impact_burst_state.gd` (A6) failed its two-hit section once on the first run after a fresh import (A7-LOG.md Phase 0).
 
 ## Headless facts
 
-- A headless run uses a dummy renderer (`servers/rendering/dummy/`): nothing is drawn and no particle process shader runs. Pixels and particle positions cannot be checked headless; a one-shot emitter's `finished` signal still fires on CPU-side time.
-- A GPU effect's headless CPU price is near zero by construction: its simulation is a process shader on the GPU, which the dummy renderer never runs. Measured (`cost_effects.gd`): not separable from frame-to-frame drift.
-- Headless the window is 64 × 64 with the 1280-wide canvas stretched onto it: a mouse event must be in window pixels (`root.get_final_transform() * viewport_pos`).
-- `PROCESS_MODE_DISABLED` on a CollisionObject3D removes it from physics (bullets pass through); a `preload` of `pickup.gd` in a `--script` test breaks on the `Assets` autoload.
+- A headless run uses a dummy renderer: clips advance and structure can be read (`current_animation`, `current_animation_position`, node properties), but nothing is drawn. Pixels and registration cannot be checked headless.
+- Key times are stored as 32-bit floats: compare with a tolerance (half a frame period), never `==`.
+- `Animation.value_track_get_update_mode()` applies only to value tracks; ask it only of `TYPE_VALUE` tracks.
 - Frame strips come from a windowed Movie Maker run (`--write-movie <abs path>/frame.png --fixed-fps 30`), never headless.
-- The dummy renderer still parses shaders; a broken one prints `SHADER ERROR`.
-- `ShaderMaterial.set_shader_parameter()` accepts names the shader does not declare; read back from resources to check.
+- Headless the window is 64 × 64 with the 1280-wide canvas stretched onto it: a mouse event must be in window pixels (`root.get_final_transform() * viewport_pos`).
+- Test input goes through `Input.parse_input_event` with events from `project.godot`'s input map (R = physical 82, fire = mouse button 1, pause = Escape), never `Input.action_press`.
 - A `--script` whose `_init()` stops on a SCRIPT ERROR never reaches `quit()`; the wrapper's timeout (exit 124) catches it.
-- `StandardMaterial3D` has no `get_shader_rid()` in GDScript; generated shaders are reached by RID scan (`godot/tools/dump_standard_shader.gd`, `dump_particles_shader.gd`).
-- Windowed fact: `billboard_mode = particles` ignores the process scale and scale curve unless `billboard_keep_scale` is true (`probe_particle_scale.gd`).
