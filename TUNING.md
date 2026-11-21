@@ -49,3 +49,24 @@ Prediction, per frame (both backgrounds):
 - 39–41: unchanged apart from position (the slide rack still small: gap 3 remains for r2).
 - Background under the rig: a slightly different patch of the same floor (80 px higher on screen ≈ 1 m further north in the world).
 Keep if every listed frame shows the whole rig with no clipping and no hint text crossing it; otherwise revert.
+
+#### r1 result (strips `r1-dark-strip.png`, `r1-light-strip.png`; read by Claude)
+
+- Log: identical clip times and poses to r0 on every frame; `rig on screen at (1130, 530)` (r0: (1130, 610)).
+- Frames 24–26: the whole magazine is on screen; at 26 its base plate is about 50 px above the bottom edge (both backgrounds). **As predicted.**
+- Every listed frame: the controls hint row is below the rig, nothing crosses the grip. **As predicted.**
+- Background: light = the lit floor plus the edge of a rust floor patch south-east of the player; dark = unlit floor, near black.
+- Gap 3 (slide rack small, 14 px) remains, as predicted.
+
+**Decision: keep r1** (both conditions of the prediction met). Student's verdict on r1: **pending: not yet performed by the student.**
+
+### r2: one change, the slide's rack depth (prediction committed before the edit)
+
+Change (one key's value): `Body/Slide:position:x` key at f21 (0.875 s) from −14 to −24 px, in `pistol_reload.tres`. This is a phase-table key value, so a dated brief revision comes first and `test_pistol_reload_readback.gd`'s expected value changes in the same commit as the clip.
+
+Prediction, per frame (log values from the same easing, 2.0 ease-in from f18 = 0 to f21, then linear back to 0 at f24): the slide position scales by 24/14.
+- 39 (clip 0.9333 s): slide x −10.95 → **−18.77** px; the rack reads clearly (about 13 % of the slide's length, the ejection port moves past the frame's rear edge).
+- 40 (0.9667 s): −6.47 → **−11.09** px. 41 (1.0 s): 0, as before.
+- Every other listed frame: identical to r1 (the slide is at 0 outside 0.75–1.0 s).
+- At frame 37 (0.875 s, not on the read list), the slide reaches −24 px; the slide's rear end then sits about 24 px behind the frame, which should still look like one gun (the slide polygon is a separate part, so no gap appears inside the rig).
+Keep if frame 39 shows the rack clearly and no part separates visibly; otherwise revert.
