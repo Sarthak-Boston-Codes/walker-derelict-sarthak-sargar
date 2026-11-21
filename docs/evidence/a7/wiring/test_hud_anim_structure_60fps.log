@@ -1,0 +1,60 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== test_hud_anim_structure ==
+PASS rig states are HOLD, RELOAD, DEAD ([&"HOLD", &"RELOAD", &"DEAD"])
+PASS icon states are HIDDEN, SPINNING ([&"HIDDEN", &"SPINNING"])
+PASS start states HOLD and HIDDEN
+PASS rig HOLD transitions { &"reload_started": &"RELOAD", &"died": &"DEAD" } (brief { &"reload_started": &"RELOAD", &"died": &"DEAD" })
+PASS rig HOLD plays ''
+PASS rig RELOAD transitions { &"reload_finished": &"HOLD", &"died": &"DEAD" } (brief { &"reload_finished": &"HOLD", &"died": &"DEAD" })
+PASS rig RELOAD plays 'reload'
+PASS rig DEAD transitions {  } (brief {  })
+PASS rig DEAD plays ''
+PASS icon HIDDEN transitions { &"keycard_acquired": &"SPINNING" } (brief { &"keycard_acquired": &"SPINNING" })
+PASS icon HIDDEN plays ''
+PASS icon SPINNING transitions {  } (brief {  })
+PASS icon SPINNING plays 'spin'
+PASS rig HOLD's clip '' exists in pistol_rig.tscn
+PASS rig RELOAD's clip 'reload' exists in pistol_rig.tscn
+PASS rig DEAD's clip '' exists in pistol_rig.tscn
+PASS the rest clip 'RESET' exists in pistol_rig.tscn
+PASS icon HIDDEN's clip '' exists in keycard_icon.tscn
+PASS icon SPINNING's clip 'spin' exists in keycard_icon.tscn
+PASS reload is LOOP_NONE (commits)
+PASS spin is LOOP_LINEAR (loops)
+PASS scanned 25 HUD/game scripts in res://game3d/
+PASS no script but hud_anim.gd touches the rigs (game.gd only attaches HudAnim: ["game.gd: hud_anim", "game.gd: hud_anim", "game.gd: hud_anim"]; others [])
+PASS no AnimationTree or AnimatedSprite2D in game3d scripts []
+PASS hud_anim.gd writes no animated property (frame, rotation, Body/Slide/Mag position): []
+PASS hud_anim.gd uses no tween
+PASS hud_anim.gd sets position only on the rig and icon roots, which no clip animates (["rig", "icon_root"])
+PASS no clip is built in code at run time
+PASS hud_anim.gd only calls play/stop/seek on the AnimationPlayers (["stop", "play", "seek"])
+PASS game.hud_anim is a HudAnim under the HUD
+PASS exactly two AnimationPlayers in the HUD (2)
+PASS no AnimationTree in the HUD
+PASS no AnimatedSprite2D in the HUD
+PASS they are the rig's and the icon's
+PASS icon autoplay empty
+PASS icon process_mode PAUSABLE under a PROCESS_MODE_ALWAYS HUD (HUD 3)
+PASS icon callback_mode_process PROCESS_IDLE
+PASS icon processes while the tree runs
+PASS rig autoplay empty
+PASS rig process_mode PAUSABLE under a PROCESS_MODE_ALWAYS HUD (HUD 3)
+PASS rig callback_mode_process PROCESS_IDLE
+PASS rig processes while the tree runs
+PASS the running rig plays the committed reload resource
+PASS the running icon plays the committed spin resource
+PASS at scene start: rig HOLD, current_animation '' ('')
+PASS at scene start: icon HIDDEN, current_animation '', icon invisible
+PASS rig at the RESET pose at scene start
+PASS the icon sits beside the HUD keycard element (child of _key_label)
+PASS with the tree paused neither AnimationPlayer can process
+PASS the HUD itself still processes when paused (pause menu)
+
+PASS: 0 failure(s)
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
