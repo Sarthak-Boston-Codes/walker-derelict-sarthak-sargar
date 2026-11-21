@@ -1,0 +1,63 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+D3D12 12_0 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU
+
+Movie Maker mode enabled, recording movie in 1280×720 @ 30 FPS...
+preview spin: player (-7.0, 0.0, 5.0) aim (-4.0, 0.95, 3.0)
+drawn   0  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+rig on screen at (1130.0, 530.0), icon at (154.0, 35.0) (canvas px)
+drawn   1  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   2  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   3  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   4  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   5  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   6  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   7  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   8  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   9  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  10  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  11  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  12  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  13  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+frame 14: keycard label visible true
+drawn  14  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 0 0.0000
+drawn  15  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 0 0.0000
+drawn  16  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 0 0.0333
+drawn  17  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 0 0.0667
+drawn  18  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 1 0.1000
+drawn  19  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 1 0.1333
+drawn  20  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 2 0.1667
+drawn  21  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 2 0.2000
+drawn  22  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 2 0.2333
+drawn  23  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 3 0.2667
+drawn  24  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 3 0.3000
+drawn  25  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 4 0.3333
+drawn  26  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 4 0.3667
+drawn  27  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 4 0.4000
+drawn  28  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 5 0.4333
+drawn  29  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 5 0.4667
+drawn  30  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 6 0.5000
+drawn  31  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 6 0.5333
+drawn  32  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 6 0.5667
+drawn  33  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 7 0.6000
+drawn  34  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 7 0.6333
+drawn  35  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 7 0.6667
+drawn  36  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 0 0.0333
+drawn  37  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 0 0.0667
+drawn  38  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 1 0.1000
+drawn  39  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 1 0.1333
+drawn  40  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 2 0.1667
+drawn  41  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 2 0.2000
+drawn  42  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 2 0.2333
+drawn  43  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 3 0.2667
+drawn  44  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon SPINNING visible true  cell 3 0.3000
+--------------------------------------------------------------------------------
+Done recording movie at path: C:\Users\sarth\Game Development\walker-a7\captures\keycard_spin\r0-light\frame.png
+45 frames at 30 FPS (movie length: 00:00:01:15), recorded in 00:00:26 (3% of real-time speed).
+CPU render time: 0.11 seconds (average: 2.47 ms/frame)
+GPU render time: 0.24 seconds (average: 5.29 ms/frame)
+Encoding time: 21.29 seconds (average: 473.18 ms/frame)
+--------------------------------------------------------------------------------
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

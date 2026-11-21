@@ -80,3 +80,22 @@ Keep if frame 39 shows the rack clearly and no part separates visibly; otherwise
 - (The r1 strips were re-cropped at y = 572 so the slide is inside the crop. The first r1 crop at y = 600 cut the slide off; the frames are the same.)
 
 **Decision: keep r2.** Student's verdict on r2: **pending: not yet performed by the student.**
+
+---
+
+## Keycard spin
+
+### r0: as built from the cycle spec (`fc337ce` clip; strips `captures/keycard_spin/r0-light-strip.png`, `r0-dark-strip.png`)
+
+Capture: the player is placed on the keycard on frame 10. The pickup's overlap check (every 0.2 s) picks it up, and the label (so `SPINNING`) shows on frame 14. The player is then put back on the background spot. The icon sits at canvas (154, 146), inside the HUD's top-left panel, to the right of "◆ KEYCARD", at half size (32 × 32 px on screen, card 26 px wide). Its background is therefore the HUD panel, not the level, in both captures; the dark/light difference is only the level visible around the panel.
+
+Cell shown per drawn frame (log, identical in both captures): 13 hidden · 14–17 cell 0 (clip position 0 on 14 and 15, then advancing; the same one-frame start as the reload) · 18–19 cell 1 · 20–22 cell 2 · 23–24 cell 3 · 25–27 cell 4 · 28–29 cell 5 · 30–32 cell 6 · 33–35 cell 7 · **36–37 cell 0** · 38 cell 1. At 30 fps a 12 fps cell lasts 2 or 3 frames (2.5 on average), so the 2/3 alternation is the capture rate, not the clip.
+
+Reading (read by Claude):
+- **Eight distinct cells, in order**: front flat (100 %) → front leaning (about 73 %) → edge (a 2 px line) → back leaning (about 69 %) → back flat (100 %, orange) → back leaning → edge → front leaning the other way → front flat again. As the brief expects (with the face assignment from the 2026-11-20 sheet revision).
+- **Seam**: cell 7 on 33–35, then cell 0 on 36 and cell 1 on 38. No cell repeats across the wrap, and the wrap gap is one key interval like every other step. No visible stall in the strip.
+- **Registration**: the bounding-box centre of the drawn card, measured on the clean frames (light 18, 20, 23, 25, 28, 30, 33, 36; dark 28, 30, 33, 36), is (31.0–31.5, 30.5) in a 64 px crop: within 0.5 px across all cells. Frame 14 in both captures, and dark frames 18–25, include level pixels in the crop while the camera snaps back, so their numbers are not card measurements.
+- Contrast: the cyan front and the orange back both read on the dark panel; the edge-on cells are a thin grey line, visible.
+- Possible gap, not tuned: the icon is small (a 26 px card at 1280 × 720). The strip reads at 4×, but whether it catches the eye in peripheral vision is the student's check in the running game.
+
+No keycard tuning revision: the runbook asks for one more revision "if a gap is visible"; reload r2 was that revision, and the strip shows no seam, order or registration gap. Student's verdict on keycard r0: **pending: not yet performed by the student.**
