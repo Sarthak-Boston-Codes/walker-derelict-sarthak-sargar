@@ -140,3 +140,10 @@ The sheet section says "cells 4 to 7 show the back face". A card turning about i
 ### 2026-11-20 — tuning r2: slide rack depth (approved by Claude, pre-authorised in A7-RUNBOOK.md; applied by Claude Code)
 
 Phase table, key table, `Slide:position:x`: the f21 key (rack back) changes from **−14 to −24 px**. Reason: in the r0/r1 strips the 14 px rack on a 148 px slide reads only just (TUNING.md, reload r1/r2). Frames and times are unchanged (f18 0, f21 0.875 s, f24 1.0 s); only the value changes. `test_pistol_reload_readback.gd` expects −24 from the same commit as the clip.
+
+### 2026-11-20 — the two clocks, measured (Claude Code, Phase 9)
+
+`godot/tests/test_two_clocks.gd`, 5 reloads each at 60 and 30 fps (logs `docs/evidence/a7/two_clocks/`). Tick 0 is the tick `reload_changed(true)` fires; HudAnim calls `play("reload")` on that tick.
+- The game ends the reload on tick 75 at 60 fps (75 decrements of 1/60 s, ticks 1–75) and on tick 38 at 30 fps (37.5 rounded up). The clip shows position 0 on ticks 0 and 1 and first advances on tick 2, so an unstopped copy of the clip finishes on tick 76 (60 fps) and tick 39 (30 fps). The HUD clip is at 1.2167 s (60 fps) or 1.2000 s (30 fps) on the last tick before the reload ends, and HudAnim then applies the RESET pose, which is the clip's own 1.25 s pose.
+- **Largest disagreement: 0.0167 s at 60 fps and 0.0333 s at 30 fps, exactly one frame period, on every reload.** The brief predicted "under one frame"; the measured value is one frame, not under. The order within the tick is not the cause: the clip trails by a whole tick, because it does not advance on the tick after `play()`. Why the AnimationPlayer holds that tick is not established here (it is consistent with the player's first process after `play()` not advancing, but this run does not prove the mechanism).
+- Effect in play: the rig reaches rest one frame early (the RESET pose replaces the last frame of the recovery ease, a 0.017 rad tilt at 60 fps). Gameplay is unaffected: fire unlocks on the game's tick (pins and edge test). No change made; recorded as a limit.
