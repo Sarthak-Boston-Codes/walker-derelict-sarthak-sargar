@@ -70,3 +70,13 @@ Prediction, per frame (log values from the same easing, 2.0 ease-in from f18 = 0
 - Every other listed frame: identical to r1 (the slide is at 0 outside 0.75–1.0 s).
 - At frame 37 (0.875 s, not on the read list), the slide reaches −24 px; the slide's rear end then sits about 24 px behind the frame, which should still look like one gun (the slide polygon is a separate part, so no gap appears inside the rig).
 Keep if frame 39 shows the rack clearly and no part separates visibly; otherwise revert.
+
+#### r2 result (strips `r2-dark-strip.png`, `r2-light-strip.png`, close-up `r2-light-rack.png`; read by Claude)
+
+- Log: slide x at frame 39 **−18.77**, frame 40 **−11.09**, frame 41 0; frame 37 (0.8667 s) −22.40. Exactly the predicted values. Correction to the prediction's wording: the 2.0 ease-in is on the f21 key, so it shapes the snap forward (f21 → f24), and the rack back (f18 → f21) is linear, as the brief's table says ("f24 0 (snap forward, ease-in)"). The predicted numbers were computed from the clip and were not affected.
+- Frame 39: the slide sits clearly back. The dark front of the frame shows ahead of the slide's muzzle end, which r1's frame 39 barely shows. The rack now reads. **As predicted.**
+- No part separates: the slide stays over the frame in every frame, 36–41. **As predicted.**
+- Every other listed frame matches r1 (startup, magazine, recovery, rest).
+- (The r1 strips were re-cropped at y = 572 so the slide is inside the crop. The first r1 crop at y = 600 cut the slide off; the frames are the same.)
+
+**Decision: keep r2.** Student's verdict on r2: **pending: not yet performed by the student.**
