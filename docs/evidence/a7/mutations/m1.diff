@@ -1,0 +1,13 @@
+diff --git a/godot/animations/pistol_reload.tres b/godot/animations/pistol_reload.tres
+index e6be46b..c45542f 100644
+--- a/godot/animations/pistol_reload.tres
++++ b/godot/animations/pistol_reload.tres
+@@ -22,7 +22,7 @@ step = 0.041666668
+ tracks/0/type = "value"
+ tracks/0/imported = false
+ tracks/0/enabled = true
+-tracks/0/path = NodePath("Body/Mag:position:y")
++tracks/0/path = NodePath("Body/Mag:positon:y")
+ tracks/0/interp = 1
+ tracks/0/loop_wrap = true
+ tracks/0/keys = {

@@ -1,0 +1,78 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== test_pistol_reload_readback ==
+PASS clip loads from res://animations/pistol_reload.tres
+PASS scene loads from res://game3d/pistol_rig.tscn
+PASS PistolRig has an AnimationPlayer
+PASS scene root is PistolRig (PistolRig)
+PASS Body is a plain Node2D pivot (Node2D)
+PASS Body holds Polygon2D parts (4)
+PASS Body/Slide is a plain Node2D pivot (Node2D)
+PASS Body/Slide holds Polygon2D parts (5)
+PASS Body/Mag is a plain Node2D pivot (Node2D)
+PASS Body/Mag holds Polygon2D parts (2)
+PASS the AnimationPlayer's root node is PistolRig
+PASS 'reload' is the resource res://animations/pistol_reload.tres
+PASS track_problems: every track resolves to a real node and property []
+  track types: ["value", "value", "value"] (no 3D bone or blend-shape tracks: those branches are not exercised by this rig)
+PASS step = 1/24 (0.041666668)
+PASS loop_mode = LOOP_NONE (0)
+PASS length 1.250000 s = RELOAD_TIME 1.250000 s read from player.gd
+PASS RELOAD_TIME is 30 frames at 24 fps (30.000)
+PASS 3 tracks, one per table row (3)
+  frame -> key time (s), from the brief's table and read from the clip:
+PASS track Body/Mag:position:y exists
+PASS Body/Mag:position:y is a value track
+PASS Body/Mag:position:y updates continuously (value track, asked only of value tracks)
+PASS Body/Mag:position:y has 5 keys (5)
+    Body/Mag:position:y    f0=0.0000 f6=0.2500 f12=0.5000 f18=0.7500 f30=1.2500
+PASS Body/Mag:position:y key times within half a frame period (1/48 s) of frame/24 (largest error 0.000000000 s)
+PASS Body/Mag:position:y key values match the table
+PASS Body/Mag:position:y easing per key matches the table (in > 1, out 0..1, in-out < 0)
+PASS track Body/Slide:position:x exists
+PASS Body/Slide:position:x is a value track
+PASS Body/Slide:position:x updates continuously (value track, asked only of value tracks)
+PASS Body/Slide:position:x has 5 keys (5)
+    Body/Slide:position:x  f0=0.0000 f18=0.7500 f21=0.8750 f24=1.0000 f30=1.2500
+PASS Body/Slide:position:x key times within half a frame period (1/48 s) of frame/24 (largest error 0.000000000 s)
+PASS Body/Slide:position:x key values match the table
+PASS Body/Slide:position:x easing per key matches the table (in > 1, out 0..1, in-out < 0)
+PASS track Body:rotation exists
+PASS Body:rotation is a value track
+PASS Body:rotation updates continuously (value track, asked only of value tracks)
+PASS Body:rotation has 4 keys (4)
+    Body:rotation          f0=0.0000 f6=0.2500 f24=1.0000 f30=1.2500
+PASS Body:rotation key times within half a frame period (1/48 s) of frame/24 (largest error 0.000000000 s)
+PASS Body:rotation key values match the table
+PASS Body:rotation easing per key matches the table (in > 1, out 0..1, in-out < 0)
+PASS RESET animation exists in the rig scene
+PASS RESET's tracks resolve
+PASS RESET keys Body/Mag:position:y at the rest value 0
+PASS reload starts and ends Body/Mag:position:y at the rest value
+PASS RESET keys Body/Slide:position:x at the rest value 0
+PASS reload starts and ends Body/Slide:position:x at the rest value
+PASS RESET keys Body:rotation at the rest value 0
+PASS reload starts and ends Body:rotation at the rest value
+PASS autoplay empty ('')
+PASS process_mode PAUSABLE (1)
+PASS callback_mode_process PROCESS_IDLE (1)
+PASS nothing plays at load
+  t 0.000 s  Mag y   0.00  Slide x   0.00  Body rot  0.0000
+  t 0.250 s  Mag y   0.00  Slide x   0.00  Body rot -0.2100
+  t 0.500 s  Mag y  64.00  Slide x   0.00  Body rot -0.2100
+  t 0.750 s  Mag y   0.00  Slide x   0.00  Body rot -0.2100
+  t 0.875 s  Mag y   0.00  Slide x -14.00  Body rot -0.2100
+  t 1.000 s  Mag y   0.00  Slide x   0.00  Body rot -0.2100
+  t 1.250 s  Mag y   0.00  Slide x   0.00  Body rot  0.0000
+PASS at 0.5 s (end of startup) the magazine is out (64) and the gun tilted (-0.21)
+PASS at 0.75 s (frame 18) the magazine is seated and the slide at rest
+PASS at 0.875 s (frame 21) the slide is racked back (-14)
+PASS at 1.0 s (end of active) the slide is forward, the gun still tilted
+PASS at 1.25 s the rig is at rest
+
+PASS: 0 failure(s)
+WARNING: 2 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 1 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)

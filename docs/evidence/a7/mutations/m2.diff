@@ -1,0 +1,13 @@
+diff --git a/godot/animations/keycard_spin.tres b/godot/animations/keycard_spin.tres
+index 5ed95fc..6346d70 100644
+--- a/godot/animations/keycard_spin.tres
++++ b/godot/animations/keycard_spin.tres
+@@ -8,7 +8,7 @@
+ [resource]
+ resource_name = "spin"
+ length = 0.6666667
+-loop_mode = 1
++loop_mode = 0
+ step = 0.08333333
+ tracks/0/type = "value"
+ tracks/0/imported = false
