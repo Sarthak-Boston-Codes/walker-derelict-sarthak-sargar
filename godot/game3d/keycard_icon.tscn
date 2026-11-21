@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3]
+
+[ext_resource type="Texture2D" path="res://art/keycard_sheet.png" id="1_sheet"]
+[ext_resource type="Animation" path="res://animations/keycard_spin.tres" id="2_spin"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_spin"]
+_data = {
+&"spin": ExtResource("2_spin")
+}
+
+[node name="KeycardIconRig" type="Node2D"]
+
+[node name="KeycardIcon" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("1_sheet")
+hframes = 8
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 1
+libraries = {
+&"": SubResource("AnimationLibrary_spin")
+}
+autoplay = ""
+callback_mode_process = 1
