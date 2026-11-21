@@ -1,173 +1,115 @@
-# CHANGE-BRIEF.md — Assignment 6: two particle effects for DERELICT
+# CHANGE-BRIEF.md — Assignment 7: two animations for DERELICT
 
-Game: DERELICT, a top-down 3D zombie shooter (Godot 4.7.2, Forward+). This file replaces the Assignment 5 brief, which stays in history at tag `a5`. Written by Claude; the student accepted the two effects below by running this kit. It is committed before the first Claude Code build prompt. Dated revisions go at the bottom; the text above them stays as committed. References marked (verify) are checked by Claude Code in Phase 1 and corrected by a dated revision, never by editing this text.
+Game: DERELICT, a top-down 3D zombie shooter (Godot 4.7.2, Forward+, window 1280 × 720). This file replaces the Assignment 6 brief, which stays in history at tag `a6`. Written by Claude. Every approval this assignment asks for is made in advance by Claude through `A7-RUNBOOK.md`, and every capture is run by Claude Code and labelled so. The student's own checks and verdicts are pending until the student records them in `HUMAN-CHECK-NOTES.md`. Committed before the first Claude Code setup prompt. Dated revisions go at the bottom; the text above them stays as committed. References marked (verify) are checked by Claude Code in Phase 1 and corrected by a dated revision, never by editing this text.
 
-## Effect A — Impact burst (one-shot, repeating event)
+## The two clips
 
-### The job
-Tells the player that a bullet landed, where, and on what. The player fires several shots a second into a dark room; without a visible hit, a miss and a hit feel the same.
-Event: a bullet hit. Victims implement `hit(damage, point, dir, normal)` (`godot/game3d/player.gd:5-6`); the bullet's hit is resolved in player.gd's fire path (line: verify). Fire interval is 0.14 s (`FIRE_INTERVAL`, A5 capture log), so a second hit regularly lands while the first burst is alive.
+| | Clip 1: keycard spin (the cycle) | Clip 2: pistol reload (the committing action) |
+|---|---|---|
+| Communicates | "You are carrying the security keycard." A turning card is easier to notice in peripheral vision than a lit label. | "Reload in progress: fire is locked, and it ends when the rig settles." The player needs to know when they can shoot again without reading the ammo number. |
+| Plays on | `KeycardIcon`, a `Sprite2D` in the HUD, in the top-left row beside the existing keycard element (`hud.gd:67`, verify). | `PistolRig`, a 2D cutout rig of plain `Node2D` pivots holding `Polygon2D` parts (`Body`, `Slide`, `Mag`), bottom-right of the HUD. |
+| Route | 1: `Sprite2D` with an `AnimationPlayer` frame track. It is the preferred route and the read-back sees it. | 3: cutout rig keyed as resource text. The game has no rigged model, and polygon parts need no art. Route 4 (imported 3D rig) is not available, and route 2 (AnimatedSprite2D) is not used. |
+| Authority | `godot/game3d/hud_anim.gd` (`HudAnim`) is the only writer: it calls `play()` and `stop()` on the clip's `AnimationPlayer`. It reads the keycard state from the HUD's existing keycard setter (verify). | The same `HudAnim` is the only writer. It reads the player's reload state: `signal reload_changed(active: bool)` (`player.gd:10`) and `signal died` (`player.gd:12`). |
+| Kind | Cycle, `LOOP_LINEAR`. | Committing action, `LOOP_NONE`. Driven by the player's state machine: `_reload_left` (`player.gd:57`, `:193-196`), `start_reload()` (`:215`), `_finish_reload()` (`:231`). |
 
-### Intent block
-- **Timing phases:** 0–0.07 s a strong white-yellow flash on the first frame; 0.07–0.35 s sparks fly outward fast; 0.2–0.6 s a dark puff expands slowly and fades. Gone before 1.3 s. A held trigger must read as a stream of separate bursts, never one smeared cloud.
-- **Contrast:** value, not hue. Sparks are additive and bright, so they read over the darkest stretch (Assembly Hall corners lit only by the flashlight); the puff is dark and alpha-blended, so it reads over the lightest stretch (floor under a lamp or the red emergency light, wet or dry). Neither is judged over the editor's grey.
-- **Scale against the character:** the player is about 1.7 m tall. The flash is about 0.3 m across (an adult's head), sparks 4–6 cm, the puff 0.3–0.5 m. Judged in the running game at the project window size (verify in `project.godot`).
-- **Change over life:** flash shrinks to 30 % and fades; sparks go orange to red and fade; puff grows to about 3× and fades from 60 % alpha.
-- **Variation:** random velocity, scale and lifetime on every emitter; the sparks' lifetime varies by 30 %.
-- **Emitters (one root, three jobs):** `Flash` (the instant of impact), `Sparks` (direction and energy), `Puff` (lingering mass and darkness).
+Nothing else writes the animated nodes: both `AnimationPlayer`s have empty `autoplay`, no `AnimatedSprite2D` is used, and no tween or script touches `KeycardIcon:frame` or the three rig parts' `position` and `rotation`.
 
-### The settings (the configuration test reads every one back)
-Node: three `GPUParticles3D` under one `Node3D` root, `godot/effects/impact_burst.tscn`. GPU, because the effect needs per-particle curves and gravity at no CPU cost; 3D, because the game is 3D. Process material: `ParticleProcessMaterial`. Godot 4 names only.
+## The sheet
+- **Source:** generated by code, `tools/make_keycard_sheet.py` (Pillow), committed. Written for this project; no third-party licence applies. The original file as produced is `godot/art/keycard_sheet.png`, committed unedited, with its `.import` file.
+- **Date:** the run date Claude Code records in `ATTRIBUTION.md`.
+- **Cell size:** 64 × 64 px. **Grid:** `hframes` 8 × `vframes` 1, so 8 cells and `frame` 0–7.
+- **Frame order:** left to right, a keycard turning about its vertical axis in 45° steps (0°, 45°, …, 315°). Cell width scales as |cos θ|. Cells 2 and 6 are edge-on (a thin line), and cells 4 to 7 show the back face in a different colour, so cell 4 is visibly not cell 0. There is no 360° cell, because it would duplicate cell 0 across the wrap.
+- **Registration:** the card is centred in every cell by construction. The strip confirms it.
 
-| | Flash | Sparks | Puff |
-|---|---|---|---|
-| amount | 2 | 14 | 8 |
-| one_shot | true | true | true |
-| explosiveness | 1.0 | 1.0 | 0.9 |
-| lifetime (s) | 0.08 | 0.45, lifetime_randomness 0.3 | 0.6 |
-| emission_shape | point | point | point |
-| direction / spread | (0,1,0) / 180 | (0,1,0) / 55 | (0,1,0) / 70 |
-| initial_velocity min / max (m/s) | 0 / 0 | 3.0 / 6.0 | 0.6 / 1.4 |
-| gravity (m/s²) | (0,0,0) | (0,-9.8,0) | (0,0.4,0) |
-| damping min / max | 0 / 0 | 0.5 / 1.5 | 2.5 / 4.0 |
-| scale min / max | 0.8 / 1.2 | 0.03 / 0.06 (on a 1.0 m quad base: draw mesh size below) | 0.15 / 0.3 |
-| scale curve | 1.0 → 0.3 | none | 0.5 → 1.6 (a 3.2× growth) |
-| colour ramp | (1.0,0.95,0.8) | (1.0,0.7,0.2) → (1.0,0.25,0.06) | (0.23,0.06,0.04) |
-| alpha curve | 1 → 0 | 1 → 0 | 0.6 → 0 |
-| draw mesh | QuadMesh 0.3 m | QuadMesh 0.1 m | QuadMesh 0.5 m |
-| draw material | StandardMaterial3D, unshaded, transparency alpha, blend add, billboard_mode particles, vertex_color_use_as_albedo true | same | same but blend mix |
-| texture | radial soft-dot `GradientTexture2D` written in the scene (no external texture) | same | same |
+## The cycle spec (keycard spin)
+- **Frames and rate:** 8 frames at 12 fps. Clip length 8/12 = 0.6667 s. `Animation.step` = 1/12.
+- **Loop mode:** `Animation.LOOP_LINEAR`.
+- **Keys:** one value track on `KeycardIcon:frame`, update mode `UPDATE_DISCRETE`, keys at t = k/12 for k = 0…7 with values 0…7.
+- **Seam rule (frame track):** no duplicate across the wrap (cell 7's art differs from cell 0's), and the gap from the last key (7/12) to the length (8/12) equals the key interval, 1/12.
 
-All three: `local_coords` false (the burst stays where the bullet landed even if the victim moves or is freed); `preprocess` 0 (nothing should be running at load); `visibility_aabb` set, not generated, to position (-2,-1,-2) size (4,3,4) and checked by the configuration test.
+## The phase table (pistol reload)
+Frame rate **24 fps**. `Animation.step` = **1/24**. Frame 0 is the frame on which `reload_changed(true)` fires. The game's existing `RELOAD_TIME` is 1.25 s (`player.gd:28`), which is exactly 30 frames at 24 fps, so the clip's length equals the reload and no existing timing changes.
 
-### Observable rules
-- **A1:** the effect fires once per hit the retrigger rule allows, never otherwise (including on scene load, and including shots that miss everything), at the hit `point`.
-- **A2 retrigger = overlap:** each hit instances its own burst from a pool of 12 (`godot/game3d/impact_fx.gd`), so two hits 0.14 s apart give two live bursts. At most 5 are alive from continuous fire (ceil(0.6 / 0.14)); a barrel blast that hits several victims in one frame can use more, up to the pool's 12. If the pool is exhausted, the oldest burst is `restart()`ed (stated, tested).
-- **A3 freed parent:** bursts are children of the level root, not of the victim, so a zombie freed on the killing hit does not cut its burst off.
-- **A4:** the burst is oriented so its local +Y is the hit `normal`.
-- Only permitted touch of gameplay code: one signal declaration and one `emit` line in player.gd at the point where a bullet hit is resolved. No behaviour changes; every earlier suite gives its baseline counts.
+| Phase | Frames | Time | What the player may do | What the game reads |
+|---|---|---|---|---|
+| Startup | 0–11 (12) | 0–0.500 s | Move and aim. Cannot fire or restart the reload (fire is locked while `_reload_left > 0`, `player.gd:202`, verify). | Nothing from the clip. |
+| Active | 12–23 (12) | 0.500–1.000 s. The magazine is seated at frame 18. | Same. | Nothing from the clip. The magazine is refilled at the end of the reload. |
+| Recovery | 24–29 (6) | 1.000–1.250 s. The slide snaps forward and the gun settles. | Same. | `_finish_reload()` and `reload_changed(false)` at 1.25 s, frame 30. |
 
-## Effect B — Wound smoke (feedback loop driven by a game value)
+The keys, derived from the table (time = frame / 24), with a transition that accelerates into the active frames and settles through recovery:
 
-### The job
-Feedback loop: the player's smouldering wounds. Tells the player how hurt they are without reading the health bar while watching the dark. Value: `player.hp`, range 0–`MAX_HP` = 100 (`player.gd:36`, `:23`), reported by `signal health_changed(hp, max_hp)` (`player.gd:8`).
-Uses features Effect A doesn't: **turbulence** (process) and a **value-driven `amount_ratio`** (emission), with `local_coords` false so the smoke trails behind a moving player like a trail.
-
-### Intent block
-- **Timing phases:** when hp first drops to 60 or below, a few wisps appear within about 0.5 s and the cloud reaches its steady state within about 2 s (one lifetime). As hp falls the cloud thickens. When the condition ends (a medkit lifts hp above 60, or the player dies) the emitter stops and the existing smoke thins out over one lifetime (1.8 s).
-- **Contrast:** dark grey smoke reads over lit floor and the flashlight cone; over the darkest corners it is meant to disappear (it is a close-range cue, and the health bar is still the exact number).
-- **Scale against the character:** wisps start at about 0.2 m and grow to about 0.5 m, rising about a body height over their life; the cloud sits at the chest.
-- **Change over life:** scale grows to about 3×, alpha 0.5 → 0, a slight grey-blue tint.
-- **Variation:** random velocity and scale; turbulence stops the wisps rising in straight lines.
-- **Emitter:** one `GPUParticles3D`, `godot/effects/wound_smoke.tscn`, child of the player at chest height.
-
-### The settings
-| | value |
+| Track | Frame → value |
 |---|---|
-| node | `GPUParticles3D` (GPU: turbulence exists only there) |
-| amount | 40 (never changed at run time) |
-| amount_ratio | driven, see mapping |
-| one_shot / explosiveness | false / 0.0 |
-| lifetime | 1.8 s |
-| preprocess | 0.0. Nothing is running at scene load (full health); the 2 s ramp-up is the intended read |
-| emission_shape | sphere, radius 0.15 |
-| direction / spread | (0,1,0) / 25 |
-| initial_velocity min / max | 0.4 / 0.8 m/s |
-| gravity | (0,0.3,0): slight buoyancy |
-| damping min / max | 0.3 / 0.6 |
-| turbulence | enabled, noise strength 0.6 (exact property names: verify against the 4.7.2 class reference) |
-| scale min / max, scale curve | 0.2 / 0.35, growth 0.6 → 1.8 |
-| colour ramp, alpha | (0.18,0.18,0.20); alpha curve 0.5 → 0 |
-| draw | QuadMesh 0.5 m, StandardMaterial3D unshaded, transparency alpha, blend mix, billboard_mode particles, vertex_color_use_as_albedo true, radial soft-dot texture |
-| local_coords | false |
-| visibility_aabb | set (-3,-1,-3) size (6,5,6), checked |
+| `Mag:position:y` (px) | f0 0 · f6 0 (released) · f12 64 (out, ease-in) · f18 0 (seated, ease-out) · f30 0 |
+| `Slide:position:x` (px) | f0 0 · f18 0 · f21 −14 (rack back) · f24 0 (snap forward, ease-in) · f30 0 |
+| `Body:rotation` (rad) | f0 0 · f6 −0.21 · f24 −0.21 · f30 0 (ease in-out) |
 
-Mapping: condition is `hp <= 60` and the player alive. Then `emitting = true` and `amount_ratio = clamp((60 - hp) / 50, 0.2, 1.0)`: 0.2 at hp 60, 1.0 at hp 10 or below. Otherwise `emitting = false`. `amount` is never written (changing it reallocates the buffer and the smoke would vanish and re-emit).
+A `RESET` animation holds the rest values (0, 0, 0) for those three properties, so the rest pose is defined. Key times in seconds: 0, 0.25, 0.5, 0.75, 0.875, 1.0, 1.25. The pixel values are first-pass design numbers, and the strip may revise them through the tuning loop.
 
-### Observable rules
-- **B1:** starts when hp falls to 60 or below, stops (`emitting` false) when hp rises above 60 or the player dies.
-- **B2:** the driver writes `amount_ratio` (at least two different hp values give two different ratios) and never `amount`.
-- **B3 paused:** particles freeze in place and resume on unpause (the node is pausable).
-- **B4 hidden:** while `visible` is false nothing is drawn; `emitting` and the mapping are unchanged (predicted; the test records what the node actually reports).
-- **B5:** nothing is on screen on the first frames after the scene loads (full health), with preprocess 0.
+## The state machine
+Pistol rig (authority `HudAnim`):
+
+| State | Entered by | Clip | Leaves on |
+|---|---|---|---|
+| `HOLD` | scene start, or `reload_changed(false)` | none: stopped at the `RESET` pose | `reload_changed(true)` → `RELOAD`; `died` → `DEAD` |
+| `RELOAD` | `reload_changed(true)` | `reload`, 1.25 s, `LOOP_NONE` | `reload_changed(false)` → `HOLD`; `died` → `DEAD` |
+| `DEAD` | `died` | none: stopped at the `RESET` pose | scene reload (the game has no revive) |
+
+Keycard icon (authority `HudAnim`): `HIDDEN` (no keycard: icon invisible, clip stopped) → `SPINNING` (keycard picked up: icon visible, `spin` loops) on the keycard state going true. It stays until the scene ends.
+
+No `AnimationTree` is used, so there is no `advance_expression_base_node` or `advance_mode` to name. Transitions are plain signal handlers in `hud_anim.gd`.
+
+## The two clocks
+- Both `AnimationPlayer`s: `callback_mode_process = ANIMATION_CALLBACK_MODE_PROCESS_IDLE` (the process tick).
+- No `AnimatedSprite2D` is used, so there is no process-tick-only sprite to record.
+- Gameplay reads the reload's end on the process tick: `_reload_left` is decremented in `_process` (`player.gd:193-196`, verify). The clip and the game share a tick, so the largest expected disagreement is the order of the two within one frame: under one frame period (1/60 s at 60 fps, 1/30 s at 30 fps). Phase 4 of the runbook measures it.
+- No method tracks are used.
+- The HUD root is `PROCESS_MODE_ALWAYS` (`hud.gd:49`), so both `AnimationPlayer`s set `process_mode = PROCESS_MODE_PAUSABLE` explicitly. Otherwise the rig would keep moving under the pause menu while the reload timer is frozen.
 
 ## Boundaries
-Collision, movement, input, the state machine and its timings, existing test expectations, the A5 shaders in `godot/shaders/`, and every other object stay unchanged, apart from the one signal in A's rules. Presentation code may read game state; it never writes it.
+Collision, movement, input mapping, the player's fire and reload timings (`FIRE_INTERVAL` 0.14 s, `RELOAD_TIME` 1.25 s, `MAG_SIZE` 15), zombies and waves, the A5 shaders in `godot/shaders/`, the A6 effects (`impact_burst`, `wound_smoke`) and their drivers, the ammo label's `low_ammo` driver, every other HUD element, and every earlier test expectation stay unchanged. The only edits to existing game files are the lines in `hud.gd` and `game.gd` that instance the two rigs and attach `HudAnim`. Presentation code may read game state; it never writes it.
 
 ## Evidence split
 | Rule | Checked by |
 |---|---|
-| every setting in both tables | headless configuration tests (`test_impact_burst_config.gd`, `test_wound_smoke_config.gd`) |
-| A1, A2, A3, A4 | headless state test through real fire input; the retrigger with two hits inside one lifetime |
-| B1, B2, B3, B4, B5 | headless state test through real health changes (damage via enemy contact, medkit) |
-| the look of both effects (timing phases, contrast, scale, change over life) | frame strips from a windowed Movie Maker run (fixture) read by Claude; **the student's own verdict in the running game** |
-| edge of screen, scene load, dark and light backgrounds | the student's eyes in the running game |
-| price | cost script (headless CPU), GPU time (see Price) |
+| Every track resolves to a real node and property; key times, step and loop mode as above; frame keys inside the sheet; frame track discrete | read-back tests (`test_keycard_spin_readback.gd`, `test_pistol_reload_readback.gd`) |
+| Clip length equals `RELOAD_TIME`; the sheet is 8 cells | read-back (reads `RELOAD_TIME` from `player.gd`; reads `hframes × vframes`) |
+| States, transitions, the clip each state plays; one authority per node; autoplay empty; `process_mode` PAUSABLE | structure test (`test_hud_anim_structure.gd`) |
+| `HudAnim` plays the clip on the right state, through real input | state test via `Input.parse_input_event` |
+| Behaviour the change must not alter (state order, fire lock, refill timing) | pins (`test_pins_player.gd`), committed before wiring, re-run after |
+| Interrupts at each phase boundary | edge test (`test_pistol_reload_edges.gd`) |
+| Whether the phases read as distinct, and the cycle has no visible seam | frame strips (fixture) read by Claude; **the student's own verdict in the running game** |
+| Registration of the keycard cells | strip of one full cycle; the student's eyes |
+| Which tick the clip and the gameplay fact use | the two-clocks measurement |
 
 ## The frame strip
-Preview scenes `godot/previews/impact_burst_preview.tscn` and `wound_smoke_preview.tscn` hold the effect at in-game camera scale over a real stretch of the level (the darkest and the lightest are both captured).
-- **Effect A** at 30 fps, trigger at frame 10; read frames 10, 12, 15, 20, 30, 50: flash on the trigger frame; at +2 flash fading and sparks leaving; +5 sparks mid-flight; +10 sparks dying, puff at its widest; +20 puff almost gone; +40 nothing.
-- **Effect B**: condition begins at frame 10, ends at frame 130; read frames 10 (nothing), 40 (first wisps), 100 (steady), 130 (stopped), 160 (thinning), 190 (gone).
-Seeds: if the node has `use_fixed_seed`, use it on the preview instance only, never in the effect scene.
+Preview scenes `godot/previews/pistol_reload_preview.tscn` and `keycard_spin_preview.tscn` load the real game (level, HUD at 1280 × 720) and drive the rigs through the real signals. The background is a real stretch of the level: the dark Assembly Hall corner for one capture, the lit Loading Bay floor for another.
+- **Pistol reload**, 30 fps capture, reload triggered at frame T = 10 by a real reload input. Phase boundaries are at 0.5 s, 1.0 s and 1.25 s after the trigger, which are capture frames T+15, T+30 and T+37.5. Read frames 10 (rest), 24–26 (startup to active), 39–41 (active to recovery), 47–48 (end) and 50 (rest again). Expected: frame 10 rest pose; frame 25 magazine fully out and gun tilted; frame 40 magazine seated, slide at rest, gun still tilted; frame 48 gun level again.
+- **Keycard spin**, one full cycle, 0.667 s = 20 capture frames: read frames at the key times 0, 1/12, …, 7/12 and the first frame after the wrap. Expected: eight distinct cells in order, widths 100 %, 71 %, edge, 71 %, 100 % (back face), 71 %, edge, 71 %, then cell 0 again with no repeat.
+Seeds do not apply (no particles). Strips are labelled fixture captures, run by Claude Code.
 
 ## Predicted failures, each with its check
-1. **Godot 3 property names** (`ParticlesMaterial`, `initial_velocity`, `scale`) load silently and leave defaults. Check: the configuration test reads back every setting; the Godot 3 name mutation must exit 1.
-2. **Colour ramp has no effect** because the draw material lacks `vertex_color_use_as_albedo`, or the alpha fade has no transparency. Check: configuration test reads both flags; the strip shows colour and fade.
-3. **Quads don't face the camera** (billboard mode missing). Check: configuration test; the strip.
-4. **Dropped retrigger:** a single one-shot node ignores the second hit. Check: state test fires two hits inside one lifetime and counts two live bursts.
-5. **Burst dies with a freed victim.** Check: state test kills a zombie on the hit and asserts the burst is still emitting.
-6. **Visibility box too small:** the effect pops out at the screen edge. Check: configuration test reads the AABB; the student's edge-of-screen check.
-7. **Popping feedback loop:** the driver changes `amount`. Check: state test asserts `amount` is unchanged and `amount_ratio` moves.
-8. **The cost script measures itself.** Check: the empty-scene control, and cases that should differ must differ.
+1. **A track names a property that does not exist** (for example `position:y` mistyped) and is silently inert. Check: `track_problems`, and mutation 1.
+2. **Two authorities over one node:** a tween, a second script or an `autoplay` writes `frame` or a rig property. Check: the structure test asserts empty `autoplay` and that only `hud_anim.gd` writes the animated nodes (a scan of the HUD scripts).
+3. **The HUD keeps animating under pause** (`PROCESS_MODE_ALWAYS`), so the rig runs while the reload timer is frozen. Check: the state test pauses mid-reload and asserts the clip position does not advance.
+4. **`Animation.step` left at 1/30** for a 24 fps clip, so editor edits snap keys (for example frame 6 at 0.25 s snaps to 0.2333 or 0.2667 s). Check: the step assertion.
+5. **Godot 3 names:** `loop` instead of `loop_mode`, `playback_speed` instead of `speed_scale`. Check: the read-back reads `loop_mode`, and mutation 2.
+6. **Frame track left on continuous updates,** which interpolates the integer `frame`. Check: the update-mode assertion. Our keys are one cell apart, so continuous updates would not show in play, which is why the assertion matters.
+7. **A frame key past the sheet** (cell 8 on an 8-cell sheet): blank or wrong cell, no error. Check: the frame-range assertion, and mutation 3.
+8. **Clip length differs from `RELOAD_TIME`,** so the rig snaps or stalls at the end. Check: the read-back reads `RELOAD_TIME` from `player.gd` and compares.
+9. **A second reload press restarts the clip** while the game ignores it. Check: the edge test.
 
-## Price predictions and budgets
-| | peak particles | predicted headless CPU (above the empty-scene control) | predicted GPU time | budget | compared on |
-|---|---|---|---|---|---|
-| Effect A | typical 5 bursts × 24 = 120; worst 12 × 24 = 288 | under 0.05 ms | 0.05–0.15 ms | 0.30 ms at 288 particles | GPU time |
-| Effect B | 40 at amount_ratio 1.0 | under 0.05 ms | 0.03–0.10 ms | 0.20 ms | GPU time |
-Both are GPU nodes, so their headless CPU price is near zero by construction and is reported, not compared. Measured on the student's GPU (named in TEST-REPORT.md).
+## Pins to take before any change (Step 2)
+Run through real input (`Input.parse_input_event`), against the unmodified game: (a) the player's states and their order for one scripted run (aim, fire, fire down to a lower magazine, reload, refill, return to ready); (b) the existing timings: `FIRE_INTERVAL` 0.14 s, `RELOAD_TIME` 1.25 s measured as the game-time gap between `reload_changed(true)` and `reload_changed(false)`, `MAG_SIZE` 15; (c) the gameplay fact the clip is read against: the refill happens at `reload_changed(false)`, and fire is locked until then. The brief predicts **no pin changes**.
 
 ## Brief answers
-1. **Node type and what it lacks:** both `GPUParticles3D`. Effect A has no turbulence and nothing value-driven; Effect B has no burst or one-shot behaviour. (Property availability checked against the 4.7.2 class reference.)
-2. **A's `local_coords` is false:** if A's parent moves after the event, the burst stays where the bullet hit; if it is freed, nothing changes.
-3. **Overlap, peak:** 5 bursts alive from continuous fire, so 120 particles; up to 12 bursts and 288 particles in the worst blast case.
-4. **Headless GPU price:** about the same as the empty-scene control, because the dummy renderer runs no GPU particle process. With vsync on, FPS reads the display's refresh rate with the effect off and on, until a frame misses, so FPS hides the cost.
-5. **B on load and when paused or hidden:** nothing at full health either way (preprocess would only matter if it were emitting at load). Paused: frozen, resumes in place. Hidden: not drawn, `emitting` unchanged.
-6. **Emission:** amount, amount_ratio, one_shot, explosiveness, lifetime, emission_shape. **Process:** direction, spread, velocity, gravity, damping, turbulence, scale and alpha curves, colour ramp. **Draw:** mesh, texture, material, blend mode, billboard mode, vertex colour, transparency.
+1. **Routes and what each read-back sees:** the keycard icon uses route 1, so its read-back sees the `frame` value track: keys inside the sheet, discrete updates, 8 cells. The reload uses route 3, so its read-back sees continuous `position` and `rotation` tracks on `Node2D` pivots: that each path resolves to a real node and property, and the key times. Neither route's read-back sees what the other's does.
+2. **Frame track on continuous updates:** the integer `frame` is interpolated between two keys, so a jump from cell 2 to cell 5 would flash cells 3 and 4 on the way; with discrete updates the sprite holds cell 2 until the next key. Our keys are one cell apart at even spacing, so continuous updates would be hard to see in play. That is why the read-back asserts `UPDATE_DISCRETE`.
+3. **`Animation.step`:** 1/24 s for the reload and 1/12 s for the spin. Left at the default 1/30 s, a key at frame 6 (0.25 s) would snap in the editor to 0.2333 or 0.2667 s, up to 1/60 s (0.0167 s) off. Keys written as text do not snap, but any later editor edit would.
+4. **One authority:** `HudAnim` (`hud_anim.gd`) over each animated node. What else could write: a tween, another HUD script, or an `autoplay` on the `AnimationPlayer` (all asserted absent).
+5. **Ticks:** both clips advance on the process tick (`PROCESS_IDLE`). Gameplay reads the reload's end on the process tick too, so the largest disagreement is under one frame: 1/60 s at 60 fps, 1/30 s at 30 fps.
+6. **Seam:** frame track, so no duplicate across the wrap, and the last-key-to-length gap equals the key interval. A duplicated frame would hold the card at the same angle for two ticks, about 0.083 s, so the spin would visibly stall once per loop.
+7. **Imported rig:** not used. The rig is a keyed cutout, so its loop mode lives in the `.tres`, which a reimport never touches. Mutation 4 proves it by deleting `godot/.godot`, reimporting and re-running the read-back.
 
 ## Revisions
 (Dated entries below. The text above stays as committed.)
-
-### 2026-11-08 — reference check (Claude Code, Phase 1)
-
-Checked against b23093e (= tag `a5` content for every game file) and against the Godot 4.7.2 binary (`ClassDB.class_get_property_list`, probe run headless, "4.7.2-stable (official)"):
-
-- Correct as written: `player.gd:5-6` is the doc comment `hit(damage: float, point: Vector3, dir: Vector3, normal: Vector3)`; `:8` is `signal health_changed(hp: float, max_hp: float)`; `:23` is `const MAX_HP := 100.0`; `:36` is `var hp := MAX_HP`; `FIRE_INTERVAL := 0.14` is `player.gd:27`.
-- **(verify) where the hit is resolved:** `fire()` (`player.gd:241`) casts the shot ray at `:257` (`intersect_ray`, mask `Phys.SHOT_MASK` = WORLD | ZOMBIE | PROP). If it hits a collider with `hit()` (zombie, barrel, crate), `:264` calls `target_node.hit(DAMAGE, end, dir, hit.normal)` with `end = hit.position` (`:259`). Any other collider (walls, floor) gets the existing `Fx.sparks(end, hit.normal)` at `:266`. A ray that hits nothing does nothing. The signal is emitted in the `has_method("hit")` branch, so **"a bullet hit" means a bullet hitting a victim** (zombie, barrel or crate). Wall hits keep their existing A5 sparks and fire no burst (they are not victims). Decision logged in A6-LOG.md.
-- **(verify) window size:** `project.godot:25-28`: 1280 × 720, stretch mode `canvas_items`, aspect `expand`.
-- **(verify) class names:** `GPUParticles3D` has `amount_ratio`, `use_fixed_seed` (+ `seed`), `visibility_aabb`, `local_coords`, `preprocess`, `one_shot`, `explosiveness`, `restart(keep_seed)`. `ParticleProcessMaterial` has `lifetime_randomness`, `emission_shape`, `emission_sphere_radius`, `direction`, `spread`, `initial_velocity_min/max`, `gravity`, `damping_min/max`, `scale_min/max`, `scale_curve`, `color_ramp`, `alpha_curve`, and turbulence as `turbulence_enabled` and `turbulence_noise_strength` (also `turbulence_noise_scale`, `turbulence_noise_speed`, `turbulence_influence_min/max`, left at defaults). `StandardMaterial3D` has `shading_mode`, `transparency`, `blend_mode`, `billboard_mode`, `vertex_color_use_as_albedo`; `GradientTexture2D` has `fill`, `fill_from`, `fill_to`.
-- **Correction, A2 (barrel blast):** a barrel blast hits its victims from `barrel.gd:104` / `:106`, not through player.gd's fire path, and each shot hits at most one victim. With the one-signal rule, the blast fires no impact bursts. In play the pool can only fill from continuous fire (at most 5 alive), so the pool-exhausted rule is reachable only by emitting `bullet_hit` more often than fire allows. The state test does that, and says so.
-- **Correction, predicted failure 1:** in 4.7.2 `initial_velocity` and `scale` are **not** missing Godot 3 names. They exist on `ParticleProcessMaterial` as `Vector2` (min, max) range properties (type 5). The rename mutation (Phase 3) records what a float written to `initial_velocity` actually does. `ParticlesMaterial` (the Godot 3 class) does not exist in 4.7.2.
-- `FIRE_INTERVAL` is a constant in `player.gd:27`, not only in the A5 capture log.
-
-### 2026-11-08: particle scale is ignored by billboard particles (Claude Code, Phase 3)
-
-Observed with `godot/tools/probe_particle_scale.gd` (windowed, Godot 4.7.2, RTX 4050; log `docs/evidence/a6/probe_particle_scale.log`): with `billboard_mode = particles` and `billboard_keep_scale = false` (the default), a particle draws at its QuadMesh size and the `ParticleProcessMaterial` scale (`scale_min/max`, `scale_curve`) has **no visible effect**. With `billboard_keep_scale = true` the scale applies. The table above does not name `billboard_keep_scale`. So the scene built exactly to the table passes its configuration test, yet its scale rows do nothing on screen: the flash does not shrink, the puff does not grow, and sparks draw at 0.1 m. The r0 strip shows exactly this (TUNING.md). This is a ninth predicted-failure-style case: a setting that loads and reads back correctly but is silently ineffective. Changes to the draw materials go through the tuning loop, one setting per revision.
-
-Also from the r0 strip: the first particles are drawn one frame after `restart()` (trigger frame 10, first visible frame 11), so the strip's "flash on the trigger frame" reads as "flash on trigger + 1".
-
-### 2026-11-08: tuning A-r1 (approved by Claude, pre-authorised in A6-RUNBOOK.md; applied by Claude Code)
-
-Effect A settings table, Puff column, draw material: add **`billboard_keep_scale` true**, so the scale row (0.15 / 0.3) and the scale curve (0.5 → 1.6) take effect (see the revision above). Flash and Sparks keep the default (false). The configuration test now reads `billboard_keep_scale` on all three. Prediction, strips and comparison: TUNING.md, A-r1.
-
-### 2026-11-08: tuning A-r1 reverted (Claude Code)
-
-The r1 strips (TUNING.md) show the puff growing but at most ~0.07 m wide, specks over the light floor, further from the intent than r0. The Puff draw material is back to `billboard_keep_scale` false (the default), so the table above stands as committed. The configuration test keeps reading the flag (expected false on all three). A combined change (keep_scale true **and** Puff scale 0.5 / 0.9) is recorded in TUNING.md as a proposal awaiting approval.
-
-### 2026-11-08: tuning B-r1 (approved by Claude, pre-authorised in A6-RUNBOOK.md; applied by Claude Code)
-
-Effect B settings table, direction / spread: spread **25 → 70**. Reason: in the r0 strip the smoke rises toward the near-vertical camera and never leaves the player's silhouette, so it does not read over the lit floor. Prediction, strips and comparison: TUNING.md, B-r1.
-
-### 2026-11-08: tuning B-r2 (approved by Claude, pre-authorised in A6-RUNBOOK.md; applied by Claude Code)
-
-Effect B settings table, turbulence: add **`turbulence_influence_min/max` 0.03 / 0.03** (the 4.7.2 default, which the table left implicit, is 0.1 / 0.1). Turbulence stays enabled at noise strength 0.6. Reason: B-r1's diagnostic showed the default influence pins the wisps in place. Prediction, strips and comparison: TUNING.md, B-r2.
