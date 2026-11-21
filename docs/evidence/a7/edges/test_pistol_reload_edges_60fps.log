@@ -1,0 +1,108 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== test_pistol_reload_edges ==
+PASS running at 60 fps (delta 0.016667): ticks 30/60/75 = 0.5/1.0/1.25 s
+PASS fire @29: ignored during the reload (no shot; shot tick -1)
+PASS fire @29: magazine stays 14 until the refill at tick 75
+PASS fire @30: ignored during the reload (no shot; shot tick -1)
+PASS fire @30: magazine stays 14 until the refill at tick 75
+PASS fire @31: ignored during the reload (no shot; shot tick -1)
+PASS fire @31: magazine stays 14 until the refill at tick 75
+PASS fire @59: ignored during the reload (no shot; shot tick -1)
+PASS fire @59: magazine stays 14 until the refill at tick 75
+PASS fire @60: ignored during the reload (no shot; shot tick -1)
+PASS fire @60: magazine stays 14 until the refill at tick 75
+PASS fire @61: ignored during the reload (no shot; shot tick -1)
+PASS fire @61: magazine stays 14 until the refill at tick 75
+PASS fire @74: ignored during the reload (no shot; shot tick -1)
+PASS fire @74: magazine stays 14 until the refill at tick 75
+PASS fire @75: after the refill (tick 75) the press fires on its own tick (shot tick 75, mag 14)
+PASS fire @75: magazine stays 14 until the refill at tick 75
+PASS fire @76: after the refill (tick 75) the press fires on its own tick (shot tick 76, mag 14)
+PASS fire @76: magazine stays 14 until the refill at tick 75
+PASS reload @29: the second R press starts no reload (reload_changed(true) +0)
+PASS reload @29: the clip is not restarted (position = (tick - 1)/60 on every tick 1..74, largest error 0.000000 s)
+PASS reload @29: the reload still ends at tick 75 in HOLD (end tick 75)
+PASS reload @30: the second R press starts no reload (reload_changed(true) +0)
+PASS reload @30: the clip is not restarted (position = (tick - 1)/60 on every tick 1..74, largest error 0.000000 s)
+PASS reload @30: the reload still ends at tick 75 in HOLD (end tick 75)
+PASS reload @31: the second R press starts no reload (reload_changed(true) +0)
+PASS reload @31: the clip is not restarted (position = (tick - 1)/60 on every tick 1..74, largest error 0.000000 s)
+PASS reload @31: the reload still ends at tick 75 in HOLD (end tick 75)
+PASS reload @59: the second R press starts no reload (reload_changed(true) +0)
+PASS reload @59: the clip is not restarted (position = (tick - 1)/60 on every tick 1..74, largest error 0.000000 s)
+PASS reload @59: the reload still ends at tick 75 in HOLD (end tick 75)
+PASS reload @60: the second R press starts no reload (reload_changed(true) +0)
+PASS reload @60: the clip is not restarted (position = (tick - 1)/60 on every tick 1..74, largest error 0.000000 s)
+PASS reload @60: the reload still ends at tick 75 in HOLD (end tick 75)
+PASS reload @61: the second R press starts no reload (reload_changed(true) +0)
+PASS reload @61: the clip is not restarted (position = (tick - 1)/60 on every tick 1..74, largest error 0.000000 s)
+PASS reload @61: the reload still ends at tick 75 in HOLD (end tick 75)
+PASS reload @74: the second R press starts no reload (reload_changed(true) +0)
+PASS reload @74: the clip is not restarted (position = (tick - 1)/60 on every tick 1..74, largest error 0.000000 s)
+PASS reload @74: the reload still ends at tick 75 in HOLD (end tick 75)
+PASS reload @75: the second R press starts no reload (reload_changed(true) +0)
+PASS reload @75: the clip is not restarted (position = (tick - 1)/60 on every tick 1..74, largest error 0.000000 s)
+PASS reload @75: the reload still ends at tick 75 in HOLD (end tick 75)
+PASS reload @76: the second R press starts no reload (reload_changed(true) +0)
+PASS reload @76: the clip is not restarted (position = (tick - 1)/60 on every tick 1..74, largest error 0.000000 s)
+PASS reload @76: the reload still ends at tick 75 in HOLD (end tick 75)
+PASS death @29: the player died on tick 29
+PASS death @29: the clip stops on the same tick (state DEAD, clip '')
+PASS death @29: the pose is reset on the same tick
+PASS death @29: still DEAD at rest two ticks later
+PASS death @29: refill never happens (reload end tick -1)
+PASS death @30: the player died on tick 30
+PASS death @30: the clip stops on the same tick (state DEAD, clip '')
+PASS death @30: the pose is reset on the same tick
+PASS death @30: still DEAD at rest two ticks later
+PASS death @30: refill never happens (reload end tick -1)
+PASS death @31: the player died on tick 31
+PASS death @31: the clip stops on the same tick (state DEAD, clip '')
+PASS death @31: the pose is reset on the same tick
+PASS death @31: still DEAD at rest two ticks later
+PASS death @31: refill never happens (reload end tick -1)
+PASS death @59: the player died on tick 59
+PASS death @59: the clip stops on the same tick (state DEAD, clip '')
+PASS death @59: the pose is reset on the same tick
+PASS death @59: still DEAD at rest two ticks later
+PASS death @59: refill never happens (reload end tick -1)
+PASS death @60: the player died on tick 60
+PASS death @60: the clip stops on the same tick (state DEAD, clip '')
+PASS death @60: the pose is reset on the same tick
+PASS death @60: still DEAD at rest two ticks later
+PASS death @60: refill never happens (reload end tick -1)
+PASS death @61: the player died on tick 61
+PASS death @61: the clip stops on the same tick (state DEAD, clip '')
+PASS death @61: the pose is reset on the same tick
+PASS death @61: still DEAD at rest two ticks later
+PASS death @61: refill never happens (reload end tick -1)
+PASS death @74: the player died on tick 74
+PASS death @74: the clip stops on the same tick (state DEAD, clip '')
+PASS death @74: the pose is reset on the same tick
+PASS death @74: still DEAD at rest two ticks later
+PASS death @74: refill never happens (reload end tick -1)
+PASS death @75: the player died on tick 75
+PASS death @75: the clip stops on the same tick (state DEAD, clip '')
+PASS death @75: the pose is reset on the same tick
+PASS death @75: still DEAD at rest two ticks later
+PASS death @75: refill never happens (reload end tick -1)
+PASS death @76: the player died on tick 76
+PASS death @76: the clip stops on the same tick (state DEAD, clip '')
+PASS death @76: the pose is reset on the same tick
+PASS death @76: still DEAD at rest two ticks later
+PASS death @76: refill happened before the death (reload end tick 75)
+  -- the end of the reload, then fire on tick 76 --
+PASS reload started
+PASS the reload ends on tick 75 (reload_changed(false) on tick 75)
+PASS tick 74 RELOAD, tick 75 HOLD (RELOAD, HOLD)
+PASS tick 75: clip stopped at the RESET pose
+PASS tick 75: magazine refilled (15)
+PASS a fire press seen on tick 76 fires on tick 76 (mag 14)
+
+PASS: 0 failure(s)
+WARNING: 8 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 3 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
