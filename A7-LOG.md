@@ -25,7 +25,7 @@ Written by Claude Code while executing `A7-RUNBOOK.md` (written by Claude; kit e
 | test_wound_smoke_config.gd | 60 | 0 | 40 PASS |
 | test_wound_smoke_state.gd | 60 | 0 | 22 PASS |
 
-These equal the A6 final counts in `docs/evidence/a6/final/`.
+These equal the A6 final counts in `docs/evidence/a6/final/`. **Count convention for this whole log:** "PASS" counts are `grep -c '^PASS'` on the log, which includes the final `PASS: 0 failure(s)` line, the same way the A6 final counts were taken.
 
 **Finding (flaky A6 test):** the first run of `test_impact_burst_state.gd` after the fresh import exited 1 with 4 FAIL lines: "two hits from two real shots (1)", "the second hit came -1 frames". The next three runs passed 35/35. The A2 two-hit section depends on the second real shot hitting a moving zombie; on the first run only one shot registered a hit. Not caused by A7 (no game file changed yet). Recorded as a known flaky check; the baseline is the passing count. If it recurs later, it is re-run once and both results are logged.
 
@@ -40,7 +40,7 @@ These equal the A6 final counts in `docs/evidence/a6/final/`.
 
 ## Phase 3 — pins (2026-11-20)
 
-- `godot/tests/test_pins_player.gd`, 60 fps: **20 PASS, 0 FAIL** (log `docs/evidence/a7/pins/test_pins_player_60fps.log`).
+- `godot/tests/test_pins_player.gd`, 60 fps: **19 PASS lines (18 checks + the summary line), 0 FAIL** (the Phase 3 commit message says "20 PASS"; that was a miscount, corrected here) (log `docs/evidence/a7/pins/test_pins_player_60fps.log`).
   - State order READY, FIRE, RELOAD, READY, FIRE.
   - FIRE_INTERVAL: shots 9 frames apart (0.150 s: 0.14 s rounded up to whole 60 fps frames, because `_cooldown` is checked once per process frame).
   - RELOAD_TIME: `reload_changed(true)` frame 44 → `(false)` frame 119 = 75 frames = 1.2500 s.
@@ -53,13 +53,13 @@ These equal the A6 final counts in `docs/evidence/a6/final/`.
 - `tools/make_keycard_sheet.py` → `godot/art/keycard_sheet.png` (512 × 64, SHA-256 `df945a6c…`), committed unedited with its `.import`. First draft used Lanczos resampling, which rang into the transparent margin (bounding boxes 58 px wide for a 52 px card); switched to box filtering before the first commit, so the committed PNG is the script's only committed output.
 - **Finding (brief):** "cells 4 to 7 show the back face" cannot be a turning card (cell 7 = 315° shows the front) and would pop twice per loop, once on the seam. Generator draws the back on cells 3–5; dated brief revision 2026-11-20 (sheet).
 - `ATTRIBUTION.md` A7 section. `keycard_icon.tscn` (root `KeycardIconRig` Node2D, children `KeycardIcon` Sprite2D and `AnimationPlayer`, so the track path is literally `KeycardIcon:frame`). `keycard_spin.tres` as resource text.
-- `test_keycard_spin_readback.gd` at 60: **32 PASS, 0 FAIL**.
+- `test_keycard_spin_readback.gd` at 60: **32 PASS lines, 0 FAIL**.
 
 ## Phase 5 — the rig clip (2026-11-20)
 
 - `pistol_rig.tscn`: `PistolRig` → `Body` (pivot at the top of the grip) → `Mag`, `Slide`, with Polygon2D parts. **Decision:** `Slide` and `Mag` are children of `Body` so the tilt carries them; the brief's track names become paths from the root: `Body:rotation`, `Body/Slide:position:x`, `Body/Mag:position:y`.
 - `pistol_reload.tres` from the key table (frame → time listed in the file header and printed by the test: f6 0.25, f12 0.5, f18 0.75, f21 0.875, f24 1.0, f30 1.25). Easing as key transitions on the key that starts the segment: 2.0 ease-in, 0.5 ease-out, −2.0 in-out.
-- `test_pistol_reload_readback.gd` at 60: **57 PASS, 0 FAIL** (first run 2 FAIL from exact float compares of seeked pose values in the test; changed to a 1e-3 tolerance, no clip change).
+- `test_pistol_reload_readback.gd` at 60: **57 PASS lines, 0 FAIL** (first run 2 FAIL from exact float compares of seeked pose values in the test; changed to a 1e-3 tolerance, no clip change).
 
 ## Phase 6 — wiring plan (2026-11-20, before editing)
 
@@ -70,3 +70,11 @@ Approved by Claude, pre-authorised in A7-RUNBOOK.md (respects the brief's bounda
 3. Existing files: `game.gd` only, three lines (a `preload` const, a `var hud_anim`, one `HudAnim.attach(hud, player)` after the A6 attach lines). `hud.gd` is **not** edited (smaller than the brief allows).
 4. A `reload_changed(true)` while already in RELOAD is ignored (the game never sends one; the edge test proves the clip is not restarted).
 5. Tests: `test_hud_anim_structure.gd` (tables against resources and the brief, one writer by source scan, autoplay/process mode/callback mode, `current_animation`), `test_hud_anim_state.gd` (real R / Escape key events and real fire button, real zombie contact for death, real walk onto the keycard).
+
+## Phase 6 — wiring, implemented (2026-11-20)
+
+- Agent build `25dd3bd`: `hud_anim.gd` + 3 lines in `game.gd`; `hud.gd` not edited. Tests `58858ab`.
+- `test_hud_anim_structure.gd` at 60: **51 PASS lines, 0 FAIL** (the Phase 6 test commit message says "structure 50"; 51 is the log count). `test_hud_anim_state.gd` at 60: **34 PASS lines, 0 FAIL**.
+- State test facts: R → RELOAD, `current_animation` "reload"; 30 frames in, Mag y 55.8 px, Body −0.210 rad; the last clip position seen before `reload_changed(false)` was 1.2167 s (the clip runs one frame behind the game's timer; measured in Phase 9); HOLD then RESET pose. Escape mid-reload: clip position 0.3333 s held for 60 paused frames, `_reload_left` held at 0.9000 s; unpaused it continues (0.3333 → 0.3833 s) and the clip's total play time is still 1.2500 s. Keycard: SPINNING, all 8 cells seen in 1.5 s, still looping. Death by a real shambler swipe on the second reload attempt: on the `died` signal the rig is already DEAD, clip stopped, pose (0, 0, 0); no `reload_changed(false)` follows.
+- What these cannot prove headless: what the rig and icon look like, legibility, registration, the feel in play (strips and the student's checks).
+- Every earlier suite and the pins after wiring (`bash` run of all, 60 fps unless stated): smoke PASS (27 ok), soak PASS, showcase PASS, trigger_count PASS, low_ammo 36/36/36, materials 75, calibrate 1, impact config 109, impact state 35, wound config 40, wound state 22: **all at baseline**. Pins 19 (unchanged). `git diff --stat godot/shaders/` empty.
