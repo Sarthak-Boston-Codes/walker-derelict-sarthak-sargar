@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://previews/hud_anim_preview.gd" id="1_prev"]
+
+[node name="PistolReloadPreview" type="Node"]
+script = ExtResource("1_prev")
+clip = "reload"
+player_xz = Vector2(27, 3)
+aim_xz = Vector2(30, 6)
