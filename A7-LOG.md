@@ -78,3 +78,21 @@ Approved by Claude, pre-authorised in A7-RUNBOOK.md (respects the brief's bounda
 - State test facts: R → RELOAD, `current_animation` "reload"; 30 frames in, Mag y 55.8 px, Body −0.210 rad; the last clip position seen before `reload_changed(false)` was 1.2167 s (the clip runs one frame behind the game's timer; measured in Phase 9); HOLD then RESET pose. Escape mid-reload: clip position 0.3333 s held for 60 paused frames, `_reload_left` held at 0.9000 s; unpaused it continues (0.3333 → 0.3833 s) and the clip's total play time is still 1.2500 s. Keycard: SPINNING, all 8 cells seen in 1.5 s, still looping. Death by a real shambler swipe on the second reload attempt: on the `died` signal the rig is already DEAD, clip stopped, pose (0, 0, 0); no `reload_changed(false)` follows.
 - What these cannot prove headless: what the rig and icon look like, legibility, registration, the feel in play (strips and the student's checks).
 - Every earlier suite and the pins after wiring (`bash` run of all, 60 fps unless stated): smoke PASS (27 ok), soak PASS, showcase PASS, trigger_count PASS, low_ammo 36/36/36, materials 75, calibrate 1, impact config 109, impact state 35, wound config 40, wound state 22: **all at baseline**. Pins 19 (unchanged). `git diff --stat godot/shaders/` empty.
+
+## Phase 7 — edges, re-pins, mutations (2026-11-20)
+
+- `test_pistol_reload_edges.gd` at 60: **98 PASS lines, 0 FAIL**. Fire at 29–31, 59–61 and 74 is ignored, and the magazine stays put until the refill on tick 75; fire on 75 fires on tick 75 after the refill; fire on 76 fires. A second R at any of the 9 ticks starts no reload and the clip is not restarted (position = (tick − 1)/60 on every tick 1–74, error 0). Death (`take_damage(999)`, the game's own damage path, used because enemy contact cannot be timed to a tick) on any of the 9 ticks: DEAD, clip stopped and pose reset on the same tick; no refill unless the death came after tick 75. Then: tick 74 RELOAD, tick 75 HOLD at rest with the magazine refilled, and fire seen on tick 76 fires on 76.
+- First edge runs failed on two test bugs: a lambda assigning an outer local (GDScript captures by value: changed to `merge`), and a "strictly rising" check that the clip's position-0 hold on tick 1 broke. That hold is the two-clocks fact, measured in Phase 9; the check is now the exact position per tick.
+- Pins re-run after wiring: identical to the pre-wiring log (19 PASS lines). No pin changed.
+- Mutations (`docs/evidence/a7/mutations/README.md`): 1 track property renamed → exit 1; 2 LOOP_NONE → exit 1; 3 frame key 8 → exit 1; 4 delete `.godot` + reimport → both read-backs pass (the clips are `.tres` text, nothing to reimport). The fifth (AnimatedSprite2D) does not apply.
+
+## Phase 8 — tuning and strips (2026-11-20)
+
+- Previews: `hud_anim_preview.gd` + 4 scenes (reload dark/light, spin light/dark). The first r0 capture used the A6 spots and put the rig over black out-of-level void. Re-scouted 6 spots with `-- --player=x,z`: dark (27, 3), light (−7, 5). The void frames were deleted, not committed.
+- The capture log now records each line on `RenderingServer.frame_pre_draw`, so `drawn N` is what movie frame N shows (the first version sampled at the start of the frame, one frame behind).
+- Reload r0 → r1 (`RIG_OFFSET` y −110 → −190: the magazine was clipped by the window bottom and the rig covered the controls hint) **kept**; r1 → r2 (Slide f21 −14 → −24 px, brief revision first, read-back in the same commit) **kept**. Keycard r0: 8 cells in order, no repeat across the wrap, registration within 0.5 px; no tuning. Details and per-frame predictions: TUNING.md. A windowed capture once took over 10 minutes for two 60-frame runs (normally about 1 minute each) and the shell call went to the background; it completed with exit 0 and the frames were complete. No cause found.
+- All captures ran one at a time (runbook ground rule 8).
+
+## Phase 9 — the two clocks (2026-11-20)
+
+- `test_two_clocks.gd`: the game ends the reload on tick 75 (60 fps) / 38 (30 fps); the clip would finish on tick 76 / 39. **Largest disagreement 0.0167 s at 60 fps, 0.0333 s at 30 fps: exactly one frame**, the same on all 5 reloads. The brief predicted "under one frame". Recorded in the brief revision of 2026-11-20 (two clocks); no code change.
