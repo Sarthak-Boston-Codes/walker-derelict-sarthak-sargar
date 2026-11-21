@@ -121,3 +121,25 @@ Sources: the `a6-effects` branch commits (`git log refs/tags/a5..a6-effects`), `
 
 ### Student's own notes
 
+
+## 2026-11-20: Assignment 7: two animations
+
+Sources: the `a7-animation` branch commits (`git log refs/tags/a6..a7-animation`), `A7-LOG.md` and Claude Code's own session. Authors: **student**, **Claude** (chat: the kit, brief, phase table, cycle spec, approvals), **Claude Code** (ran it), **model** (Godot's own behaviour). Nothing here records the student's opinions or struggles; the student's section is at the end and is theirs to fill.
+
+- **Wanted:** two HUD animations: a keycard spin (a `Sprite2D` frame-track cycle, 8 cells at 12 fps) and a pistol reload (a `Node2D` cutout rig, 24 fps, committing, length = `RELOAD_TIME`), both written only by one authority, `HudAnim`. *Spec and approvals:* Claude. *Handing the approvals to Claude:* student.
+- **Asked:** the student asked Claude Code to extract the A7 kit and execute `A7-RUNBOOK.md` fully and autonomously.
+- **Got / decided, in commit order:**
+  - Baseline: every earlier suite matched the A6 counts. `test_impact_burst_state.gd` failed its two-hit section once, on the first run after the fresh import, and passed on the three re-runs. *Claude Code.*
+  - Reference check: every `player.gd` line in the brief was off by 2 (A6 added two lines); `hud.gd` process mode is `:52`, not `:49`; the keycard element is `:102-104`, not `:67`. A death mid-reload emits only `died`. *Claude Code.*
+  - Pins: the first run failed because a parsed key event reaches `is_action_just_pressed` one frame later; the test was fixed, no pin changed. Claude Code wrote "20 PASS" in a commit message for a log with 19 PASS lines; corrected in A7-LOG. *Claude Code.*
+  - Sheet: the brief put the back face on cells 4–7, which a turning card can't show; the generator puts it on 3–5 (dated revision). The first draft's Lanczos resampling rang into the margins; it was switched to box filtering before the first commit. *Claude Code.*
+  - Wiring: `HudAnim` reads the keycard from the label's `visibility_changed`, so `hud.gd` stayed unedited; `game.gd` gained 4 lines. *Claude Code.*
+  - Edge test: the first runs failed on two of Claude Code's own test bugs (a GDScript lambda assigning a captured local; a check the clip's position-0 hold broke). *Claude Code.*
+  - Mutations 1–3 failed their tests; mutation 4 (delete `.godot`, reimport) passed, as the brief predicted for a non-imported rig. *Claude Code.*
+  - Strips: the first r0 capture put the rig over black void (the background under a bottom-right HUD element is the floor south-east of the player); positions were re-scouted. r1 moved the rig up (the magazine was clipped by the window bottom); r2 deepened the slide rack. Both matched their predictions and were kept. The r2 prediction described the easing segment wrongly, though its numbers were right; noted in TUNING.md. *Approved by Claude, run and read by Claude Code.*
+  - Two clocks: the clip trails the game's timer by exactly one frame at 60 and 30 fps. The brief predicted under one frame. *Claude Code; the engine behaviour: model (Godot).*
+- **Next:** the student's checks and tuning verdicts (HUMAN-CHECK-NOTES.md); the film upload.
+- **Still unresolved:** the one-frame clip lag (recorded, not changed); whether the small keycard icon is noticeable in play.
+
+### Student's own notes
+
