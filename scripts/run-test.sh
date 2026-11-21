@@ -2,10 +2,8 @@
 # scripts/run-test.sh <test-file> <fps|realtime> [timeout-seconds]
 # The assignment's wrapper, adapted for this Windows machine (Git Bash):
 #  - Godot is not on PATH, so GODOT defaults to the local install.
-#  - .tscn tests (the earlier suites are scenes) run as scenes; .gd tests
-#    (extends SceneTree) run with --script, as in the original.
-# Otherwise unchanged: realtime mode (no --fixed-fps), optional timeout,
-# a kept log, and a failure on SHADER ERROR / SCRIPT ERROR lines.
+#  - .tscn tests run as scenes; .gd tests (extends SceneTree) run with --script.
+# New in A7: a resource-load failure ("Failed loading resource") also fails the run.
 set -o pipefail
 GODOT="${GODOT:-/c/Users/sarth/GotDot/Godot_v4.7.2-stable_win64.exe}"
 mkdir -p logs
@@ -22,5 +20,5 @@ case "$1" in
 esac
 timeout "${3:-120}" "$GODOT" --headless "${fps_args[@]}" --path godot "${target[@]}" 2>&1 | tee "$log"
 status=$?
-if grep -qE "SHADER ERROR|SCRIPT ERROR" "$log"; then status=1; fi
+if grep -qE "SHADER ERROR|SCRIPT ERROR|Failed loading resource" "$log"; then status=1; fi
 exit $status
