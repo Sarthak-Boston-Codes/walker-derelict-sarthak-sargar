@@ -1,0 +1,79 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+D3D12 12_0 - Forward+ - Using Device #0: NVIDIA - NVIDIA GeForce RTX 4050 Laptop GPU
+
+Movie Maker mode enabled, recording movie in 1280×720 @ 30 FPS...
+preview reload: player (27.0, 0.0, 3.0) aim (30.0, 0.95, 6.0)
+drawn   0  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+rig on screen at (1130.0, 530.0), icon at (154.0, 35.0) (canvas px)
+drawn   1  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   2  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   3  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   4  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   5  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   6  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   7  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   8  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn   9  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+frame 10: reload_changed(true)  mag 14
+drawn  10  rig RELOAD clip 'reload' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  11  rig RELOAD clip 'reload' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  12  rig RELOAD clip 'reload' 0.0333  mag_y   0.00 slide_x   0.00 body -0.0280 | icon HIDDEN   visible false cell 0 
+drawn  13  rig RELOAD clip 'reload' 0.0667  mag_y   0.00 slide_x   0.00 body -0.0560 | icon HIDDEN   visible false cell 0 
+drawn  14  rig RELOAD clip 'reload' 0.1000  mag_y   0.00 slide_x   0.00 body -0.0840 | icon HIDDEN   visible false cell 0 
+drawn  15  rig RELOAD clip 'reload' 0.1333  mag_y   0.00 slide_x   0.00 body -0.1120 | icon HIDDEN   visible false cell 0 
+drawn  16  rig RELOAD clip 'reload' 0.1667  mag_y   0.00 slide_x   0.00 body -0.1400 | icon HIDDEN   visible false cell 0 
+drawn  17  rig RELOAD clip 'reload' 0.2000  mag_y   0.00 slide_x   0.00 body -0.1680 | icon HIDDEN   visible false cell 0 
+drawn  18  rig RELOAD clip 'reload' 0.2333  mag_y   0.00 slide_x   0.00 body -0.1960 | icon HIDDEN   visible false cell 0 
+drawn  19  rig RELOAD clip 'reload' 0.2667  mag_y   0.28 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  20  rig RELOAD clip 'reload' 0.3000  mag_y   2.56 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  21  rig RELOAD clip 'reload' 0.3333  mag_y   7.11 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  22  rig RELOAD clip 'reload' 0.3667  mag_y  13.94 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  23  rig RELOAD clip 'reload' 0.4000  mag_y  23.04 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  24  rig RELOAD clip 'reload' 0.4333  mag_y  34.42 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  25  rig RELOAD clip 'reload' 0.4667  mag_y  48.07 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  26  rig RELOAD clip 'reload' 0.5000  mag_y  64.00 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  27  rig RELOAD clip 'reload' 0.5333  mag_y  48.07 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  28  rig RELOAD clip 'reload' 0.5667  mag_y  34.42 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  29  rig RELOAD clip 'reload' 0.6000  mag_y  23.04 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  30  rig RELOAD clip 'reload' 0.6333  mag_y  13.94 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  31  rig RELOAD clip 'reload' 0.6667  mag_y   7.11 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  32  rig RELOAD clip 'reload' 0.7000  mag_y   2.56 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  33  rig RELOAD clip 'reload' 0.7333  mag_y   0.28 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  34  rig RELOAD clip 'reload' 0.7667  mag_y   0.00 slide_x  -3.20 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  35  rig RELOAD clip 'reload' 0.8000  mag_y   0.00 slide_x  -9.60 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  36  rig RELOAD clip 'reload' 0.8333  mag_y   0.00 slide_x -16.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  37  rig RELOAD clip 'reload' 0.8667  mag_y   0.00 slide_x -22.40 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  38  rig RELOAD clip 'reload' 0.9000  mag_y   0.00 slide_x -23.04 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  39  rig RELOAD clip 'reload' 0.9333  mag_y   0.00 slide_x -18.77 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  40  rig RELOAD clip 'reload' 0.9667  mag_y   0.00 slide_x -11.09 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  41  rig RELOAD clip 'reload' 1.0000  mag_y   0.00 slide_x   0.00 body -0.2100 | icon HIDDEN   visible false cell 0 
+drawn  42  rig RELOAD clip 'reload' 1.0333  mag_y   0.00 slide_x   0.00 body -0.2025 | icon HIDDEN   visible false cell 0 
+drawn  43  rig RELOAD clip 'reload' 1.0667  mag_y   0.00 slide_x   0.00 body -0.1801 | icon HIDDEN   visible false cell 0 
+drawn  44  rig RELOAD clip 'reload' 1.1000  mag_y   0.00 slide_x   0.00 body -0.1428 | icon HIDDEN   visible false cell 0 
+drawn  45  rig RELOAD clip 'reload' 1.1333  mag_y   0.00 slide_x   0.00 body -0.0915 | icon HIDDEN   visible false cell 0 
+drawn  46  rig RELOAD clip 'reload' 1.1667  mag_y   0.00 slide_x   0.00 body -0.0467 | icon HIDDEN   visible false cell 0 
+drawn  47  rig RELOAD clip 'reload' 1.2000  mag_y   0.00 slide_x   0.00 body -0.0168 | icon HIDDEN   visible false cell 0 
+frame 48: reload_changed(false)  mag 15
+drawn  48  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  49  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  50  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  51  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  52  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  53  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  54  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  55  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  56  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  57  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  58  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+drawn  59  rig HOLD   clip '' 0.0000  mag_y   0.00 slide_x   0.00 body  0.0000 | icon HIDDEN   visible false cell 0 
+--------------------------------------------------------------------------------
+Done recording movie at path: C:\Users\sarth\Game Development\walker-a7\captures\pistol_reload\r2-dark\frame.png
+60 frames at 30 FPS (movie length: 00:00:02:00), recorded in 00:01:04 (3% of real-time speed).
+CPU render time: 0.14 seconds (average: 2.29 ms/frame)
+GPU render time: 0.63 seconds (average: 10.54 ms/frame)
+Encoding time: 39.18 seconds (average: 653.01 ms/frame)
+--------------------------------------------------------------------------------
+WARNING: 4 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 2 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
