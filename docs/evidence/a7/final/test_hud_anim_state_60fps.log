@@ -1,0 +1,49 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== test_hud_anim_state ==
+
+-- reload runs to its end --
+PASS start: HOLD, no clip, RESET pose
+PASS firing does not touch the rig (HOLD, no clip)
+PASS a real R press starts the reload (reload_changed(true) x1)
+PASS RELOAD on reload_changed(true) (RELOAD)
+PASS current_animation is 'reload' and playing ('reload')
+PASS 30 frames (0.5 s) in: magazine out (55.8 px) and gun tilted (-0.210 rad)
+PASS reload_changed(false) arrived
+PASS the clip ran to its end before the state left RELOAD (last position 1.2167 s of 1.25)
+PASS the state returns to HOLD on reload_changed(false) (HOLD)
+PASS HOLD: clip stopped, current_animation ''
+PASS HOLD: rig at the RESET pose [0.0, 0.0, 0.0]
+
+-- pause mid-reload --
+PASS Escape pauses the game (tree paused, pause menu shown)
+PASS paused 60 frames: clip position frozen (0.3333 -> 0.3333 s)
+PASS paused: rig pose unchanged [7.11111164093018, 0.0, -0.20999999344349]
+PASS paused: the game's reload timer frozen too (0.9000 s left)
+PASS paused: still RELOAD playing 'reload'
+PASS Escape again unpauses
+PASS unpaused: the clip continues from where it stopped (0.3333 -> 0.3833 s)
+PASS after the pause the reload still ends in HOLD at rest
+PASS pause added no clip time (1.2500 s)
+
+-- keycard pickup --
+PASS before the pickup: HIDDEN, icon invisible, no clip
+PASS the keycard is picked up (HUD keycard element shown)
+PASS SPINNING on the keycard state going true (SPINNING)
+PASS icon visible, current_animation 'spin' ('spin')
+PASS 1.5 s of play shows all 8 cells [0, 1, 2, 3, 4, 5, 6, 7]
+PASS still spinning after 1.5 s (loops, never ends)
+
+-- death mid-reload (real zombie contact) --
+  hp after swipes: 10
+  died on attempt 1, reload_changed true x1 false x0
+PASS on the died signal the rig is DEAD (DEAD)
+PASS on the died signal the clip is stopped (current_animation '')
+PASS on the died signal the pose is reset [0.0, 0.0, 0.0] (same tick)
+PASS the player died mid-reload through real zombie contact
+PASS no reload_changed(false) after death (player.gd _die zeroes _reload_left)
+PASS 90 frames later: still DEAD, no clip, at rest
+PASS an R press after death changes nothing
+
+PASS: 0 failure(s)
