@@ -113,3 +113,22 @@ Run through real input (`Input.parse_input_event`), against the unmodified game:
 
 ## Revisions
 (Dated entries below. The text above stays as committed.)
+
+### 2026-11-20 — reference check (Claude Code, Phase 1)
+
+Checked against `b0f7569` (game files identical to `a6-effects` `020fc24`; A6 added two lines to `player.gd` at `:13-14`, which shifts every `player.gd` reference below line 14 by +2).
+
+- Correct as written: `player.gd:10` is `signal reload_changed(active: bool)`; `player.gd:12` is `signal died`.
+- **`RELOAD_TIME`** is `player.gd:30` (`const RELOAD_TIME := 1.25`), not `:28` (`:28` is `MAX_RESERVE`). `MAG_SIZE := 15` is `:26`, `FIRE_INTERVAL := 0.14` is `:29`.
+- **`_reload_left`** is declared at `player.gd:59`, not `:57`.
+- **(verify) the decrement:** `player.gd:195-198` (not `:193-196`): `if _reload_left > 0.0: _reload_left -= delta; if _reload_left <= 0.0: _finish_reload()`, inside `_update_weapon()`, which `_process()` calls (`:165-168`). So the reload is timed on the **process tick**, as the brief says. It is skipped while `not alive` (`:193-194`).
+- **(verify) the fire lock:** `player.gd:204-205` (not `:202`): `if _reload_left > 0.0: return`, before both the reload press (`:206`) and the fire press (`:208`). So during a reload both fire and a second reload press are ignored. `start_reload()` also returns early if `_reload_left > 0.0` (`:218`).
+- **`start_reload()`** is `player.gd:217` (not `:215`); it also returns early when `mag >= MAG_SIZE` or `reserve <= 0`. A reload starts from the R key (`:206-207`) or automatically from a fire press with an empty magazine and reserve left (`:211-212`).
+- **`_finish_reload()`** is `player.gd:233` (not `:231`): refills `mag`, zeroes `_reload_left`, emits `reload_changed(false)` then `ammo_changed`.
+- **Death during reload:** `_die()` (`player.gd:330-338`) sets `alive = false` and `_reload_left = 0.0` and emits `died`. It does **not** emit `reload_changed(false)` and does not refill. So after a death mid-reload the only signal is `died`; `HudAnim`'s `RELOAD → DEAD` transition on `died` is the only way the rig leaves `RELOAD` then. The state table already covers it.
+- **The player's states (actual):** `player.gd` has no state enum. Its states are implicit flags: `alive` (`:41`), `_reload_left > 0` (reloading), `_cooldown > 0` (between shots), `controls_enabled` (`:42`, false after extraction). Derived states for the pins: READY (alive, not reloading, mag > 0) → FIRING (a shot every `FIRE_INTERVAL` while fire is held) → RELOADING (`reload_changed(true)` … `reload_changed(false)`) → READY; any state → DEAD on `died` (permanent). The game's own enum is `game.gd:25` `State { PLAYING, DEAD, WON }`.
+- **(verify) `hud.gd:49` process mode:** the line is `hud.gd:52` (`process_mode = Node.PROCESS_MODE_ALWAYS` in `_ready()`); `:49` is blank after `var low_ammo`. The fact is correct: the HUD root is `PROCESS_MODE_ALWAYS`.
+- **(verify) `hud.gd:67` keycard element:** the keycard element is `_key_label`, a `Label` "◆ KEYCARD", built at `hud.gd:102-104` (hidden at start), the last row of the top-left `VBoxContainer` (`tlv`, `:72`). `:67` is the vignette material.
+- **(verify) the HUD's keycard setter:** `hud.gd:327-328` `func set_keycard(has: bool): _key_label.visible = has`, called once from `game.gd:135` in `_on_picked("keycard")` (`game.gd:127-137`), which also sets `game.has_keycard = true` (`:134`). The HUD has no keycard signal. `HudAnim` reads the state from this setter without editing it, by connecting to `_key_label`'s built-in `visibility_changed` signal and reading `_key_label.visible` (decision logged in A7-LOG.md).
+- **Where the HUD is built:** `game.gd:82-87` (`Hud.new()`, then `hud.attach_low_ammo(player)` at `:87`); the A6 nodes are attached at `:88-89`. Pause is `game.set_paused()` (`game.gd:169-175`, sets `get_tree().paused`), reached from the HUD's `pause` action (Escape, `hud.gd:244-245`).
+- The runbook calls the two-clocks measurement "Phase 9"; the brief's "Phase 4 of the runbook measures it" means that measurement.
