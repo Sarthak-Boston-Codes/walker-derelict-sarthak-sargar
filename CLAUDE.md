@@ -11,8 +11,8 @@
 - Clip 1, keycard spin (cycle): route 1, `Sprite2D` `KeycardIcon` + `AnimationPlayer` frame track. Scene `godot/game3d/keycard_icon.tscn`, clip `godot/animations/keycard_spin.tres`, sheet `godot/art/keycard_sheet.png` (from `tools/make_keycard_sheet.py`). 12 fps, `LOOP_LINEAR`.
 - Clip 2, pistol reload (committing action): route 3, `Node2D` cutout rig `PistolRig` (`Body`, `Slide`, `Mag` pivots with `Polygon2D` parts). Scene `godot/game3d/pistol_rig.tscn`, clip `godot/animations/pistol_reload.tres`, 24 fps, `LOOP_NONE`, length 1.25 s = `RELOAD_TIME`.
 - Animation driver: `godot/game3d/hud_anim.gd` (`HudAnim`), attached from `hud.gd`/`game.gd`.
-- Build status: the two clip scenes, the clips, the sheet, `HudAnim`, the previews and the A7 tests below are created in runbook Phases 3-9; until a file exists, its line here is the plan, not a fact (review 2026-11-20).
-- Previews: `godot/previews/pistol_reload_preview.tscn`, `keycard_spin_preview.tscn`. Strips: `captures/<clip>/r<N>[-light|-dark]/`, readings in TUNING.md.
+- Wiring: `game.gd` attaches HudAnim (`hud_anim = HudAnim.attach(hud, player)`, after the A6 attach lines); `hud.gd` is not edited. HudAnim puts the rig in a bottom-right `Control` (`RIG_OFFSET` (−150, −190), tuning r1) and the icon as a child of `_key_label`. The reload's f21 slide key is −24 px (tuning r2).
+- Previews (one script `godot/previews/hud_anim_preview.gd`): `pistol_reload_preview.tscn` (dark, player (27, 3)), `pistol_reload_preview_light.tscn` (light, (−7, 5)), `keycard_spin_preview.tscn` (light), `keycard_spin_preview_dark.tscn`. Strips: `captures/<clip>/r<N>[-light|-dark]/`, readings in TUNING.md.
 - Tests: run every one through the wrapper from the repo root in Git Bash. `bash scripts/run-test.sh <file> <fps|realtime> [timeout]` writes `logs/<name>_<fps>fps.log` (or `_realtime.log`, no `--fixed-fps`) and fails on SHADER ERROR, SCRIPT ERROR or Failed loading resource (`scripts/run-test.sh:23`).
   ```
   bash scripts/run-test.sh game3d_smoke_test.tscn 60        # also soak, showcase_3d, trigger_count (.tscn, 60)
@@ -63,7 +63,8 @@
 ## Unconfirmed
 
 - Every human check (`HUMAN-CHECK-NOTES.md`): cycle seam over five wraps, the reload in play with an interrupt in each phase, keycard registration, both backgrounds, the student's verdict on each tuning revision.
-- The two-clocks disagreement is measured by `test_two_clocks.gd`, not assumed.
+- The film's upload link and SHA-256 (README.md, SUBMISSION.md) and the `a7` tag.
+- Measured, not predicted: the reload clip trails the game's timer by exactly one frame at 60 and 30 fps (`test_two_clocks.gd`, brief revision 2026-11-20); the brief predicted under one.
 - `test_impact_burst_state.gd` (A6) failed its two-hit section once on the first run after a fresh import (A7-LOG.md Phase 0).
 
 ## Headless facts
@@ -75,3 +76,6 @@
 - Headless the window is 64 × 64 with the 1280-wide canvas stretched onto it: a mouse event must be in window pixels (`root.get_final_transform() * viewport_pos`).
 - Test input goes through `Input.parse_input_event` with events from `project.godot`'s input map (R = physical 82, fire = mouse button 1, pause = Escape), never `Input.action_press`.
 - A `--script` whose `_init()` stops on a SCRIPT ERROR never reaches `quit()`; the wrapper's timeout (exit 124) catches it.
+- A parsed input event reaches `is_action_just_pressed` on the next process frame; an `AnimationPlayer` shows position 0 on the tick of `play()` and the next, then advances.
+- A GDScript lambda captures outer locals by value: mutate a Dictionary, don't reassign.
+- Mutation 4 (delete `godot/.godot`, reimport) leaves the clips untouched: they are `.tres` text; only the sheet is imported.
