@@ -1,0 +1,40 @@
+Godot Engine v4.7.2.stable.official.ed1daf0bf - https://godotengine.org
+
+
+== test_pins_player ==
+PASS input map: reload is physical key R (82) ["key 82"]
+PASS input map: fire is mouse button 1 ["mouse 1"]
+PASS FIRE_INTERVAL = 0.14 (pinned 0.14)
+PASS RELOAD_TIME = 1.25 (pinned 1.25)
+PASS MAG_SIZE = 15 (pinned 15)
+  process delta 0.016667 s (60.0 fps)
+PASS start: alive, not reloading, mag 15 = MAG_SIZE
+  [frame    4] ammo_changed 14        mag 14 reserve 60
+  [frame   13] ammo_changed 13        mag 13 reserve 60
+  [frame   22] ammo_changed 12        mag 12 reserve 60
+  [frame   31] ammo_changed 11        mag 11 reserve 60
+  [frame   40] ammo_changed 10        mag 10 reserve 60
+PASS fire held: 5 real shots, mag 15 -> 10
+PASS FIRE_INTERVAL: shots [9, 9, 9, 9] frames apart = 0.1500 s (0.14 s rounded up to whole frames: 9)
+  [frame   44] reload_changed(true)   mag 10 reserve 60
+  R parsed after frame 43, reload_changed(true) on frame 44
+PASS R pressed: reload_changed(true) at frame 44, is_reloading()
+PASS fire locked mid-reload: 0 shots in 20 frames of held fire, mag still 10
+PASS a second R press mid-reload does not restart it (reload_changed(true) x1)
+PASS no refill before reload_changed(false): mag 10 reserve 60
+  [frame  119] reload_changed(false)  mag 15 reserve 55
+  [frame  119] ammo_changed 15        mag 15 reserve 55
+PASS reload_changed(false) at frame 119
+PASS RELOAD_TIME: reload_changed(true) -> (false) = 75 frames = 1.2500 s (1.25 s within one frame)
+  reload gap 75 frames at 60.0 fps (1.25 s = 75.00 frames)
+PASS refill at reload_changed(false): mag 10 -> 15, reserve 60 -> 55
+PASS the first ammo_changed after the reload starts is the refill, on the same frame ({ "what": "ammo_changed 15", "frame": 119, "mag": 15, "reserve": 55 })
+  [frame  121] ammo_changed 14        mag 14 reserve 55
+PASS after the reload a fire press fires (mag 14)
+PASS state order ["READY", "FIRE", "RELOAD", "READY", "FIRE"] (pinned ["READY", "FIRE", "RELOAD", "READY", "FIRE"])
+
+PASS: 0 failure(s)
+WARNING: 12 ObjectDB instances were leaked at exit (run with `--verbose` for details).
+   at: cleanup (core/object/object.cpp:2536)
+ERROR: 3 resources still in use at exit (run with --verbose for details).
+   at: clear (core/io/resource.cpp:822)
