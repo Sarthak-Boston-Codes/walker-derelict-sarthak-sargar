@@ -31,7 +31,7 @@ const KEY_START := &"HIDDEN"
 const REST_CLIP := &"RESET"
 
 ## Where the rig sits: offset from the bottom-right corner of the HUD.
-const RIG_OFFSET := Vector2(-150, -110)
+const RIG_OFFSET := Vector2(-150, -190)
 ## Where the icon sits, relative to the keycard label's top-left.
 const ICON_OFFSET := Vector2(124, 11)
 const ICON_SCALE := 0.5
