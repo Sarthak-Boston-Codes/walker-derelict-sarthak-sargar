@@ -47,3 +47,26 @@ These equal the A6 final counts in `docs/evidence/a6/final/`.
   - Refill (mag 10 → 15, reserve 60 → 55) reported on the frame of `reload_changed(false)`; fire held 20 frames mid-reload fires nothing; a second R press does not re-emit `reload_changed(true)`.
 - First run found a test-side fact: a parsed key event is seen by `is_action_just_pressed` on the **next** process frame (R parsed after frame 43, reload starts on frame 44). The test now waits for the signal; no pin changed.
 - **Watched run** (windowed, Movie Maker, `--fixed-fps 60`, same script; `--debug-collisions` does not apply, the pins are HUD/ammo facts, not collisions): exit 0, 0 failures, 138 frames. Seven frames kept in `docs/evidence/a7/pins/watched/` with the run log. Reading (read by Claude): movie frame = log frame + 11. Movie frame 14 shows AMMO 15 / 60, frame 15 shows 14 / 60 (log: first shot at frame 4); frame 54 no reload bar, frame 55 the reload bar appears empty (log: `reload_changed(true)` frame 44); frame 129 shows 10 / 60 with the bar full, frame 130 shows 15 / 55 (log: refill at frame 119); frame 132 shows 14 / 55 (log: first shot after the reload, frame 121). The log lines and the drawn HUD agree frame for frame.
+
+## Phase 4 — the sprite clip (2026-11-20)
+
+- `tools/make_keycard_sheet.py` → `godot/art/keycard_sheet.png` (512 × 64, SHA-256 `df945a6c…`), committed unedited with its `.import`. First draft used Lanczos resampling, which rang into the transparent margin (bounding boxes 58 px wide for a 52 px card); switched to box filtering before the first commit, so the committed PNG is the script's only committed output.
+- **Finding (brief):** "cells 4 to 7 show the back face" cannot be a turning card (cell 7 = 315° shows the front) and would pop twice per loop, once on the seam. Generator draws the back on cells 3–5; dated brief revision 2026-11-20 (sheet).
+- `ATTRIBUTION.md` A7 section. `keycard_icon.tscn` (root `KeycardIconRig` Node2D, children `KeycardIcon` Sprite2D and `AnimationPlayer`, so the track path is literally `KeycardIcon:frame`). `keycard_spin.tres` as resource text.
+- `test_keycard_spin_readback.gd` at 60: **32 PASS, 0 FAIL**.
+
+## Phase 5 — the rig clip (2026-11-20)
+
+- `pistol_rig.tscn`: `PistolRig` → `Body` (pivot at the top of the grip) → `Mag`, `Slide`, with Polygon2D parts. **Decision:** `Slide` and `Mag` are children of `Body` so the tilt carries them; the brief's track names become paths from the root: `Body:rotation`, `Body/Slide:position:x`, `Body/Mag:position:y`.
+- `pistol_reload.tres` from the key table (frame → time listed in the file header and printed by the test: f6 0.25, f12 0.5, f18 0.75, f21 0.875, f24 1.0, f30 1.25). Easing as key transitions on the key that starts the segment: 2.0 ease-in, 0.5 ease-out, −2.0 in-out.
+- `test_pistol_reload_readback.gd` at 60: **57 PASS, 0 FAIL** (first run 2 FAIL from exact float compares of seeked pose values in the test; changed to a 1e-3 tolerance, no clip change).
+
+## Phase 6 — wiring plan (2026-11-20, before editing)
+
+Approved by Claude, pre-authorised in A7-RUNBOOK.md (respects the brief's boundaries and the one-authority rule).
+
+1. New `godot/game3d/hud_anim.gd` (`HudAnim`, a `Node`), with a static `attach(hud, player)` like A6's drivers. It instances `keycard_icon.tscn` as a child of the HUD's `_key_label` (to the right of the text, half size) and `pistol_rig.tscn` inside a new bottom-right-anchored `Control` under the HUD's root control. It owns two state tables as constants (`RIG_TABLE`: HOLD/RELOAD/DEAD; `KEY_TABLE`: HIDDEN/SPINNING) and moves between states only through them.
+2. Inputs it reads: `player.reload_changed`, `player.died`, `hud._key_label.visibility_changed` (+ `.visible`). It writes only: `play()`/`stop()`/`seek()` on the two `AnimationPlayer`s (RESET pose applied by playing `RESET`, seeking 0 with update, stopping) and `KeycardIcon.visible`. It never writes game state.
+3. Existing files: `game.gd` only, three lines (a `preload` const, a `var hud_anim`, one `HudAnim.attach(hud, player)` after the A6 attach lines). `hud.gd` is **not** edited (smaller than the brief allows).
+4. A `reload_changed(true)` while already in RELOAD is ignored (the game never sends one; the edge test proves the clip is not restarted).
+5. Tests: `test_hud_anim_structure.gd` (tables against resources and the brief, one writer by source scan, autoplay/process mode/callback mode, `current_animation`), `test_hud_anim_state.gd` (real R / Escape key events and real fire button, real zombie contact for death, real walk onto the keycard).
