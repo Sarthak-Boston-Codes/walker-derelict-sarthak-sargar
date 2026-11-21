@@ -1,0 +1,57 @@
+[gd_resource type="Animation" format=3]
+
+; Pistol reload, the committing action (CHANGE-BRIEF.md "The phase table").
+; Written as resource text by Claude Code. 24 fps, step 1/24, length 1.25 s
+; (= RELOAD_TIME, player.gd:30), LOOP_NONE. Played only by HudAnim.
+; Key times are frame / 24:
+;   f0 = 0.0   f6 = 0.25   f12 = 0.5   f18 = 0.75   f21 = 0.875
+;   f24 = 1.0  f30 = 1.25
+; Body/Mag:position:y    f0 0 | f6 0 (released; ease-in to) | f12 64 (out;
+;                        ease-out to) | f18 0 (seated) | f30 0
+; Body/Slide:position:x  f0 0 | f18 0 | f21 -14 (rack back; ease-in to) |
+;                        f24 0 (snap forward) | f30 0
+; Body:rotation          f0 0 | f6 -0.21 | f24 -0.21 (ease in-out to) | f30 0
+; A key's transition shapes the segment that starts at it: 2.0 = ease-in,
+; 0.5 = ease-out, -2.0 = ease in-out, 1.0 = linear.
+
+[resource]
+resource_name = "reload"
+length = 1.25
+loop_mode = 0
+step = 0.041666668
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Mag:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1.25),
+"transitions": PackedFloat32Array(1, 2, 0.5, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, 64.0, 0.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Slide:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.75, 0.875, 1, 1.25),
+"transitions": PackedFloat32Array(1, 1, 2, 1, 1),
+"update": 0,
+"values": [0.0, 0.0, -14.0, 0.0, 0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25, 1, 1.25),
+"transitions": PackedFloat32Array(1, 1, -2, 1),
+"update": 0,
+"values": [0.0, -0.21, -0.21, 0.0]
+}

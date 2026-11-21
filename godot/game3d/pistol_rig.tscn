@@ -1,0 +1,117 @@
+[gd_scene load_steps=4 format=3]
+
+; PistolRig: a 2D cutout rig for the HUD (CHANGE-BRIEF.md clip 2, route 3).
+; Written by Claude Code. Body is the pivot at the top of the grip (the
+; hand); Slide and Mag are Node2D pivots under it, so the tilt carries them.
+; Shapes are Polygon2D points written here (gun points right, +x). Mag is
+; drawn first, behind the grip, so only its base plate shows at rest.
+; The AnimationPlayer's root is PistolRig, so the brief's tracks are
+; Body:rotation, Body/Slide:position:x and Body/Mag:position:y.
+
+[ext_resource type="Animation" path="res://animations/pistol_reload.tres" id="1_reload"]
+
+[sub_resource type="Animation" id="Animation_reset"]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Body/Mag:position:y")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Body/Slide:position:x")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Body:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rig"]
+_data = {
+&"RESET": SubResource("Animation_reset"),
+&"reload": ExtResource("1_reload")
+}
+
+[node name="PistolRig" type="Node2D"]
+
+[node name="Body" type="Node2D" parent="."]
+
+[node name="Mag" type="Node2D" parent="Body"]
+
+[node name="MagPoly" type="Polygon2D" parent="Body/Mag"]
+color = Color(0.72, 0.58, 0.27, 1)
+polygon = PackedVector2Array(-38, -2, -12, -2, -17, 64, -41, 66)
+
+[node name="BasePlate" type="Polygon2D" parent="Body/Mag"]
+color = Color(0.86, 0.7, 0.34, 1)
+polygon = PackedVector2Array(-46, 64, -14, 61, -13, 72, -46, 75)
+
+[node name="FramePoly" type="Polygon2D" parent="Body"]
+color = Color(0.3, 0.33, 0.37, 1)
+polygon = PackedVector2Array(-50, -20, 88, -20, 88, -8, -6, -8, -12, 66, -46, 68, -40, -8, -50, -8)
+
+[node name="TriggerGuard" type="Polygon2D" parent="Body"]
+color = Color(0.3, 0.33, 0.37, 1)
+polygon = PackedVector2Array(-4, -8, 30, -8, 28, 12, 0, 14, -2, 9, 23, 8, 24, -3, -4, -3)
+
+[node name="Trigger" type="Polygon2D" parent="Body"]
+color = Color(0.16, 0.17, 0.19, 1)
+polygon = PackedVector2Array(8, -8, 13, -8, 11, 5, 8, 4)
+
+[node name="GripPanel" type="Polygon2D" parent="Body"]
+color = Color(0.2, 0.17, 0.15, 1)
+polygon = PackedVector2Array(-36, 2, -12, 2, -16, 56, -40, 58)
+
+[node name="Slide" type="Node2D" parent="Body"]
+
+[node name="SlidePoly" type="Polygon2D" parent="Body/Slide"]
+color = Color(0.66, 0.7, 0.75, 1)
+polygon = PackedVector2Array(-54, -44, 90, -44, 94, -40, 94, -18, -54, -18)
+
+[node name="Serration1" type="Polygon2D" parent="Body/Slide"]
+color = Color(0.36, 0.39, 0.43, 1)
+polygon = PackedVector2Array(-46, -40, -43, -40, -43, -22, -46, -22)
+
+[node name="Serration2" type="Polygon2D" parent="Body/Slide"]
+color = Color(0.36, 0.39, 0.43, 1)
+polygon = PackedVector2Array(-39, -40, -36, -40, -36, -22, -39, -22)
+
+[node name="Serration3" type="Polygon2D" parent="Body/Slide"]
+color = Color(0.36, 0.39, 0.43, 1)
+polygon = PackedVector2Array(-32, -40, -29, -40, -29, -22, -32, -22)
+
+[node name="EjectionPort" type="Polygon2D" parent="Body/Slide"]
+color = Color(0.12, 0.13, 0.15, 1)
+polygon = PackedVector2Array(14, -40, 40, -40, 40, -30, 14, -30)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+process_mode = 1
+libraries = {
+&"": SubResource("AnimationLibrary_rig")
+}
+autoplay = ""
+callback_mode_process = 1
