@@ -8,7 +8,7 @@
 ;   f24 = 1.0  f30 = 1.25
 ; Body/Mag:position:y    f0 0 | f6 0 (released; ease-in to) | f12 64 (out;
 ;                        ease-out to) | f18 0 (seated) | f30 0
-; Body/Slide:position:x  f0 0 | f18 0 | f21 -14 (rack back; ease-in to) |
+; Body/Slide:position:x  f0 0 | f18 0 | f21 -24 (rack back, tuning r2; ease-in to) |
 ;                        f24 0 (snap forward) | f30 0
 ; Body:rotation          f0 0 | f6 -0.21 | f24 -0.21 (ease in-out to) | f30 0
 ; A key's transition shapes the segment that starts at it: 2.0 = ease-in,
@@ -41,7 +41,7 @@ tracks/1/keys = {
 "times": PackedFloat32Array(0, 0.75, 0.875, 1, 1.25),
 "transitions": PackedFloat32Array(1, 1, 2, 1, 1),
 "update": 0,
-"values": [0.0, 0.0, -14.0, 0.0, 0.0]
+"values": [0.0, 0.0, -24.0, 0.0, 0.0]
 }
 tracks/2/type = "value"
 tracks/2/imported = false

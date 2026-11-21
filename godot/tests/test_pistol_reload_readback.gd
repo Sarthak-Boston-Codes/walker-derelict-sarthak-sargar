@@ -26,7 +26,7 @@ const FPS := 24.0
 ## "inout" ease in-out (< 0).
 const TABLE := {
 	"Body/Mag:position:y": [[0, 0.0, "lin"], [6, 0.0, "in"], [12, 64.0, "out"], [18, 0.0, "lin"], [30, 0.0, "lin"]],
-	"Body/Slide:position:x": [[0, 0.0, "lin"], [18, 0.0, "lin"], [21, -14.0, "in"], [24, 0.0, "lin"], [30, 0.0, "lin"]],
+	"Body/Slide:position:x": [[0, 0.0, "lin"], [18, 0.0, "lin"], [21, -24.0, "in"], [24, 0.0, "lin"], [30, 0.0, "lin"]],
 	"Body:rotation": [[0, 0.0, "lin"], [6, -0.21, "lin"], [24, -0.21, "inout"], [30, 0.0, "lin"]],
 }
 
@@ -160,7 +160,7 @@ func _run() -> void:
 		print("  t %.3f s  Mag y %6.2f  Slide x %6.2f  Body rot %7.4f" % p)
 	check(_near(poses[2][1], 64.0) and _near(poses[2][3], -0.21), "at 0.5 s (end of startup) the magazine is out (64) and the gun tilted (-0.21)")
 	check(_near(poses[3][1], 0.0) and _near(poses[3][2], 0.0), "at 0.75 s (frame 18) the magazine is seated and the slide at rest")
-	check(_near(poses[4][2], -14.0), "at 0.875 s (frame 21) the slide is racked back (-14)")
+	check(_near(poses[4][2], -24.0), "at 0.875 s (frame 21) the slide is racked back (-24, tuning r2)")
 	check(_near(poses[5][2], 0.0) and _near(poses[5][3], -0.21), "at 1.0 s (end of active) the slide is forward, the gun still tilted")
 	check(_near(poses[6][1], 0.0) and _near(poses[6][2], 0.0) and _near(poses[6][3], 0.0), "at 1.25 s the rig is at rest")
 	ap.stop()
