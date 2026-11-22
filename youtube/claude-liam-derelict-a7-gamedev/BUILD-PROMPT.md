@@ -9,4 +9,13 @@ Folder: `youtube/claude-liam-derelict-a7-gamedev/`. Same pipeline and Windows la
 5. **Conform:** `python conform_clips.py` (labelled HOLD, never slowed; B09 gets a labelled ×4 zoom of the HUD keycard row), then `python build_sheet.py` again and the checker.
 6. **Scenes:** `python run_remotion_win.py . --only <beat>` for each Remotion beat, one at a time (pilot: B04).
 7. **Review cut:** `python run_compile_win.py . --review --fps 30 --height 1080`.
-8. **Final:** `python <brutalist>/runtime/qc/final_frame_check.py . --mp4 <cut>`, then `python run_compile_win.py . --height 2160 --fps 30 --out exports/landscape`, alone on the machine (the A6 4K compile was once killed for low memory). Record the master's SHA-256. No mp4/mp3/wav is committed.
+8. **Final:** `python <brutalist>/runtime/qc/final_frame_check.py . --mp4 <cut>`, then `python run_compile_win.py . --height 2160 --fps 30 --out exports/landscape --low-mem-tight`, alone on the machine, under a watchdog that stops the job below 2 GB free (the A6 4K compile was once killed for low memory). Record the master's SHA-256. No mp4/mp3/wav is committed.
+
+## Memory caps on the final 4K encode (A7, Claude Code; approved by the student)
+
+The final step re-encodes the whole film at 3840×2160 with libx264 `-preset slow -crf 16`. On this 16 GB machine:
+1. Uncapped: free memory fell to 387 MB; stopped by the watchdog (all 21 beat clips had encoded and are cached).
+2. `--low-mem` (encoder `-threads 4 -x264-params rc-lookahead=20`): fell to 2,026 MB; stopped.
+3. `--low-mem-tight` (decoder `-threads 2`, encoder `-threads 2 -x264-params rc-lookahead=10`, `-preset slow`, CRF 16): run next.
+4. If 3 is stopped below 2 GB: `--preset-medium` (the same caps plus `-preset medium`, CRF 16), once; no further caps.
+All four are launcher-only (`run_compile_win.py` wraps `compile.sh` for that one command); brutalist.art's `compile.py` is unmodified. A7-LOG.md Phase 11 records which attempt produced the master.

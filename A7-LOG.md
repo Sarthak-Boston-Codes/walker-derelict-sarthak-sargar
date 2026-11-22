@@ -1,3 +1,5 @@
+**NEEDS ME: upload C:\Users\sarth\Game Development\walker-a7\youtube\claude-liam-derelict-a7-gamedev\exports\landscape\claude-liam-derelict-a7-gamedev.mp4 to OneDrive and send the link.** (SHA-256 `84a5f5fb5e855b509f257802ad78ad648dc2a03b9fddb7f1744858078951f0d4`, 4K, 5:19.)
+
 # A7-LOG.md — Assignment 7 (two animations), work log
 
 Written by Claude Code while executing `A7-RUNBOOK.md` (written by Claude; kit extracted to `C:\Users\sarth\a7-kit`). Every approval below is Claude's, pre-authorised in A7-RUNBOOK.md. Nothing here is a student check; the student's checks live in `HUMAN-CHECK-NOTES.md` and read "pending" until the student gives them.
@@ -96,3 +98,17 @@ Approved by Claude, pre-authorised in A7-RUNBOOK.md (respects the brief's bounda
 ## Phase 9 — the two clocks (2026-11-20)
 
 - `test_two_clocks.gd`: the game ends the reload on tick 75 (60 fps) / 38 (30 fps); the clip would finish on tick 76 / 39. **Largest disagreement 0.0167 s at 60 fps, 0.0333 s at 30 fps: exactly one frame**, the same on all 5 reloads. The brief predicted "under one frame". Recorded in the brief revision of 2026-11-20 (two clocks); no code change.
+
+## Phase 10 — tests, docs (2026-11-20)
+
+- Final run of every suite at `a48c684` (logs `docs/evidence/a7/final/`): all exit 0, earlier suites at baseline, no SHADER ERROR / SCRIPT ERROR / Failed loading resource. TEST-REPORT.md, HUMAN-CHECK-NOTES.md (empty), SOURCES.md and FRICTIONAL.md A7 sections, README.md, SUBMISSION.md (film URL and SHA-256 pending until Phase 12) and CLAUDE.md updated.
+
+## Phase 11 — film (2026-11-20 to 2026-11-22)
+
+- Folder `youtube/claude-liam-derelict-a7-gamedev/`, the A6 pipeline and Windows launchers (PYTHONUTF8=1, node on PATH). 21 beats, walker mode, Liam (Kokoro `am_onyx`, local, no paid call). Sources and docs committed earlier (`BUILD-PROMPT.md`, `FACTCHECK.md`, `SOURCES.md`, `COMPONENTS.md`, `SHOTLIST.md`, `RIFF.md`, `PROMPTS.md`); no mp4/mp3/wav is committed.
+- Captures (windowed, one at a time, 3840×2160 SubViewport, `film_capture.gd`): **keyplay** (the player placed 3 m south of the keycard before filming, disclosed on screen; a real W key walks onto it; pickup on frame 27; the spin loops), **reloadplay** (four real reloads: fire during startup ignored, a second R during active doesn't restart, fire held through recovery fires on the end frame 186, Escape pause holds the clip at 0.3333 s). keyplay was recaptured longer (102 → 372 frames) so B09 is not a 9 s held frame.
+- Gamedev evidence checker: **PASS** (23 files, 5 exact excerpts, 5 code→result pairs, contract code-then-result-v1). Pilot code scene B04 first overflowed the code panel (16 lines + a wrap); B04 and B10 were trimmed to fit (11-23, 99-112), and a stale cue pointing outside the excerpt was fixed.
+- **Memory events (runbook rule 8):** (1) Claude Code's harness stopped the background Remotion queue at about 650 MB free after B18; the orphaned B19 render (ffmpeg 3.3 GB) was killed and the queue resumed only when the student asked. (2) Every later heavy job ran under a watchdog that stopped it below 2 GB free. B19's first retry hit a headless-Chrome connect timeout (memory fine) and its second was stopped at 1,608 MB; after the student closed browser tabs, B19 and B20 rendered (lowest 2,704 MB free). (3) The 1080p review cut built cleanly (lowest 4,371 MB free); its gate: 42 frames, 0 BLOCKER, 0 MAJOR. (4) The 4K final: uncapped, stopped at 387 MB free during the final whole-film encode; with the student's approval, launcher-only caps in `run_compile_win.py` (compile.py unmodified): `--low-mem` (encoder 4 threads, lookahead 20) stopped at 2,026 MB; `--low-mem-tight` (decoder 2 threads, encoder 2 threads, lookahead 10, `-preset slow`) stopped at 1,064 MB; the one allowed fallback `--preset-medium` (same caps, `-preset medium`, CRF 16) **completed**, lowest 3,807 MB free. So the master is encoded at `-preset medium`, CRF 16, not the toolkit's `-preset slow`. Recorded in BUILD-PROMPT.md.
+- **Master:** `youtube/claude-liam-derelict-a7-gamedev/exports/landscape/claude-liam-derelict-a7-gamedev.mp4`, 3840×2160, 30 fps, H.264 + AAC, 319.2 s, 32,778,948 bytes, **SHA-256 `84a5f5fb5e855b509f257802ad78ad648dc2a03b9fddb7f1744858078951f0d4`** (sha256sum and compile.py's `build-state.json` agree). compile.py's 4K gate: 42 frames, 0 BLOCKER, 0 MAJOR. Game-source revision shown: `0d8710e`.
+- Limit: the locked outro (B20) is silent. `ClaudeTitleOutro.tsx` in this toolkit renders no audio, and the stock jingle folder (`svg/claude/mp3/`) is not present locally; no audio was invented.
+- Viewing of the master by Claude Code: contact sheet and sampled frames (code panels readable, SCRIPTED PLAY and ZOOM labels, HOLD labels, outro). The student has not watched it.

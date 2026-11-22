@@ -1,0 +1,23 @@
+{
+  "B00": "L4|3840x2160@30|pad|report=False|15.900|type-on|||b827629f710a27a7c77b0a9ec8c4927769e6ed3a",
+  "B01": "L4|3840x2160@30|pad|report=False|14.333|type-on-correct|||cd8023c6fa50eb212a1b6ba88275550ba7e61cc4",
+  "B02": "L4|3840x2160@30|pad|report=False|17.400|hold||none|b190dbadf9bfcd0487b6dd0fe78c31d2dacb2058",
+  "B03": "L4|3840x2160@30|pad|report=False|16.200|tree-reveal|||8c8dc9e8b6b4d2524a25d3a9653f9485b81aaa43",
+  "B04": "L4|3840x2160@30|pad|report=False|15.600|line-highlight|||34a32c2d60953d3e886824e492cf73534ba54c22",
+  "B05": "L4|3840x2160@30|pad|report=False|16.833|hold||none|4be6f970ee9f9c87ab51ffa494d085a7c11f53bd",
+  "B06": "L4|3840x2160@30|pad|report=False|17.300|line-highlight|||51f1e6388b2d669b9a787122558f2726414927bf",
+  "B07": "L4|3840x2160@30|pad|report=False|16.700|hold||none|c00b518703dfa7ffa03548c3d6ebca1cede1b295",
+  "B08": "L4|3840x2160@30|pad|report=False|14.200|line-highlight|||92434772b91c3f3d6a1347c0a423e352e2fb7282",
+  "B09": "L4|3840x2160@30|pad|report=False|12.633|footage||none|c2869647fadc447f59c5a28e03862b9a0b3e918a",
+  "B10": "L4|3840x2160@30|pad|report=False|12.567|line-highlight|||8c8c324980f69499b5ae1698c465e6ef5e09ebc2",
+  "B11": "L4|3840x2160@30|pad|report=False|14.600|footage||none|17db43cbaa684571dcd6298091b9082592094013",
+  "B12": "L4|3840x2160@30|pad|report=False|14.133|line-highlight|||294c6f4361239794f1eed27e35a569517168b3d6",
+  "B13": "L4|3840x2160@30|pad|report=False|16.700|hold||none|7eaf73e5597f9c09c47453398a2fcd7c35696e77",
+  "B14": "L4|3840x2160@30|pad|report=False|16.567|hold||none|b609787c34d710bf5ffe060eebbc4c5861741fc7",
+  "B15": "L4|3840x2160@30|pad|report=False|17.233|hold||none|a729a118768417f0f0a7dc62de3efb520b38511d",
+  "B16": "L4|3840x2160@30|pad|report=False|15.533|hold||none|ecfa31ffdd8c1298c5fa14a523522a67974c1b8a",
+  "B17": "L4|3840x2160@30|pad|report=False|16.833|hold||none|6136efdf0b8c537a18607f4a638eaa1b81d1548c",
+  "B18": "L4|3840x2160@30|pad|report=False|14.633|artifact-reveal|||ae5bca74706706d80847b6b463f1d8093f009d23",
+  "B19": "L4|3840x2160@30|pad|report=False|16.300|type-on|||18353963e00768b9ccc2a5cfbc3135c76795574e",
+  "B20": "L4|3840x2160@30|pad|report=False|7.000|mascot-title|||69d835bb4838fa56a47c51668e187c16a743a236"
+}
