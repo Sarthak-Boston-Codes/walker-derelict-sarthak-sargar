@@ -1,0 +1,820 @@
+{
+  "metadata": {
+    "title": "DERELICT: Two Animations, Frame by Frame",
+    "slug": "claude-liam-derelict-a7-gamedev",
+    "topic": "GODOT · ANIMATION",
+    "kind": "gamedev",
+    "mode": "walker",
+    "brand": "claude-liam",
+    "register": "Teardown",
+    "engine": "kokoro",
+    "voice": "am_onyx",
+    "voice_kokoro": "am_onyx",
+    "palette": "claude",
+    "style_preset": "claude",
+    "ground": "#FAF9F5",
+    "aspect_ratio": "16:9",
+    "fit": "pad",
+    "captions": false,
+    "greeting": "Kamusta, Liam",
+    "greeting_note": "hello lexicon: Kamusta (Filipino); previous reels used Ahoj, Kia ora, Jambo, Bula, Hej.",
+    "persona": "Liam (in for Bear)",
+    "presenter": "Liam (in for Bear)",
+    "in_for_bear": true,
+    "game": "walker-derelict-sarthak-sargar",
+    "game_code_revision": "0d8710e",
+    "note": "godot-gamedev walker film, Assignment 7, built by Claude Code. Captures: captures/routes/film_capture.gd (keyplay, reloadplay) and the repo's fixture strips. No game change, paid call, upload or publication."
+  },
+  "beats": [
+    {
+      "beat_id": "B00",
+      "act": "ASK",
+      "narration_text": "Kamusta. This is Liam, in for Bear. DERELICT is a top-down 3D zombie shooter in Godot. This time it gained two animations on its HUD: a keycard that spins once you carry it, and a pistol that visibly reloads. Here's how each was specified, keyed, wired, tuned and checked.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 20.2,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Kamusta, Liam",
+            "topic": "GODOT · ANIMATION",
+            "segment": "DERELICT",
+            "command": "Please use Walker to convert my game design document about DERELICT's keycard and reload feedback into two Godot animations, a looping sprite cycle and a committing rig clip, with one node in charge of each and a test for every key.",
+            "runningText": "reading CHANGE-BRIEF.md, Assignment 7…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "A cycle that loops.",
+              "An action that commits.",
+              "One authority."
+            ]
+          }
+        }
+      },
+      "role_note": "COLD OPEN: reconstructed Walker prompt (labelled in FACTCHECK.md), not a recording.",
+      "audio_file": "mp3/beat-B00.mp3",
+      "actual_duration_s": 15.89
+    },
+    {
+      "beat_id": "B01",
+      "act": "BLUF",
+      "narration_text": "Two clips, built and pinned. Read back key by key, played through real input, and drawn frame by frame. A person still has to judge the feel, and they haven't yet. Up front: Claude wrote the brief, and Claude Code wrote everything else, including this film.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 13.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on-correct",
+        "remotion": {
+          "pattern": "BrutalistHesitantWriter",
+          "props": {
+            "text": "Two clips, built and finished.\nRead back key by key,\ndrawn frame by frame.",
+            "triggerWords": "finished",
+            "replacementWords": "pinned",
+            "contextTitle": "DERELICT · ANIMATION",
+            "brandLabel": "@NikBearBrown",
+            "fontSize": 92,
+            "lineSpacing": 1.5,
+            "align": "center",
+            "seed": "derelict-a7-gamedev",
+            "mistakeRate": 2,
+            "hesitateWithin": 0,
+            "hesitateBetween": 1,
+            "ink": "#3D3929",
+            "accent": "#D97757",
+            "bg": "#FAF9F5"
+          }
+        }
+      },
+      "lead_silence_s": 0.8,
+      "role_note": "Misconception corrected: done once it's 'finished' -> done once its behaviour is 'pinned'.",
+      "audio_file": "mp3/beat-B01.mp3",
+      "actual_duration_s": 14.33,
+      "lead_silence_baked": 0.8
+    },
+    {
+      "beat_id": "B02",
+      "act": "SETUP",
+      "narration_text": "Clip one, the cycle: a keycard icon, a sprite stepping through eight cells at twelve frames a second, looping for as long as you carry the card. Clip two, the committing action: a cutout pistol rig at twenty four frames a second, playing once per reload, exactly one point two five seconds, the game's own reload time.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23.4,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B02.png",
+        "label": "SCRIPTED PLAY frames (film_capture.gd keyplay, reloadplay) + CHANGE-BRIEF refs"
+      },
+      "audio_file": "mp3/beat-B02.mp3",
+      "actual_duration_s": 17.37
+    },
+    {
+      "beat_id": "B03",
+      "act": "ANSWERS",
+      "narration_text": "So what is a clip? An animation resource: a length, a loop mode, and tracks. Each track names one node and one property, and holds keys: a time, a value, and a transition into the next key. An animation player reads it on every process tick and writes those properties. Nothing else about it is magic.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "tree-reveal",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "tree",
+            "title": "Clip → tracks → keys.",
+            "project": "walker-derelict-sarthak-sargar",
+            "source": "Lines read from the files",
+            "treeLabel": "animations/keycard_spin.tres · animations/pistol_reload.tres",
+            "tree": [
+              "Clip     → keycard_spin.tres:10-12  length 0.6667, loop_mode 1 (linear), step 1/12",
+              "Track    → keycard_spin.tres:16  NodePath(\"KeycardIcon:frame\")",
+              "Keys     → keycard_spin.tres:20-23  times k/12, values 0…7, update 1 (discrete)",
+              "Player   → keycard_icon.tscn  AnimationPlayer, callback PROCESS_IDLE, PAUSABLE"
+            ],
+            "notes": [
+              {
+                "label": "Routes",
+                "value": "1: Sprite2D frame track\n3: Node2D cutout rig"
+              },
+              {
+                "label": "Godot",
+                "value": "4.7.2, Forward+"
+              }
+            ],
+            "durationSeconds": 16.19
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B03.mp3",
+      "actual_duration_s": 16.19
+    },
+    {
+      "beat_id": "B04",
+      "act": "MECHANISM",
+      "narration_text": "The keycard spin, as resource text. Eight keys, one twelfth of a second apart, values zero to seven, on the sprite's frame property. Discrete updates, so the frame never blends between cells. Loop mode linear, and the length is eight twelfths, so the last key is one interval short of the end.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The cycle: eight keys on one track.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "animations/keycard_spin.tres",
+            "source": "godot/animations/keycard_spin.tres lines 11-23 · Godot editor reconstruction",
+            "code": "loop_mode = 1\nstep = 0.08333333\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"KeycardIcon:frame\")\ntracks/0/interp = 0\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0, 0.08333333, 0.16666667, 0.25, 0.33333334, 0.41666666, 0.5, 0.5833333),\n\"transitions\": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),\n\"update\": 1,\n\"values\": [0, 1, 2, 3, 4, 5, 6, 7]",
+            "startLine": 11,
+            "cues": [
+              {
+                "at": 2.6,
+                "line": 20,
+                "label": "times k/12"
+              },
+              {
+                "at": 5.5,
+                "line": 16,
+                "label": "KeycardIcon:frame"
+              },
+              {
+                "at": 7.1,
+                "line": 22,
+                "label": "update 1: discrete"
+              },
+              {
+                "at": 10.2,
+                "line": 11,
+                "label": "loop_mode 1: linear"
+              },
+              {
+                "at": 11.4,
+                "line": 20,
+                "label": "last key 7/12, length 8/12"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Length (line 10)",
+                "value": "0.6666667 s = 8/12;\nlast key to end = 1/12 s"
+              },
+              {
+                "label": "Read-back",
+                "value": "32 PASS lines"
+              }
+            ],
+            "output": [
+              "animations/keycard_spin.tres · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 15.59
+          },
+          "rendered": {
+            "out": "media/B04.mp4",
+            "at": "2026-11-22T00:29:26.604581+00:00"
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B04.mp3",
+      "actual_duration_s": 15.59
+    },
+    {
+      "beat_id": "B05",
+      "act": "RESULT",
+      "narration_text": "The sheet comes from a script, not an artist: eight cells, sixty-four pixels square, a card turning in forty-five degree steps. The sprite slices it with h frames eight. In the strip each cell appears in order, and after cell seven comes cell zero, not a repeat. The card stays centred to half a pixel.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B05.png",
+        "media": "media/B05.png",
+        "motion": "hold",
+        "label": "godot/art/keycard_sheet.png + captures/keycard_spin/r0-*-strip.png (FIXTURE)"
+      },
+      "audio_file": "mp3/beat-B05.mp3",
+      "actual_duration_s": 16.81
+    },
+    {
+      "beat_id": "B06",
+      "act": "MECHANISM",
+      "narration_text": "Designing feel in frames means writing the timing down before the art. The brief's phase table: startup, frames zero to eleven; active, twelve to twenty three; recovery, twenty four to twenty nine. Each frame is one twenty fourth of a second, so frame twelve is half a second, here, where the magazine is all the way out.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "The reload: keys from the phase table.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "animations/pistol_reload.tres",
+            "source": "godot/animations/pistol_reload.tres lines 19-32 · Godot editor reconstruction",
+            "code": "length = 1.25\nloop_mode = 0\nstep = 0.041666668\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"Body/Mag:position:y\")\ntracks/0/interp = 1\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1.25),\n\"transitions\": PackedFloat32Array(1, 2, 0.5, 1, 1),\n\"update\": 0,\n\"values\": [0.0, 0.0, 64.0, 0.0, 0.0]",
+            "startLine": 19,
+            "cues": [
+              {
+                "at": 0.0,
+                "line": 19,
+                "label": "length 1.25 = RELOAD_TIME"
+              },
+              {
+                "at": 5.2,
+                "line": 29,
+                "label": "f0 · f6 · f12 · f18 · f30"
+              },
+              {
+                "at": 8.6,
+                "line": 30,
+                "label": "ease-in, then ease-out"
+              },
+              {
+                "at": 11.4,
+                "line": 21,
+                "label": "step 1/24"
+              },
+              {
+                "at": 16.4,
+                "line": 32,
+                "label": "f12: magazine out, 64 px"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Phases",
+                "value": "startup f0-11 · active f12-23\nrecovery f24-29 · end f30"
+              },
+              {
+                "label": "Read-back",
+                "value": "57 PASS lines; length\nread from player.gd"
+              }
+            ],
+            "output": [
+              "animations/pistol_reload.tres · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 17.28
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B06.mp3",
+      "actual_duration_s": 17.28
+    },
+    {
+      "beat_id": "B07",
+      "act": "RESULT",
+      "narration_text": "Here's the table beside the drawn frames, captured at thirty frames a second. The gun tilts and the magazine drops through startup. At half a second it's fully out. Through the active frames it's seated and the slide racks back. In recovery the gun levels. Each boundary lands one capture frame late. More on that in a moment.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23.8,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B07.png",
+        "media": "media/B07.png",
+        "motion": "hold",
+        "label": "captures/pistol_reload/r2-*-strip.png (FIXTURE) + phase table"
+      },
+      "audio_file": "mp3/beat-B07.mp3",
+      "actual_duration_s": 16.68
+    },
+    {
+      "beat_id": "B08",
+      "act": "MECHANISM",
+      "narration_text": "One authority means exactly one node decides what each animated node is doing. Here it's Hud Anim, and these two tables are all it knows. Hold, reload, dead for the rig. Hidden, then spinning, for the keycard. Every transition the brief lists, and nothing else.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.6,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "One authority: two state tables.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "game3d/hud_anim.gd",
+            "source": "godot/game3d/hud_anim.gd lines 18-28 · Godot editor reconstruction",
+            "code": "## Pistol rig: state -> {clip, on: {event: next state}}.\nconst RIG_TABLE := {\n\t&\"HOLD\": {\"clip\": &\"\", \"on\": {&\"reload_started\": &\"RELOAD\", &\"died\": &\"DEAD\"}},\n\t&\"RELOAD\": {\"clip\": &\"reload\", \"on\": {&\"reload_finished\": &\"HOLD\", &\"died\": &\"DEAD\"}},\n\t&\"DEAD\": {\"clip\": &\"\", \"on\": {}},\n}\n## Keycard icon: state -> {clip, on: {event: next state}}.\nconst KEY_TABLE := {\n\t&\"HIDDEN\": {\"clip\": &\"\", \"on\": {&\"keycard_acquired\": &\"SPINNING\"}},\n\t&\"SPINNING\": {\"clip\": &\"spin\", \"on\": {}},\n}",
+            "startLine": 18,
+            "cues": [
+              {
+                "at": 7.5,
+                "line": 20,
+                "label": "HOLD: reload_started to RELOAD"
+              },
+              {
+                "at": 8.5,
+                "line": 21,
+                "label": "RELOAD plays 'reload'"
+              },
+              {
+                "at": 9.2,
+                "line": 26,
+                "label": "HIDDEN to SPINNING"
+              },
+              {
+                "at": 10.9,
+                "line": 27,
+                "label": "SPINNING plays 'spin'"
+              },
+              {
+                "at": 13.5,
+                "line": 22,
+                "label": "DEAD: no way out"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Reads",
+                "value": "reload_changed, died,\nthe HUD keycard label"
+              },
+              {
+                "label": "Structure test",
+                "value": "51 PASS lines: one\nwriter, no autoplay"
+              }
+            ],
+            "output": [
+              "game3d/hud_anim.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 14.19
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B08.mp3",
+      "actual_duration_s": 14.19
+    },
+    {
+      "beat_id": "B09",
+      "act": "RESULT",
+      "narration_text": "Scripted play with a real key press: walk north onto the keycard. The pickup picks it up, the HUD's label appears, Hud Anim sees it and starts the spin. It loops from then on. Nothing else in the game touches that sprite.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17.4,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B09.mp4",
+        "media": "media/B09.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 · 3840x2160 SubViewport · SCRIPTED PLAY (film_capture.gd keyplay)",
+        "hold_policy": "capture plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after it (never slowed). conform_clips.py."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_reason": "Full-frame dark engine capture: the dark scene is the picture. The text that must read is the HUD health/ammo panel and the SCRIPTED PLAY label, checked as regions.",
+        "contrast_regions": [
+          {
+            "label": "HUD health and ammo",
+            "box": [
+              0.01,
+              0.02,
+              0.23,
+              0.19
+            ]
+          },
+          {
+            "label": "SCRIPTED PLAY label",
+            "box": [
+              0.15,
+              0.91,
+              0.85,
+              0.985
+            ]
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B09.mp3",
+      "actual_duration_s": 12.61
+    },
+    {
+      "beat_id": "B10",
+      "act": "MECHANISM",
+      "narration_text": "How a transition happens. An event the current state doesn't list is simply ignored. That's why a second reload press can't restart the clip. Entering a state either plays its clip from the start, or snaps the rig to the reset pose.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 17.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Events in, play or rest out.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "game3d/hud_anim.gd",
+            "source": "godot/game3d/hud_anim.gd lines 99-112 · Godot editor reconstruction",
+            "code": "func rig_event(event: StringName) -> void:\n\tvar next: Variant = RIG_TABLE[rig_state].on.get(event)\n\tif next != null:\n\t\t_enter_rig(next)\n\n\nfunc key_event(event: StringName) -> void:\n\tvar next: Variant = KEY_TABLE[key_state].on.get(event)\n\tif next != null:\n\t\t_enter_key(next)\n\n\nfunc _enter_rig(state: StringName) -> void:\n\trig_state = state",
+            "startLine": 99,
+            "cues": [
+              {
+                "at": 1.9,
+                "line": 100,
+                "label": "look the event up"
+              },
+              {
+                "at": 3.7,
+                "line": 101,
+                "label": "not listed: ignored"
+              },
+              {
+                "at": 9.0,
+                "line": 111,
+                "label": "enter: play the clip from 0, or RESET (lines 113-118)"
+              },
+              {
+                "at": 11.7,
+                "line": 106,
+                "label": "the icon's table works the same way"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Writes only",
+                "value": "play(), stop(), seek()\nand the icon's visible"
+              },
+              {
+                "label": "Edge test",
+                "value": "98 PASS lines at\nticks 29-31, 59-61, 74-76"
+              }
+            ],
+            "output": [
+              "game3d/hud_anim.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 12.54
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B10.mp3",
+      "actual_duration_s": 12.54
+    },
+    {
+      "beat_id": "B11",
+      "act": "RESULT",
+      "narration_text": "Real reloads, an interrupt in each phase. Fire during startup: nothing. Reload again during the active frames: the clip carries on. Fire held through recovery: the shot comes the moment the reload ends. And pause: the rig freezes with the game's timer, then carries on.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.6,
+      "shot": {
+        "type": "FOOTAGE",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B11.mp4",
+        "media": "media/B11.mp4",
+        "motion": "footage",
+        "label": "Godot 4.7.2 · 3840x2160 SubViewport · SCRIPTED PLAY (film_capture.gd reloadplay)",
+        "hold_policy": "capture plays at capture speed; if measured narration is longer, a frame hold labelled HOLD is appended after it (never slowed). conform_clips.py."
+      },
+      "qc": {
+        "full_bleed": true,
+        "contrast_reason": "Full-frame dark engine capture: the dark scene is the picture. The text that must read is the HUD health/ammo panel and the SCRIPTED PLAY label, checked as regions.",
+        "contrast_regions": [
+          {
+            "label": "HUD health and ammo",
+            "box": [
+              0.01,
+              0.02,
+              0.23,
+              0.19
+            ]
+          },
+          {
+            "label": "SCRIPTED PLAY label",
+            "box": [
+              0.15,
+              0.91,
+              0.85,
+              0.985
+            ]
+          }
+        ]
+      },
+      "audio_file": "mp3/beat-B11.mp3",
+      "actual_duration_s": 14.59
+    },
+    {
+      "beat_id": "B12",
+      "act": "MECHANISM",
+      "narration_text": "The two clocks. The game's clock: reload time left, counted down in the player's process function, finishing the reload when it reaches zero. The clip's clock: the animation player, on the same process tick. The brief predicted they'd disagree by less than one frame.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 18.2,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "line-highlight",
+        "remotion": {
+          "pattern": "GodotDevWorkbench",
+          "props": {
+            "mode": "code",
+            "title": "Clock one: the game's reload timer.",
+            "project": "walker-derelict-sarthak-sargar",
+            "path": "game3d/player.gd",
+            "source": "godot/game3d/player.gd lines 193-198 · Godot editor reconstruction",
+            "code": "\tif not alive:\n\t\treturn\n\tif _reload_left > 0.0:\n\t\t_reload_left -= delta\n\t\tif _reload_left <= 0.0:\n\t\t\t_finish_reload()",
+            "startLine": 193,
+            "cues": [
+              {
+                "at": 1.8,
+                "line": 195,
+                "label": "reloading?"
+              },
+              {
+                "at": 2.7,
+                "line": 196,
+                "label": "_reload_left -= delta"
+              },
+              {
+                "at": 5.2,
+                "line": 198,
+                "label": "_finish_reload()"
+              }
+            ],
+            "inspectorLabel": "Source notes — not Inspector values",
+            "notes": [
+              {
+                "label": "Clock two",
+                "value": "AnimationPlayer,\nPROCESS_IDLE"
+              },
+              {
+                "label": "Both",
+                "value": "the process tick"
+              }
+            ],
+            "output": [
+              "game3d/player.gd · code → visible result",
+              "Godot editor reconstruction"
+            ],
+            "durationSeconds": 14.12
+          }
+        }
+      },
+      "cue_timing": "highlights placed by anchor-phrase character offset × measured duration (no TTS word timestamps)",
+      "audio_file": "mp3/beat-B12.mp3",
+      "actual_duration_s": 14.12
+    },
+    {
+      "beat_id": "B13",
+      "act": "RESULT",
+      "narration_text": "Measured over five reloads at each rate. The game finishes on tick seventy five; the clip would finish on seventy six. Exactly one frame, every time, at sixty and at thirty frames a second, because the clip doesn't advance on the tick after it starts. Not under one frame. The prediction missed, and it's recorded.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 22.6,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "evidence_media": "media/B13.png",
+        "media": "media/B13.png",
+        "motion": "hold",
+        "label": "recorded test output"
+      },
+      "audio_file": "mp3/beat-B13.mp3",
+      "actual_duration_s": 16.68
+    },
+    {
+      "beat_id": "B14",
+      "act": "REVISION",
+      "narration_text": "Tuning, one change at a time, each predicted before the edit. Revision one: the dropped magazine ran off the bottom of the window, so the rig moved up eighty pixels. Kept. Revision two: the slide's rack was too small to read, fourteen pixels became twenty four. Kept. The student's verdicts are pending.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21.4,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B14.png",
+        "label": "r0 vs r1 vs r2 light strips (FIXTURE) + TUNING.md"
+      },
+      "audio_file": "mp3/beat-B14.mp3",
+      "actual_duration_s": 16.55
+    },
+    {
+      "beat_id": "B15",
+      "act": "TESTS",
+      "narration_text": "What the tests proved: every track resolves, every key time, step and loop mode is pinned, and the player's own timings didn't move. Break a track's property name, drop the loop, key cell eight: each test fails. Delete the import cache: nothing changes, because these clips are text. And no headless run shows you how any of it looks.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 24.2,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B15.png",
+        "label": "final logs + mutation README rendered as a card"
+      },
+      "audio_file": "mp3/beat-B15.mp3",
+      "actual_duration_s": 17.22
+    },
+    {
+      "beat_id": "B16",
+      "act": "TRACE",
+      "narration_text": "Mistakes caught. The brief put the card's back face on the wrong cells. The first strips put the rig over black void. Claude Code's own tests had bugs, and two commit messages miscounted. Uncertainty: every look claim here is Claude's. Next: the student plays it, with an interrupt in every phase.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 21.0,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B16.png",
+        "label": "text card from A7-LOG.md and git history"
+      },
+      "role_note": "What went wrong: found by Claude Code's own runs and reviews, not by the student.",
+      "audio_file": "mp3/beat-B16.mp3",
+      "actual_duration_s": 15.51
+    },
+    {
+      "beat_id": "B17",
+      "act": "CREDITS",
+      "narration_text": "Who wrote what. Claude wrote the brief, the phase table, the cycle spec and the approvals. Claude Code wrote the sheet generator, the clips, the rig, Hud Anim, the tests, the readings, the documents and this film. The sheet is generated by code: no licence. The student ran the kit, and every human check is still theirs.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23.4,
+      "shot": {
+        "type": "STILL",
+        "source": "own",
+        "treatment": "none",
+        "motion": "hold",
+        "media": "media/B17.png",
+        "label": "text card from SOURCES.md"
+      },
+      "audio_file": "mp3/beat-B17.mp3",
+      "actual_duration_s": 16.81
+    },
+    {
+      "beat_id": "B18",
+      "act": "VERDICT",
+      "narration_text": "Implemented: a looping keycard cycle and a committing reload rig, both under one authority, both read back key by key and played through real input. Limits: the clip trails the game by one frame, and the keycard is small. Human judgment: still to come, from the student.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 19.4,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "artifact-reveal",
+        "remotion": {
+          "pattern": "ClaudeVerdictArtifact",
+          "props": {
+            "artifactTitle": "Verdict",
+            "artifactHeading": "Two clips, pinned.",
+            "brandLabel": "@NikBearBrown",
+            "artifactLines": [
+              "Implemented: keycard spin, 8 cells @12 fps, LOOP_LINEAR; 32 read-back checks.",
+              "Implemented: reload rig @24 fps, 1.25 s = RELOAD_TIME, LOOP_NONE; 98 edge checks.",
+              "Limits: the clip trails the game's timer by exactly one frame; small icon.",
+              "Human judgment: pending, from the student (HUMAN-CHECK-NOTES.md)."
+            ]
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B18.mp3",
+      "actual_duration_s": 14.61
+    },
+    {
+      "beat_id": "B19",
+      "act": "HANDOFF",
+      "narration_text": "Your turn. Paste this: 'Use Walker on my DERELICT project. Make the reload clip start on the frame the reload starts. Before you change anything, predict the two clocks test's result at sixty and thirty frames a second, then run it.' My prediction: zero ticks apart. If it isn't, find out why. Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 23.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "type-on",
+        "remotion": {
+          "pattern": "ClaudeComposerAsk",
+          "props": {
+            "greeting": "Your turn.",
+            "topic": "GODOT · ANIMATION",
+            "segment": "DERELICT",
+            "command": "Use Walker on my DERELICT project. Make the pistol reload clip advance on the same tick the reload starts. Before changing anything, predict test_two_clocks.gd's largest disagreement at 60 and 30 fps, then run it and the edge test.",
+            "runningText": "paste this into Claude…",
+            "folderLabel": "@NikBearBrown",
+            "modelLabel": "Claude",
+            "effortLabel": "High",
+            "output": [
+              "One change.",
+              "One prediction.",
+              "Two tests to check it."
+            ],
+            "animateTyping": true
+          }
+        }
+      },
+      "audio_file": "mp3/beat-B19.mp3",
+      "actual_duration_s": 16.28
+    },
+    {
+      "beat_id": "B20",
+      "act": "OUTRO",
+      "narration_text": "Liam, in for Bear.",
+      "voice": "am_onyx",
+      "engine": "kokoro",
+      "estimated_duration_s": 7.0,
+      "shot": {
+        "type": "GRAPHIC",
+        "class": "SHOW",
+        "source": "remotion",
+        "motion": "mascot-title",
+        "remotion": {
+          "pattern": "ClaudeTitleOutro",
+          "props": {
+            "title": "DERELICT: Two Animations, Frame by Frame",
+            "slug": "claude-liam-derelict-a7-gamedev"
+          }
+        }
+      },
+      "audio_policy": "silence",
+      "role_note": "Locked outro: @NikBearBrown, slug-seeded mascot, stock jingle only; no narration or game audio."
+    }
+  ]
+}

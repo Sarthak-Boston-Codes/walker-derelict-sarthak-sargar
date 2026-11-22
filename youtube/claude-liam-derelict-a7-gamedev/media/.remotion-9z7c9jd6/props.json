@@ -1,0 +1,15 @@
+{
+  "greeting": "Kamusta, Liam",
+  "topic": "GODOT · ANIMATION",
+  "segment": "DERELICT",
+  "command": "Please use Walker to convert my game design document about DERELICT's keycard and reload feedback into two Godot animations, a looping sprite cycle and a committing rig clip, with one node in charge of each and a test for every key.",
+  "runningText": "reading CHANGE-BRIEF.md, Assignment 7…",
+  "folderLabel": "@NikBearBrown",
+  "modelLabel": "Claude",
+  "effortLabel": "High",
+  "output": [
+    "A cycle that loops.",
+    "An action that commits.",
+    "One authority."
+  ]
+}

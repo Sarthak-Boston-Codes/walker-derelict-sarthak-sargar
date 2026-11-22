@@ -1,0 +1,945 @@
+{
+  "schema_version": 1,
+  "teaching_contract": "code-then-result-v1",
+  "files": [
+    {
+      "path": "animations/keycard_spin.tres",
+      "sha256": "1c9c41c7566a9ededd29c5dff6a3a090aaf702822294e926291ad81b44d89af5",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "keycard_spin"
+      ]
+    },
+    {
+      "path": "animations/pistol_reload.tres",
+      "sha256": "4bfe9d3b1843be6d8fbb8a7cb7a3c1706830b0c08b7088669bffb030d2d77027",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "pistol_reload"
+      ]
+    },
+    {
+      "path": "art/keycard_sheet.png",
+      "sha256": "df945a6c26686670f80150551e21aae31dc5e2481b8b0f76159a4f4b2cca715f",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "keycard_spin"
+      ]
+    },
+    {
+      "path": "art/keycard_sheet.png.import",
+      "sha256": "cbe10a364a7d8ed070bf6a5742c5d1ebad1d512eb16eebac368e42cbe53b5952",
+      "role": "import settings",
+      "component_ids": [
+        "keycard_spin"
+      ]
+    },
+    {
+      "path": "game3d/game.gd",
+      "sha256": "c766012e80343355eccfdf2642557e9f8224d9fae587c6ee0a7f730248d59ab3",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hud_anim_authority"
+      ]
+    },
+    {
+      "path": "game3d/hud.gd",
+      "sha256": "faafd9ced20b79c2cff6060496643ad0a25d0b21362fb0ebf36c9ec44c3e31ba",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hud"
+      ]
+    },
+    {
+      "path": "game3d/hud_anim.gd",
+      "sha256": "5e0815bf930e01698651d0eb01871587f7d7878ef343ed1090d9e4bc4cc0481c",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hud_anim_authority"
+      ]
+    },
+    {
+      "path": "game3d/keycard_icon.tscn",
+      "sha256": "4a2a4d1a842a9f12cac4cc0fd3114febb4d7ade7063a4f1fcde420f1ce58bd4d",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "keycard_spin"
+      ]
+    },
+    {
+      "path": "game3d/pistol_rig.tscn",
+      "sha256": "9c5069767c4e37ea12f6838e4f7e68c309354ee8c113f87a97deea19e18ff6a2",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "pistol_reload"
+      ]
+    },
+    {
+      "path": "game3d/player.gd",
+      "sha256": "7384b54d762a178d47899a198196d759783bd450548b2d84139959a036bb93dd",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "game_clock"
+      ]
+    },
+    {
+      "path": "previews/hud_anim_preview.gd",
+      "sha256": "76fdba403817b1fa1505040e14af8266d404460d37559402ccb07ec02e5ebc51",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "pistol_reload"
+      ]
+    },
+    {
+      "path": "previews/keycard_spin_preview.tscn",
+      "sha256": "88484ea44499540a1e01583dca46a9ca1abdc56c4683ef86c52ac8888d70b21b",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "keycard_spin"
+      ]
+    },
+    {
+      "path": "previews/keycard_spin_preview_dark.tscn",
+      "sha256": "0da1ef0675d2b4026918d654c3fef50dcb4f626947d5945ac69e9ec6f00e230b",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "keycard_spin"
+      ]
+    },
+    {
+      "path": "previews/pistol_reload_preview.tscn",
+      "sha256": "ce02cc1b6cb907d57620b27c671ffcc971d778e622cc6677401538d7db21d284",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "pistol_reload"
+      ]
+    },
+    {
+      "path": "previews/pistol_reload_preview_light.tscn",
+      "sha256": "3f2442c916e643572b0460177ed0705495ecb80bc8ac2dbaea382c47c120d98d",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "pistol_reload"
+      ]
+    },
+    {
+      "path": "tests/anim_readback_lib.gd",
+      "sha256": "636bc19de2f76ddbf0f496f4f744004f09e8efad9012af5f30601774c6ab5d71",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "keycard_spin"
+      ]
+    },
+    {
+      "path": "tests/test_hud_anim_state.gd",
+      "sha256": "0882ebe2471693e7571f3f6eb54cb5d592483e291bddb7c9767d994ac71d89c3",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hud_anim_authority"
+      ]
+    },
+    {
+      "path": "tests/test_hud_anim_structure.gd",
+      "sha256": "f336f00444bee3003ac667ca1fec0247b249268f6c1453ed41f38974355ec651",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "hud_anim_authority"
+      ]
+    },
+    {
+      "path": "tests/test_keycard_spin_readback.gd",
+      "sha256": "50d3ecaa8f32a5bf7b241546829c65265d74aa4ee9eb4f3e051d4c83d1d219a2",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "keycard_spin"
+      ]
+    },
+    {
+      "path": "tests/test_pins_player.gd",
+      "sha256": "56c2dfbaa6d8e6b70db5658c6794b1cadfd1a7b8725091aad0b5cf6122c31157",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "game_clock"
+      ]
+    },
+    {
+      "path": "tests/test_pistol_reload_edges.gd",
+      "sha256": "7d1db7c1012b55e11806bc180769043f37412cf67fdcd71fe1012ba1e9f1a023",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "pistol_reload"
+      ]
+    },
+    {
+      "path": "tests/test_pistol_reload_readback.gd",
+      "sha256": "fbea5ba53755e416eabe94321aa44bb09a253d21e39cdc76b88a807d2b200d5d",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "pistol_reload"
+      ]
+    },
+    {
+      "path": "tests/test_two_clocks.gd",
+      "sha256": "63cf071d704d1c6e05ca58d638fc0e8d36d9d6802d6b2eb83ddebc2e1c56067b",
+      "role": "runtime source/asset",
+      "component_ids": [
+        "game_clock"
+      ]
+    }
+  ],
+  "components": [
+    {
+      "id": "keycard_spin",
+      "explanation": "Clip 1, the cycle: Sprite2D KeycardIcon + AnimationPlayer frame track, keycard_spin.tres (8 keys at k/12, discrete, LOOP_LINEAR), the generated 8-cell sheet; its read-back and preview fixtures.",
+      "beat_ids": [
+        "B02",
+        "B03",
+        "B04",
+        "B05"
+      ],
+      "files": [
+        "animations/keycard_spin.tres",
+        "game3d/keycard_icon.tscn",
+        "art/keycard_sheet.png",
+        "art/keycard_sheet.png.import",
+        "tests/test_keycard_spin_readback.gd",
+        "tests/anim_readback_lib.gd",
+        "previews/keycard_spin_preview.tscn",
+        "previews/keycard_spin_preview_dark.tscn"
+      ]
+    },
+    {
+      "id": "pistol_reload",
+      "explanation": "Clip 2, the committing action: Node2D cutout rig (Body/Slide/Mag, Polygon2D parts, RESET), pistol_reload.tres keyed from the phase table (24 fps, 1.25 s, LOOP_NONE); read-back, edge test, previews.",
+      "beat_ids": [
+        "B02",
+        "B06",
+        "B07",
+        "B14"
+      ],
+      "files": [
+        "animations/pistol_reload.tres",
+        "game3d/pistol_rig.tscn",
+        "tests/test_pistol_reload_readback.gd",
+        "tests/test_pistol_reload_edges.gd",
+        "previews/hud_anim_preview.gd",
+        "previews/pistol_reload_preview.tscn",
+        "previews/pistol_reload_preview_light.tscn"
+      ]
+    },
+    {
+      "id": "hud_anim_authority",
+      "explanation": "HudAnim, the one authority: two state tables, signal handlers, play/stop/RESET; attached in game.gd; the structure and state tests.",
+      "beat_ids": [
+        "B08",
+        "B09",
+        "B10",
+        "B11"
+      ],
+      "files": [
+        "game3d/hud_anim.gd",
+        "game3d/game.gd",
+        "tests/test_hud_anim_structure.gd",
+        "tests/test_hud_anim_state.gd"
+      ]
+    },
+    {
+      "id": "game_clock",
+      "explanation": "The player's reload state machine (unchanged): _reload_left on the process tick, the fire lock, reload_changed/died; the pins taken before wiring and the two-clocks measurement.",
+      "beat_ids": [
+        "B12",
+        "B13",
+        "B15"
+      ],
+      "files": [
+        "game3d/player.gd",
+        "tests/test_pins_player.gd",
+        "tests/test_two_clocks.gd"
+      ]
+    },
+    {
+      "id": "hud",
+      "explanation": "The HUD (unchanged in A7): PROCESS_MODE_ALWAYS, the keycard label HudAnim reads.",
+      "beat_ids": [
+        "B08"
+      ],
+      "files": [
+        "game3d/hud.gd"
+      ]
+    }
+  ],
+  "excerpts": [
+    {
+      "beat_id": "B04",
+      "path": "animations/keycard_spin.tres",
+      "start_line": 11,
+      "end_line": 23,
+      "text": "loop_mode = 1\nstep = 0.08333333\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"KeycardIcon:frame\")\ntracks/0/interp = 0\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0, 0.08333333, 0.16666667, 0.25, 0.33333334, 0.41666666, 0.5, 0.5833333),\n\"transitions\": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),\n\"update\": 1,\n\"values\": [0, 1, 2, 3, 4, 5, 6, 7]"
+    },
+    {
+      "beat_id": "B06",
+      "path": "animations/pistol_reload.tres",
+      "start_line": 19,
+      "end_line": 32,
+      "text": "length = 1.25\nloop_mode = 0\nstep = 0.041666668\ntracks/0/type = \"value\"\ntracks/0/imported = false\ntracks/0/enabled = true\ntracks/0/path = NodePath(\"Body/Mag:position:y\")\ntracks/0/interp = 1\ntracks/0/loop_wrap = true\ntracks/0/keys = {\n\"times\": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1.25),\n\"transitions\": PackedFloat32Array(1, 2, 0.5, 1, 1),\n\"update\": 0,\n\"values\": [0.0, 0.0, 64.0, 0.0, 0.0]"
+    },
+    {
+      "beat_id": "B08",
+      "path": "game3d/hud_anim.gd",
+      "start_line": 18,
+      "end_line": 28,
+      "text": "## Pistol rig: state -> {clip, on: {event: next state}}.\nconst RIG_TABLE := {\n\t&\"HOLD\": {\"clip\": &\"\", \"on\": {&\"reload_started\": &\"RELOAD\", &\"died\": &\"DEAD\"}},\n\t&\"RELOAD\": {\"clip\": &\"reload\", \"on\": {&\"reload_finished\": &\"HOLD\", &\"died\": &\"DEAD\"}},\n\t&\"DEAD\": {\"clip\": &\"\", \"on\": {}},\n}\n## Keycard icon: state -> {clip, on: {event: next state}}.\nconst KEY_TABLE := {\n\t&\"HIDDEN\": {\"clip\": &\"\", \"on\": {&\"keycard_acquired\": &\"SPINNING\"}},\n\t&\"SPINNING\": {\"clip\": &\"spin\", \"on\": {}},\n}"
+    },
+    {
+      "beat_id": "B10",
+      "path": "game3d/hud_anim.gd",
+      "start_line": 99,
+      "end_line": 112,
+      "text": "func rig_event(event: StringName) -> void:\n\tvar next: Variant = RIG_TABLE[rig_state].on.get(event)\n\tif next != null:\n\t\t_enter_rig(next)\n\n\nfunc key_event(event: StringName) -> void:\n\tvar next: Variant = KEY_TABLE[key_state].on.get(event)\n\tif next != null:\n\t\t_enter_key(next)\n\n\nfunc _enter_rig(state: StringName) -> void:\n\trig_state = state"
+    },
+    {
+      "beat_id": "B12",
+      "path": "game3d/player.gd",
+      "start_line": 193,
+      "end_line": 198,
+      "text": "\tif not alive:\n\t\treturn\n\tif _reload_left > 0.0:\n\t\t_reload_left -= delta\n\t\tif _reload_left <= 0.0:\n\t\t\t_finish_reload()"
+    }
+  ],
+  "exclusions": [
+    {
+      "path": ".editorconfig",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": ".gitattributes",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": ".gitignore",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "MATERIALS.md",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/.gdkeep",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_aim.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_aim.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_celebrate.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_celebrate.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_grabbed.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_grabbed.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_hurt.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_hurt.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_idle.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_idle.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_recover.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_recover.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_reference.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_reference.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_shoot.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_shoot.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_walk.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/char_walk.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/env_factory_floor.png",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "art/env_factory_floor.png.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "assets/3d/characters/player.glb",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "assets/3d/characters/player.glb.import",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "assets/3d/characters/player_0.png",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "assets/3d/characters/player_0.png.import",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "assets/3d/characters/zombie.glb",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "assets/3d/characters/zombie.glb.import",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "assets/3d/characters/zombie_0.png",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "assets/3d/characters/zombie_0.png.import",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "assets/3d/medkit.glb",
+      "reason": "A3 asset, unchanged by A7"
+    },
+    {
+      "path": "assets/3d/medkit.glb.import",
+      "reason": "A3 asset, unchanged by A7"
+    },
+    {
+      "path": "assets/3d/rusted_barrel.glb",
+      "reason": "A3 asset, unchanged by A7"
+    },
+    {
+      "path": "assets/3d/rusted_barrel.glb.import",
+      "reason": "A3 asset, unchanged by A7"
+    },
+    {
+      "path": "assets/3d/supply_crate.glb",
+      "reason": "A3 asset, unchanged by A7"
+    },
+    {
+      "path": "assets/3d/supply_crate.glb.import",
+      "reason": "A3 asset, unchanged by A7"
+    },
+    {
+      "path": "assets/asset_manifest.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "assets/placeholder_factory.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/.gdkeep",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/audio_director.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/mus_loop.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/mus_loop.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/sfx_clear.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/sfx_clear.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/sfx_down.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/sfx_down.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/sfx_hurt.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/sfx_hurt.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/sfx_shot.wav",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "audio/sfx_shot.wav.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "default_bus_layout.tres",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "effects/impact_burst.tscn",
+      "reason": "A6 particle effect or its preview fixture, unchanged by A7"
+    },
+    {
+      "path": "effects/wound_smoke.tscn",
+      "reason": "A6 particle effect or its preview fixture, unchanged by A7"
+    },
+    {
+      "path": "game3d/actor_anim.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/barrel.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/camera_rig.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/crate.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/extraction.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/fx.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/game.tscn",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/impact_fx.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/level.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/light_animator.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/locked_door.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/low_ammo_driver.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/menu.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/menu.tscn",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/model_table.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/phys.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/pickup.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/placeholder_models.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/sfx.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/shaders/concrete_floor.gdshader",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/ui_theme.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/waves.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/wound_smoke_driver.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "game3d/zombie.gd",
+      "reason": "3D game code/asset unchanged by A7 (A2 redo / A5); not part of the animation work"
+    },
+    {
+      "path": "icon.svg",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "icon.svg.import",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "materials/concrete_dry.tres",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "materials/concrete_wet.tres",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "materials/hint_as_colour.tres",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "materials/hint_as_data.tres",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "previews/effect_preview.gd",
+      "reason": "A6 particle effect or its preview fixture, unchanged by A7"
+    },
+    {
+      "path": "previews/impact_burst_preview.tscn",
+      "reason": "A6 particle effect or its preview fixture, unchanged by A7"
+    },
+    {
+      "path": "previews/impact_burst_preview_light.tscn",
+      "reason": "A6 particle effect or its preview fixture, unchanged by A7"
+    },
+    {
+      "path": "previews/wound_smoke_preview.tscn",
+      "reason": "A6 particle effect or its preview fixture, unchanged by A7"
+    },
+    {
+      "path": "previews/wound_smoke_preview_dark.tscn",
+      "reason": "A6 particle effect or its preview fixture, unchanged by A7"
+    },
+    {
+      "path": "project.godot",
+      "reason": "project config, unchanged by A7 (window 1280x720; renderer default Forward+; input map R/fire/Escape)"
+    },
+    {
+      "path": "scenes/exit_marker.gd",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/exit_marker.tscn",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/facing.gd",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/hint_experiment.tscn",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/main.gd",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/main.tscn",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/material_lab.tscn",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/player.gd",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/player.tscn",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/showcase_3d.tscn",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/zombie.gd",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "scenes/zombie.tscn",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "shaders/concrete_surface.gdshader",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "shaders/hint_experiment.gdshader",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "shaders/low_ammo.gdshader",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "shaders/particles_generated.gdshader",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "shaders/standard_generated.gdshader",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "tests/calibrate_normal_map_check.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/cost_effects.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/fixtures/.gdignore",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/fixtures/normal_maps/concrete_floor_worn_001_nor_dx_1k.png",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_shot.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_shot.tscn",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_smoke_test.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_smoke_test.tscn",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_soak_test.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/game3d_soak_test.tscn",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/low_ammo_test.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/normal_map_check.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/showcase_3d_test.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/showcase_3d_test.tscn",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/test_impact_burst_config.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/test_impact_burst_state.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/test_materials.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/test_wound_smoke_config.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/test_wound_smoke_state.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/trigger_count_test.gd",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "tests/trigger_count_test.tscn",
+      "reason": "earlier test suite, unchanged by A7; its baseline counts are in TEST-REPORT.md"
+    },
+    {
+      "path": "textures/concrete/ATTRIBUTION.md",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_diff_1k.png",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_diff_1k.png.import",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_nor_gl_1k.png",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_nor_gl_1k.png.import",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_rough_1k.png",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/concrete/concrete_floor_worn_001_rough_1k.png.import",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/hint_experiment/greys_3x1.png",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/hint_experiment/greys_3x1.png.import",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "textures/hint_experiment/make_greys_3x1.gd",
+      "reason": "A5 shader/material work, unchanged by A7 (godot/shaders/ A5 files never edited)"
+    },
+    {
+      "path": "tools/a5_capture.gd",
+      "reason": "earlier capture/dump tool (A5/A6), unchanged by A7"
+    },
+    {
+      "path": "tools/dump_particles_shader.gd",
+      "reason": "earlier capture/dump tool (A5/A6), unchanged by A7"
+    },
+    {
+      "path": "tools/dump_standard_shader.gd",
+      "reason": "earlier capture/dump tool (A5/A6), unchanged by A7"
+    },
+    {
+      "path": "tools/gpu_price.gd",
+      "reason": "earlier capture/dump tool (A5/A6), unchanged by A7"
+    },
+    {
+      "path": "tools/probe_particle_scale.gd",
+      "reason": "earlier capture/dump tool (A5/A6), unchanged by A7"
+    },
+    {
+      "path": "ui/hud.gd",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    },
+    {
+      "path": "ui/hud.tscn",
+      "reason": "2D slice or shared asset from A2, unchanged by A7"
+    }
+  ],
+  "code_result_pairs": [
+    {
+      "code_beat": "B04",
+      "result_beat": "B05",
+      "observation": "keycard_sheet.png (8 x 64 px cells, tools/make_keycard_sheet.py); r0 strips light/dark: cells 0-7 then 0 at frame 36, no repeat; bounding-box centre within 0.5 px (read by Claude, TUNING.md).",
+      "media": {
+        "path": "media/B05.png",
+        "sha256": "6a83e90b916ac447a6c8cfe9a90ab7aa4bac6a30347680030283541407d784e2"
+      }
+    },
+    {
+      "code_beat": "B06",
+      "result_beat": "B07",
+      "observation": "r2 dark/light strips: frame 26 (0.5 s) magazine 64 px out, tilt -0.21; frame 39 slide -18.8 px; frame 48 rest; every boundary one capture frame after the brief's list (read by Claude, TUNING.md).",
+      "media": {
+        "path": "media/B07.png",
+        "sha256": "b9ad6531d4b9ec8ed02654bbb2c844bb5e68f849a19839ec9d842089c41540dd"
+      }
+    },
+    {
+      "code_beat": "B08",
+      "result_beat": "B09",
+      "observation": "SCRIPTED PLAY keyplay: player placed 3 m south of the keycard before filming (disclosed), W key walks onto it; keycard picked up, icon SPINNING (logs/film_capture_keyplay.log).",
+      "media": {
+        "path": "media/B09.mp4",
+        "sha256": "32a25cded71d0583d918c221cbdebaf1633bec785c09174fc27c5bdedc7393f4"
+      }
+    },
+    {
+      "code_beat": "B10",
+      "result_beat": "B11",
+      "observation": "SCRIPTED PLAY reloadplay: real R, fire and Escape events; startup fire ignored, active R no restart, recovery fire gives the first shot on reload end, pause freezes clip and timer (logs/film_capture_reloadplay.log).",
+      "media": {
+        "path": "media/B11.mp4",
+        "sha256": "b7c0eb3367130414ffd57ad3fc4373f233077743559ac31e709e4b451137f951"
+      }
+    },
+    {
+      "code_beat": "B12",
+      "result_beat": "B13",
+      "observation": "test_two_clocks.gd @60/@30: reload ends tick 75/38, unstopped clip finishes 76/39; largest disagreement 0.0167 s / 0.0333 s, exactly one frame (docs/evidence/a7/two_clocks).",
+      "media": {
+        "path": "media/B13.png",
+        "sha256": "a048a526c95c437ad2145060076eb8ff3f12d18ec8030b349abb48575264c6da"
+      }
+    }
+  ]
+}
