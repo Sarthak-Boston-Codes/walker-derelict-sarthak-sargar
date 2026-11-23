@@ -57,7 +57,7 @@ WASD move · mouse aim (the flashlight follows) · hold left click to fire · R 
 - From A6: impact-burst sizes do not change over life; the wound smoke reads lighter than its background when standing still; barrel-blast hits fire no burst. Earlier: see `docs/archive/`.
 
 ## Final film
-Assignment 7: *link pending: added after upload.* File `claude-liam-derelict-a7-gamedev.mp4`, SHA-256 pending. Sources: `youtube/claude-liam-derelict-a7-gamedev/`.
+Assignment 7: [claude-liam-derelict-a7-gamedev.mp4](https://northeastern-my.sharepoint.com/:v:/g/personal/sargar_s_northeastern_edu/IQDinaAzIZdbSIIwWrLkIotzAQrI6zsJJU1uvultTlY9s84?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=8oYkz8) (4K, 5:19, SHA-256 `84a5f5fb5e855b509f257802ad78ad648dc2a03b9fddb7f1744858078951f0d4`). Sources: `youtube/claude-liam-derelict-a7-gamedev/`.
 
 Assignment 6: *link pending: added after upload.* Sources: `youtube/claude-liam-derelict-a6-gamedev/`.
 

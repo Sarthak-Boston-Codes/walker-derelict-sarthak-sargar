@@ -1,4 +1,4 @@
-**NEEDS ME: upload C:\Users\sarth\Game Development\walker-a7\youtube\claude-liam-derelict-a7-gamedev\exports\landscape\claude-liam-derelict-a7-gamedev.mp4 to OneDrive and send the link.** (SHA-256 `84a5f5fb5e855b509f257802ad78ad648dc2a03b9fddb7f1744858078951f0d4`, 4K, 5:19.)
+Film uploaded by the student (Phase 12); link in README.md and SUBMISSION.md.
 
 # A7-LOG.md — Assignment 7 (two animations), work log
 
