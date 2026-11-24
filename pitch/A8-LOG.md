@@ -28,3 +28,39 @@ Written by Claude Code while executing `A8-RUNBOOK.md`. The runbook was written 
 - **`verify_gamedev.py` is not run.** It is the godot-gamedev source-coverage checker and checks displayed code excerpts against the source. This film shows no code.
   - The gates that apply are compile.py's own render-integrity checks (`verify_output`: decodable streams, exact duration, audible audio) and Gate V (`final_frame_check.py`). Both run on the review cut and on the master.
 - **No new game captures.** Memory is short (one background job was already stopped), and real scripted-play clips from the A6 and A7 films exist on disk (labels below). They are reused and never retimed; held frames are labelled HOLD.
+
+## Phase 2 — beat sheet (2026-11-23)
+
+- `pitch/` is the reel folder, so `pitch/beat_sheet.json` is the sheet the toolkit reads and stamps.
+- 13 beats, one idea each, in the runbook's order. Beat 6 is split into B06 (the five skill areas) and B07 (the test-run card).
+- Slug `derelict-a8-pitch`, `kind: pitch`, palette `derelict-page`.
+- `.gitignore` now also covers `pitch/**/*.wav`, `pitch/clips/`, `pitch/captures/` and `pitch/_qc/frames/`.
+
+## Phase 3 — captures and cards
+
+- Clips copied into `pitch/captures/` (not committed; SHA-256 in `BUILD-PROMPT.md`):
+
+| Clip | Source | Label on screen |
+|---|---|---|
+| `burstplay_raw.mp4` (8.0 s) | A6 film, game `f4af1c4`, from `walker-derelict-sarthak-sargar/youtube/claude-liam-derelict-a6-gamedev/captures/` | SCRIPTED CAPTURE: real fire input; the zombies are placed by the capture script |
+| `smokeplay_raw.mp4` (11.1 s) | A6 film, game `f4af1c4`, same folder | SCRIPTED CAPTURE: real swipes, walk, pause and medkit |
+| `reloadplay_raw.mp4` (10.3 s) | A7 film, game `0d8710e`, from `walker-a7/youtube/claude-liam-derelict-a7-gamedev/captures/` | SCRIPTED CAPTURE: real R, fire and Esc |
+
+- Fixture strips: `captures/impact_burst/r0-light/strip.png` (`fe6044a`) and `r1-light/strip.png` (`0788794`), both in tag `a6`.
+- `make_pitch.py` draws the cards in the A5–A7 card style (title-safe margins, 4K), on a dark page with no instructor footer.
+  - B07's lines are copied verbatim by line number from `docs/evidence/a7/final/test_pistol_reload_edges_60fps.log`. The 98 PASS / 0 FAIL counts are computed from that file at build time.
+- Card review (Claude Code, on a contact sheet):
+  - B05 first showed per-step times (10 s, 20 s). These were invented targets, so they were removed; only "within 60 s (target)" stays, under a WILL stamp.
+  - The box cards' text was enlarged.
+
+## Phase 4 — narration
+
+- Kokoro `am_onyx`, 13 beats, first person.
+- QC (`narration_qc.py`, adapted from the A7 film without its outro line): no clipping (every peak at −1.3 dB or lower).
+  - B03 (3.98 words/s) and B10 (3.66) were over 3.6. B03 was trimmed and regenerated at `--speed 0.82`, B10 at `--speed 0.9`.
+  - All beats then fall between 2.59 and 3.56 words/s. Narrated total 197.0 s (3:17).
+- **Ground-rule re-read**, by Claude Code against rules 1–3. Two sentences stated untimed things as fact and were reworded:
+  - B03, "a small game where you can check how I work in a few minutes" → "built so that you can check …"
+  - B04, "small enough to open in a minute" → "meant to be small enough …"
+  - Both were regenerated. A first attempt at the edit was overwritten by the review build's stamp of `beat_sheet.json`, and was reapplied afterwards.
+- One row per sentence is in `HONESTY-CHECK.md`.
