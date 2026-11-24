@@ -65,3 +65,25 @@ Mostly learning, with a little showing off. The skills that are new to me are Go
 
 ## Revisions
 (Dated entries below. The text above stays as committed.)
+
+### 2026-11-23 — Phase 0 verification against the repository (Claude Code)
+
+Checked on branch `a8-pitch` (from `refs/heads/a7-animation`, top `bafe6eb`). Every claim above was read against the tags with `git show refs/tags/<tag>:<file>`.
+
+**Tags (all lightweight, all present):** `a3` → `b91201c` (2026-10-15), `a2-redo` → `48eec7e` (2026-10-25), `a5` → `c076952` (2026-10-29), `a6` → `9064ae8` (2026-11-08), `a7` → `660342c` (2026-11-22).
+
+**Exists today, filled in (replaces the "(verify)" markers; counts from `TEST-REPORT.md` at each tag unless named otherwise):**
+- 3D game core loop: menu, four rooms (Loading Bay, Assembly Hall, Boiler Room, Control Room, `level.gd:37-40`), player, two zombie types (shambler, runner, `waves.gd:40`), waves, pickups, a win screen (extraction, `State.WON`) and a death screen (`State.DEAD`) [`a2-redo`, `48eec7e`]. **Correction:** `TEST-REPORT.md` at `a2-redo` is still the A2/A3 report and holds no counts for the 3D game. The counts come from `REDO-LOG.md` at that tag: `game3d_smoke_test.tscn` with 27 checks (PASS) and a 4-minute soak bot (no script errors). The same 27 checks pass at `a5`, `a6` and `a7`.
+- Three Blender-built props (supply crate, rusted barrel, medkit) in `scenes/showcase_3d.tscn` [`a3`, `b91201c`]: `showcase_3d_test.gd` exit 0 (rotation, scale, floor contact; triangle budgets 36/100, 44/200, 48/150). **Correction on order:** `a3` comes before `a2-redo` in time. At `a3` the project was still the 2D slice, with a 3D showcase scene; the 3D game built at `a2-redo` reuses the three props.
+- Low-ammo shader and textured materials [`a5`, `c076952`]: `low_ammo_test.gd` 35 PASS at 30, 60 and 144 fps; `test_materials.gd` 74 PASS; three mutations, each exit 1.
+- Impact burst and wound smoke, with tuning records and cost measurements [`a6`, `9064ae8`]: `test_impact_burst_config.gd` 108 PASS; `test_wound_smoke_config.gd` 39 PASS; both state tests PASS; four mutations, each exit 1. GPU price, from a script reading the RenderingServer GPU counter on the NVIDIA GeForce RTX 4050 Laptop GPU (log `docs/evidence/a6/gpu_price.log`): burst +0.018 ms against a 0.30 ms budget, smoke +0.023 ms against a 0.20 ms budget. Both sit at the counter's noise floor.
+- Keycard spin and pistol reload, one authority, state and edge tests [`a7`, `660342c`]. Counts are lines starting with `PASS`: keycard read-back 32, reload read-back 57, structure 51, state 34, pins 19 (identical before and after wiring), edges 98. The two-clocks test exits 0 at 60 and 30 fps: the clip trails the game by exactly one frame, where the A7 brief predicted under one. Mutations 1–3 exit 1; mutation 4 exits 0, as expected.
+- Test and capture toolkit [`a5` onward, extended at `a6` and `a7`]: `scripts/run-test.sh`, the read-back checks, the capture scripts (`godot/previews/`, `godot/tools/`), and the cost and GPU scripts.
+
+**Corrections and cuts:**
+1. §2 says each layer "was specified in a brief, pinned by a behaviour test, attacked with mutations that had to fail, and measured". That holds from `a5` on only. The core loop (`a2-redo`) and the props (`a3`) have a smoke test, a soak bot and a showcase check, but no mutations. Measured cost exists only at `a6`, and behaviour pins (`test_pins_player.gd`) only at `a7`. The film says "from the shader assignment on".
+2. §6, "the pending fix": A6 tried revision A-r1 (`billboard_keep_scale` true) and **reverted** it, because the puff became too small (`TUNING.md` at `a6`). The pending fix is A-r2 (keep_scale **and** a raised Puff scale, two settings), which still needs approval. The finding itself is confirmed by `docs/evidence/a6/probe_particle_scale.log` and by the strips in `captures/impact_burst/r0*/` and `r1*/` (fixture captures).
+3. §3 and "Will exist", "my own playtest": the student has partly played the game already. There was an author playtest at A2 (`TEST-REPORT.md` at `a3`/`a2-redo`), and a playtest on 2026-10-29 recorded verbatim in `docs/archive/HUMAN-CHECK-NOTES-a5.md` ("I played the game myself…"; "I also saw the ammo counter turn red at 5 rounds or fewer…"). Still pending: every A6 and A7 human check (17 rows in `docs/archive/HUMAN-CHECK-NOTES-a6.md`, 15 in `HUMAN-CHECK-NOTES.md`), most A5 rows, and a playtest of the finished export. The film says only that the effects and the animation have not yet been judged in play.
+4. Renderer and engine confirmed: Godot 4.7.2, Forward+ (`project.godot:15`), D3D12 (`:91`). No export exists: no commit contains a `godot/export_presets.cfg`.
+5. The GPU name is confirmed (`RenderingServer.get_video_adapter_name()`, `TEST-REPORT.md` at `a6`). The film quotes no frame rate: the A2 redo's "137 FPS with 14 zombies" (`REDO-LOG.md`) has no committed log, so it is left out.
+6. Unverifiable, so left out of the film's claims: "gaming skills have increased" (as the brief already says).
