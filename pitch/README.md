@@ -6,7 +6,7 @@
 - **Runtime:** 3:17 (197.2 s), 13 beats
 - **Film:** `derelict-a8-pitch.mp4`, 3840 × 2160, 30 fps, h264 + aac, 28,068,664 bytes
   - SHA-256 `1696c3bd0e3e24e44126bd0f1aaab74b7dbc91b544ddc831df6f848504f74a57`
-  - **Link:** pending, to be uploaded by the student
+  - **Link:** https://northeastern-my.sharepoint.com/:v:/g/personal/sargar_s_northeastern_edu/IQAHMi1a6mqdR5jnEiLoKpHfAViLVxXubngxvl4Y-HLVvyY?nav=eyJyZWZlcnJhbEluZm8iOnsicmVmZXJyYWxBcHAiOiJPbmVEcml2ZUZvckJ1c2luZXNzIiwicmVmZXJyYWxBcHBQbGF0Zm9ybSI6IldlYiIsInJlZmVycmFsTW9kZSI6InZpZXciLCJyZWZlcnJhbFZpZXciOiJNeUZpbGVzTGlua0NvcHkifX0&e=jBnRti (uploaded to OneDrive by the student, 2026-11-24)
 
 The film answers the seven pitch questions in order. Every claim is either something that exists at a tag (`HONESTY-CHECK.md`) or is said as "will". Every visual is labelled on screen: scripted capture, fixture, or constructed on screen. No instructor name, handle or credit line appears.
 

@@ -1,4 +1,4 @@
-NEEDS ME: upload C:\Users\sarth\Game Development\walker-a8\pitch\exports\derelict-a8-pitch.mp4 to OneDrive and send the link.
+DONE (2026-11-24): the student uploaded `derelict-a8-pitch.mp4` to OneDrive and sent the link; it is in `README.md`. (Was: "NEEDS ME: upload C:\Users\sarth\Game Development\walker-a8\pitch\exports\derelict-a8-pitch.mp4 to OneDrive and send the link.")
 
 # A8-LOG.md — Assignment 8 (final project pitch film), work log
 
@@ -93,3 +93,8 @@ Written by Claude Code while executing `A8-RUNBOOK.md`. The runbook was written 
 - `FRICTIONAL.md` takes its dated entries from the commits and this log, labels the authors, and ends with an empty "Student's own notes".
 - `PROJECT-BRIEF.md` now ends with the two final lists, as a dated entry.
 - Committed in the order the work happened: the brief (`96ddf54`), the verification (`4dfc8ea`), the beats and the review cut (`5f124ff`), then the master and the documents.
+
+## Phase 7 — link, tag, push (2026-11-24)
+
+- The student uploaded the master to OneDrive and sent the link. Before committing, the local master was re-hashed: SHA-256 `1696c3bd…4a57`, unchanged.
+- The link and SHA-256 are in `README.md`. This commit is the one tagged `a8`. The push, the fresh-clone check and the archive come after the tag and are reported in chat, so the tag stays on this commit.
