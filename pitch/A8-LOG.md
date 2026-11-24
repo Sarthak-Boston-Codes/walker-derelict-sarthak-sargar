@@ -1,3 +1,5 @@
+NEEDS ME: upload C:\Users\sarth\Game Development\walker-a8\pitch\exports\derelict-a8-pitch.mp4 to OneDrive and send the link.
+
 # A8-LOG.md — Assignment 8 (final project pitch film), work log
 
 Written by Claude Code while executing `A8-RUNBOOK.md`. The runbook was written by Claude; the kit was extracted to `C:\Users\sarth\a8-kit` (2 files: `A8-RUNBOOK.md`, `PROJECT-BRIEF.md`). No game code is changed. Nothing here is a student check.
@@ -64,3 +66,30 @@ Written by Claude Code while executing `A8-RUNBOOK.md`. The runbook was written 
   - B04, "small enough to open in a minute" → "meant to be small enough …"
   - Both were regenerated. A first attempt at the edit was overwritten by the review build's stamp of `beat_sheet.json`, and was reapplied afterwards.
 - One row per sentence is in `HONESTY-CHECK.md`.
+
+## Phase 5 — render and gates
+
+- **Review cut, 1080p:** `run_compile_win.py pitch --review --fps 30 --height 1080` → `pitch/derelict-a8-pitch-slate.mp4`, 197.2 s, 13/13 slots filled. compile.py's render-integrity checks passed: decodable audio and video, duration equal to the timeline, audible.
+  - compile.py's skin lint printed "NO RENDERABLE BEATS". That rule assumes Remotion or Manim scenes; here every slot is filled from `media/`, so it does not apply.
+- **Gate V on the first review cut: FAILED, 4 BLOCKER, 4 MAJOR.**
+  - Edge-bleed on B01 (the drawn flashlight cone) and on B05 (the last caption crossed the right title-safe edge).
+  - Low contrast on B02 and B03 (0.26–0.27 < 0.30): dark game footage on a dark page.
+  - Fixes: a shorter cone, tighter step spacing, and, for B02 and B03, `qc.contrast_regions` on the title and label text, with a written `contrast_reason`. That is the gate's own mechanism; its empty-frame, fill and safe-area checks stay active.
+  - Re-rendered: **0 BLOCKER, 0 MAJOR** (`pitch/gates/review/REPORT.md`, contact sheet beside it). Claude Code read the contact sheet as the gate asks.
+- **4K master:** started with 6.6 GB free, alone on the machine (the student closed Chrome and Discord first). Settings from the start: `--low-mem-tight --preset-medium` (decoder and encoder at 2 threads, rc-lookahead 10, `-preset medium`, CRF 16), under a watchdog that stops ffmpeg below 2 GB free.
+  - **Attempt 1 (22:35–22:59): stopped by the watchdog** at frame 4383 of about 5917 (74%), with 1,968 MB free. Free memory sat near 2.2 GB for most of the run. All 13 beat clips had encoded and are cached; no master was written (`master_build_run1.log`, not committed).
+  - The A7 ladder ended at these settings, so the student was asked how to continue. The student chose a single encoder thread. A8's own copy of the launcher, `pitch/run_compile_win.py`, adds `--threads-1`: decoder and encoder at `-threads 1`, with CRF 16, `-preset medium` and rc-lookahead 10 unchanged. Quality is identical; only speed and memory change. The A7 launcher is untouched.
+  - **Attempt 2 (23:37–23:52): completed.** `--low-mem-tight --preset-medium --threads-1`, under the same 2 GB watchdog; the lowest free memory was 2,122 MB.
+- **Master:** `pitch/exports/derelict-a8-pitch.mp4`, 3840 × 2160, 30 fps, h264 + aac, 197.233 s, 28,068,664 bytes, SHA-256 `1696c3bd0e3e24e44126bd0f1aaab74b7dbc91b544ddc831df6f848504f74a57`.
+  - compile.py's final preflight passed: paperwork (GATE F), `beat_lint.py`, `gate_shape.py`.
+  - Render integrity passed: `verify_output` checks decodable streams, the exact duration and audible audio, plus an ffmpeg `-xerror` full decode.
+  - **Gate V on the master: 0 BLOCKER, 0 MAJOR.**
+  - The sheet and every input were re-hashed unchanged after the encode, and `derelict-a8-pitch.verified.json` was written (status `ready`).
+  - Reports are in `pitch/gates/master/`.
+
+## Phase 6 — documents
+
+- Written by Claude Code: `README.md` (film fields filled; the link is pending), `BUILD-PROMPT.md`, `SOURCES.md` and `FRICTIONAL.md`.
+- `FRICTIONAL.md` takes its dated entries from the commits and this log, labels the authors, and ends with an empty "Student's own notes".
+- `PROJECT-BRIEF.md` now ends with the two final lists, as a dated entry.
+- Committed in the order the work happened: the brief (`96ddf54`), the verification (`4dfc8ea`), the beats and the review cut (`5f124ff`), then the master and the documents.

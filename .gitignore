@@ -25,3 +25,10 @@ pitch/**/*.wav
 pitch/clips/
 pitch/captures/
 pitch/_qc/frames/
+pitch/exports/
+pitch/_qc/
+pitch/build-state.json
+pitch/master_build*.log
+pitch/qc-sheet.png
+pitch/_qc_narration.txt
+pitch/watchdog.log

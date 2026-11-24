@@ -1,0 +1,2 @@
+[low-mem] final encode: decoder -threads 1; encoder -threads 1 -x264-params rc-lookahead=10; -preset medium (CRF 16 unchanged)
+[art] wrote exports\derelict-a8-pitch.mp4  (197.2s, audio: per-beat timeline (source audio preserved), drawtext: no — PIL overlays)

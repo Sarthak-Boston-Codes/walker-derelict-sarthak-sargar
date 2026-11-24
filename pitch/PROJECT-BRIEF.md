@@ -87,3 +87,24 @@ Checked on branch `a8-pitch` (from `refs/heads/a7-animation`, top `bafe6eb`). Ev
 4. Renderer and engine confirmed: Godot 4.7.2, Forward+ (`project.godot:15`), D3D12 (`:91`). No export exists: no commit contains a `godot/export_presets.cfg`.
 5. The GPU name is confirmed (`RenderingServer.get_video_adapter_name()`, `TEST-REPORT.md` at `a6`). The film quotes no frame rate: the A2 redo's "137 FPS with 14 zombies" (`REDO-LOG.md`) has no committed log, so it is left out.
 6. Unverifiable, so left out of the film's claims: "gaming skills have increased" (as the brief already says).
+
+### 2026-11-23 — final lists, after verification and the film (Claude Code)
+
+The two lists as the film shows them (B12), with tags and counts. They replace the lists above for the film; the text above is unchanged.
+
+**Exists today**
+- 3D game core loop: menu, four rooms, player, two zombie types, waves, pickups, win and death screens [`a2-redo` `48eec7e`; `game3d_smoke_test` 27 checks, soak bot]
+- Three Blender-built props in a showcase scene [`a3` `b91201c`; `showcase_3d_test` exit 0]
+- Low-ammo shader and textured materials [`a5` `c076952`; `low_ammo_test` 35 PASS at 30/60/144 fps, `test_materials` 74 PASS, 3 mutations exit 1]
+- Impact burst and wound smoke, with tuning records and cost measurements [`a6` `9064ae8`; configs 108 + 39 PASS, 4 mutations exit 1; GPU +0.018 / +0.023 ms against 0.30 / 0.20 ms on the NVIDIA GeForce RTX 4050 Laptop GPU]
+- Keycard spin and pistol reload, one authority, state and edge tests [`a7` `660342c`; read-backs 32 + 57, structure 51, state 34, pins 19, edges 98 PASS lines]
+- A test and capture toolkit: `scripts/run-test.sh`, read-back checks, capture and measurement scripts [`a5`–`a7`]
+- The student's own playtests: A2 (author playtest) and A5 (2026-10-29, verbatim in `docs/archive/HUMAN-CHECK-NOTES-a5.md`)
+- This pitch film [`a8`; `pitch/README.md`]
+
+**Will exist**
+- A Windows desktop export of one run, with its SHA-256
+- A scripted run against the export that reaches the end screen
+- My own playtest of the export, and my A6 and A7 human checks, recorded in my words
+- The impact-burst and wound-smoke fixes (A-r2 needs approval first), recaptured and judged by me
+- A README a stranger can follow to play and to rerun the tests

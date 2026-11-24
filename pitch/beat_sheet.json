@@ -19,8 +19,8 @@
     "game_code_revision": "bafe6eb",
     "note": "CSYE 7270 Assignment 8 pitch film, built by Claude Code from pitch/PROJECT-BRIEF.md. Narration speaks as the student, in the first person. Every visual is labelled: real capture, scripted capture, fixture, constructed on screen or generated. No Remotion, no walker opening, no outro card, no instructor name or handle.",
     "build": {
-      "at": "2026-11-23T22:34:17",
-      "cut": "review",
+      "at": "2026-11-23T23:52:14",
+      "cut": "master",
       "filled": 13,
       "of": 13,
       "slates": [],
@@ -50,7 +50,7 @@
         "status": "STILL",
         "src": "media\\B01.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     },
     {
@@ -76,7 +76,7 @@
         "status": "VIDEO",
         "src": "media\\B02.mp4",
         "filled_by": "media",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       },
       "qc": {
         "contrast_reason": "Full-frame game footage is dark by design (a flashlight-lit level) on a dark page; contrast is measured on the essential text regions instead of the whole frame.",
@@ -124,7 +124,7 @@
         "status": "VIDEO",
         "src": "media\\B03.mp4",
         "filled_by": "media",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       },
       "qc": {
         "contrast_reason": "Full-frame game footage is dark by design (a flashlight-lit level) on a dark page; contrast is measured on the essential text regions instead of the whole frame.",
@@ -179,7 +179,7 @@
         "status": "STILL",
         "src": "media\\B04.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     },
     {
@@ -202,7 +202,7 @@
         "status": "STILL",
         "src": "media\\B05.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     },
     {
@@ -225,7 +225,7 @@
         "status": "STILL",
         "src": "media\\B06.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     },
     {
@@ -248,7 +248,7 @@
         "status": "STILL",
         "src": "media\\B07.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     },
     {
@@ -271,7 +271,7 @@
         "status": "STILL",
         "src": "media\\B08.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     },
     {
@@ -294,7 +294,7 @@
         "status": "STILL",
         "src": "media\\B09.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     },
     {
@@ -321,7 +321,7 @@
         "status": "STILL",
         "src": "media\\B10.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     },
     {
@@ -344,7 +344,7 @@
         "status": "STILL",
         "src": "media\\B11.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     },
     {
@@ -367,7 +367,7 @@
         "status": "STILL",
         "src": "media\\B12.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     },
     {
@@ -390,7 +390,7 @@
         "status": "STILL",
         "src": "media\\B13.png",
         "filled_by": "still",
-        "at": "2026-11-23T22:34:17"
+        "at": "2026-11-23T23:52:14"
       }
     }
   ]
